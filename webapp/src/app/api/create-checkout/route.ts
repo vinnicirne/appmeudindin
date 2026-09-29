@@ -48,8 +48,8 @@ export async function POST(request: NextRequest) {
         },
       ],
       payer: {
-        name: userName || 'Teste',
-        email: 'test_user_dindin_' + Math.floor(Math.random() * 100000) + '@testuser.com', // Override para evitar erro de 'comprador = vendedor' no Sandbox do MP
+        name: userName || user.user_metadata?.name || 'Cliente',
+        email: userEmail || user.email || '',
       },
       external_reference: user.id, // Sempre usa o ID do usuário autenticado
       back_urls: {
@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
         pending: `${siteUrl}/aguardando?status=pending`,
       },
       auto_return: 'approved' as const,
+      notification_url: `${siteUrl}/api/webhooks/mercadopago`,
       statement_descriptor: 'MEU DINDIN',
     };
 

@@ -72,6 +72,7 @@ export async function POST(request: NextRequest) {
         pending: `${siteUrl}/aguardando?status=pending`,
       },
       auto_return: 'approved' as const,
+      notification_url: `${siteUrl}/api/webhooks/mercadopago`,
       statement_descriptor: 'MEU DINDIN',
       metadata: {
         user_id: userId,
