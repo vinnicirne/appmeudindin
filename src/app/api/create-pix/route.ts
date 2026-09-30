@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MercadoPagoConfig, Payment } from 'mercadopago';
 import { createClient } from '@/utils/supabase/server';
+import crypto from 'crypto';
 
 /**
  * POST /api/create-pix
@@ -66,7 +67,12 @@ export async function POST(request: NextRequest) {
       external_reference: user.id,
     };
 
-    const response = await payment.create({ body: paymentData });
+    const response = await payment.create({
+      body: paymentData,
+      requestOptions: {
+        idempotencyKey: crypto.randomUUID(),
+      },
+    });
 
     const qrCode = response.point_of_interaction?.transaction_data?.qr_code;
     const qrCodeBase64 = response.point_of_interaction?.transaction_data?.qr_code_base64;
