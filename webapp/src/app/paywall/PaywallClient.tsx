@@ -1,20 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 interface PaywallClientProps {
   userId: string
   userEmail: string
   userName: string
+  planPrice?: number
+  planName?: string
+  planInterval?: string
 }
 
 type PaymentMethod = 'pix' | 'card'
 type PixState = 'form' | 'generating' | 'waiting' | 'approved' | 'error'
 
-export default function PaywallClient({ userId, userEmail, userName }: PaywallClientProps) {
+export default function PaywallClient({
+  userId,
+  userEmail,
+  userName,
+  planPrice = 29.00,
+  planName = 'Plano Anual',
+  planInterval = 'year',
+}: PaywallClientProps) {
   const router = useRouter()
   const [method, setMethod] = useState<PaymentMethod>('pix')
   const [cpf, setCpf] = useState('')
@@ -25,6 +34,16 @@ export default function PaywallClient({ userId, userEmail, userName }: PaywallCl
   const [errorMsg, setErrorMsg] = useState('')
   const [copied, setCopied] = useState(false)
   const [cardLoading, setCardLoading] = useState(false)
+
+  const formattedPrice = planPrice.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
+
+  const monthlyEquivalent = (planPrice / 12).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
 
   // Formata o CPF (000.000.000-00)
   function handleCpfChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -155,15 +174,19 @@ export default function PaywallClient({ userId, userEmail, userName }: PaywallCl
           </p>
         </div>
 
-        {/* Card de Preço */}
+        {/* Card de Preço Dinâmico */}
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex items-center justify-between mb-6">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Plano Anual</span>
-            <p className="text-xs text-muted-foreground">Menos de R$ 2,50/mês</p>
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">{planName}</span>
+            <p className="text-xs text-muted-foreground">
+              {planInterval === 'year' ? `Menos de ${monthlyEquivalent}/mês` : 'Acesso completo'}
+            </p>
           </div>
           <div className="text-right">
-            <span className="text-3xl font-black text-foreground">R$ 29,00</span>
-            <span className="text-xs text-muted-foreground block">/ano</span>
+            <span className="text-3xl font-black text-foreground">{formattedPrice}</span>
+            <span className="text-xs text-muted-foreground block">
+              {planInterval === 'year' ? '/ano' : '/mês'}
+            </span>
           </div>
         </div>
 
@@ -228,7 +251,7 @@ export default function PaywallClient({ userId, userEmail, userName }: PaywallCl
               className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-sm hover:scale-[1.01] active:scale-[0.99] transition-transform shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
             >
               <span className="material-symbols-outlined text-lg">bolt</span>
-              Gerar QR Code Pix (R$ 29,00)
+              Gerar QR Code Pix ({formattedPrice})
             </button>
           </form>
         )}
@@ -303,7 +326,7 @@ export default function PaywallClient({ userId, userEmail, userName }: PaywallCl
             <div>
               <h2 className="text-xl font-extrabold text-foreground">Pix Confirmado! 🎉</h2>
               <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                Seu plano anual foi ativado. Redirecionando...
+                Seu plano foi ativado com sucesso. Redirecionando...
               </p>
             </div>
             <div className="w-6 h-6 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
