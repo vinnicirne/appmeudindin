@@ -29,14 +29,14 @@ export default async function AffiliatesPage() {
     .select('*')
     .order('created_at', { ascending: false })
 
-  // Pegar usuários para calcular vendas
+  // Pegar usuÃ¡rios para calcular vendas
   const { data: usersData } = await adminClient
     .from('users')
     .select('id, referred_by, plan_status')
     .not('referred_by', 'is', null)
 
   const affiliates = (affiliatesData || []).map(aff => {
-    // Relatório
+    // RelatÃ³rio
     const signups = (usersData || []).filter(u => u.referred_by === aff.code)
     const sales = signups.filter(u => u.plan_status === 'active')
     const totalToPay = aff.commission_type === 'fixed' 

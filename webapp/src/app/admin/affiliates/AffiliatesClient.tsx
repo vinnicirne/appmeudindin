@@ -48,7 +48,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   }
 
   async function handleDelete(id: string) {
-    if(!confirm('Tem certeza? Isso n„o apagar· os usu·rios j· cadastrados com este link.')) return
+    if(!confirm('Tem certeza? Isso n√£o apagar√° os usu√°rios j√° cadastrados com este link.')) return
     setIsPending(true)
     const res = await deleteAffiliateAction(id)
     setIsPending(false)
@@ -71,9 +71,9 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   }
 
   function copyReport(aff: any) {
-    const text = \RelatÛrio de Vendas - Meu DinDin
+    const text = \Relat√≥rio de Vendas - Meu DinDin
 Parceiro: \
-CÛdigo: \
+C√≥digo: \
 
 Cadastros Gerados: \
 Vendas Confirmadas: \
@@ -82,18 +82,18 @@ Total a Receber: \
 Chave PIX: \\
     
     navigator.clipboard.writeText(text)
-    toast.success('RelatÛrio copiado para a ·rea de transferÍncia!')
+    toast.success('Relat√≥rio copiado para a √°rea de transfer√™ncia!')
   }
 
   return (
     <div className="space-y-6">
-      {/* Barra de Busca e AÁıes */}
+      {/* Barra de Busca e A√ß√µes */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="relative w-full sm:max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Buscar por nome ou cÛdigo..."
+            placeholder="Buscar por nome ou c√≥digo..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
@@ -146,7 +146,7 @@ Chave PIX: \\
                 </Button>
                 <Button variant="outline" size="sm" onClick={() => copyReport(aff)} className="h-8 px-3 text-xs rounded-lg">
                   <Copy className="w-3.5 h-3.5 mr-1.5" />
-                  RelatÛrio
+                  Relat√≥rio
                 </Button>
               </div>
               <div className="text-right">
@@ -185,7 +185,7 @@ Chave PIX: \\
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-bold">Novo Parceiro</h2>
-                  <p className="text-sm text-muted-foreground mt-1">Gere um link rastre·vel</p>
+                  <p className="text-sm text-muted-foreground mt-1">Gere um link rastre√°vel</p>
                 </div>
                 <button
                   onClick={() => !isPending && setIsAddOpen(false)}
@@ -202,13 +202,13 @@ Chave PIX: \\
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-foreground/80">CÛdigo do Link (sem espaÁos)</label>
+                  <label className="text-xs font-semibold text-foreground/80">C√≥digo do Link (sem espa√ßos)</label>
                   <input required name="code" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm font-mono" placeholder="Ex: maria20" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-foreground/80">Tipo Comiss„o</label>
+                    <label className="text-xs font-semibold text-foreground/80">Tipo Comiss√£o</label>
                     <select name="commissionType" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm">
                       <option value="fixed">Fixo (R$)</option>
                       <option value="percentage">Porcentagem (%)</option>

@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache'
 async function checkAdmin() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error('N„o autenticado.')
+  if (!user) throw new Error('N√£o autenticado.')
 
   const { data: userData } = await supabase
     .from('users')
@@ -14,7 +14,7 @@ async function checkAdmin() {
     .eq('id', user.id)
     .single()
 
-  if (userData?.role !== 'admin') throw new Error('Acesso n„o autorizado.')
+  if (userData?.role !== 'admin') throw new Error('Acesso n√£o autorizado.')
   return supabase
 }
 
@@ -28,9 +28,9 @@ export async function createAffiliateAction(formData: {
   try {
     const supabase = await checkAdmin()
     
-    // Como somos admin, usamos a service role via edge function ou o usu·rio admin tem permiss„o no RLS
+    // Como somos admin, usamos a service role via edge function ou o usu√°rio admin tem permiss√£o no RLS
     // Se a policy permite service_role, devemos usar a adminSupabase se houver problema, mas por agora 
-    // tentaremos usar o cliente logado se o RLS permitir (a policy que eu fiz tem service_role, ent„o vou
+    // tentaremos usar o cliente logado se o RLS permitir (a policy que eu fiz tem service_role, ent√£o vou
     // usar a adminSupabase para evitar falhas)
     
     // Import do admin

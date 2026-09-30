@@ -14,7 +14,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Meu DinDin | Controle Financeiro Descomplicado",
-  description: "Seu dinheiro, sob seu controle, sem complicação.",
+  description: "Seu dinheiro, sob seu controle, sem complicaÃ§Ã£o.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Meu DinDin | Controle Financeiro Descomplicado",
-    description: "Seu dinheiro, sob seu controle, sem complica��o.",
+    description: "Seu dinheiro, sob seu controle, sem complicação.",
     url: "https://meudindinapp.vercel.app",
     siteName: "Meu DinDin",
     images: [{ url: "https://meudindinapp.vercel.app/icons/icon-512x512.png", width: 512, height: 512 }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Meu DinDin | Controle Financeiro Descomplicado",
-    description: "Seu dinheiro, sob seu controle, sem complica��o.",
+    description: "Seu dinheiro, sob seu controle, sem complicação.",
     images: ["https://meudindinapp.vercel.app/icons/icon-512x512.png"],
   }
 };

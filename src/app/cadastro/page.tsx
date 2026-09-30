@@ -64,7 +64,7 @@ export default function CadastroPage() {
       router.push('/paywall')
 
     } catch {
-      setErrorMsg('Falha de conexão. Verifique sua internet e tente novamente.')
+      setErrorMsg('Falha de conexÃ£o. Verifique sua internet e tente novamente.')
       setFormState('error')
     }
   }
@@ -89,7 +89,7 @@ export default function CadastroPage() {
           </div>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">Crie sua conta</h1>
           <p className="text-xs sm:text-sm font-medium text-muted-foreground text-center">
-            Preencha os dados abaixo e em seguida você será levado ao pagamento.
+            Preencha os dados abaixo e em seguida vocÃª serÃ¡ levado ao pagamento.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ export default function CadastroPage() {
                 type="text"
                 required
                 autoComplete="name"
-                placeholder="João Silva"
+                placeholder="JoÃ£o Silva"
                 disabled={isLoading}
                 className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow disabled:opacity-60"
               />
@@ -179,7 +179,7 @@ export default function CadastroPage() {
                   required
                   minLength={6}
                   autoComplete="new-password"
-                  placeholder="Mínimo 6 caracteres"
+                  placeholder="MÃ­nimo 6 caracteres"
                   disabled={isLoading}
                   className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 pr-12 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow disabled:opacity-60"
                 />
@@ -208,7 +208,7 @@ export default function CadastroPage() {
               </motion.div>
             )}
 
-            {/* Botão principal */}
+            {/* BotÃ£o principal */}
             <button
               type="submit"
               disabled={isLoading}
@@ -229,7 +229,7 @@ export default function CadastroPage() {
           </form>
         </div>
 
-        {/* Segurança */}
+        {/* SeguranÃ§a */}
         <div className="flex items-center justify-center gap-2 mt-4 text-muted-foreground text-xs">
           <span className="material-symbols-outlined text-sm text-[#1db576]">lock</span>
           <p className="font-medium">Pagamento 100% seguro via Mercado Pago</p>
@@ -237,7 +237,7 @@ export default function CadastroPage() {
 
         {/* Link para login */}
         <p className="text-center text-xs sm:text-sm text-muted-foreground mt-3">
-          Já tem conta?{' '}
+          JÃ¡ tem conta?{' '}
           <Link href="/login" className="font-bold text-primary hover:underline">
             Fazer login
           </Link>

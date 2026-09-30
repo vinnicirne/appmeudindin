@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache'
 async function checkAdmin() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error('Não autenticado.')
+  if (!user) throw new Error('NÃ£o autenticado.')
 
   const { data: userData } = await supabase
     .from('users')
@@ -15,7 +15,7 @@ async function checkAdmin() {
     .eq('id', user.id)
     .single()
 
-  if (userData?.role !== 'admin') throw new Error('Acesso não autorizado.')
+  if (userData?.role !== 'admin') throw new Error('Acesso nÃ£o autorizado.')
   return supabase
 }
 
@@ -23,7 +23,7 @@ function getAdminClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
   if (!url || !serviceKey) {
-    throw new Error('Chave de serviço do Supabase não configurada.')
+    throw new Error('Chave de serviÃ§o do Supabase nÃ£o configurada.')
   }
   return createSupabaseClient(url, serviceKey, {
     auth: { autoRefreshToken: false, persistSession: false }
@@ -44,7 +44,7 @@ export async function createUserAction(formData: {
 
     const tempPassword = formData.password || ('Mdd#' + Math.random().toString(36).slice(-6) + '!')
 
-    // 1. Cria usuário no Auth
+    // 1. Cria usuÃ¡rio no Auth
     const { data: authData, error: authError } = await adminSupabase.auth.admin.createUser({
       email: formData.email,
       password: tempPassword,
@@ -82,7 +82,7 @@ export async function createUserAction(formData: {
       temporaryPassword: formData.password ? undefined : tempPassword 
     }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao criar novo usuário.' }
+    return { error: err.message || 'Erro ao criar novo usuÃ¡rio.' }
   }
 }
 
@@ -95,7 +95,7 @@ export async function deleteUserAction(userId: string) {
     const { error: authError } = await adminSupabase.auth.admin.deleteUser(userId)
     if (authError) throw authError
 
-    // 2. Remove de public.users por segurança caso não tenha cascade
+    // 2. Remove de public.users por seguranÃ§a caso nÃ£o tenha cascade
     await adminSupabase.from('users').delete().eq('id', userId)
 
     revalidatePath('/admin/users')
@@ -104,7 +104,7 @@ export async function deleteUserAction(userId: string) {
 
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao excluir usuário.' }
+    return { error: err.message || 'Erro ao excluir usuÃ¡rio.' }
   }
 }
 
@@ -125,7 +125,7 @@ export async function updateUserPlanStatusAction(userId: string, newStatus: 'act
     revalidatePath('/admin')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao atualizar status do usuário.' }
+    return { error: err.message || 'Erro ao atualizar status do usuÃ¡rio.' }
   }
 }
 
@@ -145,7 +145,7 @@ export async function updateUserRoleAction(userId: string, newRole: 'user' | 'ad
     revalidatePath('/admin')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao alterar permissão do usuário.' }
+    return { error: err.message || 'Erro ao alterar permissÃ£o do usuÃ¡rio.' }
   }
 }
 
@@ -174,7 +174,7 @@ export async function updateUserTrialAction(userId: string, daysToAdd: number | 
     revalidatePath('/admin')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao atualizar período de teste.' }
+    return { error: err.message || 'Erro ao atualizar perÃ­odo de teste.' }
   }
 }
 
