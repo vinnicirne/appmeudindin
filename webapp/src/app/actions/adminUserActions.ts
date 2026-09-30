@@ -110,9 +110,10 @@ export async function deleteUserAction(userId: string) {
 
 export async function updateUserPlanStatusAction(userId: string, newStatus: 'active' | 'pending' | 'blocked') {
   try {
-    const supabase = await checkAdmin()
+    await checkAdmin()
+    const adminSupabase = getAdminClient()
     
-    const { error } = await supabase
+    const { error } = await adminSupabase
       .from('users')
       .update({ plan_status: newStatus })
       .eq('id', userId)
@@ -130,9 +131,10 @@ export async function updateUserPlanStatusAction(userId: string, newStatus: 'act
 
 export async function updateUserRoleAction(userId: string, newRole: 'user' | 'admin') {
   try {
-    const supabase = await checkAdmin()
+    await checkAdmin()
+    const adminSupabase = getAdminClient()
     
-    const { error } = await supabase
+    const { error } = await adminSupabase
       .from('users')
       .update({ role: newRole })
       .eq('id', userId)
@@ -175,3 +177,4 @@ export async function updateUserTrialAction(userId: string, daysToAdd: number | 
     return { error: err.message || 'Erro ao atualizar período de teste.' }
   }
 }
+
