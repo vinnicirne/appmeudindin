@@ -19,7 +19,7 @@ async function checkAdmin() {
   return supabase
 }
 
-function getAdminClient() {
+export function getAdminClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
   if (!url || !serviceKey) {
@@ -177,4 +177,5 @@ export async function updateUserTrialAction(userId: string, daysToAdd: number | 
     return { error: err.message || 'Erro ao atualizar perÃ­odo de teste.' }
   }
 }
+
 
