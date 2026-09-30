@@ -13,9 +13,6 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [isPending, setIsPending] = useState(false)
 
-  // Report modal
-  const [selectedReport, setSelectedReport] = useState<any | null>(null)
-
   const filtered = affiliates.filter(a => 
     a.name.toLowerCase().includes(search.toLowerCase()) ||
     a.code.toLowerCase().includes(search.toLowerCase())
@@ -42,7 +39,6 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
     } else {
       toast.success('Parceiro adicionado!')
       setIsAddOpen(false)
-      // Recarrega nativamente (revalidatePath ja cuida disso no refresh)
       window.location.reload()
     }
   }
@@ -61,7 +57,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   }
 
   function copyLink(code: string) {
-    const link = typeof window !== 'undefined' ? \\/cadastro?ref=\\ : ''
+    const link = typeof window !== 'undefined' ? `${window.location.origin}/cadastro?ref=${code}` : ''
     navigator.clipboard.writeText(link)
     toast.success('Link de afiliado copiado!')
   }
@@ -71,15 +67,15 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   }
 
   function copyReport(aff: any) {
-    const text = \Relatório de Vendas - Meu DinDin
-Parceiro: \
-Código: \
+    const text = `Relatório de Vendas - Meu DinDin
+Parceiro: ${aff.name}
+Código: ${aff.code}
 
-Cadastros Gerados: \
-Vendas Confirmadas: \
+Cadastros Gerados: ${aff.metrics.signups}
+Vendas Confirmadas: ${aff.metrics.sales}
 ----------------------------
-Total a Receber: \
-Chave PIX: \\
+Total a Receber: ${formatMoney(aff.metrics.totalToPay)}
+Chave PIX: ${aff.pix_key || 'Não informada'}`
     
     navigator.clipboard.writeText(text)
     toast.success('Relatório copiado para a área de transferência!')
@@ -87,7 +83,6 @@ Chave PIX: \\
 
   return (
     <div className="space-y-6">
-      {/* Barra de Busca e Ações */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="relative w-full sm:max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -109,7 +104,6 @@ Chave PIX: \\
         </Button>
       </div>
 
-      {/* Tabela Desktop / Cards Mobile */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map(aff => (
           <div key={aff.id} className="bg-background border border-border rounded-2xl p-5 hover:shadow-sm transition-shadow">
@@ -164,7 +158,6 @@ Chave PIX: \\
         </div>
       )}
 
-      {/* Modal Criar */}
       <AnimatePresence>
         {isAddOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
