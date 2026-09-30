@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, X, Search, Link2, Download, Copy, Trash2, Instagram, Phone, Printer } from 'lucide-react'
+import { Plus, X, Search, Link2, Download, Copy, Trash2, Phone, Printer } from 'lucide-react'
 import { createAffiliateAction, deleteAffiliateAction } from '@/app/actions/affiliateActions'
 import toast from 'react-hot-toast'
 import { Button } from '@/components/ui/button'
@@ -131,7 +131,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                 <div className="flex items-center gap-2">
                   {aff.instagram && (
                     <Button variant="outline" size="sm" className="h-8 w-8 p-0 rounded-lg text-pink-600 hover:text-pink-700 hover:bg-pink-50" onClick={() => window.open(`https://instagram.com/${aff.instagram.replace('@','')}`, '_blank')}>
-                      <Instagram className="w-4 h-4" />
+                      <span className="material-symbols-outlined text-sm">photo_camera</span>
                     </Button>
                   )}
                   {aff.phone && (
