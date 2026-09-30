@@ -27,26 +27,26 @@ export default async function PaywallPage() {
   }
 
   // Busca o plano ativo configurado no /admin
-  const { data: activePlan } = await supabase
+  const { data: activePlans } = await supabase
     .from('plans')
     .select('*')
     .eq('is_active', true)
     .order('sort_order', { ascending: true })
-    .limit(1)
-    .single()
 
-  const planPrice = activePlan ? Number(activePlan.price) : 29.00
-  const planName = activePlan?.name || 'Meu DinDin — Assinatura Anual'
-  const planInterval = activePlan?.interval || 'year'
+  const plans = activePlans && activePlans.length > 0 ? activePlans : [{
+    id: 'default',
+    name: 'Plano Anual',
+    price: 29.00,
+    interval: 'year'
+  }]
 
   return (
     <PaywallClient
       userId={user.id}
       userEmail={userData?.email || user.email || ''}
       userName={userData?.name || ''}
-      planPrice={planPrice}
-      planName={planName}
-      planInterval={planInterval}
+      plans={plans}
     />
   )
 }
+

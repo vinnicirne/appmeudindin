@@ -8,9 +8,7 @@ interface PaywallClientProps {
   userId: string
   userEmail: string
   userName: string
-  planPrice?: number
-  planName?: string
-  planInterval?: string
+  plans: any[]
 }
 
 type PaymentMethod = 'pix' | 'card'
@@ -20,12 +18,17 @@ export default function PaywallClient({
   userId,
   userEmail,
   userName,
-  planPrice = 29.00,
-  planName = 'Plano Anual',
-  planInterval = 'year',
+  plans,
 }: PaywallClientProps) {
   const router = useRouter()
   const [method, setMethod] = useState<PaymentMethod>('pix')
+  const [selectedPlan, setSelectedPlan] = useState<any>(plans && plans.length > 0 ? plans[0] : null)
+  
+  const planPrice = selectedPlan ? Number(selectedPlan.price) : 29.00
+  const planName = selectedPlan?.name || 'Plano'
+  const planInterval = selectedPlan?.interval || 'year'
+  const planBadge = selectedPlan?.badge || ''
+
   const [cpf, setCpf] = useState('')
   const [pixState, setPixState] = useState<PixState>('form')
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null)
@@ -65,7 +68,7 @@ export default function PaywallClient({
     setErrorMsg('')
     const cleanCpf = cpf.replace(/\D/g, '')
     if (cleanCpf.length !== 11) {
-      setErrorMsg('Por favor, informe um CPF válido com 11 dígitos.')
+      setErrorMsg('Por favor, informe um CPF vÃ¡lido com 11 dÃ­gitos.')
       return
     }
 
@@ -83,7 +86,7 @@ export default function PaywallClient({
 
       const data = await res.json()
       if (!res.ok) {
-        setErrorMsg(data.error || 'Não foi possível gerar o QR Code Pix.')
+        setErrorMsg(data.error || 'NÃ£o foi possÃ­vel gerar o QR Code Pix.')
         setPixState('form')
         return
       }
@@ -93,7 +96,7 @@ export default function PaywallClient({
       setQrCodeText(data.qrCode)
       setPixState('waiting')
     } catch {
-      setErrorMsg('Falha de conexão ao gerar o Pix. Tente novamente.')
+      setErrorMsg('Falha de conexÃ£o ao gerar o Pix. Tente novamente.')
       setPixState('form')
     }
   }
@@ -125,7 +128,7 @@ export default function PaywallClient({
     return () => clearInterval(interval)
   }, [pixState, paymentId, router])
 
-  // Copiar código Pix Copia e Cola
+  // Copiar cÃ³digo Pix Copia e Cola
   function handleCopy() {
     if (!qrCodeText) return
     navigator.clipboard.writeText(qrCodeText)
@@ -133,7 +136,7 @@ export default function PaywallClient({
     setTimeout(() => setCopied(false), 3000)
   }
 
-  // Checkout no cartão de crédito (Checkout Pro)
+  // Checkout no cartÃ£o de crÃ©dito (Checkout Pro)
   async function handleCardCheckout() {
     setCardLoading(true)
     setErrorMsg('')
@@ -145,13 +148,13 @@ export default function PaywallClient({
       })
       const data = await res.json()
       if (!res.ok) {
-        setErrorMsg(data.error || 'Não foi possível gerar o link de pagamento do cartão.')
+        setErrorMsg(data.error || 'NÃ£o foi possÃ­vel gerar o link de pagamento do cartÃ£o.')
         setCardLoading(false)
         return
       }
       window.location.href = data.checkoutUrl
     } catch {
-      setErrorMsg('Falha de conexão. Tente novamente.')
+      setErrorMsg('Falha de conexÃ£o. Tente novamente.')
       setCardLoading(false)
     }
   }
@@ -174,23 +177,23 @@ export default function PaywallClient({
           </p>
         </div>
 
-        {/* Card de Preço Dinâmico */}
+        {/* Card de PreÃ§o DinÃ¢mico */}
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex items-center justify-between mb-6">
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-primary">{planName}</span>
             <p className="text-xs text-muted-foreground">
-              {planInterval === 'year' ? `Menos de ${monthlyEquivalent}/mês` : 'Acesso completo'}
+              {planInterval === 'year' ? `Menos de ${monthlyEquivalent}/mÃªs` : 'Acesso completo'}
             </p>
           </div>
           <div className="text-right">
             <span className="text-3xl font-black text-foreground">{formattedPrice}</span>
             <span className="text-xs text-muted-foreground block">
-              {planInterval === 'year' ? '/ano' : '/mês'}
+              {planInterval === 'year' ? '/ano' : '/mÃªs'}
             </span>
           </div>
         </div>
 
-        {/* Seletor de Método de Pagamento */}
+        {/* Seletor de MÃ©todo de Pagamento */}
         {pixState !== 'waiting' && pixState !== 'approved' && (
           <div className="grid grid-cols-2 gap-2 p-1 bg-muted rounded-xl mb-6">
             <button
@@ -203,7 +206,7 @@ export default function PaywallClient({
               }`}
             >
               <span className="material-symbols-outlined text-base text-[#1db576]">qr_code_2</span>
-              <span>Pix Instantâneo</span>
+              <span>Pix InstantÃ¢neo</span>
             </button>
             <button
               type="button"
@@ -215,7 +218,7 @@ export default function PaywallClient({
               }`}
             >
               <span className="material-symbols-outlined text-base text-primary">credit_card</span>
-              <span>Cartão de Crédito</span>
+              <span>CartÃ£o de CrÃ©dito</span>
             </button>
           </div>
         )}
@@ -228,12 +231,12 @@ export default function PaywallClient({
           </div>
         )}
 
-        {/* FLUXO PIX - ESTADO FORMULÁRIO */}
+        {/* FLUXO PIX - ESTADO FORMULÃRIO */}
         {method === 'pix' && pixState === 'form' && (
           <form onSubmit={handleGeneratePix} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="cpf" className="text-xs font-bold text-foreground/80">
-                CPF do Pagador (Exigido pelo Banco Central para emissão do Pix)
+                CPF do Pagador (Exigido pelo Banco Central para emissÃ£o do Pix)
               </label>
               <input
                 id="cpf"
@@ -280,7 +283,7 @@ export default function PaywallClient({
                 />
               ) : (
                 <div className="w-52 h-52 flex items-center justify-center text-muted-foreground text-xs">
-                  QR Code indisponível
+                  QR Code indisponÃ­vel
                 </div>
               )}
             </div>
@@ -299,7 +302,7 @@ export default function PaywallClient({
                 <span className="material-symbols-outlined text-base">
                   {copied ? 'check' : 'content_copy'}
                 </span>
-                <span>{copied ? 'Código Pix Copiado! 🎉' : 'Copiar Código Pix (Copia e Cola)'}</span>
+                <span>{copied ? 'CÃ³digo Pix Copiado! ðŸŽ‰' : 'Copiar CÃ³digo Pix (Copia e Cola)'}</span>
               </button>
 
               <button
@@ -324,7 +327,7 @@ export default function PaywallClient({
               <span className="material-symbols-outlined text-4xl text-[#1db576]">check_circle</span>
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-foreground">Pix Confirmado! 🎉</h2>
+              <h2 className="text-xl font-extrabold text-foreground">Pix Confirmado! ðŸŽ‰</h2>
               <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                 Seu plano foi ativado com sucesso. Redirecionando...
               </p>
@@ -333,11 +336,11 @@ export default function PaywallClient({
           </motion.div>
         )}
 
-        {/* FLUXO CARTÃO DE CRÉDITO */}
+        {/* FLUXO CARTÃƒO DE CRÃ‰DITO */}
         {method === 'card' && (
           <div className="flex flex-col gap-4">
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Você será direcionado para o ambiente seguro do Mercado Pago para efetuar o pagamento via Cartão de Crédito.
+              VocÃª serÃ¡ direcionado para o ambiente seguro do Mercado Pago para efetuar o pagamento via CartÃ£o de CrÃ©dito.
             </p>
             <button
               type="button"
@@ -353,7 +356,7 @@ export default function PaywallClient({
               ) : (
                 <>
                   <span className="material-symbols-outlined text-lg">credit_card</span>
-                  <span>Pagar com Cartão</span>
+                  <span>Pagar com CartÃ£o</span>
                 </>
               )}
             </button>
@@ -363,7 +366,7 @@ export default function PaywallClient({
         {/* Footer info */}
         <div className="flex items-center justify-center gap-1.5 mt-6 pt-4 border-t border-border text-muted-foreground">
           <span className="material-symbols-outlined text-sm text-[#1db576]">lock</span>
-          <span className="text-[11px] font-medium">Pagamento processado com segurança via Mercado Pago</span>
+          <span className="text-[11px] font-medium">Pagamento processado com seguranÃ§a via Mercado Pago</span>
         </div>
       </motion.div>
     </main>
