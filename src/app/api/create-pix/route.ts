@@ -6,7 +6,7 @@ import crypto from 'crypto';
 /**
  * POST /api/create-pix
  * Gera um pagamento direto via Pix (Checkout Transparente) no Mercado Pago.
- * Retorna o QR Code em Base64 e a chave Pix Copia e Cola para pagamento imediato.
+ * Busca dinamicamente o valor e nome do plano ativo configurado no /admin.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -36,6 +36,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Busca o plano ativo no Supabase
+    let activePlan = null;
+    if (planId) {
+      const { data } = await supabase.from('plans').select('*').eq('id', planId).single();
+      activePlan = data;
+    }
+    if (!activePlan) {
+      const { data } = await supabase.from('plans').select('*').eq('is_active', true).order('sort_order', { ascending: true }).limit(1).single();
+      activePlan = data;
+    }
+
+    const planPrice = activePlan ? Number(activePlan.price) : 29.00;
+    const planName = activePlan?.name || 'Meu DinDin — Assinatura Anual';
+
     const client = new MercadoPagoConfig({
       accessToken: mpAccessToken,
       options: { timeout: 10000 },
@@ -51,8 +65,8 @@ export async function POST(request: NextRequest) {
     const email = userEmail || user.email || 'contato@meudindin.app';
 
     const paymentData = {
-      transaction_amount: 29.00,
-      description: 'Meu DinDin — Assinatura Anual',
+      transaction_amount: planPrice,
+      description: planName,
       payment_method_id: 'pix',
       payer: {
         email,
@@ -91,6 +105,7 @@ export async function POST(request: NextRequest) {
       qrCode,
       qrCodeBase64,
       ticketUrl,
+      amount: planPrice,
     });
   } catch (error: any) {
     console.error('[/api/create-pix] Erro ao criar pagamento Pix:', error);
@@ -100,3 +115,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
