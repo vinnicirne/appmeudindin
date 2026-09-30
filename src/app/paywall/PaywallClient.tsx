@@ -4,11 +4,20 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
+interface Plan {
+  id: string
+  name: string
+  description?: string
+  price: number | string
+  interval?: string
+  badge?: string
+}
+
 interface PaywallClientProps {
   userId: string
   userEmail: string
   userName: string
-  plans: any[]
+  plans: Plan[]
 }
 
 type PaymentMethod = 'pix' | 'card'
@@ -22,12 +31,17 @@ export default function PaywallClient({
 }: PaywallClientProps) {
   const router = useRouter()
   const [method, setMethod] = useState<PaymentMethod>('pix')
-  const [selectedPlan, setSelectedPlan] = useState<any>(plans && plans.length > 0 ? plans[0] : null)
-  
-  const planPrice = selectedPlan ? Number(selectedPlan.price) : 29.00
-  const planName = selectedPlan?.name || 'Plano'
+  const [selectedPlan, setSelectedPlan] = useState<Plan>(
+    plans && plans.length > 0 ? plans[0] : {
+      id: 'default',
+      name: 'Plano Anual Oficial',
+      price: 29.00,
+      interval: 'year'
+    }
+  )
+
+  const planPrice = Number(selectedPlan?.price || 29.00)
   const planInterval = selectedPlan?.interval || 'year'
-  const planBadge = selectedPlan?.badge || ''
 
   const [cpf, setCpf] = useState('')
   const [pixState, setPixState] = useState<PixState>('form')
@@ -43,12 +57,6 @@ export default function PaywallClient({
     currency: 'BRL',
   })
 
-  const monthlyEquivalent = (planPrice / 12).toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  })
-
-  // Formata o CPF (000.000.000-00)
   function handleCpfChange(e: React.ChangeEvent<HTMLInputElement>) {
     const raw = e.target.value.replace(/\D/g, '').slice(0, 11)
     let formatted = raw
@@ -62,13 +70,12 @@ export default function PaywallClient({
     setCpf(formatted)
   }
 
-  // Gera o Pix Transparente
   async function handleGeneratePix(e: React.FormEvent) {
     e.preventDefault()
     setErrorMsg('')
     const cleanCpf = cpf.replace(/\D/g, '')
     if (cleanCpf.length !== 11) {
-      setErrorMsg('Por favor, informe um CPF vÃ¡lido com 11 dÃ­gitos.')
+      setErrorMsg('Por favor, informe um CPF válido com 11 dígitos.')
       return
     }
 
@@ -81,27 +88,28 @@ export default function PaywallClient({
           cpf: cleanCpf,
           userName: userName || 'Cliente',
           userEmail: userEmail || 'contato@meudindin.app',
+          planId: selectedPlan?.id,
         }),
       })
 
       const data = await res.json()
+
       if (!res.ok) {
-        setErrorMsg(data.error || 'NÃ£o foi possÃ­vel gerar o QR Code Pix.')
-        setPixState('form')
+        setErrorMsg(data.error || 'Não foi possível gerar o Pix. Tente novamente.')
+        setPixState('error')
         return
       }
 
-      setPaymentId(String(data.paymentId))
-      setQrCodeBase64(data.qrCodeBase64)
-      setQrCodeText(data.qrCode)
+      setQrCodeBase64(data.qrCodeBase64 || null)
+      setQrCodeText(data.qrCode || null)
+      setPaymentId(data.paymentId || null)
       setPixState('waiting')
     } catch {
-      setErrorMsg('Falha de conexÃ£o ao gerar o Pix. Tente novamente.')
-      setPixState('form')
+      setErrorMsg('Falha de conexão. Verifique sua internet e tente novamente.')
+      setPixState('error')
     }
   }
 
-  // Polling para verificar se o Pix foi pago
   useEffect(() => {
     if (pixState !== 'waiting' || !paymentId) return
 
@@ -128,7 +136,6 @@ export default function PaywallClient({
     return () => clearInterval(interval)
   }, [pixState, paymentId, router])
 
-  // Copiar cÃ³digo Pix Copia e Cola
   function handleCopy() {
     if (!qrCodeText) return
     navigator.clipboard.writeText(qrCodeText)
@@ -136,7 +143,6 @@ export default function PaywallClient({
     setTimeout(() => setCopied(false), 3000)
   }
 
-  // Checkout no cartÃ£o de crÃ©dito (Checkout Pro)
   async function handleCardCheckout() {
     setCardLoading(true)
     setErrorMsg('')
@@ -144,17 +150,22 @@ export default function PaywallClient({
       const res = await fetch('/api/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, userEmail, userName }),
+        body: JSON.stringify({
+          userId,
+          userEmail,
+          userName,
+          planId: selectedPlan?.id,
+        }),
       })
       const data = await res.json()
       if (!res.ok) {
-        setErrorMsg(data.error || 'NÃ£o foi possÃ­vel gerar o link de pagamento do cartÃ£o.')
+        setErrorMsg(data.error || 'Não foi possível gerar o link de pagamento do cartão.')
         setCardLoading(false)
         return
       }
       window.location.href = data.checkoutUrl
     } catch {
-      setErrorMsg('Falha de conexÃ£o. Tente novamente.')
+      setErrorMsg('Falha de conexão. Tente novamente.')
       setCardLoading(false)
     }
   }
@@ -166,34 +177,73 @@ export default function PaywallClient({
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-xl"
       >
-        {/* Top Header */}
+        {/* Cabeçalho */}
         <div className="flex flex-col items-center text-center mb-6">
           <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-3">
             <span className="material-symbols-outlined text-3xl text-primary">workspace_premium</span>
           </div>
           <h1 className="text-2xl font-extrabold text-foreground">Assinatura Meu DinDin</h1>
           <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-            Acesso ilimitado a todas as ferramentas por 1 ano.
+            Acesso ilimitado a todas as ferramentas.
           </p>
         </div>
 
-        {/* Card de PreÃ§o DinÃ¢mico */}
-        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex items-center justify-between mb-6">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">{planName}</span>
-            <p className="text-xs text-muted-foreground">
-              {planInterval === 'year' ? `Menos de ${monthlyEquivalent}/mÃªs` : 'Acesso completo'}
-            </p>
-          </div>
-          <div className="text-right">
-            <span className="text-3xl font-black text-foreground">{formattedPrice}</span>
-            <span className="text-xs text-muted-foreground block">
-              {planInterval === 'year' ? '/ano' : '/mÃªs'}
-            </span>
-          </div>
-        </div>
+        {/* Lista de Planos Disponíveis */}
+        {pixState === 'form' && (
+          <div className="space-y-3 mb-6">
+            {plans.map((p) => {
+              const priceNum = Number(p.price)
+              const isSelected = selectedPlan?.id === p.id
+              const isYearly = (p.interval || 'year') === 'year'
+              const monthlyPrice = (priceNum / 12).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+              const monthlyTxt = isYearly
+                ? `Menos de ${monthlyPrice}/mês`
+                : 'Acesso mensal completo'
 
-        {/* Seletor de MÃ©todo de Pagamento */}
+              return (
+                <div
+                  key={p.id}
+                  onClick={() => setSelectedPlan(p)}
+                  className={`relative cursor-pointer rounded-2xl p-4 flex items-center justify-between transition-all border-2 ${
+                    isSelected
+                      ? 'bg-primary/5 border-primary shadow-sm'
+                      : 'bg-card border-border hover:border-primary/50'
+                  }`}
+                >
+                  {p.badge && (
+                    <div className="absolute -top-2.5 left-4 bg-primary text-primary-foreground text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
+                      {p.badge}
+                    </div>
+                  )}
+                  <div>
+                    <span className={`text-xs font-bold uppercase tracking-wider block ${isSelected ? 'text-primary' : 'text-foreground'}`}>
+                      {p.name}
+                    </span>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {monthlyTxt}
+                    </p>
+                  </div>
+                  <div className="text-right shrink-0 ml-3">
+                    <div className="flex items-start justify-end gap-0.5">
+                      <span className="text-xs font-bold text-foreground mt-1">R$</span>
+                      <span className="text-2xl font-black tracking-tight text-foreground">
+                        {Math.floor(priceNum)}
+                      </span>
+                      <span className="text-xs font-bold text-foreground mt-1">
+                        ,{(priceNum % 1).toFixed(2).substring(2)}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground block -mt-1">
+                      /{isYearly ? 'ano' : 'mês'}
+                    </span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
+        {/* Seletor de Método de Pagamento */}
         {pixState !== 'waiting' && pixState !== 'approved' && (
           <div className="grid grid-cols-2 gap-2 p-1 bg-muted rounded-xl mb-6">
             <button
@@ -206,7 +256,7 @@ export default function PaywallClient({
               }`}
             >
               <span className="material-symbols-outlined text-base text-[#1db576]">qr_code_2</span>
-              <span>Pix InstantÃ¢neo</span>
+              <span>Pix Instantâneo</span>
             </button>
             <button
               type="button"
@@ -218,12 +268,12 @@ export default function PaywallClient({
               }`}
             >
               <span className="material-symbols-outlined text-base text-primary">credit_card</span>
-              <span>CartÃ£o de CrÃ©dito</span>
+              <span>Cartão de Crédito</span>
             </button>
           </div>
         )}
 
-        {/* MENSAGEM DE ERRO */}
+        {/* Mensagem de Erro */}
         {errorMsg && (
           <div className="bg-destructive/10 border border-destructive/20 text-destructive text-xs font-semibold rounded-xl p-3 mb-4 flex items-center gap-2">
             <span className="material-symbols-outlined text-base">error</span>
@@ -231,12 +281,12 @@ export default function PaywallClient({
           </div>
         )}
 
-        {/* FLUXO PIX - ESTADO FORMULÃRIO */}
+        {/* FLUXO PIX - Formulário */}
         {method === 'pix' && pixState === 'form' && (
           <form onSubmit={handleGeneratePix} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="cpf" className="text-xs font-bold text-foreground/80">
-                CPF do Pagador (Exigido pelo Banco Central para emissÃ£o do Pix)
+                CPF do Pagador (Exigido pelo Banco Central para emissão do Pix)
               </label>
               <input
                 id="cpf"
@@ -259,7 +309,7 @@ export default function PaywallClient({
           </form>
         )}
 
-        {/* FLUXO PIX - GERANDO */}
+        {/* FLUXO PIX - Gerando */}
         {method === 'pix' && pixState === 'generating' && (
           <div className="py-8 flex flex-col items-center justify-center gap-3">
             <div className="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
@@ -267,7 +317,18 @@ export default function PaywallClient({
           </div>
         )}
 
-        {/* FLUXO PIX - AGUARDANDO PAGAMENTO */}
+        {/* FLUXO PIX - Erro */}
+        {pixState === 'error' && (
+          <button
+            type="button"
+            onClick={() => { setErrorMsg(''); setPixState('form') }}
+            className="w-full mt-2 text-xs text-muted-foreground hover:text-foreground font-medium py-1"
+          >
+            Tentar novamente
+          </button>
+        )}
+
+        {/* FLUXO PIX - Aguardando Pagamento */}
         {pixState === 'waiting' && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -283,7 +344,7 @@ export default function PaywallClient({
                 />
               ) : (
                 <div className="w-52 h-52 flex items-center justify-center text-muted-foreground text-xs">
-                  QR Code indisponÃ­vel
+                  QR Code indisponível
                 </div>
               )}
             </div>
@@ -302,7 +363,7 @@ export default function PaywallClient({
                 <span className="material-symbols-outlined text-base">
                   {copied ? 'check' : 'content_copy'}
                 </span>
-                <span>{copied ? 'CÃ³digo Pix Copiado! ðŸŽ‰' : 'Copiar CÃ³digo Pix (Copia e Cola)'}</span>
+                <span>{copied ? 'Código Pix Copiado! 🎉' : 'Copiar Código Pix (Copia e Cola)'}</span>
               </button>
 
               <button
@@ -316,7 +377,7 @@ export default function PaywallClient({
           </motion.div>
         )}
 
-        {/* FLUXO PIX - APROVADO */}
+        {/* FLUXO PIX - Aprovado */}
         {pixState === 'approved' && (
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -327,7 +388,7 @@ export default function PaywallClient({
               <span className="material-symbols-outlined text-4xl text-[#1db576]">check_circle</span>
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-foreground">Pix Confirmado! ðŸŽ‰</h2>
+              <h2 className="text-xl font-extrabold text-foreground">Pix Confirmado! 🎉</h2>
               <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                 Seu plano foi ativado com sucesso. Redirecionando...
               </p>
@@ -336,11 +397,11 @@ export default function PaywallClient({
           </motion.div>
         )}
 
-        {/* FLUXO CARTÃƒO DE CRÃ‰DITO */}
+        {/* FLUXO CARTÃO DE CRÉDITO */}
         {method === 'card' && (
           <div className="flex flex-col gap-4">
             <p className="text-xs text-muted-foreground leading-relaxed">
-              VocÃª serÃ¡ direcionado para o ambiente seguro do Mercado Pago para efetuar o pagamento via CartÃ£o de CrÃ©dito.
+              Você será direcionado para o ambiente seguro do Mercado Pago para efetuar o pagamento via Cartão de Crédito.
             </p>
             <button
               type="button"
@@ -356,20 +417,19 @@ export default function PaywallClient({
               ) : (
                 <>
                   <span className="material-symbols-outlined text-lg">credit_card</span>
-                  <span>Pagar com CartÃ£o</span>
+                  <span>Pagar com Cartão ({formattedPrice})</span>
                 </>
               )}
             </button>
           </div>
         )}
 
-        {/* Footer info */}
+        {/* Rodapé */}
         <div className="flex items-center justify-center gap-1.5 mt-6 pt-4 border-t border-border text-muted-foreground">
           <span className="material-symbols-outlined text-sm text-[#1db576]">lock</span>
-          <span className="text-[11px] font-medium">Pagamento processado com seguranÃ§a via Mercado Pago</span>
+          <span className="text-[11px] font-medium">Pagamento processado com segurança via Mercado Pago</span>
         </div>
       </motion.div>
     </main>
   )
 }
-
