@@ -76,7 +76,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   }
 
   async function handleDelete(id: string) {
-    if(!confirm('Tem certeza? Isso não apagará os usuários já cadastrados com este link.')) return
+    if(!confirm('Tem certeza? Isso nÃ£o apagarÃ¡ os usuÃ¡rios jÃ¡ cadastrados com este link.')) return
     setIsPending(true)
     const res = await deleteAffiliateAction(id)
     setIsPending(false)
@@ -109,7 +109,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Buscar por nome ou código..."
+            placeholder="Buscar por nome ou cÃ³digo..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
@@ -186,7 +186,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                 </Button>
                 <Button variant="outline" size="sm" onClick={() => setReportAffiliate(aff)} className="h-8 flex-1 text-xs rounded-lg border-primary text-primary hover:bg-primary/5">
                   <Download className="w-3.5 h-3.5 mr-1.5" />
-                  Relatório
+                  RelatÃ³rio
                 </Button>
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-bold">Novo Parceiro</h2>
-                  <p className="text-sm text-muted-foreground mt-1">Gere um link rastreável</p>
+                  <p className="text-sm text-muted-foreground mt-1">Gere um link rastreÃ¡vel</p>
                 </div>
                 <button
                   onClick={() => !isPending && setIsAddOpen(false)}
@@ -238,13 +238,13 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-foreground/80">Código do Link (sem espaços)</label>
+                  <label className="text-xs font-semibold text-foreground/80">CÃ³digo do Link (sem espaÃ§os)</label>
                   <input required name="code" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm font-mono" placeholder="Ex: maria20" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-foreground/80">Tipo Comissão</label>
+                    <label className="text-xs font-semibold text-foreground/80">Tipo ComissÃ£o</label>
                     <select name="commissionType" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm">
                       <option value="fixed">Fixo (R$)</option>
                       <option value="percentage">Porcentagem (%)</option>
@@ -321,13 +321,13 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-foreground/80">C�digo do Link (sem espa�os)</label>
+                  <label className="text-xs font-semibold text-foreground/80">Código do Link (sem espaços)</label>
                   <input required defaultValue={editAffiliate.code} name="code" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm font-mono" placeholder="Ex: maria20" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-foreground/80">Tipo Comiss�o</label>
+                    <label className="text-xs font-semibold text-foreground/80">Tipo Comissão</label>
                     <select defaultValue={editAffiliate.commission_type} name="commissionType" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm">
                       <option value="fixed">Fixo (R$)</option>
                       <option value="percentage">Porcentagem (%)</option>
@@ -360,7 +360,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                     Cancelar
                   </Button>
                   <Button type="submit" disabled={isPending} className="flex-1 h-11 rounded-xl">
-                    {isPending ? 'Salvando...' : 'Salvar Altera��es'}
+                    {isPending ? 'Salvando...' : 'Salvar Alterações'}
                   </Button>
                 </div>
               </form>
@@ -383,7 +383,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
               <div className="flex items-center justify-between p-4 border-b border-border print:hidden">
                 <h2 className="text-lg font-bold flex items-center gap-2">
                   <Copy className="w-5 h-5 text-primary" />
-                  Relatório de Fechamento
+                  RelatÃ³rio de Fechamento
                 </h2>
                 <button onClick={() => setReportAffiliate(null)} className="p-2 hover:bg-muted rounded-full">
                   <X className="w-5 h-5" />
@@ -398,7 +398,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                     $
                   </div>
                   <h1 className="text-2xl font-black tracking-tight text-foreground">Meu DinDin</h1>
-                  <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Relatório de Vendas</p>
+                  <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">RelatÃ³rio de Vendas</p>
                 </div>
 
                 {/* Affiliate Info */}
@@ -409,7 +409,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                       <p className="font-bold text-foreground text-lg">{reportAffiliate.name}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-muted-foreground uppercase mb-1">Código Promocional</p>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase mb-1">CÃ³digo Promocional</p>
                       <p className="font-mono font-medium text-foreground bg-background px-2 py-1 rounded inline-block border border-border">
                         {reportAffiliate.code}
                       </p>
@@ -437,7 +437,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                   </div>
                   <div className="pt-4 border-t border-primary/10">
                     <p className="text-xs font-bold text-muted-foreground uppercase mb-1">Chave PIX Cadastrada</p>
-                    <p className="font-medium text-foreground">{reportAffiliate.pix_key || 'Não informada'}</p>
+                    <p className="font-medium text-foreground">{reportAffiliate.pix_key || 'NÃ£o informada'}</p>
                   </div>
                 </div>
                 
