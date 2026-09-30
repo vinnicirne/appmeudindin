@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X, Search, Link2, Download, Copy, Trash2, Phone, Printer } from 'lucide-react'
-import { createAffiliateAction, deleteAffiliateAction } from '@/app/actions/affiliateActions'
+import { createAffiliateAction, deleteAffiliateAction, updateAffiliateAction } from '@/app/actions/affiliateActions'
 import toast from 'react-hot-toast'
 import { Button } from '@/components/ui/button'
 
@@ -11,6 +11,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
   const [affiliates, setAffiliates] = useState(initialAffiliates)
   const [search, setSearch] = useState('')
   const [isAddOpen, setIsAddOpen] = useState(false)
+  const [editAffiliate, setEditAffiliate] = useState<any | null>(null)
   const [isPending, setIsPending] = useState(false)
   const [reportAffiliate, setReportAffiliate] = useState<any | null>(null)
 
@@ -42,6 +43,34 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
     } else {
       toast.success('Parceiro adicionado!')
       setIsAddOpen(false)
+      window.location.reload()
+    }
+  }
+
+    async function handleEdit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (!editAffiliate) return
+    setIsPending(true)
+    const form = e.currentTarget
+    
+    const formData = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      code: (form.elements.namedItem('code') as HTMLInputElement).value.toLowerCase().replace(/\s/g, ''),
+      commissionType: (form.elements.namedItem('commissionType') as HTMLSelectElement).value as 'fixed' | 'percentage',
+      commissionValue: Number((form.elements.namedItem('commissionValue') as HTMLInputElement).value),
+      pixKey: (form.elements.namedItem('pixKey') as HTMLInputElement).value,
+      instagram: (form.elements.namedItem('instagram') as HTMLInputElement)?.value || '',
+      phone: (form.elements.namedItem('phone') as HTMLInputElement)?.value || ''
+    }
+
+    const res = await updateAffiliateAction(editAffiliate.id, formData)
+    setIsPending(false)
+
+    if (res.error) {
+      toast.error(res.error)
+    } else {
+      toast.success('Parceiro atualizado!')
+      setEditAffiliate(null)
       window.location.reload()
     }
   }
@@ -109,9 +138,14 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                     </span>
                   </div>
                 </div>
-                <button onClick={() => handleDelete(aff.id)} className="text-muted-foreground hover:text-red-500 transition-colors p-1">
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                                <div className="flex gap-1">
+                  <button onClick={() => setEditAffiliate(aff)} className="text-muted-foreground hover:text-blue-500 transition-colors p-1">
+                    <span className="material-symbols-outlined text-sm">edit</span>
+                  </button>
+                  <button onClick={() => handleDelete(aff.id)} className="text-muted-foreground hover:text-red-500 transition-colors p-1">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-5 p-3 bg-muted/40 rounded-xl">
@@ -249,6 +283,92 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
         )}
       </AnimatePresence>
 
+            {/* Modal Editar Parceiro */}
+      <AnimatePresence>
+        {editAffiliate && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 print:hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => !isPending && setEditAffiliate(null)}
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-md bg-background border border-border shadow-xl rounded-2xl p-6 overflow-y-auto max-h-[90vh]"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-xl font-bold">Editar Parceiro</h2>
+                  <p className="text-sm text-muted-foreground mt-1">Atualize os dados do afiliado</p>
+                </div>
+                <button
+                  onClick={() => !isPending && setEditAffiliate(null)}
+                  className="p-2 hover:bg-muted rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </div>
+
+              <form onSubmit={handleEdit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-foreground/80">Nome do Parceiro</label>
+                  <input required defaultValue={editAffiliate.name} name="name" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm" placeholder="Ex: Maria Influencer" />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-foreground/80">Código do Link (sem espaços)</label>
+                  <input required defaultValue={editAffiliate.code} name="code" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm font-mono" placeholder="Ex: maria20" />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-foreground/80">Tipo Comissão</label>
+                    <select defaultValue={editAffiliate.commission_type} name="commissionType" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm">
+                      <option value="fixed">Fixo (R$)</option>
+                      <option value="percentage">Porcentagem (%)</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-foreground/80">Valor (R$ ou %)</label>
+                    <input required defaultValue={editAffiliate.commission_value} name="commissionValue" type="number" step="0.01" min="0" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm" placeholder="Ex: 10" />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-foreground/80">Chave PIX (opcional)</label>
+                  <input defaultValue={editAffiliate.pix_key} name="pixKey" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm" placeholder="CPF, Email ou Telefone" />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-foreground/80">Instagram (opcional)</label>
+                    <input defaultValue={editAffiliate.instagram} name="instagram" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm" placeholder="@usuario" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-foreground/80">WhatsApp (opcional)</label>
+                    <input defaultValue={editAffiliate.phone} name="phone" type="text" className="w-full bg-muted/50 border border-border rounded-xl px-4 py-2.5 text-sm" placeholder="5511999999999" />
+                  </div>
+                </div>
+
+                <div className="pt-2 flex gap-2">
+                  <Button type="button" variant="outline" onClick={() => setEditAffiliate(null)} disabled={isPending} className="flex-1 h-11 rounded-xl">
+                    Cancelar
+                  </Button>
+                  <Button type="submit" disabled={isPending} className="flex-1 h-11 rounded-xl">
+                    {isPending ? 'Salvando...' : 'Salvar Alterações'}
+                  </Button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Report View (Printable) */}
       <AnimatePresence>
         {reportAffiliate && (
@@ -361,5 +481,6 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
     </div>
   )
 }
+
 
 
