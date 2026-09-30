@@ -257,7 +257,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="relative w-full h-full sm:h-auto sm:max-w-xl bg-background sm:border sm:border-border sm:shadow-2xl sm:rounded-2xl flex flex-col print:border-none print:shadow-none print:w-full print:h-auto print:max-w-none"
+              className="relative w-full max-h-[100dvh] sm:max-h-[90vh] sm:h-auto sm:max-w-md bg-background sm:border sm:border-border sm:shadow-2xl sm:rounded-2xl flex flex-col overflow-hidden print:border-none print:shadow-none print:w-full print:h-auto print:max-w-none print:overflow-visible"
             >
               {/* Header / Actions */}
               <div className="flex items-center justify-between p-4 border-b border-border print:hidden">
@@ -271,10 +271,10 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
               </div>
 
               {/* Printable Content */}
-              <div className="p-8 space-y-8 flex-1 overflow-y-auto print:overflow-visible print:p-0">
+              <div className="p-5 space-y-5 flex-1 overflow-y-auto print:overflow-visible print:p-0">
                 {/* Brand Header */}
-                <div className="flex flex-col items-center justify-center text-center space-y-2 border-b border-border pb-6">
-                  <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
+                <div className="flex flex-col items-center justify-center text-center space-y-2 border-b border-border pb-4">
+                  <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
                     $
                   </div>
                   <h1 className="text-2xl font-black tracking-tight text-foreground">Meu DinDin</h1>
@@ -298,22 +298,22 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center p-6 border border-border rounded-xl bg-card">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-4 border border-border rounded-xl bg-card">
                     <p className="text-xs font-bold text-muted-foreground uppercase mb-2">Cadastros Gerados</p>
-                    <p className="text-4xl font-black text-foreground">{reportAffiliate.metrics.signups}</p>
+                    <p className="text-3xl font-black text-foreground">{reportAffiliate.metrics.signups}</p>
                   </div>
-                  <div className="text-center p-6 border border-border rounded-xl bg-card">
+                  <div className="text-center p-4 border border-border rounded-xl bg-card">
                     <p className="text-xs font-bold text-muted-foreground uppercase mb-2">Vendas Confirmadas</p>
-                    <p className="text-4xl font-black text-green-600">{reportAffiliate.metrics.sales}</p>
+                    <p className="text-3xl font-black text-green-600">{reportAffiliate.metrics.sales}</p>
                   </div>
                 </div>
 
                 {/* Totals */}
-                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6">
+                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4">
                   <div className="flex justify-between items-end mb-4">
                     <p className="text-sm font-bold text-muted-foreground uppercase">Total do Repasse</p>
-                    <p className="text-3xl font-black text-primary">{formatMoney(reportAffiliate.metrics.totalToPay)}</p>
+                    <p className="text-2xl font-black text-primary">{formatMoney(reportAffiliate.metrics.totalToPay)}</p>
                   </div>
                   <div className="pt-4 border-t border-primary/10">
                     <p className="text-xs font-bold text-muted-foreground uppercase mb-1">Chave PIX Cadastrada</p>
@@ -343,3 +343,4 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
     </div>
   )
 }
+
