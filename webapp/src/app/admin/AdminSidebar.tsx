@@ -16,6 +16,7 @@ const NAV_ITEMS = [
   { href: '/admin/users', icon: 'group', label: 'Usuários', exact: false },
   { href: '/admin/plans', icon: 'payments', label: 'Planos', exact: false },
   { href: '/admin/subscriptions', icon: 'loyalty', label: 'Assinaturas', exact: false },
+  { href: '/admin/affiliates', icon: 'handshake', label: 'Afiliados', exact: false },
 ]
 
 export default function AdminSidebar({ displayName, email }: Props) {
