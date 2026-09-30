@@ -271,7 +271,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
               </div>
 
               {/* Printable Content */}
-              <div className="p-5 space-y-5 flex-1 overflow-y-auto print:overflow-visible print:p-0">
+              <div id="printable-report" className="p-5 space-y-5 flex-1 overflow-y-auto print:overflow-visible print:p-0">
                 {/* Brand Header */}
                 <div className="flex flex-col items-center justify-center text-center space-y-2 border-b border-border pb-4">
                   <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
@@ -321,6 +321,24 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                   </div>
                 </div>
                 
+                                {reportAffiliate.salesDetails && reportAffiliate.salesDetails.length > 0 && (
+                  <div className="mt-8 border-t border-border pt-6">
+                    <h3 className="text-sm font-bold text-muted-foreground uppercase mb-4">Detalhamento de Vendas</h3>
+                    <div className="space-y-3">
+                      {reportAffiliate.salesDetails.map((sale: any) => (
+                        <div key={sale.id} className="flex justify-between items-center p-3 bg-muted/20 rounded-lg border border-border/50 text-sm">
+                          <div>
+                            <p className="font-bold text-foreground">{sale.name}</p>
+                            <p className="text-xs text-muted-foreground">{new Date(sale.date).toLocaleDateString('pt-BR')} - {sale.email}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-bold text-green-600">+{formatMoney(sale.commission)}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="text-center text-xs text-muted-foreground pt-4">
                   Documento gerado automaticamente pelo sistema Meu DinDin em {new Date().toLocaleDateString('pt-BR')}.
                 </div>
@@ -343,4 +361,5 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
     </div>
   )
 }
+
 

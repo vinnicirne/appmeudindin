@@ -32,7 +32,7 @@ export default async function AffiliatesPage() {
   // Pegar usuários para calcular vendas
   const { data: usersData } = await adminClient
     .from('users')
-    .select('id, referred_by, plan_status')
+    .select('id, name, full_name, email, referred_by, plan_status, created_at')
     .not('referred_by', 'is', null)
 
   const affiliates = (affiliatesData || []).map(aff => {
@@ -49,7 +49,14 @@ export default async function AffiliatesPage() {
         signups: signups.length,
         sales: sales.length,
         totalToPay
-      }
+      },
+      salesDetails: sales.map(s => ({
+        id: s.id,
+        name: s.name || s.full_name || s.email,
+        email: s.email,
+        date: s.created_at,
+        commission: aff.commission_type === 'fixed' ? aff.commission_value : (29 * (aff.commission_value / 100))
+      }))
     }
   })
 
@@ -73,3 +80,4 @@ export default async function AffiliatesPage() {
     </div>
   )
 }
+
