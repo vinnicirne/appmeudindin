@@ -11,7 +11,7 @@ import { createClient } from '@/utils/supabase/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => ({}));
-    const { name, email, password, phone } = body;
+    const { name, email, password, phone, referred_by } = body;
 
     // Validação
     if (!name || !email || !password) {
@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
       user_metadata: {
         name,
         phone: phone || null,
+        referred_by: referred_by || null,
       },
     });
 
@@ -54,6 +55,7 @@ export async function POST(request: NextRequest) {
         name,
         email,
         phone: phone || null,
+        referred_by: referred_by || null,
         plan_status: 'pending',
       });
 
@@ -78,3 +80,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+

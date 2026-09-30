@@ -27,6 +27,21 @@ export const metadata: Metadata = {
   other: {
     "link:material-icons": "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200",
   },
+  openGraph: {
+    title: "Meu DinDin | Controle Financeiro Descomplicado",
+    description: "Seu dinheiro, sob seu controle, sem complicação.",
+    url: "https://meudindinapp.vercel.app",
+    siteName: "Meu DinDin",
+    images: [{ url: "https://meudindinapp.vercel.app/icons/icon-512x512.png", width: 512, height: 512 }],
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meu DinDin | Controle Financeiro Descomplicado",
+    description: "Seu dinheiro, sob seu controle, sem complicação.",
+    images: ["https://meudindinapp.vercel.app/icons/icon-512x512.png"],
+  }
 };
 
 export const viewport: Viewport = {
@@ -71,6 +86,7 @@ export default function RootLayout({
           <InstallPWA />
           <Toaster 
             position="top-center"
+            containerStyle={{ top: 80 }}
             toastOptions={{
               style: {
                 borderRadius: '12px',
@@ -87,3 +103,4 @@ export default function RootLayout({
     </html>
   );
 }
+
