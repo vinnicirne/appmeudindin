@@ -29,13 +29,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Busca o plano ativo no Supabase
-    const { data: activePlan } = await supabase
-      .from('plans')
-      .select('*')
-      .eq('is_active', true)
-      .order('sort_order', { ascending: true })
-      .limit(1)
-      .single();
+    let activePlan = null;
+    if (planId) {
+      const { data } = await supabase.from('plans').select('*').eq('id', planId).single();
+      activePlan = data;
+    }
+    if (!activePlan) {
+      const { data } = await supabase.from('plans').select('*').eq('is_active', true).order('sort_order', { ascending: true }).limit(1).single();
+      activePlan = data;
+    }
 
     const planPrice = activePlan ? Number(activePlan.price) : 29.00;
     const planName = activePlan?.name || 'Meu DinDin — Assinatura Anual';
@@ -88,3 +90,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
