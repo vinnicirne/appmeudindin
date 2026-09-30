@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json().catch(() => ({}));
-    const { cpf, userName, userEmail } = body;
+    const { cpf, userName, userEmail, planId } = body;
 
     const cleanCpf = (cpf || '').replace(/\D/g, '');
     if (cleanCpf.length !== 11) {
@@ -115,4 +115,5 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
 

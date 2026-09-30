@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json().catch(() => ({}));
-    const { userEmail, userName } = body;
+    const { userEmail, userName, planId } = body;
 
     const mpAccessToken = process.env.MP_ACCESS_TOKEN;
     if (!mpAccessToken) {
@@ -90,4 +90,5 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
 
