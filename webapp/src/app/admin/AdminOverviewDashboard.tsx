@@ -26,6 +26,7 @@ export interface OverviewMetrics {
   activeUsers: number
   pendingUsers: number // Abandono / Pendentes
   inactiveUsers: number
+  totalAffiliates: number
   conversionRate: number
   abandonmentRate: number
   estimatedRevenue: number
@@ -53,76 +54,100 @@ export function AdminOverviewDashboard({ metrics }: Props) {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Cards principais permanecem iguais, ajustando apenas a Receita */}
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* 1. Total de Cadastros */}
         <Link href="/admin/users" className="block group">
           <Card className="border-border/60 bg-card hover:border-primary transition-all shadow-sm group-hover:shadow-md cursor-pointer h-full flex flex-col justify-between">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors flex items-center gap-1.5">
+              <CardTitle className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors flex items-center gap-1 whitespace-nowrap truncate">
                 Total de Cadastros
                 <span className="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
               </CardTitle>
-              <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all shrink-0">
                 <span className="material-symbols-outlined text-lg">group</span>
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-black text-foreground">{metrics.totalUsers}</div>
-              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-muted-foreground mt-1 whitespace-nowrap truncate flex items-center gap-1">
                 <span className="text-primary font-bold">100%</span> da base de leads
               </p>
             </CardContent>
           </Card>
         </Link>
 
+        {/* 2. Assinantes Ativos */}
         <Link href="/admin/subscriptions" className="block group">
           <Card className="border-border/60 bg-card hover:border-[#1db576] transition-all shadow-sm group-hover:shadow-md cursor-pointer h-full flex flex-col justify-between">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-[#1db576] transition-colors flex items-center gap-1.5">
+              <CardTitle className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider group-hover:text-[#1db576] transition-colors flex items-center gap-1 whitespace-nowrap truncate">
                 Assinantes Ativos
                 <span className="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
               </CardTitle>
-              <div className="w-8 h-8 rounded-lg bg-[#1db576]/10 text-[#1db576] flex items-center justify-center group-hover:bg-[#1db576] group-hover:text-white transition-all">
+              <div className="w-8 h-8 rounded-lg bg-[#1db576]/10 text-[#1db576] flex items-center justify-center group-hover:bg-[#1db576] group-hover:text-white transition-all shrink-0">
                 <span className="material-symbols-outlined text-lg">verified</span>
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-black text-[#1db576]">{metrics.activeUsers}</div>
-              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-muted-foreground mt-1 whitespace-nowrap truncate flex items-center gap-1">
                 <span className="text-[#1db576] font-bold">{metrics.conversionRate}%</span> taxa de conversão
               </p>
             </CardContent>
           </Card>
         </Link>
 
+        {/* 3. Abandono / Pendentes */}
         <Link href="/admin/users" className="block group">
           <Card className="border-border/60 bg-card hover:border-amber-500 transition-all shadow-sm group-hover:shadow-md cursor-pointer h-full flex flex-col justify-between">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-amber-500 transition-colors flex items-center gap-1.5">
+              <CardTitle className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider group-hover:text-amber-500 transition-colors flex items-center gap-1 whitespace-nowrap truncate">
                 Abandono / Pendentes
                 <span className="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
               </CardTitle>
-              <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
+              <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all shrink-0">
                 <span className="material-symbols-outlined text-lg">shopping_cart_checkout</span>
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-black text-amber-500">{metrics.pendingUsers}</div>
-              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-muted-foreground mt-1 whitespace-nowrap truncate flex items-center gap-1">
                 <span className="text-amber-500 font-bold">{metrics.abandonmentRate}%</span> abandonaram no checkout
               </p>
             </CardContent>
           </Card>
         </Link>
 
-        <Link href="/admin/plans" className="block group">
-          <Card className="border-border/60 bg-card hover:border-primary transition-all shadow-sm group-hover:shadow-md cursor-pointer h-full flex flex-col justify-between">
+        {/* 4. Total de Afiliados */}
+        <Link href="/admin/affiliates" className="block group">
+          <Card className="border-border/60 bg-card hover:border-purple-500 transition-all shadow-sm group-hover:shadow-md cursor-pointer h-full flex flex-col justify-between">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors flex items-center gap-1.5">
+              <CardTitle className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider group-hover:text-purple-500 transition-colors flex items-center gap-1 whitespace-nowrap truncate">
+                Total de Afiliados
+                <span className="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+              </CardTitle>
+              <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white transition-all shrink-0">
+                <span className="material-symbols-outlined text-lg">handshake</span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-black text-purple-600">{metrics.totalAffiliates || 0}</div>
+              <p className="text-[11px] text-muted-foreground mt-1 whitespace-nowrap truncate">
+                Parceiros ativos
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+
+        {/* 5. Receita Estimada */}
+        <Link href="/admin/plans" className="block group">
+          <Card className="border-border/60 bg-card hover:border-emerald-500 transition-all shadow-sm group-hover:shadow-md cursor-pointer h-full flex flex-col justify-between">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+              <CardTitle className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider group-hover:text-emerald-500 transition-colors flex items-center gap-1 whitespace-nowrap truncate">
                 Receita Estimada
                 <span className="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
               </CardTitle>
-              <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all shrink-0">
                 <span className="material-symbols-outlined text-lg">payments</span>
               </div>
             </CardHeader>
@@ -130,8 +155,8 @@ export function AdminOverviewDashboard({ metrics }: Props) {
               <div className="text-2xl font-black text-foreground">
                 {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(metrics.estimatedRevenue)}
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Baseado na média dos planos ativos
+              <p className="text-[11px] text-muted-foreground mt-1 whitespace-nowrap truncate">
+                Média dos planos ativos
               </p>
             </CardContent>
           </Card>

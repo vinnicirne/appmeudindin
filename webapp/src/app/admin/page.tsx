@@ -32,16 +32,26 @@ export default async function AdminPage() {
     redirect('/')
   }
 
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const adminClient = (serviceKey && supabaseUrl)
+    ? createSupabaseClient(supabaseUrl, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
+    : supabase
+
   // Busca todos os usuários do banco para calcular métricas de visão geral
-  const { data: usersData } = await supabase
+  const { data: usersData } = await adminClient
     .from('users')
-    .select('id, name, email, plan_status, created_at')
+    .select('id, name, email, plan_status, is_affiliate, affiliate_code, created_at')
     .order('created_at', { ascending: false })
+
+  const { data: affiliatesData } = await adminClient
+    .from('affiliates')
+    .select('id, code')
 
   const users: UserMetric[] = (usersData as UserMetric[]) || []
 
   // Busca todos os planos cadastrados
-  const { data: plansData } = await supabase
+  const { data: plansData } = await adminClient
     .from('plans')
     .select('id, name, price, interval')
     .eq('is_active', true)
@@ -56,8 +66,18 @@ export default async function AdminPage() {
   const conversionRate = totalUsers > 0 ? Math.round((activeUsers / totalUsers) * 100) : 0
   const abandonmentRate = totalUsers > 0 ? Math.round((pendingUsers / totalUsers) * 100) : 0
   
-  // Calcula a média de preço dos planos ativos para estimar receita se não soubermos exatamente qual plano o usuário tem.
-  // Como simplificação e correção do mock, assumimos uma estimativa baseada no primeiro plano ativo ou na média.
+  // Total de afiliados únicos sem duplicidade
+  const affiliateCodes = new Set<string>()
+  for (const a of (affiliatesData || [])) {
+    if (a.code) affiliateCodes.add(a.code.toLowerCase())
+  }
+  for (const u of (usersData || [])) {
+    if (u.is_affiliate || u.affiliate_code) {
+      affiliateCodes.add((u.affiliate_code || u.id).toLowerCase())
+    }
+  }
+  const totalAffiliates = affiliateCodes.size
+
   const averagePlanPrice = plans.length > 0 
     ? plans.reduce((acc, p) => acc + Number(p.price), 0) / plans.length 
     : 0
@@ -69,6 +89,7 @@ export default async function AdminPage() {
     activeUsers,
     pendingUsers,
     inactiveUsers,
+    totalAffiliates,
     conversionRate,
     abandonmentRate,
     estimatedRevenue,
