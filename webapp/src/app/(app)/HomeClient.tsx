@@ -29,7 +29,7 @@ function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-export default function HomeClient({ transactions }: { transactions: Transaction[] }) {
+export default function HomeClient({ transactions, dbCategories = [] }: { transactions: Transaction[], dbCategories?: any[] }) {
   const router = useRouter()
   const today = new Date()
   const [year, setYear] = useState(today.getFullYear())

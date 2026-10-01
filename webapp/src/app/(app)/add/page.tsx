@@ -7,6 +7,9 @@ import { addTransactionAction } from '@/app/actions/transactionActions';
 import { useState, useEffect, Suspense } from 'react';
 import { toast } from 'react-hot-toast';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const EXPENSE_QUICK_TAGS = ['Supermercado', 'CombustÃ­vel', 'Restaurante', 'FarmÃ¡cia', 'Lazer', 'Uber'];
 const INCOME_QUICK_TAGS = ['SalÃ¡rio', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
