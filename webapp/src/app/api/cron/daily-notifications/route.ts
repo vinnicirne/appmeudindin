@@ -1,10 +1,6 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { adminMessaging } from '@/utils/firebase/firebaseAdmin';
 import { createClient } from '@supabase/supabase-js';
-
-// Vercel Cron will call this without auth headers naturally if we don't block it, 
-// but we should verify the request if using headers. We will keep it simple for now,
-// or verify a basic secret if needed.
 
 export async function GET(req: Request) {
   try {
@@ -14,10 +10,10 @@ export async function GET(req: Request) {
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 
-    // Get today's date formatted as YYYY-MM-DD
+    // Obter data de hoje YYYY-MM-DD
     const today = new Date().toISOString().split('T')[0];
 
-    // Find pending transactions due today
+    // Buscar transações pendentes para hoje
     const { data: transactions, error: txError } = await adminSupabase
       .from('transactions')
       .select('id, description, type, amount, user_id')
@@ -30,7 +26,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ message: 'Nenhuma transação pendente para hoje.' });
     }
 
-    // Group by user_id
+    // Agrupar por user_id
     const userMap = new Map<string, any[]>();
     for (const tx of transactions) {
       if (!userMap.has(tx.user_id)) {
@@ -39,7 +35,7 @@ export async function GET(req: Request) {
       userMap.get(tx.user_id)!.push(tx);
     }
 
-    // Fetch users who have FCM tokens
+    // Buscar usuários com token FCM ativo
     const userIds = Array.from(userMap.keys());
     const { data: users, error: userError } = await adminSupabase
       .from('users')
@@ -52,7 +48,6 @@ export async function GET(req: Request) {
 
     let sentCount = 0;
 
-    // Send notifications
     for (const user of users || []) {
       const userTx = userMap.get(user.id) || [];
       const incomes = userTx.filter(t => t.type === 'INCOME');
@@ -85,7 +80,7 @@ export async function GET(req: Request) {
           });
           sentCount++;
         } catch (e) {
-          console.error(Erro ao enviar push para usuário :, e);
+          console.error(`Erro ao enviar push para usuário ${user.id}:`, e);
         }
       }
     }
