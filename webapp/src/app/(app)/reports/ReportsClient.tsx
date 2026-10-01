@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import jsPDF from 'jspdf'
-import autoTable from 'jspdf-autotable'
+import toast from 'react-hot-toast'
 
 interface Transaction {
   id: string
@@ -46,43 +46,70 @@ export default function ReportsClient({ transactions }: Props) {
   const balance = totalIncome - totalExpense
 
   function generatePDF() {
-    const doc = new jsPDF()
-    
-    doc.setFontSize(20)
-    doc.text('Relatório Financeiro', 14, 22)
-    
-    doc.setFontSize(11)
-    doc.text(`Período: ${startDate ? new Date(startDate).toLocaleDateString('pt-BR') : 'Início'} até ${endDate ? new Date(endDate).toLocaleDateString('pt-BR') : 'Hoje'}`, 14, 30)
-    
-    doc.text(`Total Entradas: R$ ${totalIncome.toFixed(2)}`, 14, 38)
-    doc.text(`Total Saídas: R$ ${totalExpense.toFixed(2)}`, 14, 44)
-    doc.text(`Saldo do Período: R$ ${balance.toFixed(2)}`, 14, 50)
+    if (filteredTransactions.length === 0) {
+      toast.error('Não há transações nesse período para gerar o PDF.')
+      return
+    }
 
-    const tableColumn = ["Data", "Descrição", "Categoria", "Tipo", "Status", "Valor (R$)"]
-    const tableRows: string[][] = []
+    try {
+      toast.success('Gerando PDF...', { duration: 2000 })
+      const doc = new jsPDF()
+      
+      doc.setFontSize(20)
+      doc.text('Relatório Financeiro', 14, 22)
+      
+      doc.setFontSize(11)
+      doc.text(`Período: ${startDate ? new Date(startDate).toLocaleDateString('pt-BR') : 'Início'} até ${endDate ? new Date(endDate).toLocaleDateString('pt-BR') : 'Hoje'}`, 14, 30)
+      
+      doc.text(`Total Entradas: R$ ${totalIncome.toFixed(2)}`, 14, 38)
+      doc.text(`Total Saídas: R$ ${totalExpense.toFixed(2)}`, 14, 44)
+      doc.text(`Saldo do Período: R$ ${balance.toFixed(2)}`, 14, 50)
 
-    filteredTransactions.forEach(t => {
-      const row = [
-        new Date(t.date).toLocaleDateString('pt-BR'),
-        t.description,
-        categoryLabel[t.category_id] || t.category_id,
-        t.type === 'INCOME' ? 'Entrada' : 'Saída',
-        t.is_paid ? 'Pago' : 'Pendente',
-        t.amount.toFixed(2)
-      ]
-      tableRows.push(row)
-    })
+      // Cabeçalho da Tabela
+      doc.setFontSize(9)
+      doc.setFont("helvetica", "bold")
+      doc.text("Data", 14, 65)
+      doc.text("Descrição", 40, 65)
+      doc.text("Categoria", 100, 65)
+      doc.text("Tipo", 140, 65)
+      doc.text("Status", 165, 65)
+      doc.text("Valor", 190, 65)
+      
+      doc.line(14, 67, 200, 67) // Linha divisória
 
-    autoTable(doc, {
-      head: [tableColumn],
-      body: tableRows,
-      startY: 55,
-      theme: 'grid',
-      styles: { fontSize: 9 },
-      headStyles: { fillColor: [29, 181, 118] }
-    })
+      // Corpo da tabela
+      doc.setFont("helvetica", "normal")
+      let y = 74
 
-    doc.save(`relatorio_${new Date().getTime()}.pdf`)
+      filteredTransactions.forEach(t => {
+        if (y > 280) {
+          doc.addPage()
+          y = 20
+        }
+        
+        const dateStr = new Date(t.date).toLocaleDateString('pt-BR')
+        const descStr = t.description.length > 25 ? t.description.substring(0, 25) + '...' : t.description
+        const catStr = categoryLabel[t.category_id] || t.category_id
+        const typeStr = t.type === 'INCOME' ? 'Entrada' : 'Saída'
+        const statusStr = t.is_paid ? 'Pago' : 'Pendente'
+        const valStr = `R$ ${t.amount.toFixed(2)}`
+
+        doc.text(dateStr, 14, y)
+        doc.text(descStr, 40, y)
+        doc.text(catStr, 100, y)
+        doc.text(typeStr, 140, y)
+        doc.text(statusStr, 165, y)
+        doc.text(valStr, 190, y)
+        
+        y += 8
+      })
+
+      doc.save(`relatorio_${new Date().getTime()}.pdf`)
+      toast.success('Download concluído!')
+    } catch (error: any) {
+      console.error('Erro ao gerar PDF:', error)
+      toast.error('Falha ao gerar o arquivo PDF. ' + error?.message)
+    }
   }
 
   return (
