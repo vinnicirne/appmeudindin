@@ -1,119 +1,120 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { MercadoPagoConfig, Payment } from 'mercadopago';
-import { createClient } from '@/utils/supabase/server';
-import crypto from 'crypto';
-
-/**
- * POST /api/create-pix
- * Gera um pagamento direto via Pix (Checkout Transparente) no Mercado Pago.
- * Busca dinamicamente o valor e nome do plano ativo configurado no /admin.
- */
-export async function POST(request: NextRequest) {
-  try {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: 'Não autenticado.' }, { status: 401 });
-    }
-
-    const body = await request.json().catch(() => ({}));
-    const { cpf, userName, userEmail, planId } = body;
-
-    const cleanCpf = (cpf || '').replace(/\D/g, '');
-    if (cleanCpf.length !== 11) {
-      return NextResponse.json(
-        { error: 'CPF inválido. Por favor, digite um CPF com 11 dígitos para emissão do Pix.' },
-        { status: 400 }
-      );
-    }
-
-    const mpAccessToken = process.env.MP_ACCESS_TOKEN;
-    if (!mpAccessToken) {
-      return NextResponse.json(
-        { error: 'Configuração de pagamento ausente no servidor (MP_ACCESS_TOKEN).' },
-        { status: 500 }
-      );
-    }
-
-    // Busca o plano ativo no Supabase
-    let activePlan = null;
-    if (planId) {
-      const { data } = await supabase.from('plans').select('*').eq('id', planId).single();
-      activePlan = data;
-    }
-    if (!activePlan) {
-      const { data } = await supabase.from('plans').select('*').eq('is_active', true).order('sort_order', { ascending: true }).limit(1).single();
-      activePlan = data;
-    }
-
-    const planPrice = activePlan ? Number(activePlan.price) : 29.00;
-    const planName = activePlan?.name || 'Meu DinDin — Assinatura Anual';
-
-    const client = new MercadoPagoConfig({
-      accessToken: mpAccessToken,
-      options: { timeout: 10000 },
-    });
-
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const payment = new Payment(client);
-
-    const fullName = (userName || user.user_metadata?.name || 'Cliente').trim();
-    const nameParts = fullName.split(' ');
-    const firstName = nameParts[0] || 'Cliente';
-    const lastName = nameParts.slice(1).join(' ') || 'Assinante';
-    const email = userEmail || user.email || 'contato@meudindin.app';
-
-    const paymentData = {
-      transaction_amount: planPrice,
-      description: planName,
-      payment_method_id: 'pix',
-      payer: {
-        email,
-        first_name: firstName,
-        last_name: lastName,
-        identification: {
-          type: 'CPF',
-          number: cleanCpf,
-        },
-      },
-      notification_url: `${siteUrl}/api/webhooks/mercadopago`,
-      external_reference: user.id,
-    };
-
-    const response = await payment.create({
-      body: paymentData,
-      requestOptions: {
-        idempotencyKey: crypto.randomUUID(),
-      },
-    });
-
-    const qrCode = response.point_of_interaction?.transaction_data?.qr_code;
-    const qrCodeBase64 = response.point_of_interaction?.transaction_data?.qr_code_base64;
-    const ticketUrl = response.point_of_interaction?.transaction_data?.ticket_url;
-
-    if (!qrCode && !qrCodeBase64) {
-      return NextResponse.json(
-        { error: 'Mercado Pago não retornou os dados do QR Code. Verifique se a chave Pix da sua conta MP está ativa.' },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({
-      paymentId: response.id,
-      status: response.status,
-      qrCode,
-      qrCodeBase64,
-      ticketUrl,
-      amount: planPrice,
-    });
-  } catch (error: any) {
-    console.error('[/api/create-pix] Erro ao criar pagamento Pix:', error);
-    return NextResponse.json(
-      { error: error.message || 'Erro ao gerar Pix no Mercado Pago.' },
-      { status: 500 }
-    );
-  }
-}
-
-
+çiçmçpçoçrçtç ç{ç çNçeçxçtçRçeçqçuçeçsçtç,ç çNçeçxçtçRçeçsçpçoçnçsçeç ç}ç çfçrçoçmç ç'çnçeçxçtç/çsçeçrçvçeçrç'ç;ç
+çiçmçpçoçrçtç ç{ç çMçeçrçcçaçdçoçPçaçgçoçCçoçnçfçiçgç,ç çPçaçyçmçeçnçtç ç}ç çfçrçoçmç ç'çmçeçrçcçaçdçoçpçaçgçoç'ç;ç
+çiçmçpçoçrçtç ç{ç çcçrçeçaçtçeçCçlçiçeçnçtç ç}ç çfçrçoçmç ç'ç@ç/çuçtçiçlçsç/çsçuçpçaçbçaçsçeç/çsçeçrçvçeçrç'ç;ç
+çiçmçpçoçrçtç çcçrçyçpçtçoç çfçrçoçmç ç'çcçrçyçpçtçoç'ç;ç
+ç
+ç/ç*ç*ç
+ç ç*ç çPçOçSçTç ç/çaçpçiç/çcçrçeçaçtçeç-çpçiçxç
+ç ç*ç çGçeçrçaç çuçmç çpçaçgçaçmçeçnçtçoç çdçiçrçeçtçoç çvçiçaç çPçiçxç ç(çCçhçeçcçkçoçuçtç çTçrçaçnçsçpçaçrçeçnçtçeç)ç çnçãçoç çMçeçrçcçaçdçoç çPçaçgçoç.ç
+ç ç*ç çBçuçsçcçaç çdçiçnçaçmçiçcçaçmçeçnçtçeç çoç çvçaçlçoçrç çeç çnçãçoçmçeç çdçoç çpçlçaçnçãçoç çaçtçiçvçoç çcçoçnçfçiçgçuçrçaçdçoç çnçãçoç ç/çaçdçmçiçnç.ç
+ç ç*ç/ç
+çeçxçpçoçrçtç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çPçOçSçTç(çrçeçqçuçeçsçtç:ç çNçeçxçtçRçeçqçuçeçsçtç)ç ç{ç
+ç ç çtçrçyç ç{ç
+ç ç ç ç çcçoçnçsçtç çsçuçpçaçbçaçsçeç ç=ç çaçwçaçiçtç çcçrçeçaçtçeçCçlçiçeçnçtç(ç)ç;ç
+ç ç ç ç çcçoçnçsçtç ç{ç çdçaçtçaç:ç ç{ç çuçsçeçrç ç}ç ç}ç ç=ç çaçwçaçiçtç çsçuçpçaçbçaçsçeç.çaçuçtçhç.çgçeçtçUçsçeçrç(ç)ç;ç
+ç
+ç ç ç ç çiçfç ç(ç!çuçsçeçrç)ç ç{ç
+ç ç ç ç ç ç çrçeçtçuçrçnç çNçeçxçtçRçeçsçpçoçnçsçeç.çjçsçoçnç(ç{ç çeçrçrçoçrç:ç ç'çNçãçoç çaçuçtçeçnçtçiçcçaçdçoç.ç'ç ç}ç,ç ç{ç çsçtçaçtçuçsç:ç ç4ç0ç1ç ç}ç)ç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç çcçoçnçsçtç çbçoçdçyç ç=ç çaçwçaçiçtç çrçeçqçuçeçsçtç.çjçsçoçnç(ç)ç.çcçaçtçcçhç(ç(ç)ç ç=ç>ç ç(ç{ç}ç)ç)ç;ç
+ç ç ç ç çcçoçnçsçtç ç{ç çcçpçfç,ç çuçsçeçrçNçaçmçeç,ç çuçsçeçrçEçmçaçiçlç,ç çpçlçaçnçIçdç ç}ç ç=ç çbçoçdçyç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çcçlçeçaçnçCçpçfç ç=ç ç(çcçpçfç ç|ç|ç ç'ç'ç)ç.çrçeçpçlçaçcçeç(ç/ç\çDç/çgç,ç ç'ç'ç)ç;ç
+ç ç ç ç çiçfç ç(çcçlçeçaçnçCçpçfç.çlçeçnçgçtçhç ç!ç=ç=ç ç1ç1ç)ç ç{ç
+ç ç ç ç ç ç çrçeçtçuçrçnç çNçeçxçtçRçeçsçpçoçnçsçeç.çjçsçoçnç(ç
+ç ç ç ç ç ç ç ç ç{ç çeçrçrçoçrç:ç ç'çCçPçFç çiçnçvçáçlçiçdçoç.ç çPçoçrç çfçaçvçoçrç,ç çdçiçgçiçtçeç çuçmç çCçPçFç çcçoçmç ç1ç1ç çdçíçgçiçtçoçsç çpçaçrçaç çeçmçiçsçsçãçoç çdçoç çPçiçxç.ç'ç ç}ç,ç
+ç ç ç ç ç ç ç ç ç{ç çsçtçaçtçuçsç:ç ç4ç0ç0ç ç}ç
+ç ç ç ç ç ç ç)ç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç çcçoçnçsçtç çmçpçAçcçcçeçsçsçTçoçkçeçnç ç=ç çpçrçoçcçeçsçsç.çeçnçvç.çMçPç_çAçCçCçEçSçSç_çTçOçKçEçNç;ç
+ç ç ç ç çiçfç ç(ç!çmçpçAçcçcçeçsçsçTçoçkçeçnç)ç ç{ç
+ç ç ç ç ç ç çrçeçtçuçrçnç çNçeçxçtçRçeçsçpçoçnçsçeç.çjçsçoçnç(ç
+ç ç ç ç ç ç ç ç ç{ç çeçrçrçoçrç:ç ç'çCçoçnçfçiçgçuçrçaçççãçoç çdçeç çpçaçgçaçmçeçnçtçoç çaçuçsçeçnçtçeç çnçãçoç çsçeçrçvçiçdçoçrç ç(çMçPç_çAçCçCçEçSçSç_çTçOçKçEçNç)ç.ç'ç ç}ç,ç
+ç ç ç ç ç ç ç ç ç{ç çsçtçaçtçuçsç:ç ç5ç0ç0ç ç}ç
+ç ç ç ç ç ç ç)ç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç ç/ç/ç çBçuçsçcçaç çoç çpçlçaçnçãçoç çaçtçiçvçoç çnçãçoç çSçuçpçaçbçaçsçeç
+ç ç ç ç çlçeçtç çaçcçtçiçvçeçPçlçaçnç ç=ç çnçuçlçlç;ç
+ç ç ç ç çiçfç ç(çpçlçaçnçIçdç)ç ç{ç
+ç ç ç ç ç ç çcçoçnçsçtç ç{ç çdçaçtçaç ç}ç ç=ç çaçwçaçiçtç çsçuçpçaçbçaçsçeç.çfçrçoçmç(ç'çpçlçaçnçsç'ç)ç.çsçeçlçeçcçtç(ç'ç*ç'ç)ç.çeçqç(ç'çiçdç'ç,ç çpçlçaçnçIçdç)ç.çsçiçnçgçlçeç(ç)ç;ç
+ç ç ç ç ç ç çaçcçtçiçvçeçPçlçaçnç ç=ç çdçaçtçaç;ç
+ç ç ç ç ç}ç
+ç ç ç ç çiçfç ç(ç!çaçcçtçiçvçeçPçlçaçnç)ç ç{ç
+ç ç ç ç ç ç çcçoçnçsçtç ç{ç çdçaçtçaç ç}ç ç=ç çaçwçaçiçtç çsçuçpçaçbçaçsçeç.çfçrçoçmç(ç'çpçlçaçnçsç'ç)ç.çsçeçlçeçcçtç(ç'ç*ç'ç)ç.çeçqç(ç'çiçsç_çaçcçtçiçvçeç'ç,ç çtçrçuçeç)ç.çoçrçdçeçrç(ç'çsçoçrçtç_çoçrçdçeçrç'ç,ç ç{ç çaçsçcçeçnçdçiçnçgç:ç çtçrçuçeç ç}ç)ç.çlçiçmçiçtç(ç1ç)ç.çsçiçnçgçlçeç(ç)ç;ç
+ç ç ç ç ç ç çaçcçtçiçvçeçPçlçaçnç ç=ç çdçaçtçaç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç çcçoçnçsçtç çpçlçaçnçPçrçiçcçeç ç=ç çaçcçtçiçvçeçPçlçaçnç ç?ç çNçuçmçbçeçrç(çaçcçtçiçvçeçPçlçaçnç.çpçrçiçcçeç)ç ç:ç ç2ç9ç.ç0ç0ç;ç
+ç ç ç ç çcçoçnçsçtç çpçlçaçnçNçaçmçeç ç=ç çaçcçtçiçvçeçPçlçaçnç?ç.çnçaçmçeç ç|ç|ç ç'çMçeçuç çDçiçnçDçiçnç ç—ç çAçsçsçiçnçaçtçuçrçaç çAçnçuçaçlç'ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çcçlçiçeçnçtç ç=ç çnçeçwç çMçeçrçcçaçdçoçPçaçgçoçCçoçnçfçiçgç(ç{ç
+ç ç ç ç ç ç çaçcçcçeçsçsçTçoçkçeçnç:ç çmçpçAçcçcçeçsçsçTçoçkçeçnç,ç
+ç ç ç ç ç ç çoçpçtçiçoçnçsç:ç ç{ç çtçiçmçeçoçuçtç:ç ç1ç0ç0ç0ç0ç ç}ç,ç
+ç ç ç ç ç}ç)ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çsçiçtçeçUçrçlç ç=ç çpçrçoçcçeçsçsç.çeçnçvç.çNçEçXçTç_çPçUçBçLçIçCç_çSçIçTçEç_çUçRçLç ç|ç|ç ç'çhçtçtçpç:ç/ç/çlçoçcçaçlçhçoçsçtç:ç3ç0ç0ç0ç'ç;ç
+ç ç ç ç çcçoçnçsçtç çpçaçyçmçeçnçtç ç=ç çnçeçwç çPçaçyçmçeçnçtç(çcçlçiçeçnçtç)ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çfçuçlçlçNçaçmçeç ç=ç ç(çuçsçeçrçNçaçmçeç ç|ç|ç çuçsçeçrç.çuçsçeçrç_çmçeçtçaçdçaçtçaç?ç.çnçaçmçeç ç|ç|ç ç'çCçlçiçeçnçtçeç'ç)ç.çtçrçiçmç(ç)ç;ç
+ç ç ç ç çcçoçnçsçtç çnçaçmçeçPçaçrçtçsç ç=ç çfçuçlçlçNçaçmçeç.çsçpçlçiçtç(ç'ç ç'ç)ç;ç
+ç ç ç ç çcçoçnçsçtç çfçiçrçsçtçNçaçmçeç ç=ç çnçaçmçeçPçaçrçtçsç[ç0ç]ç ç|ç|ç ç'çCçlçiçeçnçtçeç'ç;ç
+ç ç ç ç çcçoçnçsçtç çlçaçsçtçNçaçmçeç ç=ç çnçaçmçeçPçaçrçtçsç.çsçlçiçcçeç(ç1ç)ç.çjçoçiçnç(ç'ç ç'ç)ç ç|ç|ç ç'çAçsçsçiçnçaçnçtçeç'ç;ç
+ç ç ç ç çcçoçnçsçtç çeçmçaçiçlç ç=ç çuçsçeçrçEçmçaçiçlç ç|ç|ç çuçsçeçrç.çeçmçaçiçlç ç|ç|ç ç'çcçoçnçtçaçtçoç@çmçeçuçdçiçnçdçiçnç.çaçpçpç'ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çpçaçyçmçeçnçtçDçaçtçaç ç=ç ç{ç
+ç ç ç ç ç ç çtçrçaçnçsçaçcçtçiçoçnç_çaçmçoçuçnçtç:ç çpçlçaçnçPçrçiçcçeç,ç
+ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç çpçlçaçnçNçaçmçeç,ç
+ç ç ç ç ç ç çpçaçyçmçeçnçtç_çmçeçtçhçoçdç_çiçdç:ç ç'çpçiçxç'ç,ç
+ç ç ç ç ç ç çpçaçyçeçrç:ç ç{ç
+ç ç ç ç ç ç ç ç çeçmçaçiçlç,ç
+ç ç ç ç ç ç ç ç çfçiçrçsçtç_çnçaçmçeç:ç çfçiçrçsçtçNçaçmçeç,ç
+ç ç ç ç ç ç ç ç çlçaçsçtç_çnçaçmçeç:ç çlçaçsçtçNçaçmçeç,ç
+ç ç ç ç ç ç ç ç çiçdçeçnçtçiçfçiçcçaçtçiçoçnç:ç ç{ç
+ç ç ç ç ç ç ç ç ç ç çtçyçpçeç:ç ç'çCçPçFç'ç,ç
+ç ç ç ç ç ç ç ç ç ç çnçuçmçbçeçrç:ç çcçlçeçaçnçCçpçfç,ç
+ç ç ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç ç çnçãçoçtçiçfçiçcçaçtçiçoçnç_çuçrçlç:ç ç`ç$ç{çsçiçtçeçUçrçlç}ç/çaçpçiç/çwçeçbçhçoçoçkçsç/çmçeçrçcçaçdçoçpçaçgçoç`ç,ç
+ç ç ç ç ç ç çeçxçtçeçrçnçaçlç_çrçeçfçeçrçeçnçcçeç:ç çuçsçeçrç.çiçdç,ç
+ç ç ç ç ç}ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çrçeçsçpçoçnçsçeç ç=ç çaçwçaçiçtç çpçaçyçmçeçnçtç.çcçrçeçaçtçeç(ç{ç
+ç ç ç ç ç ç çbçoçdçyç:ç çpçaçyçmçeçnçtçDçaçtçaç,ç
+ç ç ç ç ç ç çrçeçqçuçeçsçtçOçpçtçiçoçnçsç:ç ç{ç
+ç ç ç ç ç ç ç ç çiçdçeçmçpçoçtçeçnçcçyçKçeçyç:ç çcçrçyçpçtçoç.çrçaçnçdçoçmçUçUçIçDç(ç)ç,ç
+ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç}ç)ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çqçrçCçoçdçeç ç=ç çrçeçsçpçoçnçsçeç.çpçoçiçnçtç_çoçfç_çiçnçtçeçrçaçcçtçiçoçnç?ç.çtçrçaçnçsçaçcçtçiçoçnç_çdçaçtçaç?ç.çqçrç_çcçoçdçeç;ç
+ç ç ç ç çcçoçnçsçtç çqçrçCçoçdçeçBçaçsçeç6ç4ç ç=ç çrçeçsçpçoçnçsçeç.çpçoçiçnçtç_çoçfç_çiçnçtçeçrçaçcçtçiçoçnç?ç.çtçrçaçnçsçaçcçtçiçoçnç_çdçaçtçaç?ç.çqçrç_çcçoçdçeç_çbçaçsçeç6ç4ç;ç
+ç ç ç ç çcçoçnçsçtç çtçiçcçkçeçtçUçrçlç ç=ç çrçeçsçpçoçnçsçeç.çpçoçiçnçtç_çoçfç_çiçnçtçeçrçaçcçtçiçoçnç?ç.çtçrçaçnçsçaçcçtçiçoçnç_çdçaçtçaç?ç.çtçiçcçkçeçtç_çuçrçlç;ç
+ç
+ç ç ç ç çiçfç ç(ç!çqçrçCçoçdçeç ç&ç&ç ç!çqçrçCçoçdçeçBçaçsçeç6ç4ç)ç ç{ç
+ç ç ç ç ç ç çrçeçtçuçrçnç çNçeçxçtçRçeçsçpçoçnçsçeç.çjçsçoçnç(ç
+ç ç ç ç ç ç ç ç ç{ç çeçrçrçoçrç:ç ç'çMçeçrçcçaçdçoç çPçaçgçoç çnçãçoç çrçeçtçoçrçnçãçoçuç çoçsç çdçaçdçoçsç çdçoç çQçRç çCçoçdçeç.ç çVçeçrçiçfçiçqçuçeç çsçeç çaç çcçhçaçvçeç çPçiçxç çdçaç çsçuçaç çcçoçnçtçaç çMçPç çeçsçtçáç çaçtçiçvçaç.ç'ç ç}ç,ç
+ç ç ç ç ç ç ç ç ç{ç çsçtçaçtçuçsç:ç ç5ç0ç0ç ç}ç
+ç ç ç ç ç ç ç)ç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç çrçeçtçuçrçnç çNçeçxçtçRçeçsçpçoçnçsçeç.çjçsçoçnç(ç{ç
+ç ç ç ç ç ç çpçaçyçmçeçnçtçIçdç:ç çrçeçsçpçoçnçsçeç.çiçdç,ç
+ç ç ç ç ç ç çsçtçaçtçuçsç:ç çrçeçsçpçoçnçsçeç.çsçtçaçtçuçsç,ç
+ç ç ç ç ç ç çqçrçCçoçdçeç,ç
+ç ç ç ç ç ç çqçrçCçoçdçeçBçaçsçeç6ç4ç,ç
+ç ç ç ç ç ç çtçiçcçkçeçtçUçrçlç,ç
+ç ç ç ç ç ç çaçmçoçuçnçtç:ç çpçlçaçnçPçrçiçcçeç,ç
+ç ç ç ç ç}ç)ç;ç
+ç ç ç}ç çcçaçtçcçhç ç(çeçrçrçoçrç:ç çaçnçyç)ç ç{ç
+ç ç ç ç çcçoçnçsçoçlçeç.çeçrçrçoçrç(ç'ç[ç/çaçpçiç/çcçrçeçaçtçeç-çpçiçxç]ç çEçrçrçoç çaçoç çcçrçiçaçrç çpçaçgçaçmçeçnçtçoç çPçiçxç:ç'ç,ç çeçrçrçoçrç)ç;ç
+ç ç ç ç çrçeçtçuçrçnç çNçeçxçtçRçeçsçpçoçnçsçeç.çjçsçoçnç(ç
+ç ç ç ç ç ç ç{ç çeçrçrçoçrç:ç çeçrçrçoçrç.çmçeçsçsçaçgçeç ç|ç|ç ç'çEçrçrçoç çaçoç çgçeçrçaçrç çPçiçxç çnçãçoç çMçeçrçcçaçdçoç çPçaçgçoç.ç'ç ç}ç,ç
+ç ç ç ç ç ç ç{ç çsçtçaçtçuçsç:ç ç5ç0ç0ç ç}ç
+ç ç ç ç ç)ç;ç
+ç ç ç}ç
+ç}ç
+ç
+ç
+ç

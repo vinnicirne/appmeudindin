@@ -28,12 +28,12 @@ const MONTH_NAMES = [
 ]
 
 const CATEGORY_MAP: Record<string, { label: string; icon: string; color: string }> = {
-  alimentacao: { label: 'Alimentação', icon: 'restaurant', color: 'bg-orange-100 text-orange-500' },
+  alimentacao: { label: 'Alimenta\u00e7\u00e3o', icon: 'restaurant', color: 'bg-orange-100 text-orange-500' },
   transporte: { label: 'Transporte', icon: 'directions_car', color: 'bg-blue-100 text-blue-500' },
   moradia: { label: 'Moradia', icon: 'home', color: 'bg-purple-100 text-purple-500' },
-  salario: { label: 'Salário', icon: 'payments', color: 'bg-green-100 text-green-500' },
+  salario: { label: 'Sal\u00e1rio', icon: 'payments', color: 'bg-green-100 text-green-500' },
   lazer: { label: 'Lazer', icon: 'sports_esports', color: 'bg-pink-100 text-pink-500' },
-  saude: { label: 'Saúde & Farmácia', icon: 'medical_services', color: 'bg-rose-100 text-rose-500' },
+  saude: { label: 'Sa\u00fade & Farmácia', icon: 'medical_services', color: 'bg-rose-100 text-rose-500' },
   educacao: { label: 'Educação', icon: 'school', color: 'bg-indigo-100 text-indigo-500' },
   servicos: { label: 'Serviços', icon: 'receipt_long', color: 'bg-teal-100 text-teal-500' },
   investimentos: { label: 'Investimentos', icon: 'trending_up', color: 'bg-emerald-100 text-emerald-500' },

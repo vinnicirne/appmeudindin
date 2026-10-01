@@ -1,27 +1,28 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-
-export async function createClient() {
-  const cookieStore = await cookies()
-
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll()
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            )
-          } catch (error) {
-            // The `setAll` method was called from a Server Component.
-          }
-        },
-      },
-    }
-  )
-}
+çiçmçpçoçrçtç ç{ç çcçrçeçaçtçeçSçeçrçvçeçrçCçlçiçeçnçtç,ç çtçyçpçeç çCçoçoçkçiçeçOçpçtçiçoçnçsç ç}ç çfçrçoçmç ç'ç@çsçuçpçaçbçaçsçeç/çsçsçrç'ç
+çiçmçpçoçrçtç ç{ç çcçoçoçkçiçeçsç ç}ç çfçrçoçmç ç'çnçeçxçtç/çhçeçaçdçeçrçsç'ç
+ç
+çeçxçpçoçrçtç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çcçrçeçaçtçeçCçlçiçeçnçtç(ç)ç ç{ç
+ç ç çcçoçnçsçtç çcçoçoçkçiçeçSçtçoçrçeç ç=ç çaçwçaçiçtç çcçoçoçkçiçeçsç(ç)ç
+ç
+ç ç çrçeçtçuçrçnç çcçrçeçaçtçeçSçeçrçvçeçrçCçlçiçeçnçtç(ç
+ç ç ç ç çpçrçoçcçeçsçsç.çeçnçvç.çNçEçXçTç_çPçUçBçLçIçCç_çSçUçPçAçBçAçSçEç_çUçRçLç ç|ç|ç ç'ç'ç,ç
+ç ç ç ç çpçrçoçcçeçsçsç.çeçnçvç.çNçEçXçTç_çPçUçBçLçIçCç_çSçUçPçAçBçAçSçEç_çAçNçOçNç_çKçEçYç ç|ç|ç ç'ç'ç,ç
+ç ç ç ç ç{ç
+ç ç ç ç ç ç çcçoçoçkçiçeçsç:ç ç{ç
+ç ç ç ç ç ç ç ç çgçeçtçAçlçlç(ç)ç ç{ç
+ç ç ç ç ç ç ç ç ç ç çrçeçtçuçrçnç çcçoçoçkçiçeçSçtçoçrçeç.çgçeçtçAçlçlç(ç)ç
+ç ç ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç ç ç ç çsçeçtçAçlçlç(çcçoçoçkçiçeçsçTçoçSçeçtç)ç ç{ç
+ç ç ç ç ç ç ç ç ç ç çtçrçyç ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç çcçoçoçkçiçeçsçTçoçSçeçtç.çfçoçrçEçaçcçhç(ç(ç{ç çnçaçmçeç,ç çvçaçlçuçeç,ç çoçpçtçiçoçnçsç ç}ç)ç ç=ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçoçoçkçiçeçSçtçoçrçeç.çsçeçtç(çnçaçmçeç,ç çvçaçlçuçeç,ç çoçpçtçiçoçnçsç)ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç)ç
+ç ç ç ç ç ç ç ç ç ç ç}ç çcçaçtçcçhç ç(çeçrçrçoçrç)ç ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç/ç/ç çTçhçeç ç`çsçeçtçAçlçlç`ç çmçeçtçhçoçdç çwçaçsç çcçaçlçlçeçdç çfçrçoçmç çaç çSçeçrçvçeçrç çCçoçmçpçoçnçeçnçtç.ç
+ç ç ç ç ç ç ç ç ç ç ç}ç
+ç ç ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç}ç
+ç ç ç)ç
+ç}ç
+ç

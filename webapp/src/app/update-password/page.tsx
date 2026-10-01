@@ -1,92 +1,93 @@
-'use client';
-
-import * as motion from "framer-motion/client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { updatePasswordAction } from '../actions/authActions';
-import { toast } from 'react-hot-toast';
-
-export default function UpdatePasswordPage() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(formData: FormData) {
-    const p1 = formData.get('password') as string;
-    const p2 = formData.get('confirmPassword') as string;
-
-    if (p1 !== p2) {
-      toast.error("As senhas não coincidem!");
-      return;
-    }
-
-    if (p1.length < 6) {
-      toast.error("A senha deve ter pelo menos 6 caracteres.");
-      return;
-    }
-
-    setLoading(true);
-    const res = await updatePasswordAction(p1);
-    setLoading(false);
-
-    if (res?.error) {
-      toast.error(res.error);
-    } else {
-      toast.success("Senha alterada com sucesso!");
-      router.push('/login');
-    }
-  }
-
-  return (
-    <main className="flex-1 flex flex-col items-center justify-center p-6 w-full h-screen bg-background relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-1/3 bg-primary/10 -skew-y-6 transform origin-top-left -z-10" />
-
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-sm bg-card p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-border"
-      >
-        <div className="flex flex-col items-center mb-8 gap-3 text-center">
-          <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center text-primary font-bold text-3xl shadow-sm mb-2">
-            <span className="material-symbols-outlined text-3xl">key</span>
-          </div>
-          <h1 className="text-xl font-extrabold tracking-tight text-foreground">Nova Senha</h1>
-          <p className="text-sm font-medium text-muted-foreground">
-            Crie uma nova senha segura para sua conta.
-          </p>
-        </div>
-
-        <form action={handleSubmit} className="flex flex-col gap-5">
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground/80">Nova Senha</label>
-            <input 
-              type="password" 
-              name="password"
-              required
-              placeholder="••••••••"
-              className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-            />
-          </div>
-          
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground/80">Confirmar Nova Senha</label>
-            <input 
-              type="password" 
-              name="confirmPassword"
-              required
-              placeholder="••••••••"
-              className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-            />
-          </div>
-
-          <button 
-            type="submit" 
-            disabled={loading}
-            className="mt-2 w-full bg-primary text-primary-foreground py-4 rounded-xl font-bold hover:scale-[1.02] active:scale-[0.98] transition-transform disabled:opacity-50 shadow-[0_8px_30px_rgb(0,105,72,0.2)]"
-          >
-            {loading ? 'Salvando...' : 'Salvar nova senha'}
-          </button>
-        </form>
-      </motion.div>
-    </main>
-  );
-}
+ç'çuçsçeç çcçlçiçeçnçtç'ç;ç
+ç
+çiçmçpçoçrçtç ç*ç çaçsç çmçoçtçiçoçnç çfçrçoçmç ç"çfçrçaçmçeçrç-çmçoçtçiçoçnç/çcçlçiçeçnçtç"ç;ç
+çiçmçpçoçrçtç ç{ç çuçsçeçSçtçaçtçeç ç}ç çfçrçoçmç ç'çrçeçaçcçtç'ç;ç
+çiçmçpçoçrçtç ç{ç çuçsçeçRçoçuçtçeçrç ç}ç çfçrçoçmç ç'çnçeçxçtç/çnçaçvçiçgçaçtçiçoçnç'ç;ç
+çiçmçpçoçrçtç ç{ç çuçpçdçaçtçeçPçaçsçsçwçoçrçdçAçcçtçiçoçnç ç}ç çfçrçoçmç ç'ç.ç.ç/çaçcçtçiçoçnçsç/çaçuçtçhçAçcçtçiçoçnçsç'ç;ç
+çiçmçpçoçrçtç ç{ç çtçoçaçsçtç ç}ç çfçrçoçmç ç'çrçeçaçcçtç-çhçoçtç-çtçoçaçsçtç'ç;ç
+ç
+çeçxçpçoçrçtç çdçeçfçaçuçlçtç çfçuçnçcçtçiçoçnç çUçpçdçaçtçeçPçaçsçsçwçoçrçdçPçaçgçeç(ç)ç ç{ç
+ç ç çcçoçnçsçtç çrçoçuçtçeçrç ç=ç çuçsçeçRçoçuçtçeçrç(ç)ç;ç
+ç ç çcçoçnçsçtç ç[çlçoçaçdçiçnçgç,ç çsçeçtçLçoçaçdçiçnçgç]ç ç=ç çuçsçeçSçtçaçtçeç(çfçaçlçsçeç)ç;ç
+ç
+ç ç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çhçaçnçdçlçeçSçuçbçmçiçtç(çfçoçrçmçDçaçtçaç:ç çFçoçrçmçDçaçtçaç)ç ç{ç
+ç ç ç ç çcçoçnçsçtç çpç1ç ç=ç çfçoçrçmçDçaçtçaç.çgçeçtç(ç'çpçaçsçsçwçoçrçdç'ç)ç çaçsç çsçtçrçiçnçgç;ç
+ç ç ç ç çcçoçnçsçtç çpç2ç ç=ç çfçoçrçmçDçaçtçaç.çgçeçtç(ç'çcçoçnçfçiçrçmçPçaçsçsçwçoçrçdç'ç)ç çaçsç çsçtçrçiçnçgç;ç
+ç
+ç ç ç ç çiçfç ç(çpç1ç ç!ç=ç=ç çpç2ç)ç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çeçrçrçoçrç(ç"çAçsç çsçeçnçhçaçsç çnçãçoç çcçoçiçnçcçiçdçeçmç!ç"ç)ç;ç
+ç ç ç ç ç ç çrçeçtçuçrçnç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç çiçfç ç(çpç1ç.çlçeçnçgçtçhç ç<ç ç6ç)ç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çeçrçrçoçrç(ç"çAç çsçeçnçhçaç çdçeçvçeç çtçeçrç çpçeçlçoç çmçeçnçãçoçsç ç6ç çcçaçrçaçcçtçeçrçeçsç.ç"ç)ç;ç
+ç ç ç ç ç ç çrçeçtçuçrçnç;ç
+ç ç ç ç ç}ç
+ç
+ç ç ç ç çsçeçtçLçoçaçdçiçnçgç(çtçrçuçeç)ç;ç
+ç ç ç ç çcçoçnçsçtç çrçeçsç ç=ç çaçwçaçiçtç çuçpçdçaçtçeçPçaçsçsçwçoçrçdçAçcçtçiçoçnç(çpç1ç)ç;ç
+ç ç ç ç çsçeçtçLçoçaçdçiçnçgç(çfçaçlçsçeç)ç;ç
+ç
+ç ç ç ç çiçfç ç(çrçeçsç?ç.çeçrçrçoçrç)ç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çeçrçrçoçrç(çrçeçsç.çeçrçrçoçrç)ç;ç
+ç ç ç ç ç}ç çeçlçsçeç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çsçuçcçcçeçsçsç(ç"çSçeçnçhçaç çaçlçtçeçrçaçdçaç çcçoçmç çsçuçcçeçsçsçoç!ç"ç)ç;ç
+ç ç ç ç ç ç çrçoçuçtçeçrç.çpçuçsçhç(ç'ç/çlçoçgçiçnç'ç)ç;ç
+ç ç ç ç ç}ç
+ç ç ç}ç
+ç
+ç ç çrçeçtçuçrçnç ç(ç
+ç ç ç ç ç<çmçaçiçnç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç-ç1ç çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çpç-ç6ç çwç-çfçuçlçlç çhç-çsçcçrçeçeçnç çbçgç-çbçaçcçkçgçrçoçuçnçdç çrçeçlçaçtçiçvçeç çoçvçeçrçfçlçoçwç-çhçiçdçdçeçnç"ç>ç
+ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çaçbçsçoçlçuçtçeç çtçoçpç-ç0ç çlçeçfçtç-ç0ç çwç-çfçuçlçlç çhç-ç1ç/ç3ç çbçgç-çpçrçiçmçaçrçyç/ç1ç0ç ç-çsçkçeçwç-çyç-ç6ç çtçrçaçnçsçfçoçrçmç çoçrçiçgçiçnç-çtçoçpç-çlçeçfçtç ç-çzç-ç1ç0ç"ç ç/ç>ç
+ç
+ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç ç
+ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç3ç0ç ç}ç}ç
+ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
+ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çmçaçxç-çwç-çsçmç çbçgç-çcçaçrçdç çpç-ç8ç çrçoçuçnçdçeçdç-ç[ç2çrçeçmç]ç çsçhçaçdçoçwç-ç[ç0ç_ç8çpçxç_ç3ç0çpçxç_çrçgçbç(ç0ç,ç0ç,ç0ç,ç0ç.ç0ç4ç)ç]ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç"ç
+ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çmçbç-ç8ç çgçaçpç-ç3ç çtçeçxçtç-çcçeçnçtçeçrç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç1ç4ç çhç-ç1ç4ç çbçgç-çpçrçiçmçaçrçyç/ç2ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çpçrçiçmçaçrçyç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-ç3çxçlç çsçhçaçdçoçwç-çsçmç çmçbç-ç2ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç3çxçlç"ç>çkçeçyç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çhç1ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçlç çfçoçnçtç-çeçxçtçrçaçbçoçlçdç çtçrçaçcçkçiçnçgç-çtçiçgçhçtç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çNçãçoçvçaç çSçeçnçhçaç<ç/çhç1ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç çCçrçiçeç çuçmçaç çnçãçoçvçaç çsçeçnçhçaç çsçeçgçuçrçaç çpçaçrçaç çsçuçaç çcçoçnçtçaç.ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
+ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç ç ç<çfçoçrçmç çaçcçtçiçoçnç=ç{çhçaçnçdçlçeçSçuçbçmçiçtç}ç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç5ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç2ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çlçaçbçeçlç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç"ç>çNçãçoçvçaç çSçeçnçhçaç<ç/çlçaçbçeçlç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çiçnçpçuçtç ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çpçaçsçsçwçoçrçdç"ç ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çnçaçmçeç=ç"çpçaçsçsçwçoçrçdç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çrçeçqçuçiçrçeçdç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çpçlçaçcçeçhçoçlçdçeçrç=ç"ç•ç•ç•ç•ç•ç•ç•ç•ç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-çmçuçtçeçdç/ç5ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç çrçoçuçnçdçeçdç-çxçlç çpçxç-ç4ç çpçyç-ç3ç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çfçoçcçuçsç:çoçuçtçlçiçnçeç-çnçãçoçnçeç çfçoçcçuçsç:çrçiçnçgç-ç2ç çfçoçcçuçsç:çrçiçnçgç-çpçrçiçmçaçrçyç/ç5ç0ç çtçrçaçnçsçiçtçiçoçnç-çsçhçaçdçoçwç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç
+ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç2ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çlçaçbçeçlç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç"ç>çCçoçnçfçiçrçmçaçrç çNçãçoçvçaç çSçeçnçhçaç<ç/çlçaçbçeçlç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çiçnçpçuçtç ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çpçaçsçsçwçoçrçdç"ç ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çnçaçmçeç=ç"çcçoçnçfçiçrçmçPçaçsçsçwçoçrçdç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çrçeçqçuçiçrçeçdç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çpçlçaçcçeçhçoçlçdçeçrç=ç"ç•ç•ç•ç•ç•ç•ç•ç•ç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-çmçuçtçeçdç/ç5ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç çrçoçuçnçdçeçdç-çxçlç çpçxç-ç4ç çpçyç-ç3ç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çfçoçcçuçsç:çoçuçtçlçiçnçeç-çnçãçoçnçeç çfçoçcçuçsç:çrçiçnçgç-ç2ç çfçoçcçuçsç:çrçiçnçgç-çpçrçiçmçaçrçyç/ç5ç0ç çtçrçaçnçsçiçtçiçoçnç-çsçhçaçdçoçwç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç ç
+ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çsçuçbçmçiçtç"ç ç
+ç ç ç ç ç ç ç ç ç ç ç ç çdçiçsçaçbçlçeçdç=ç{çlçoçaçdçiçnçgç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çmçtç-ç2ç çwç-çfçuçlçlç çbçgç-çpçrçiçmçaçrçyç çtçeçxçtç-çpçrçiçmçaçrçyç-çfçoçrçeçgçrçoçuçnçdç çpçyç-ç4ç çrçoçuçnçdçeçdç-çxçlç çfçoçnçtç-çbçoçlçdç çhçoçvçeçrç:çsçcçaçlçeç-ç[ç1ç.ç0ç2ç]ç çaçcçtçiçvçeç:çsçcçaçlçeç-ç[ç0ç.ç9ç8ç]ç çtçrçaçnçsçiçtçiçoçnç-çtçrçaçnçsçfçoçrçmç çdçiçsçaçbçlçeçdç:çoçpçaçcçiçtçyç-ç5ç0ç çsçhçaçdçoçwç-ç[ç0ç_ç8çpçxç_ç3ç0çpçxç_çrçgçbç(ç0ç,ç1ç0ç5ç,ç7ç2ç,ç0ç.ç2ç)ç]ç"ç
+ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç{çlçoçaçdçiçnçgç ç?ç ç'çSçaçlçvçaçnçdçoç.ç.ç.ç'ç ç:ç ç'çSçaçlçvçaçrç çnçãçoçvçaç çsçeçnçhçaç'ç}ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç<ç/çfçoçrçmç>ç
+ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
+ç ç ç ç ç<ç/çmçaçiçnç>ç
+ç ç ç)ç;ç
+ç}ç
+ç

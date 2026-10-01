@@ -1,18 +1,19 @@
-import { redirect } from 'next/navigation'
-import { createClient } from '@/utils/supabase/server'
-import GraphicsClient from './GraphicsClient'
-
-export default async function GraphicsPage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) redirect('/login')
-
-  const { data: transactions } = await supabase
-    .from('transactions')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('date', { ascending: true })
-
-  return <GraphicsClient transactions={transactions || []} />
-}
+çiçmçpçoçrçtç ç{ç çrçeçdçiçrçeçcçtç ç}ç çfçrçoçmç ç'çnçeçxçtç/çnçaçvçiçgçaçtçiçoçnç'ç
+çiçmçpçoçrçtç ç{ç çcçrçeçaçtçeçCçlçiçeçnçtç ç}ç çfçrçoçmç ç'ç@ç/çuçtçiçlçsç/çsçuçpçaçbçaçsçeç/çsçeçrçvçeçrç'ç
+çiçmçpçoçrçtç çGçrçaçpçhçiçcçsçCçlçiçeçnçtç çfçrçoçmç ç'ç.ç/çGçrçaçpçhçiçcçsçCçlçiçeçnçtç'ç
+ç
+çeçxçpçoçrçtç çdçeçfçaçuçlçtç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çGçrçaçpçhçiçcçsçPçaçgçeç(ç)ç ç{ç
+ç ç çcçoçnçsçtç çsçuçpçaçbçaçsçeç ç=ç çaçwçaçiçtç çcçrçeçaçtçeçCçlçiçeçnçtç(ç)ç
+ç ç çcçoçnçsçtç ç{ç çdçaçtçaç:ç ç{ç çuçsçeçrç ç}ç ç}ç ç=ç çaçwçaçiçtç çsçuçpçaçbçaçsçeç.çaçuçtçhç.çgçeçtçUçsçeçrç(ç)ç
+ç
+ç ç çiçfç ç(ç!çuçsçeçrç)ç çrçeçdçiçrçeçcçtç(ç'ç/çlçoçgçiçnç'ç)ç
+ç
+ç ç çcçoçnçsçtç ç{ç çdçaçtçaç:ç çtçrçaçnçsçaçcçtçiçoçnçsç ç}ç ç=ç çaçwçaçiçtç çsçuçpçaçbçaçsçeç
+ç ç ç ç ç.çfçrçoçmç(ç'çtçrçaçnçsçaçcçtçiçoçnçsç'ç)ç
+ç ç ç ç ç.çsçeçlçeçcçtç(ç'ç*ç'ç)ç
+ç ç ç ç ç.çeçqç(ç'çuçsçeçrç_çiçdç'ç,ç çuçsçeçrç.çiçdç)ç
+ç ç ç ç ç.çoçrçdçeçrç(ç'çdçaçtçeç'ç,ç ç{ç çaçsçcçeçnçdçiçnçgç:ç çtçrçuçeç ç}ç)ç
+ç
+ç ç çrçeçtçuçrçnç ç<çGçrçaçpçhçiçcçsçCçlçiçeçnçtç çtçrçaçnçsçaçcçtçiçoçnçsç=ç{çtçrçaçnçsçaçcçtçiçoçnçsç ç|ç|ç ç[ç]ç}ç ç/ç>ç
+ç}ç
+ç

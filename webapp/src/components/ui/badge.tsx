@@ -1,51 +1,52 @@
-import { mergeProps } from "@base-ui/react/merge-props"
-import { useRender } from "@base-ui/react/use-render"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "cn"
-
-const badgeVariants = cva(
-  "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-        secondary:
-          "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
-        destructive:
-          "bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20",
-        outline:
-          "border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground",
-        ghost:
-          "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
-
-function Badge({
-  className,
-  variant = "default",
-  render,
-  ...props
-}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>) {
-  return useRender({
-    defaultTagName: "span",
-    props: mergeProps<"span">(
-      {
-        className: cn(badgeVariants({ variant }), className),
-      },
-      props
-    ),
-    render,
-    state: {
-      slot: "badge",
-      variant,
-    },
-  })
-}
-
-export { Badge, badgeVariants }
+çiçmçpçoçrçtç ç{ç çmçeçrçgçeçPçrçoçpçsç ç}ç çfçrçoçmç ç"ç@çbçaçsçeç-çuçiç/çrçeçaçcçtç/çmçeçrçgçeç-çpçrçoçpçsç"ç
+çiçmçpçoçrçtç ç{ç çuçsçeçRçeçnçdçeçrç ç}ç çfçrçoçmç ç"ç@çbçaçsçeç-çuçiç/çrçeçaçcçtç/çuçsçeç-çrçeçnçdçeçrç"ç
+çiçmçpçoçrçtç ç{ç çcçvçaç,ç çtçyçpçeç çVçaçrçiçaçnçtçPçrçoçpçsç ç}ç çfçrçoçmç ç"çcçlçaçsçsç-çvçaçrçiçaçnçcçeç-çaçuçtçhçoçrçiçtçyç"ç
+çiçmçpçoçrçtç ç{ç çcçnç ç}ç çfçrçoçmç ç"çcçnç"ç
+ç
+çcçoçnçsçtç çbçaçdçgçeçVçaçrçiçaçnçtçsç ç=ç çcçvçaç(ç
+ç ç ç"çgçrçoçuçpç/çbçaçdçgçeç çiçnçlçiçnçeç-çfçlçeçxç çhç-ç5ç çwç-çfçiçtç çsçhçrçiçnçkç-ç0ç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çgçaçpç-ç1ç çoçvçeçrçfçlçoçwç-çhçiçdçdçeçnç çrçoçuçnçdçeçdç-ç4çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çtçrçaçnçsçpçaçrçeçnçtç çpçxç-ç2ç çpçyç-ç0ç.ç5ç çtçeçxçtç-çxçsç çfçoçnçtç-çmçeçdçiçuçmç çwçhçiçtçeçsçpçaçcçeç-çnçãçoçwçrçaçpç çtçrçaçnçsçiçtçiçoçnç-çaçlçlç çfçoçcçuçsç-çvçiçsçiçbçlçeç:çbçoçrçdçeçrç-çrçiçnçgç çfçoçcçuçsç-çvçiçsçiçbçlçeç:çrçiçnçgç-ç[ç3çpçxç]ç çfçoçcçuçsç-çvçiçsçiçbçlçeç:çrçiçnçgç-çrçiçnçgç/ç5ç0ç çhçaçsç-çdçaçtçaç-ç[çiçcçoçnç=çiçnçlçiçnçeç-çeçnçdç]ç:çpçrç-ç1ç.ç5ç çhçaçsç-çdçaçtçaç-ç[çiçcçoçnç=çiçnçlçiçnçeç-çsçtçaçrçtç]ç:çpçlç-ç1ç.ç5ç çaçrçiçaç-çiçnçvçaçlçiçdç:çbçoçrçdçeçrç-çdçeçsçtçrçuçcçtçiçvçeç çaçrçiçaç-çiçnçvçaçlçiçdç:çrçiçnçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç2ç0ç çdçaçrçkç:çaçrçiçaç-çiçnçvçaçlçiçdç:çrçiçnçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç4ç0ç ç[ç&ç>çsçvçgç]ç:çpçoçiçnçtçeçrç-çeçvçeçnçtçsç-çnçãçoçnçeç ç[ç&ç>çsçvçgç]ç:çsçiçzçeç-ç3ç!ç"ç,ç
+ç ç ç{ç
+ç ç ç ç çvçaçrçiçaçnçtçsç:ç ç{ç
+ç ç ç ç ç ç çvçaçrçiçaçnçtç:ç ç{ç
+ç ç ç ç ç ç ç ç çdçeçfçaçuçlçtç:ç ç"çbçgç-çpçrçiçmçaçrçyç çtçeçxçtç-çpçrçiçmçaçrçyç-çfçoçrçeçgçrçoçuçnçdç ç[çaç]ç:çhçoçvçeçrç:çbçgç-çpçrçiçmçaçrçyç/ç8ç0ç"ç,ç
+ç ç ç ç ç ç ç ç çsçeçcçoçnçdçaçrçyç:ç
+ç ç ç ç ç ç ç ç ç ç ç"çbçgç-çsçeçcçoçnçdçaçrçyç çtçeçxçtç-çsçeçcçoçnçdçaçrçyç-çfçoçrçeçgçrçoçuçnçdç ç[çaç]ç:çhçoçvçeçrç:çbçgç-çsçeçcçoçnçdçaçrçyç/ç8ç0ç"ç,ç
+ç ç ç ç ç ç ç ç çdçeçsçtçrçuçcçtçiçvçeç:ç
+ç ç ç ç ç ç ç ç ç ç ç"çbçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç1ç0ç çtçeçxçtç-çdçeçsçtçrçuçcçtçiçvçeç çfçoçcçuçsç-çvçiçsçiçbçlçeç:çrçiçnçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç2ç0ç çdçaçrçkç:çbçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç2ç0ç çdçaçrçkç:çfçoçcçuçsç-çvçiçsçiçbçlçeç:çrçiçnçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç4ç0ç ç[çaç]ç:çhçoçvçeçrç:çbçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç2ç0ç"ç,ç
+ç ç ç ç ç ç ç ç çoçuçtçlçiçnçeç:ç
+ç ç ç ç ç ç ç ç ç ç ç"çbçoçrçdçeçrç-çbçoçrçdçeçrç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç ç[çaç]ç:çhçoçvçeçrç:çbçgç-çmçuçtçeçdç ç[çaç]ç:çhçoçvçeçrç:çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç,ç
+ç ç ç ç ç ç ç ç çgçhçoçsçtç:ç
+ç ç ç ç ç ç ç ç ç ç ç"çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çhçoçvçeçrç:çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çdçaçrçkç:çhçoçvçeçrç:çbçgç-çmçuçtçeçdç/ç5ç0ç"ç,ç
+ç ç ç ç ç ç ç ç çlçiçnçkç:ç ç"çtçeçxçtç-çpçrçiçmçaçrçyç çuçnçdçeçrçlçiçnçeç-çoçfçfçsçeçtç-ç4ç çhçoçvçeçrç:çuçnçdçeçrçlçiçnçeç"ç,ç
+ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç}ç,ç
+ç ç ç ç çdçeçfçaçuçlçtçVçaçrçiçaçnçtçsç:ç ç{ç
+ç ç ç ç ç ç çvçaçrçiçaçnçtç:ç ç"çdçeçfçaçuçlçtç"ç,ç
+ç ç ç ç ç}ç,ç
+ç ç ç}ç
+ç)ç
+ç
+çfçuçnçcçtçiçoçnç çBçaçdçgçeç(ç{ç
+ç ç çcçlçaçsçsçNçaçmçeç,ç
+ç ç çvçaçrçiçaçnçtç ç=ç ç"çdçeçfçaçuçlçtç"ç,ç
+ç ç çrçeçnçdçeçrç,ç
+ç ç ç.ç.ç.çpçrçoçpçsç
+ç}ç:ç çuçsçeçRçeçnçdçeçrç.çCçoçmçpçoçnçeçnçtçPçrçoçpçsç<ç"çsçpçaçnç"ç>ç ç&ç çVçaçrçiçaçnçtçPçrçoçpçsç<çtçyçpçeçoçfç çbçaçdçgçeçVçaçrçiçaçnçtçsç>ç)ç ç{ç
+ç ç çrçeçtçuçrçnç çuçsçeçRçeçnçdçeçrç(ç{ç
+ç ç ç ç çdçeçfçaçuçlçtçTçaçgçNçaçmçeç:ç ç"çsçpçaçnç"ç,ç
+ç ç ç ç çpçrçoçpçsç:ç çmçeçrçgçeçPçrçoçpçsç<ç"çsçpçaçnç"ç>ç(ç
+ç ç ç ç ç ç ç{ç
+ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç:ç çcçnç(çbçaçdçgçeçVçaçrçiçaçnçtçsç(ç{ç çvçaçrçiçaçnçtç ç}ç)ç,ç çcçlçaçsçsçNçaçmçeç)ç,ç
+ç ç ç ç ç ç ç}ç,ç
+ç ç ç ç ç ç çpçrçoçpçsç
+ç ç ç ç ç)ç,ç
+ç ç ç ç çrçeçnçdçeçrç,ç
+ç ç ç ç çsçtçaçtçeç:ç ç{ç
+ç ç ç ç ç ç çsçlçoçtç:ç ç"çbçaçdçgçeç"ç,ç
+ç ç ç ç ç ç çvçaçrçiçaçnçtç,ç
+ç ç ç ç ç}ç,ç
+ç ç ç}ç)ç
+ç}ç
+ç
+çeçxçpçoçrçtç ç{ç çBçaçdçgçeç,ç çbçaçdçgçeçVçaçrçiçaçnçtçsç ç}ç
+ç

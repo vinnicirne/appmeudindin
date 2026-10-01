@@ -1,8 +1,9 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-
-// No Next.js app, usaríamos variáveis de ambiente públicas/privadas. 
-// Para infraestrutura pura, abstraímos o client.
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-
-export const supabaseClient: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+çiçmçpçoçrçtç ç{ç çcçrçeçaçtçeçCçlçiçeçnçtç,ç çSçuçpçaçbçaçsçeçCçlçiçeçnçtç ç}ç çfçrçoçmç ç'ç@çsçuçpçaçbçaçsçeç/çsçuçpçaçbçaçsçeç-çjçsç'ç;ç
+ç
+ç/ç/ç çNçãçoç çNçeçxçtç.çjçsç çaçpçpç,ç çuçsçaçrçíçaçmçoçsç çvçaçrçiçáçvçeçiçsç çdçeç çaçmçbçiçeçnçtçeç çpçúçbçlçiçcçaçsç/çpçrçiçvçaçdçaçsç.ç ç
+ç/ç/ç çPçaçrçaç çiçnçfçrçaçeçsçtçrçuçtçuçrçaç çpçuçrçaç,ç çaçbçsçtçrçaçíçmçoçsç çoç çcçlçiçeçnçtç.ç
+çcçoçnçsçtç çsçuçpçaçbçaçsçeçUçrçlç ç=ç çpçrçoçcçeçsçsç.çeçnçvç.çNçEçXçTç_çPçUçBçLçIçCç_çSçUçPçAçBçAçSçEç_çUçRçLç ç|ç|ç ç'ç'ç;ç
+çcçoçnçsçtç çsçuçpçaçbçaçsçeçAçnçãçoçnçKçeçyç ç=ç çpçrçoçcçeçsçsç.çeçnçvç.çNçEçXçTç_çPçUçBçLçIçCç_çSçUçPçAçBçAçSçEç_çAçNçOçNç_çKçEçYç ç|ç|ç ç'ç'ç;ç
+ç
+çeçxçpçoçrçtç çcçoçnçsçtç çsçuçpçaçbçaçsçeçCçlçiçeçnçtç:ç çSçuçpçaçbçaçsçeçCçlçiçeçnçtç ç=ç çcçrçeçaçtçeçCçlçiçeçnçtç(çsçuçpçaçbçaçsçeçUçrçlç,ç çsçuçpçaçbçaçsçeçAçnçãçoçnçKçeçyç)ç;ç
+ç

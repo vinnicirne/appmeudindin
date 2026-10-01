@@ -1,31 +1,32 @@
-import { describe, it, expect, vi } from 'vitest';
-import { AddTransactionUseCase } from './AddTransactionUseCase';
-import { ITransactionRepository } from '../../domain/repositories/ITransactionRepository';
-
-describe('AddTransactionUseCase', () => {
-  it('deve criar e persistir uma transação', async () => {
-    const mockRepo: ITransactionRepository = {
-      create: vi.fn().mockResolvedValue(undefined),
-      findById: vi.fn(),
-      findByUserId: vi.fn(),
-      update: vi.fn(),
-      delete: vi.fn()
-    };
-
-    const useCase = new AddTransactionUseCase(mockRepo);
-
-    const result = await useCase.execute({
-      userId: 'user-123',
-      amount: 50,
-      description: 'Uber',
-      date: new Date('2026-09-28'),
-      categoryId: 'cat-2',
-      type: 'EXPENSE'
-    });
-
-    expect(result).toBeDefined();
-    expect(result.amount).toBe(50);
-    expect(mockRepo.create).toHaveBeenCalledOnce();
-    expect(mockRepo.create).toHaveBeenCalledWith(result);
-  });
-});
+çiçmçpçoçrçtç ç{ç çdçeçsçcçrçiçbçeç,ç çiçtç,ç çeçxçpçeçcçtç,ç çvçiç ç}ç çfçrçoçmç ç'çvçiçtçeçsçtç'ç;ç
+çiçmçpçoçrçtç ç{ç çAçdçdçTçrçaçnçsçaçcçtçiçoçnçUçsçeçCçaçsçeç ç}ç çfçrçoçmç ç'ç.ç/çAçdçdçTçrçaçnçsçaçcçtçiçoçnçUçsçeçCçaçsçeç'ç;ç
+çiçmçpçoçrçtç ç{ç çIçTçrçaçnçsçaçcçtçiçoçnçRçeçpçoçsçiçtçoçrçyç ç}ç çfçrçoçmç ç'ç.ç.ç/ç.ç.ç/çdçoçmçaçiçnç/çrçeçpçoçsçiçtçoçrçiçeçsç/çIçTçrçaçnçsçaçcçtçiçoçnçRçeçpçoçsçiçtçoçrçyç'ç;ç
+ç
+çdçeçsçcçrçiçbçeç(ç'çAçdçdçTçrçaçnçsçaçcçtçiçoçnçUçsçeçCçaçsçeç'ç,ç ç(ç)ç ç=ç>ç ç{ç
+ç ç çiçtç(ç'çdçeçvçeç çcçrçiçaçrç çeç çpçeçrçsçiçsçtçiçrç çuçmçaç çtçrçaçnçsçaçççãçoç'ç,ç çaçsçyçnçcç ç(ç)ç ç=ç>ç ç{ç
+ç ç ç ç çcçoçnçsçtç çmçoçcçkçRçeçpçoç:ç çIçTçrçaçnçsçaçcçtçiçoçnçRçeçpçoçsçiçtçoçrçyç ç=ç ç{ç
+ç ç ç ç ç ç çcçrçeçaçtçeç:ç çvçiç.çfçnç(ç)ç.çmçoçcçkçRçeçsçoçlçvçeçdçVçaçlçuçeç(çuçnçdçeçfçiçnçeçdç)ç,ç
+ç ç ç ç ç ç çfçiçnçdçBçyçIçdç:ç çvçiç.çfçnç(ç)ç,ç
+ç ç ç ç ç ç çfçiçnçdçBçyçUçsçeçrçIçdç:ç çvçiç.çfçnç(ç)ç,ç
+ç ç ç ç ç ç çuçpçdçaçtçeç:ç çvçiç.çfçnç(ç)ç,ç
+ç ç ç ç ç ç çdçeçlçeçtçeç:ç çvçiç.çfçnç(ç)ç
+ç ç ç ç ç}ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çuçsçeçCçaçsçeç ç=ç çnçeçwç çAçdçdçTçrçaçnçsçaçcçtçiçoçnçUçsçeçCçaçsçeç(çmçoçcçkçRçeçpçoç)ç;ç
+ç
+ç ç ç ç çcçoçnçsçtç çrçeçsçuçlçtç ç=ç çaçwçaçiçtç çuçsçeçCçaçsçeç.çeçxçeçcçuçtçeç(ç{ç
+ç ç ç ç ç ç çuçsçeçrçIçdç:ç ç'çuçsçeçrç-ç1ç2ç3ç'ç,ç
+ç ç ç ç ç ç çaçmçoçuçnçtç:ç ç5ç0ç,ç
+ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç ç'çUçbçeçrç'ç,ç
+ç ç ç ç ç ç çdçaçtçeç:ç çnçeçwç çDçaçtçeç(ç'ç2ç0ç2ç6ç-ç0ç9ç-ç2ç8ç'ç)ç,ç
+ç ç ç ç ç ç çcçaçtçeçgçoçrçyçIçdç:ç ç'çcçaçtç-ç2ç'ç,ç
+ç ç ç ç ç ç çtçyçpçeç:ç ç'çEçXçPçEçNçSçEç'ç
+ç ç ç ç ç}ç)ç;ç
+ç
+ç ç ç ç çeçxçpçeçcçtç(çrçeçsçuçlçtç)ç.çtçoçBçeçDçeçfçiçnçeçdç(ç)ç;ç
+ç ç ç ç çeçxçpçeçcçtç(çrçeçsçuçlçtç.çaçmçoçuçnçtç)ç.çtçoçBçeç(ç5ç0ç)ç;ç
+ç ç ç ç çeçxçpçeçcçtç(çmçoçcçkçRçeçpçoç.çcçrçeçaçtçeç)ç.çtçoçHçaçvçeçBçeçeçnçCçaçlçlçeçdçOçnçcçeç(ç)ç;ç
+ç ç ç ç çeçxçpçeçcçtç(çmçoçcçkçRçeçpçoç.çcçrçeçaçtçeç)ç.çtçoçHçaçvçeçBçeçeçnçCçaçlçlçeçdçWçiçtçhç(çrçeçsçuçlçtç)ç;ç
+ç ç ç}ç)ç;ç
+ç}ç)ç;ç
+ç

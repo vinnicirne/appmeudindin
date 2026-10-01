@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import CategoriesClient from './CategoriesClient'
 
 export const dynamic = 'force-dynamic';
@@ -7,13 +8,16 @@ export const revalidate = 0;
 
 export default async function AdminCategoriesPage() {
   const supabase = await createClient()
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  const adminClient = createSupabaseClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
   const { data: userData } = await supabase.from('users').select('role').eq('id', user.id).single()
   if (userData?.role !== 'admin') redirect('/')
 
-  const { data: categories } = await supabase.from('categories').select('*').order('created_at', { ascending: true })
+  const { data: categories } = await adminClient.from('categories').select('*').order('created_at', { ascending: true })
 
   return (
     <div className="p-6 md:p-8 space-y-6 max-w-5xl mx-auto w-full">

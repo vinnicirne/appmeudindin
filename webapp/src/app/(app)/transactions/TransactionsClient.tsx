@@ -1,320 +1,321 @@
-'use client'
-
-import * as motion from "framer-motion/client"
-import { useRouter } from "next/navigation"
-import { useState, useMemo } from "react"
-import EditTransactionModal from '@/components/transactions/EditTransactionModal'
-import { deleteTransactionAction, togglePaidTransactionAction } from '@/app/actions/transactionActions'
-import { toast } from 'react-hot-toast'
-import { ConfirmModal } from '@/components/ui/ConfirmModal'
-
-interface Transaction {
-  id: string
-  amount: number
-  description: string
-  date: string
-  type: 'INCOME' | 'EXPENSE'
-  category_id: string
-  notes?: string
-  is_paid?: boolean
-}
-
-const MONTH_NAMES = [
-  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-]
-
-function formatCurrency(value: number) {
-  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-}
-
-const categoryLabel: Record<string, string> = {
-  alimentacao: 'Alimentação',
-  transporte: 'Transporte',
-  moradia: 'Moradia',
-  salario: 'Salário',
-  lazer: 'Lazer',
-  saude: 'Saúde & Farmácia',
-  outros: 'Outros',
-}
-
-const CATEGORY_COLORS: Record<string, string> = {
-  alimentacao: 'bg-orange-500',
-  transporte: 'bg-blue-500',
-  moradia: 'bg-purple-500',
-  salario: 'bg-green-500',
-  lazer: 'bg-pink-500',
-  saude: 'bg-rose-500',
-  outros: 'bg-gray-400',
-}
-
-export default function TransactionsClient({ transactions }: { transactions: Transaction[] }) {
-  const router = useRouter()
-  const today = new Date()
-  const [year, setYear] = useState(today.getFullYear())
-  const [month, setMonth] = useState(today.getMonth())
-  const [activeType, setActiveType] = useState('Todas')
-  const [activeCategory, setActiveCategory] = useState('todas')
-  const [search, setSearch] = useState('')
-  const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null)
-  const [deletingId, setDeletingId] = useState<string | null>(null)
-  const [transactionToDelete, setTransactionToDelete] = useState<string | null>(null)
-
-  function prevMonth() {
-    if (month === 0) { setMonth(11); setYear(y => y - 1) }
-    else setMonth(m => m - 1)
-  }
-
-  function nextMonth() {
-    if (month === 11) { setMonth(0); setYear(y => y + 1) }
-    else setMonth(m => m + 1)
-  }
-
-  const byMonth = useMemo(() =>
-    transactions.filter(t => {
-      const d = new Date(t.date)
-      return d.getFullYear() === year && d.getMonth() === month
-    }), [transactions, year, month])
-
-  const filtered = useMemo(() => {
-    return byMonth.filter(t => {
-      if (activeType === 'Receitas' && t.type !== 'INCOME') return false
-      if (activeType === 'Despesas' && t.type !== 'EXPENSE') return false
-      if (activeType === 'Liquidados' && t.is_paid === false) return false
-      if (activeType === 'Pendentes' && t.is_paid !== false) return false
-      if (activeCategory !== 'todas' && t.category_id !== activeCategory) return false
-      if (search && !t.description.toLowerCase().includes(search.toLowerCase())) return false
-      return true
-    }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-  }, [byMonth, activeType, activeCategory, search])
-
-  const totalIncome = filtered.filter(t => t.type === 'INCOME').reduce((s, t) => s + t.amount, 0)
-  const totalExpense = filtered.filter(t => t.type === 'EXPENSE').reduce((s, t) => s + t.amount, 0)
-  const liquid = totalIncome - totalExpense
-
-  const categories = useMemo(() => {
-    const seen = new Set(byMonth.map(t => t.category_id))
-    return ['todas', ...Array.from(seen)]
-  }, [byMonth])
-
-  const types = ['Todas', 'Receitas', 'Despesas', 'Liquidados', 'Pendentes']
-
-  async function handleDelete(id: string, e?: React.MouseEvent) {
-    e?.stopPropagation()
-    setTransactionToDelete(id)
-  }
-
-  async function confirmDelete() {
-    if (!transactionToDelete) return
-    const id = transactionToDelete
-    setTransactionToDelete(null)
-    setDeletingId(id)
-    const res = await deleteTransactionAction(id)
-    setDeletingId(null)
-    if (res?.error) {
-      toast.error('Erro ao excluir: ' + res.error)
-    } else {
-      toast.success('Lançamento excluído!')
-      router.refresh()
-    }
-  }
-
-  async function handleTogglePaid(t: Transaction, e?: React.MouseEvent) {
-    e?.stopPropagation()
-    const newStatus = t.is_paid === false ? true : false
-    const res = await togglePaidTransactionAction(t.id, newStatus)
-    if (res?.error) {
-      toast.error('Erro ao alterar status: ' + res.error)
-    } else {
-      toast.success(newStatus ? 'Marcado como pago!' : 'Marcado como pendente!')
-      router.refresh()
-    }
-  }
-
-  return (
-    <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative min-h-screen pb-24">
-
-      {/* Month Selector */}
-      <div className="bg-card rounded-2xl p-2 mb-4 shadow-sm border border-border/50">
-        <div className="flex items-center justify-between px-2 py-1">
-          <button onClick={prevMonth} className="w-8 h-8 flex items-center justify-center text-foreground hover:bg-muted rounded-full transition-colors">
-            <span className="material-symbols-outlined text-sm">arrow_back_ios_new</span>
-          </button>
-          <h1 className="text-sm font-bold text-foreground">{MONTH_NAMES[month]} {year}</h1>
-          <button onClick={nextMonth} className="w-8 h-8 flex items-center justify-center text-foreground hover:bg-muted rounded-full transition-colors">
-            <span className="material-symbols-outlined text-sm">arrow_forward_ios</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Search Input */}
-      <div className="relative mb-4">
-        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-xl">search</span>
-        <input
-          type="text"
-          placeholder="Pesquisar por descrição..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="w-full bg-transparent border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50"
-        />
-      </div>
-
-      {/* Type Filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
-        {types.map((type) => (
-          <button
-            key={type}
-            onClick={() => setActiveType(type)}
-            className={`px-4 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
-              activeType === type
-                ? 'bg-primary/10 text-primary border border-transparent font-bold'
-                : 'bg-transparent text-foreground/80 border border-border hover:bg-muted'
-            }`}
-          >
-            {type}
-          </button>
-        ))}
-      </div>
-
-      {/* Category Filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-3 py-1 rounded-full text-[10px] font-medium whitespace-nowrap flex items-center gap-1 transition-colors ${
-              activeCategory === cat
-                ? 'bg-primary/10 text-primary border border-transparent font-bold'
-                : 'bg-transparent text-foreground/80 border border-transparent hover:bg-muted'
-            }`}
-          >
-            {cat !== 'todas' && <span className={`w-2 h-2 rounded-full ${CATEGORY_COLORS[cat] || 'bg-gray-400'}`} />}
-            {cat === 'todas' ? 'Todas Categorias' : (categoryLabel[cat] || cat)}
-          </button>
-        ))}
-      </div>
-
-      {/* Summary Row */}
-      <div className="flex justify-between items-center mb-4 px-1">
-        <span className="text-[10px] text-muted-foreground font-medium">{filtered.length} registro(s)</span>
-        <span className={`text-[10px] font-bold ${liquid >= 0 ? 'text-[#1db576]' : 'text-[#e74c4c]'}`}>
-          Líquido: {formatCurrency(liquid)}
-        </span>
-      </div>
-
-      {/* Transactions List */}
-      {filtered.length === 0 ? (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col items-center justify-center text-center flex-1"
-        >
-          <span className="material-symbols-outlined text-[48px] text-muted-foreground/40 mb-4">filter_list</span>
-          <h3 className="font-bold text-sm text-foreground mb-1">Nenhuma transação encontrada</h3>
-          <p className="text-xs text-muted-foreground">Tente alterar os filtros ou o mês selecionado</p>
-        </motion.div>
-      ) : (
-        <div className="flex flex-col gap-2">
-          {filtered.map((t) => {
-            const isPaid = t.is_paid !== false
-            return (
-              <motion.div
-                key={t.id}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                onClick={() => setEditingTransaction(t)}
-                className={`bg-card rounded-2xl p-3.5 border shadow-sm flex items-center justify-between cursor-pointer hover:border-primary/50 transition-all ${
-                  !isPaid ? 'border-amber-400/40 bg-amber-50/20 dark:bg-amber-950/10' : 'border-border'
-                }`}
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  {/* Botão de Dar Baixa */}
-                  <button
-                    type="button"
-                    title={isPaid ? 'Liquidado (toque para marcar pendente)' : 'Pendente (toque para dar baixa)'}
-                    onClick={(e) => handleTogglePaid(t, e)}
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-transform active:scale-90 ${
-                      isPaid
-                        ? t.type === 'INCOME'
-                          ? 'bg-[#1db576]/10 text-[#1db576]'
-                          : 'bg-[#e74c4c]/10 text-[#e74c4c]'
-                        : 'bg-amber-100 text-amber-700 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-700'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-base">
-                      {isPaid ? (t.type === 'INCOME' ? 'arrow_upward' : 'arrow_downward') : 'schedule'}
-                    </span>
-                  </button>
-
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <p className="text-sm font-semibold text-foreground truncate">{t.description}</p>
-                      {!isPaid && (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-amber-500/20 text-amber-700 dark:text-amber-300 shrink-0">
-                          Pendente
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-[10px] text-muted-foreground truncate">
-                      {categoryLabel[t.category_id] || t.category_id} · {new Date(t.date).toLocaleDateString('pt-BR')}
-                      {t.notes ? ` · ${t.notes}` : ''}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className={`font-bold text-sm ${t.type === 'INCOME' ? 'text-[#1db576]' : 'text-[#e74c4c]'}`}>
-                    {t.type === 'INCOME' ? '+' : '-'}{formatCurrency(t.amount)}
-                  </span>
-
-                  {/* Ações de Edição e Exclusão */}
-                  <div className="flex items-center gap-0.5">
-                    <button
-                      type="button"
-                      title="Editar lançamento"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setEditingTransaction(t)
-                      }}
-                      className="w-7 h-7 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-sm">edit</span>
-                    </button>
-                    <button
-                      type="button"
-                      title="Excluir lançamento"
-                      disabled={deletingId === t.id}
-                      onClick={(e) => handleDelete(t.id, e)}
-                      className="w-7 h-7 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-rose-100 hover:text-rose-600 dark:hover:bg-rose-950/50 transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-sm">delete</span>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-      )}
-
-      {/* Modal de Edição & Baixa */}
-      <EditTransactionModal
-        transaction={editingTransaction}
-        isOpen={Boolean(editingTransaction)}
-        onClose={() => setEditingTransaction(null)}
-        onSuccess={() => {
-          setEditingTransaction(null)
-          router.refresh()
-        }}
-      />
-
-      <ConfirmModal 
-        isOpen={Boolean(transactionToDelete)}
-        title="Excluir Lançamento"
-        description="Tem certeza que deseja excluir esta transação? Esta ação não pode ser desfeita."
-        onConfirm={confirmDelete}
-        onCancel={() => setTransactionToDelete(null)}
-      />
-    </main>
-  )
-}
+ç'çuçsçeç çcçlçiçeçnçtç'ç
+ç
+çiçmçpçoçrçtç ç*ç çaçsç çmçoçtçiçoçnç çfçrçoçmç ç"çfçrçaçmçeçrç-çmçoçtçiçoçnç/çcçlçiçeçnçtç"ç
+çiçmçpçoçrçtç ç{ç çuçsçeçRçoçuçtçeçrç ç}ç çfçrçoçmç ç"çnçeçxçtç/çnçaçvçiçgçaçtçiçoçnç"ç
+çiçmçpçoçrçtç ç{ç çuçsçeçSçtçaçtçeç,ç çuçsçeçMçeçmçoç ç}ç çfçrçoçmç ç"çrçeçaçcçtç"ç
+çiçmçpçoçrçtç çEçdçiçtçTçrçaçnçsçaçcçtçiçoçnçMçoçdçaçlç çfçrçoçmç ç'ç@ç/çcçoçmçpçoçnçeçnçtçsç/çtçrçaçnçsçaçcçtçiçoçnçsç/çEçdçiçtçTçrçaçnçsçaçcçtçiçoçnçMçoçdçaçlç'ç
+çiçmçpçoçrçtç ç{ç çdçeçlçeçtçeçTçrçaçnçsçaçcçtçiçoçnçAçcçtçiçoçnç,ç çtçoçgçgçlçeçPçaçiçdçTçrçaçnçsçaçcçtçiçoçnçAçcçtçiçoçnç ç}ç çfçrçoçmç ç'ç@ç/çaçpçpç/çaçcçtçiçoçnçsç/çtçrçaçnçsçaçcçtçiçoçnçAçcçtçiçoçnçsç'ç
+çiçmçpçoçrçtç ç{ç çtçoçaçsçtç ç}ç çfçrçoçmç ç'çrçeçaçcçtç-çhçoçtç-çtçoçaçsçtç'ç
+çiçmçpçoçrçtç ç{ç çCçoçnçfçiçrçmçMçoçdçaçlç ç}ç çfçrçoçmç ç'ç@ç/çcçoçmçpçoçnçeçnçtçsç/çuçiç/çCçoçnçfçiçrçmçMçoçdçaçlç'ç
+ç
+çiçnçtçeçrçfçaçcçeç çTçrçaçnçsçaçcçtçiçoçnç ç{ç
+ç ç çiçdç:ç çsçtçrçiçnçgç
+ç ç çaçmçoçuçnçtç:ç çnçuçmçbçeçrç
+ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç çsçtçrçiçnçgç
+ç ç çdçaçtçeç:ç çsçtçrçiçnçgç
+ç ç çtçyçpçeç:ç ç'çIçNçCçOçMçEç'ç ç|ç ç'çEçXçPçEçNçSçEç'ç
+ç ç çcçaçtçeçgçoçrçyç_çiçdç:ç çsçtçrçiçnçgç
+ç ç çnçãçoçtçeçsç?ç:ç çsçtçrçiçnçgç
+ç ç çiçsç_çpçaçiçdç?ç:ç çbçoçoçlçeçaçnç
+ç}ç
+ç
+çcçoçnçsçtç çMçOçNçTçHç_çNçAçMçEçSç ç=ç ç[ç
+ç ç ç'çJçaçnçeçiçrçoç'ç,ç ç'çFçeçvçeçrçeçiçrçoç'ç,ç ç'çMçaçrçççoç'ç,ç ç'çAçbçrçiçlç'ç,ç ç'çMçaçiçoç'ç,ç ç'çJçuçnçhçoç'ç,ç
+ç ç ç'çJçuçlçhçoç'ç,ç ç'çAçgçoçsçtçoç'ç,ç ç'çSçeçtçeçmçbçrçoç'ç,ç ç'çOçuçtçuçbçrçoç'ç,ç ç'çNçãçoçvçeçmçbçrçoç'ç,ç ç'çDçeçzçeçmçbçrçoç'ç
+ç]ç
+ç
+çfçuçnçcçtçiçoçnç çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çvçaçlçuçeç:ç çnçuçmçbçeçrç)ç ç{ç
+ç ç çrçeçtçuçrçnç çvçaçlçuçeç.çtçoçLçoçcçaçlçeçSçtçrçiçnçgç(ç'çpçtç-çBçRç'ç,ç ç{ç çsçtçyçlçeç:ç ç'çcçuçrçrçeçnçcçyç'ç,ç çcçuçrçrçeçnçcçyç:ç ç'çBçRçLç'ç ç}ç)ç
+ç}ç
+ç
+çcçoçnçsçtç çcçaçtçeçgçoçrçyçLçaçbçeçlç:ç çRçeçcçoçrçdç<çsçtçrçiçnçgç,ç çsçtçrçiçnçgç>ç ç=ç ç{ç
+ç ç çaçlçiçmçeçnçtçaçcçaçoç:ç ç'çAçlçiçmçeçnçtçaçççãçoç'ç,ç
+ç ç çtçrçaçnçsçpçoçrçtçeç:ç ç'çTçrçaçnçsçpçoçrçtçeç'ç,ç
+ç ç çmçoçrçaçdçiçaç:ç ç'çMçoçrçaçdçiçaç'ç,ç
+ç ç çsçaçlçaçrçiçoç:ç ç'çSçaçlçáçrçiçoç'ç,ç
+ç ç çlçaçzçeçrç:ç ç'çLçaçzçeçrç'ç,ç
+ç ç çsçaçuçdçeç:ç ç'çSçaçúçdçeç ç&ç çFçaçrçmçáçcçiçaç'ç,ç
+ç ç çoçuçtçrçoçsç:ç ç'çOçuçtçrçoçsç'ç,ç
+ç}ç
+ç
+çcçoçnçsçtç çCçAçTçEçGçOçRçYç_çCçOçLçOçRçSç:ç çRçeçcçoçrçdç<çsçtçrçiçnçgç,ç çsçtçrçiçnçgç>ç ç=ç ç{ç
+ç ç çaçlçiçmçeçnçtçaçcçaçoç:ç ç'çbçgç-çoçrçaçnçgçeç-ç5ç0ç0ç'ç,ç
+ç ç çtçrçaçnçsçpçoçrçtçeç:ç ç'çbçgç-çbçlçuçeç-ç5ç0ç0ç'ç,ç
+ç ç çmçoçrçaçdçiçaç:ç ç'çbçgç-çpçuçrçpçlçeç-ç5ç0ç0ç'ç,ç
+ç ç çsçaçlçaçrçiçoç:ç ç'çbçgç-çgçrçeçeçnç-ç5ç0ç0ç'ç,ç
+ç ç çlçaçzçeçrç:ç ç'çbçgç-çpçiçnçkç-ç5ç0ç0ç'ç,ç
+ç ç çsçaçuçdçeç:ç ç'çbçgç-çrçoçsçeç-ç5ç0ç0ç'ç,ç
+ç ç çoçuçtçrçoçsç:ç ç'çbçgç-çgçrçaçyç-ç4ç0ç0ç'ç,ç
+ç}ç
+ç
+çeçxçpçoçrçtç çdçeçfçaçuçlçtç çfçuçnçcçtçiçoçnç çTçrçaçnçsçaçcçtçiçoçnçsçCçlçiçeçnçtç(ç{ç çtçrçaçnçsçaçcçtçiçoçnçsç ç}ç:ç ç{ç çtçrçaçnçsçaçcçtçiçoçnçsç:ç çTçrçaçnçsçaçcçtçiçoçnç[ç]ç ç}ç)ç ç{ç
+ç ç çcçoçnçsçtç çrçoçuçtçeçrç ç=ç çuçsçeçRçoçuçtçeçrç(ç)ç
+ç ç çcçoçnçsçtç çtçoçdçaçyç ç=ç çnçeçwç çDçaçtçeç(ç)ç
+ç ç çcçoçnçsçtç ç[çyçeçaçrç,ç çsçeçtçYçeçaçrç]ç ç=ç çuçsçeçSçtçaçtçeç(çtçoçdçaçyç.çgçeçtçFçuçlçlçYçeçaçrç(ç)ç)ç
+ç ç çcçoçnçsçtç ç[çmçoçnçtçhç,ç çsçeçtçMçoçnçtçhç]ç ç=ç çuçsçeçSçtçaçtçeç(çtçoçdçaçyç.çgçeçtçMçoçnçtçhç(ç)ç)ç
+ç ç çcçoçnçsçtç ç[çaçcçtçiçvçeçTçyçpçeç,ç çsçeçtçAçcçtçiçvçeçTçyçpçeç]ç ç=ç çuçsçeçSçtçaçtçeç(ç'çTçoçdçaçsç'ç)ç
+ç ç çcçoçnçsçtç ç[çaçcçtçiçvçeçCçaçtçeçgçoçrçyç,ç çsçeçtçAçcçtçiçvçeçCçaçtçeçgçoçrçyç]ç ç=ç çuçsçeçSçtçaçtçeç(ç'çtçoçdçaçsç'ç)ç
+ç ç çcçoçnçsçtç ç[çsçeçaçrçcçhç,ç çsçeçtçSçeçaçrçcçhç]ç ç=ç çuçsçeçSçtçaçtçeç(ç'ç'ç)ç
+ç ç çcçoçnçsçtç ç[çeçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç,ç çsçeçtçEçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç]ç ç=ç çuçsçeçSçtçaçtçeç<çTçrçaçnçsçaçcçtçiçoçnç ç|ç çnçuçlçlç>ç(çnçuçlçlç)ç
+ç ç çcçoçnçsçtç ç[çdçeçlçeçtçiçnçgçIçdç,ç çsçeçtçDçeçlçeçtçiçnçgçIçdç]ç ç=ç çuçsçeçSçtçaçtçeç<çsçtçrçiçnçgç ç|ç çnçuçlçlç>ç(çnçuçlçlç)ç
+ç ç çcçoçnçsçtç ç[çtçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç,ç çsçeçtçTçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç]ç ç=ç çuçsçeçSçtçaçtçeç<çsçtçrçiçnçgç ç|ç çnçuçlçlç>ç(çnçuçlçlç)ç
+ç
+ç ç çfçuçnçcçtçiçoçnç çpçrçeçvçMçoçnçtçhç(ç)ç ç{ç
+ç ç ç ç çiçfç ç(çmçoçnçtçhç ç=ç=ç=ç ç0ç)ç ç{ç çsçeçtçMçoçnçtçhç(ç1ç1ç)ç;ç çsçeçtçYçeçaçrç(çyç ç=ç>ç çyç ç-ç ç1ç)ç ç}ç
+ç ç ç ç çeçlçsçeç çsçeçtçMçoçnçtçhç(çmç ç=ç>ç çmç ç-ç ç1ç)ç
+ç ç ç}ç
+ç
+ç ç çfçuçnçcçtçiçoçnç çnçeçxçtçMçoçnçtçhç(ç)ç ç{ç
+ç ç ç ç çiçfç ç(çmçoçnçtçhç ç=ç=ç=ç ç1ç1ç)ç ç{ç çsçeçtçMçoçnçtçhç(ç0ç)ç;ç çsçeçtçYçeçaçrç(çyç ç=ç>ç çyç ç+ç ç1ç)ç ç}ç
+ç ç ç ç çeçlçsçeç çsçeçtçMçoçnçtçhç(çmç ç=ç>ç çmç ç+ç ç1ç)ç
+ç ç ç}ç
+ç
+ç ç çcçoçnçsçtç çbçyçMçoçnçtçhç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç
+ç ç ç ç çtçrçaçnçsçaçcçtçiçoçnçsç.çfçiçlçtçeçrç(çtç ç=ç>ç ç{ç
+ç ç ç ç ç ç çcçoçnçsçtç çdç ç=ç çnçeçwç çDçaçtçeç(çtç.çdçaçtçeç)ç
+ç ç ç ç ç ç çrçeçtçuçrçnç çdç.çgçeçtçFçuçlçlçYçeçaçrç(ç)ç ç=ç=ç=ç çyçeçaçrç ç&ç&ç çdç.çgçeçtçMçoçnçtçhç(ç)ç ç=ç=ç=ç çmçoçnçtçhç
+ç ç ç ç ç}ç)ç,ç ç[çtçrçaçnçsçaçcçtçiçoçnçsç,ç çyçeçaçrç,ç çmçoçnçtçhç]ç)ç
+ç
+ç ç çcçoçnçsçtç çfçiçlçtçeçrçeçdç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
+ç ç ç ç çrçeçtçuçrçnç çbçyçMçoçnçtçhç.çfçiçlçtçeçrç(çtç ç=ç>ç ç{ç
+ç ç ç ç ç ç çiçfç ç(çaçcçtçiçvçeçTçyçpçeç ç=ç=ç=ç ç'çRçeçcçeçiçtçaçsç'ç ç&ç&ç çtç.çtçyçpçeç ç!ç=ç=ç ç'çIçNçCçOçMçEç'ç)ç çrçeçtçuçrçnç çfçaçlçsçeç
+ç ç ç ç ç ç çiçfç ç(çaçcçtçiçvçeçTçyçpçeç ç=ç=ç=ç ç'çDçeçsçpçeçsçaçsç'ç ç&ç&ç çtç.çtçyçpçeç ç!ç=ç=ç ç'çEçXçPçEçNçSçEç'ç)ç çrçeçtçuçrçnç çfçaçlçsçeç
+ç ç ç ç ç ç çiçfç ç(çaçcçtçiçvçeçTçyçpçeç ç=ç=ç=ç ç'çLçiçqçuçiçdçaçdçoçsç'ç ç&ç&ç çtç.çiçsç_çpçaçiçdç ç=ç=ç=ç çfçaçlçsçeç)ç çrçeçtçuçrçnç çfçaçlçsçeç
+ç ç ç ç ç ç çiçfç ç(çaçcçtçiçvçeçTçyçpçeç ç=ç=ç=ç ç'çPçeçnçdçeçnçtçeçsç'ç ç&ç&ç çtç.çiçsç_çpçaçiçdç ç!ç=ç=ç çfçaçlçsçeç)ç çrçeçtçuçrçnç çfçaçlçsçeç
+ç ç ç ç ç ç çiçfç ç(çaçcçtçiçvçeçCçaçtçeçgçoçrçyç ç!ç=ç=ç ç'çtçoçdçaçsç'ç ç&ç&ç çtç.çcçaçtçeçgçoçrçyç_çiçdç ç!ç=ç=ç çaçcçtçiçvçeçCçaçtçeçgçoçrçyç)ç çrçeçtçuçrçnç çfçaçlçsçeç
+ç ç ç ç ç ç çiçfç ç(çsçeçaçrçcçhç ç&ç&ç ç!çtç.çdçeçsçcçrçiçpçtçiçoçnç.çtçoçLçoçwçeçrçCçaçsçeç(ç)ç.çiçnçcçlçuçdçeçsç(çsçeçaçrçcçhç.çtçoçLçoçwçeçrçCçaçsçeç(ç)ç)ç)ç çrçeçtçuçrçnç çfçaçlçsçeç
+ç ç ç ç ç ç çrçeçtçuçrçnç çtçrçuçeç
+ç ç ç ç ç}ç)ç.çsçoçrçtç(ç(çaç,ç çbç)ç ç=ç>ç çnçeçwç çDçaçtçeç(çaç.çdçaçtçeç)ç.çgçeçtçTçiçmçeç(ç)ç ç-ç çnçeçwç çDçaçtçeç(çbç.çdçaçtçeç)ç.çgçeçtçTçiçmçeç(ç)ç)ç
+ç ç ç}ç,ç ç[çbçyçMçoçnçtçhç,ç çaçcçtçiçvçeçTçyçpçeç,ç çaçcçtçiçvçeçCçaçtçeçgçoçrçyç,ç çsçeçaçrçcçhç]ç)ç
+ç
+ç ç çcçoçnçsçtç çtçoçtçaçlçIçnçcçoçmçeç ç=ç çfçiçlçtçeçrçeçdç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç)ç.çrçeçdçuçcçeç(ç(çsç,ç çtç)ç ç=ç>ç çsç ç+ç çtç.çaçmçoçuçnçtç,ç ç0ç)ç
+ç ç çcçoçnçsçtç çtçoçtçaçlçEçxçpçeçnçsçeç ç=ç çfçiçlçtçeçrçeçdç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çEçXçPçEçNçSçEç'ç)ç.çrçeçdçuçcçeç(ç(çsç,ç çtç)ç ç=ç>ç çsç ç+ç çtç.çaçmçoçuçnçtç,ç ç0ç)ç
+ç ç çcçoçnçsçtç çlçiçqçuçiçdç ç=ç çtçoçtçaçlçIçnçcçoçmçeç ç-ç çtçoçtçaçlçEçxçpçeçnçsçeç
+ç
+ç ç çcçoçnçsçtç çcçaçtçeçgçoçrçiçeçsç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
+ç ç ç ç çcçoçnçsçtç çsçeçeçnç ç=ç çnçeçwç çSçeçtç(çbçyçMçoçnçtçhç.çmçaçpç(çtç ç=ç>ç çtç.çcçaçtçeçgçoçrçyç_çiçdç)ç)ç
+ç ç ç ç çrçeçtçuçrçnç ç[ç'çtçoçdçaçsç'ç,ç ç.ç.ç.çAçrçrçaçyç.çfçrçoçmç(çsçeçeçnç)ç]ç
+ç ç ç}ç,ç ç[çbçyçMçoçnçtçhç]ç)ç
+ç
+ç ç çcçoçnçsçtç çtçyçpçeçsç ç=ç ç[ç'çTçoçdçaçsç'ç,ç ç'çRçeçcçeçiçtçaçsç'ç,ç ç'çDçeçsçpçeçsçaçsç'ç,ç ç'çLçiçqçuçiçdçaçdçoçsç'ç,ç ç'çPçeçnçdçeçnçtçeçsç'ç]ç
+ç
+ç ç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çhçaçnçdçlçeçDçeçlçeçtçeç(çiçdç:ç çsçtçrçiçnçgç,ç çeç?ç:ç çRçeçaçcçtç.çMçoçuçsçeçEçvçeçnçtç)ç ç{ç
+ç ç ç ç çeç?ç.çsçtçoçpçPçrçoçpçaçgçaçtçiçoçnç(ç)ç
+ç ç ç ç çsçeçtçTçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç(çiçdç)ç
+ç ç ç}ç
+ç
+ç ç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çcçoçnçfçiçrçmçDçeçlçeçtçeç(ç)ç ç{ç
+ç ç ç ç çiçfç ç(ç!çtçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç)ç çrçeçtçuçrçnç
+ç ç ç ç çcçoçnçsçtç çiçdç ç=ç çtçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç
+ç ç ç ç çsçeçtçTçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç(çnçuçlçlç)ç
+ç ç ç ç çsçeçtçDçeçlçeçtçiçnçgçIçdç(çiçdç)ç
+ç ç ç ç çcçoçnçsçtç çrçeçsç ç=ç çaçwçaçiçtç çdçeçlçeçtçeçTçrçaçnçsçaçcçtçiçoçnçAçcçtçiçoçnç(çiçdç)ç
+ç ç ç ç çsçeçtçDçeçlçeçtçiçnçgçIçdç(çnçuçlçlç)ç
+ç ç ç ç çiçfç ç(çrçeçsç?ç.çeçrçrçoçrç)ç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çeçrçrçoçrç(ç'çEçrçrçoç çaçoç çeçxçcçlçuçiçrç:ç ç'ç ç+ç çrçeçsç.çeçrçrçoçrç)ç
+ç ç ç ç ç}ç çeçlçsçeç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çsçuçcçcçeçsçsç(ç'çLçaçnçççaçmçeçnçtçoç çeçxçcçlçuçíçdçoç!ç'ç)ç
+ç ç ç ç ç ç çrçoçuçtçeçrç.çrçeçfçrçeçsçhç(ç)ç
+ç ç ç ç ç}ç
+ç ç ç}ç
+ç
+ç ç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çhçaçnçdçlçeçTçoçgçgçlçeçPçaçiçdç(çtç:ç çTçrçaçnçsçaçcçtçiçoçnç,ç çeç?ç:ç çRçeçaçcçtç.çMçoçuçsçeçEçvçeçnçtç)ç ç{ç
+ç ç ç ç çeç?ç.çsçtçoçpçPçrçoçpçaçgçaçtçiçoçnç(ç)ç
+ç ç ç ç çcçoçnçsçtç çnçeçwçSçtçaçtçuçsç ç=ç çtç.çiçsç_çpçaçiçdç ç=ç=ç=ç çfçaçlçsçeç ç?ç çtçrçuçeç ç:ç çfçaçlçsçeç
+ç ç ç ç çcçoçnçsçtç çrçeçsç ç=ç çaçwçaçiçtç çtçoçgçgçlçeçPçaçiçdçTçrçaçnçsçaçcçtçiçoçnçAçcçtçiçoçnç(çtç.çiçdç,ç çnçeçwçSçtçaçtçuçsç)ç
+ç ç ç ç çiçfç ç(çrçeçsç?ç.çeçrçrçoçrç)ç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çeçrçrçoçrç(ç'çEçrçrçoç çaçoç çaçlçtçeçrçaçrç çsçtçaçtçuçsç:ç ç'ç ç+ç çrçeçsç.çeçrçrçoçrç)ç
+ç ç ç ç ç}ç çeçlçsçeç ç{ç
+ç ç ç ç ç ç çtçoçaçsçtç.çsçuçcçcçeçsçsç(çnçeçwçSçtçaçtçuçsç ç?ç ç'çMçaçrçcçaçdçoç çcçoçmçoç çpçaçgçoç!ç'ç ç:ç ç'çMçaçrçcçaçdçoç çcçoçmçoç çpçeçnçdçeçnçtçeç!ç'ç)ç
+ç ç ç ç ç ç çrçoçuçtçeçrç.çrçeçfçrçeçsçhç(ç)ç
+ç ç ç ç ç}ç
+ç ç ç}ç
+ç
+ç ç çrçeçtçuçrçnç ç(ç
+ç ç ç ç ç<çmçaçiçnç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç-ç1ç çfçlçeçxç çfçlçeçxç-çcçoçlç çpç-ç4ç çmçaçxç-çwç-çmçdç çmçxç-çaçuçtçoç çwç-çfçuçlçlç çrçeçlçaçtçiçvçeç çmçiçnç-çhç-çsçcçrçeçeçnç çpçbç-ç2ç4ç"ç>ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çMçoçnçtçhç çSçeçlçeçcçtçoçrç ç*ç/ç}ç
+ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç2ç çmçbç-ç4ç çsçhçaçdçoçwç-çsçmç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç"ç>ç
+ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çpçxç-ç2ç çpçyç-ç1ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç çoçnçCçlçiçcçkç=ç{çpçrçeçvçMçoçnçtçhç}ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç8ç çhç-ç8ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çrçoçuçnçdçeçdç-çfçuçlçlç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çaçrçrçoçwç_çbçaçcçkç_çiçoçsç_çnçeçwç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çhç1ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çMçOçNçTçHç_çNçAçMçEçSç[çmçoçnçtçhç]ç}ç ç{çyçeçaçrç}ç<ç/çhç1ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç çoçnçCçlçiçcçkç=ç{çnçeçxçtçMçoçnçtçhç}ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç8ç çhç-ç8ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çrçoçuçnçdçeçdç-çfçuçlçlç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çaçrçrçoçwç_çfçoçrçwçaçrçdç_çiçoçsç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çSçeçaçrçcçhç çIçnçpçuçtç ç*ç/ç}ç
+ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çrçeçlçaçtçiçvçeç çmçbç-ç4ç"ç>ç
+ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çaçbçsçoçlçuçtçeç çlçeçfçtç-ç3ç çtçoçpç-ç1ç/ç2ç ç-çtçrçaçnçsçlçaçtçeç-çyç-ç1ç/ç2ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-çxçlç"ç>çsçeçaçrçcçhç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç<çiçnçpçuçtç
+ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çtçeçxçtç"ç
+ç ç ç ç ç ç ç ç ç ç çpçlçaçcçeçhçoçlçdçeçrç=ç"çPçeçsçqçuçiçsçaçrç çpçoçrç çdçeçsçcçrçiçççãçoç.ç.ç.ç"ç
+ç ç ç ç ç ç ç ç ç ç çvçaçlçuçeç=ç{çsçeçaçrçcçhç}ç
+ç ç ç ç ç ç ç ç ç ç çoçnçCçhçaçnçgçeç=ç{çeç ç=ç>ç çsçeçtçSçeçaçrçcçhç(çeç.çtçaçrçgçeçtç.çvçaçlçuçeç)ç}ç
+ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-çtçrçaçnçsçpçaçrçeçnçtç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç çrçoçuçnçdçeçdç-çxçlç çpçlç-ç1ç0ç çpçrç-ç4ç çpçyç-ç3ç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çfçoçcçuçsç:çoçuçtçlçiçnçeç-çnçãçoçnçeç çfçoçcçuçsç:çbçoçrçdçeçrç-çpçrçiçmçaçrçyç/ç5ç0ç"ç
+ç ç ç ç ç ç ç ç ç/ç>ç
+ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çTçyçpçeç çFçiçlçtçeçrçsç ç*ç/ç}ç
+ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çgçaçpç-ç2ç çmçbç-ç4ç çoçvçeçrçfçlçoçwç-çxç-çaçuçtçoç çpçbç-ç1ç"ç>ç
+ç ç ç ç ç ç ç ç ç{çtçyçpçeçsç.çmçaçpç(ç(çtçyçpçeç)ç ç=ç>ç ç(ç
+ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
+ç ç ç ç ç ç ç ç ç ç ç ç çkçeçyç=ç{çtçyçpçeç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçAçcçtçiçvçeçTçyçpçeç(çtçyçpçeç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç{ç`çpçxç-ç4ç çpçyç-ç1ç.ç5ç çrçoçuçnçdçeçdç-çlçgç çtçeçxçtç-çxçsç çfçoçnçtç-çsçeçmçiçbçoçlçdç çwçhçiçtçeçsçpçaçcçeç-çnçãçoçwçrçaçpç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç ç$ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çaçcçtçiçvçeçTçyçpçeç ç=ç=ç=ç çtçyçpçeç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç?ç ç'çbçgç-çpçrçiçmçaçrçyç/ç1ç0ç çtçeçxçtç-çpçrçiçmçaçrçyç çbçoçrçdçeçrç çbçoçrçdçeçrç-çtçrçaçnçsçpçaçrçeçnçtç çfçoçnçtç-çbçoçlçdç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç:ç ç'çbçgç-çtçrçaçnçsçpçaçrçeçnçtç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç}ç`ç}ç
+ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç{çtçyçpçeç}ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç)ç)ç}ç
+ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çCçaçtçeçgçoçrçyç çFçiçlçtçeçrçsç ç*ç/ç}ç
+ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çgçaçpç-ç2ç çmçbç-ç4ç çoçvçeçrçfçlçoçwç-çxç-çaçuçtçoç çpçbç-ç1ç"ç>ç
+ç ç ç ç ç ç ç ç ç{çcçaçtçeçgçoçrçiçeçsç.çmçaçpç(ç(çcçaçtç)ç ç=ç>ç ç(ç
+ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
+ç ç ç ç ç ç ç ç ç ç ç ç çkçeçyç=ç{çcçaçtç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçAçcçtçiçvçeçCçaçtçeçgçoçrçyç(çcçaçtç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç{ç`çpçxç-ç3ç çpçyç-ç1ç çrçoçuçnçdçeçdç-çfçuçlçlç çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çmçeçdçiçuçmç çwçhçiçtçeçsçpçaçcçeç-çnçãçoçwçrçaçpç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç1ç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç ç$ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç çaçcçtçiçvçeçCçaçtçeçgçoçrçyç ç=ç=ç=ç çcçaçtç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç?ç ç'çbçgç-çpçrçiçmçaçrçyç/ç1ç0ç çtçeçxçtç-çpçrçiçmçaçrçyç çbçoçrçdçeçrç çbçoçrçdçeçrç-çtçrçaçnçsçpçaçrçeçnçtç çfçoçnçtç-çbçoçlçdç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç:ç ç'çbçgç-çtçrçaçnçsçpçaçrçeçnçtç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çtçrçaçnçsçpçaçrçeçnçtç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç}ç`ç}ç
+ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtç ç!ç=ç=ç ç'çtçoçdçaçsç'ç ç&ç&ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç{ç`çwç-ç2ç çhç-ç2ç çrçoçuçnçdçeçdç-çfçuçlçlç ç$ç{çCçAçTçEçGçOçRçYç_çCçOçLçOçRçSç[çcçaçtç]ç ç|ç|ç ç'çbçgç-çgçrçaçyç-ç4ç0ç0ç'ç}ç`ç}ç ç/ç>ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtç ç=ç=ç=ç ç'çtçoçdçaçsç'ç ç?ç ç'çTçoçdçaçsç çCçaçtçeçgçoçrçiçaçsç'ç ç:ç ç(çcçaçtçeçgçoçrçyçLçaçbçeçlç[çcçaçtç]ç ç|ç|ç çcçaçtç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç)ç)ç}ç
+ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çSçuçmçmçaçrçyç çRçoçwç ç*ç/ç}ç
+ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çiçtçeçmçsç-çcçeçnçtçeçrç çmçbç-ç4ç çpçxç-ç1ç"ç>ç
+ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çmçeçdçiçuçmç"ç>ç{çfçiçlçtçeçrçeçdç.çlçeçnçgçtçhç}ç çrçeçgçiçsçtçrçoç(çsç)ç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç{ç`çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çbçoçlçdç ç$ç{çlçiçqçuçiçdç ç>ç=ç ç0ç ç?ç ç'çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç ç:ç ç'çtçeçxçtç-ç[ç#çeç7ç4çcç4çcç]ç'ç}ç`ç}ç>ç
+ç ç ç ç ç ç ç ç ç ç çLçíçqçuçiçdçoç:ç ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çlçiçqçuçiçdç)ç}ç
+ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çTçrçaçnçsçaçcçtçiçoçnçsç çLçiçsçtç ç*ç/ç}ç
+ç ç ç ç ç ç ç{çfçiçlçtçeçrçeçdç.çlçeçnçgçtçhç ç=ç=ç=ç ç0ç ç?ç ç(ç
+ç ç ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç
+ç ç ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
+ç ç ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
+ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çcçeçnçtçeçrç çfçlçeçxç-ç1ç"ç
+ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç4ç8çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç/ç4ç0ç çmçbç-ç4ç"ç>çfçiçlçtçeçrç_çlçiçsçtç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çhç3ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çmçbç-ç1ç"ç>çNçeçnçhçuçmçaç çtçrçaçnçsçaçççãçoç çeçnçcçoçnçtçrçaçdçaç<ç/çhç3ç>ç
+ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>çTçeçnçtçeç çaçlçtçeçrçaçrç çoçsç çfçiçlçtçrçoçsç çoçuç çoç çmçêçsç çsçeçlçeçcçiçoçnçaçdçoç<ç/çpç>ç
+ç ç ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
+ç ç ç ç ç ç ç)ç ç:ç ç(ç
+ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç2ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç{çfçiçlçtçeçrçeçdç.çmçaçpç(ç(çtç)ç ç=ç>ç ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç çcçoçnçsçtç çiçsçPçaçiçdç ç=ç çtç.çiçsç_çpçaçiçdç ç!ç=ç=ç çfçaçlçsçeç
+ç ç ç ç ç ç ç ç ç ç ç ç çrçeçtçuçrçnç ç(ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çkçeçyç=ç{çtç.çiçdç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç5ç ç}ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçEçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç(çtç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç{ç`çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç3ç.ç5ç çbçoçrçdçeçrç çsçhçaçdçoçwç-çsçmç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çcçuçrçsçoçrç-çpçoçiçnçtçeçrç çhçoçvçeçrç:çbçoçrçdçeçrç-çpçrçiçmçaçrçyç/ç5ç0ç çtçrçaçnçsçiçtçiçoçnç-çaçlçlç ç$ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç!çiçsçPçaçiçdç ç?ç ç'çbçoçrçdçeçrç-çaçmçbçeçrç-ç4ç0ç0ç/ç4ç0ç çbçgç-çaçmçbçeçrç-ç5ç0ç/ç2ç0ç çdçaçrçkç:çbçgç-çaçmçbçeçrç-ç9ç5ç0ç/ç1ç0ç'ç ç:ç ç'çbçoçrçdçeçrç-çbçoçrçdçeçrç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç}ç`ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç3ç çmçiçnç-çwç-ç0ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{ç/ç*ç çBçoçtçãçoç çdçeç çDçaçrç çBçaçiçxçaç ç*ç/ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çbçuçtçtçoçnç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç{çiçsçPçaçiçdç ç?ç ç'çLçiçqçuçiçdçaçdçoç ç(çtçoçqçuçeç çpçaçrçaç çmçaçrçcçaçrç çpçeçnçdçeçnçtçeç)ç'ç ç:ç ç'çPçeçnçdçeçnçtçeç ç(çtçoçqçuçeç çpçaçrçaç çdçaçrç çbçaçiçxçaç)ç'ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(çeç)ç ç=ç>ç çhçaçnçdçlçeçTçoçgçgçlçeçPçaçiçdç(çtç,ç çeç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç{ç`çwç-ç9ç çhç-ç9ç çrçoçuçnçdçeçdç-çxçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çsçhçrçiçnçkç-ç0ç çtçrçaçnçsçiçtçiçoçnç-çtçrçaçnçsçfçoçrçmç çaçcçtçiçvçeç:çsçcçaçlçeç-ç9ç0ç ç$ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çiçsçPçaçiçdç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç?ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç?ç ç'çbçgç-ç[ç#ç1çdçbç5ç7ç6ç]ç/ç1ç0ç çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç:ç ç'çbçgç-ç[ç#çeç7ç4çcç4çcç]ç/ç1ç0ç çtçeçxçtç-ç[ç#çeç7ç4çcç4çcç]ç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç:ç ç'çbçgç-çaçmçbçeçrç-ç1ç0ç0ç çtçeçxçtç-çaçmçbçeçrç-ç7ç0ç0ç çdçaçrçkç:çbçgç-çaçmçbçeçrç-ç9ç5ç0ç/ç7ç0ç çdçaçrçkç:çtçeçxçtç-çaçmçbçeçrç-ç3ç0ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çaçmçbçeçrç-ç3ç0ç0ç çdçaçrçkç:çbçoçrçdçeçrç-çaçmçbçeçrç-ç7ç0ç0ç'ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç}ç`ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çbçaçsçeç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çiçsçPçaçiçdç ç?ç ç(çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç ç?ç ç'çaçrçrçoçwç_çuçpçwçaçrçdç'ç ç:ç ç'çaçrçrçoçwç_çdçoçwçnçwçaçrçdç'ç)ç ç:ç ç'çsçcçhçeçdçuçlçeç'ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çmçiçnç-çwç-ç0ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç1ç.ç5ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çtçrçuçnçcçaçtçeç"ç>ç{çtç.çdçeçsçcçrçiçpçtçiçoçnç}ç<ç/çpç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{ç!çiçsçPçaçiçdç ç&ç&ç ç(ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çpçxç-ç1ç.ç5ç çpçyç-ç0ç.ç5ç çrçoçuçnçdçeçdç çtçeçxçtç-ç[ç9çpçxç]ç çfçoçnçtç-çeçxçtçrçaçbçoçlçdç çbçgç-çaçmçbçeçrç-ç5ç0ç0ç/ç2ç0ç çtçeçxçtç-çaçmçbçeçrç-ç7ç0ç0ç çdçaçrçkç:çtçeçxçtç-çaçmçbçeçrç-ç3ç0ç0ç çsçhçrçiçnçkç-ç0ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çPçeçnçdçeçnçtçeç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçrçuçnçcçaçtçeç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtçeçgçoçrçyçLçaçbçeçlç[çtç.çcçaçtçeçgçoçrçyç_çiçdç]ç ç|ç|ç çtç.çcçaçtçeçgçoçrçyç_çiçdç}ç ç·ç ç{çnçeçwç çDçaçtçeç(çtç.çdçaçtçeç)ç.çtçoçLçoçcçaçlçeçDçaçtçeçSçtçrçiçnçgç(ç'çpçtç-çBçRç'ç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çtç.çnçãçoçtçeçsç ç?ç ç`ç ç·ç ç$ç{çtç.çnçãçoçtçeçsç}ç`ç ç:ç ç'ç'ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç2ç çsçhçrçiçnçkç-ç0ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç{ç`çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç ç$ç{çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç ç?ç ç'çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç ç:ç ç'çtçeçxçtç-ç[ç#çeç7ç4çcç4çcç]ç'ç}ç`ç}ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç ç?ç ç'ç+ç'ç ç:ç ç'ç-ç'ç}ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çtç.çaçmçoçuçnçtç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
+ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{ç/ç*ç çAçççõçeçsç çdçeç çEçdçiçççãçoç çeç çEçxçcçlçuçsçãçoç ç*ç/ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç0ç.ç5ç"ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çbçuçtçtçoçnç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç"çEçdçiçtçaçrç çlçaçnçççaçmçeçnçtçoç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(çeç)ç ç=ç>ç ç{ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çeç.çsçtçoçpçPçrçoçpçaçgçaçtçiçoçnç(ç)ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çsçeçtçEçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç(çtç)ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç}ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç7ç çhç-ç7ç çrçoçuçnçdçeçdç-çlçgç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çhçoçvçeçrç:çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çeçdçiçtç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çbçuçtçtçoçnç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç"çEçxçcçlçuçiçrç çlçaçnçççaçmçeçnçtçoç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çdçiçsçaçbçlçeçdç=ç{çdçeçlçeçtçiçnçgçIçdç ç=ç=ç=ç çtç.çiçdç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(çeç)ç ç=ç>ç çhçaçnçdçlçeçDçeçlçeçtçeç(çtç.çiçdç,ç çeç)ç}ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç7ç çhç-ç7ç çrçoçuçnçdçeçdç-çlçgç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çrçoçsçeç-ç1ç0ç0ç çhçoçvçeçrç:çtçeçxçtç-çrçoçsçeç-ç6ç0ç0ç çdçaçrçkç:çhçoçvçeçrç:çbçgç-çrçoçsçeç-ç9ç5ç0ç/ç5ç0ç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç"ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çdçeçlçeçtçeç<ç/çsçpçaçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
+ç ç ç ç ç ç ç ç ç ç ç ç ç)ç
+ç ç ç ç ç ç ç ç ç ç ç}ç)ç}ç
+ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
+ç ç ç ç ç ç ç)ç}ç
+ç
+ç ç ç ç ç ç ç{ç/ç*ç çMçoçdçaçlç çdçeç çEçdçiçççãçoç ç&ç çBçaçiçxçaç ç*ç/ç}ç
+ç ç ç ç ç ç ç<çEçdçiçtçTçrçaçnçsçaçcçtçiçoçnçMçoçdçaçlç
+ç ç ç ç ç ç ç ç çtçrçaçnçsçaçcçtçiçoçnç=ç{çeçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç}ç
+ç ç ç ç ç ç ç ç çiçsçOçpçeçnç=ç{çBçoçoçlçeçaçnç(çeçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç)ç}ç
+ç ç ç ç ç ç ç ç çoçnçCçlçoçsçeç=ç{ç(ç)ç ç=ç>ç çsçeçtçEçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç(çnçuçlçlç)ç}ç
+ç ç ç ç ç ç ç ç çoçnçSçuçcçcçeçsçsç=ç{ç(ç)ç ç=ç>ç ç{ç
+ç ç ç ç ç ç ç ç ç ç çsçeçtçEçdçiçtçiçnçgçTçrçaçnçsçaçcçtçiçoçnç(çnçuçlçlç)ç
+ç ç ç ç ç ç ç ç ç ç çrçoçuçtçeçrç.çrçeçfçrçeçsçhç(ç)ç
+ç ç ç ç ç ç ç ç ç}ç}ç
+ç ç ç ç ç ç ç/ç>ç
+ç
+ç ç ç ç ç ç ç<çCçoçnçfçiçrçmçMçoçdçaçlç ç
+ç ç ç ç ç ç ç ç çiçsçOçpçeçnç=ç{çBçoçoçlçeçaçnç(çtçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç)ç}ç
+ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç"çEçxçcçlçuçiçrç çLçaçnçççaçmçeçnçtçoç"ç
+ç ç ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç=ç"çTçeçmç çcçeçrçtçeçzçaç çqçuçeç çdçeçsçeçjçaç çeçxçcçlçuçiçrç çeçsçtçaç çtçrçaçnçsçaçççãçoç?ç çEçsçtçaç çaçççãçoç çnçãçoç çpçoçdçeç çsçeçrç çdçeçsçfçeçiçtçaç.ç"ç
+ç ç ç ç ç ç ç ç çoçnçCçoçnçfçiçrçmç=ç{çcçoçnçfçiçrçmçDçeçlçeçtçeç}ç
+ç ç ç ç ç ç ç ç çoçnçCçaçnçcçeçlç=ç{ç(ç)ç ç=ç>ç çsçeçtçTçrçaçnçsçaçcçtçiçoçnçTçoçDçeçlçeçtçeç(çnçuçlçlç)ç}ç
+ç ç ç ç ç ç ç/ç>ç
+ç ç ç ç ç<ç/çmçaçiçnç>ç
+ç ç ç)ç
+ç}ç
+ç
