@@ -44,7 +44,16 @@ function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-export default function PlanningClient({ transactions, budgets: initialBudgets }: { transactions: Transaction[], budgets: Budget[] }) {
+export default function PlanningClient({ transactions, budgets: initialBudgets, dbCategories = [] }: { transactions: Transaction[], budgets: Budget[], dbCategories?: any[] }) {
+  
+  const mergedCategories = useMemo(() => {
+    const map = { ...mergedCategories }
+    dbCategories.forEach(c => {
+      map[c.id] = { label: c.label, icon: c.icon, color: `bg-${c.color}/10 text-${c.color}` }
+    })
+    return map
+  }, [dbCategories])
+
   const today = new Date()
   const [year, setYear] = useState(today.getFullYear())
   const [month, setMonth] = useState(today.getMonth())
@@ -83,7 +92,7 @@ export default function PlanningClient({ transactions, budgets: initialBudgets }
     const expenses = currentMonthTransactions.filter(t => t.type === 'EXPENSE')
     const grouped: Record<string, number> = {}
 
-    Object.keys(CATEGORY_MAP).forEach(k => {
+    Object.keys(mergedCategories).forEach(k => {
       if (k !== 'salario') grouped[k] = 0
     })
 
@@ -95,7 +104,7 @@ export default function PlanningClient({ transactions, budgets: initialBudgets }
     })
 
     return Object.entries(grouped).map(([catKey, amount]) => {
-      const info = CATEGORY_MAP[catKey] || {
+      const info = mergedCategories[catKey] || {
         label: catKey.charAt(0).toUpperCase() + catKey.slice(1),
         icon: 'category',
         color: 'bg-gray-100 text-gray-500',
@@ -333,12 +342,12 @@ export default function PlanningClient({ transactions, budgets: initialBudgets }
               </div>
 
               <div className="mb-6 flex items-center gap-3 p-3 bg-muted/40 rounded-xl">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${CATEGORY_MAP[editingCategory]?.color || 'bg-gray-100 text-gray-500'}`}>
-                  <span className="material-symbols-outlined text-[18px]">{CATEGORY_MAP[editingCategory]?.icon || 'category'}</span>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${mergedCategories[editingCategory]?.color || 'bg-gray-100 text-gray-500'}`}>
+                  <span className="material-symbols-outlined text-[18px]">{mergedCategories[editingCategory]?.icon || 'category'}</span>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Categoria</p>
-                  <p className="font-bold text-foreground">{CATEGORY_MAP[editingCategory]?.label}</p>
+                  <p className="font-bold text-foreground">{mergedCategories[editingCategory]?.label}</p>
                 </div>
               </div>
 

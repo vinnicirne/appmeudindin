@@ -20,5 +20,5 @@ export default async function PlanningPage() {
     .select('*')
     .eq('user_id', user.id)
 
-  return <PlanningClient transactions={transactions || []} budgets={budgets || []} />
+  return <PlanningClient dbCategories={categories || []} transactions={transactions || []} budgets={budgets || []} />
 }

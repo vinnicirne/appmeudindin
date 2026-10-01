@@ -10,17 +10,14 @@ import { toast } from 'react-hot-toast';
 const EXPENSE_QUICK_TAGS = ['Supermercado', 'Combustível', 'Restaurante', 'Farmácia', 'Lazer', 'Uber'];
 const INCOME_QUICK_TAGS = ['Salário', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
-const CATEGORIES = [
-  { id: 'alimentacao', label: 'Alimentação', icon: 'restaurant', color: 'text-amber-500' },
-  { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
-  { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
-  { id: 'salario', label: 'Salário Mensal', icon: 'attach_money', color: 'text-[#1db576]' },
+' },
   { id: 'lazer', label: 'Lazer & Entretenimento', icon: 'sports_esports', color: 'text-purple-500' },
   { id: 'saude', label: 'Saúde & Farmácia', icon: 'medical_services', color: 'text-rose-500' },
   { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' },
 ];
 
-function AddTransactionForm() {
+function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
+  const CATEGORIES = categories;
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -394,10 +391,27 @@ function AddTransactionForm() {
   );
 }
 
-export default function AddTransaction() {
+import { createClient } from '@/utils/supabase/server';
+
+export default async function AddTransaction() {
+  const supabase = await createClient();
+  const { data: categoriesData } = await supabase.from('categories').select('*').eq('is_active', true);
+  const defaultCategories = [
+    { id: 'alimentacao', label: 'Alimentação', icon: 'restaurant', color: 'text-amber-500' },
+    { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
+    { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
+    { id: 'salario', label: 'Salário', icon: 'attach_money', color: 'text-[#1db576]' },
+    { id: 'lazer', label: 'Lazer', icon: 'sports_esports', color: 'text-purple-500' },
+    { id: 'saude', label: 'Saúde', icon: 'medical_services', color: 'text-rose-500' },
+    { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' }
+  ];
+  const dynamicCategories = categoriesData && categoriesData.length > 0 
+    ? categoriesData.map(c => ({ id: c.id, label: c.label, icon: c.icon, color: `text-${c.color}` }))
+    : defaultCategories;
+
   return (
     <Suspense fallback={<div className="p-6">Carregando...</div>}>
-      <AddTransactionForm />
+      <AddTransactionForm categories={dynamicCategories} />
     </Suspense>
   );
 }
