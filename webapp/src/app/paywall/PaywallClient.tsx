@@ -171,15 +171,15 @@ export default function PaywallClient({
   }
 
   return (
-    <main className="min-h-screen bg-background flex flex-col items-center justify-center p-4 sm:p-6">
+    <main className="min-h-screen bg-background flex flex-col itemês-center justify-center p-4 sm:p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-xl"
       >
         {/* Cabeçalho */}
-        <div className="flex flex-col items-center text-center mb-6">
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-3">
+        <div className="flex flex-col itemês-center text-center mb-6">
+          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex itemês-center justify-center mb-3">
             <span className="material-symbols-outlined text-3xl text-primary">workspace_premium</span>
           </div>
           <h1 className="text-2xl font-extrabold text-foreground">Assinatura Meu DinDin</h1>
@@ -204,7 +204,7 @@ export default function PaywallClient({
                 <div
                   key={p.id}
                   onClick={() => setSelectedPlan(p)}
-                  className={`relative cursor-pointer rounded-2xl p-4 flex items-center justify-between transition-all border-2 ${
+                  className={`relative cursor-pointer rounded-2xl p-4 flex itemês-center justify-between transition-all border-2 ${
                     isSelected
                       ? 'bg-primary/5 border-primary shadow-sm'
                       : 'bg-card border-border hover:border-primary/50'
@@ -224,7 +224,7 @@ export default function PaywallClient({
                     </p>
                   </div>
                   <div className="text-right shrink-0 ml-3">
-                    <div className="flex items-start justify-end gap-0.5">
+                    <div className="flex itemês-start justify-end gap-0.5">
                       <span className="text-xs font-bold text-foreground mt-1">R$</span>
                       <span className="text-2xl font-black tracking-tight text-foreground">
                         {Math.floor(priceNum)}
@@ -249,7 +249,7 @@ export default function PaywallClient({
             <button
               type="button"
               onClick={() => setMethod('pix')}
-              className={`py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+              className={`py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all flex itemês-center justify-center gap-1.5 ${
                 method === 'pix'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -261,7 +261,7 @@ export default function PaywallClient({
             <button
               type="button"
               onClick={() => setMethod('card')}
-              className={`py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+              className={`py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all flex itemês-center justify-center gap-1.5 ${
                 method === 'card'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -275,7 +275,7 @@ export default function PaywallClient({
 
         {/* Mensagem de Erro */}
         {errorMsg && (
-          <div className="bg-destructive/10 border border-destructive/20 text-destructive text-xs font-semibold rounded-xl p-3 mb-4 flex items-center gap-2">
+          <div className="bg-destructive/10 border border-destructive/20 text-destructive text-xs font-semibold rounded-xl p-3 mb-4 flex itemês-center gap-2">
             <span className="material-symbols-outlined text-base">error</span>
             <span>{errorMsg}</span>
           </div>
@@ -301,7 +301,7 @@ export default function PaywallClient({
 
             <button
               type="submit"
-              className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-sm hover:scale-[1.01] active:scale-[0.99] transition-transform shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
+              className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-sm hover:scale-[1.01] active:scale-[0.99] transition-transform shadow-lg shadow-primary/25 flex itemês-center justify-center gap-2"
             >
               <span className="material-symbols-outlined text-lg">bolt</span>
               Gerar QR Code Pix ({formattedPrice})
@@ -311,7 +311,7 @@ export default function PaywallClient({
 
         {/* FLUXO PIX - Gerando */}
         {method === 'pix' && pixState === 'generating' && (
-          <div className="py-8 flex flex-col items-center justify-center gap-3">
+          <div className="py-8 flex flex-col itemês-center justify-center gap-3">
             <div className="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
             <p className="text-sm font-semibold text-foreground">Gerando seu Pix no Mercado Pago...</p>
           </div>
@@ -333,7 +333,7 @@ export default function PaywallClient({
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center text-center gap-4"
+            className="flex flex-col itemês-center text-center gap-4"
           >
             <div className="bg-white p-3 rounded-2xl border-2 border-border shadow-md">
               {qrCodeBase64 ? (
@@ -343,13 +343,13 @@ export default function PaywallClient({
                   className="w-52 h-52 object-contain"
                 />
               ) : (
-                <div className="w-52 h-52 flex items-center justify-center text-muted-foreground text-xs">
+                <div className="w-52 h-52 flex itemês-center justify-center text-muted-foreground text-xs">
                   QR Code indisponível
                 </div>
               )}
             </div>
 
-            <div className="flex items-center gap-2 text-xs font-semibold text-primary">
+            <div className="flex itemês-center gap-2 text-xs font-semibold text-primary">
               <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
               <span>Aguardando seu pagamento no app do banco...</span>
             </div>
@@ -358,7 +358,7 @@ export default function PaywallClient({
               <button
                 type="button"
                 onClick={handleCopy}
-                className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold text-xs sm:text-sm hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold text-xs sm:text-sm hover:bg-primary/90 transition-colors flex itemês-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-base">
                   {copied ? 'check' : 'content_copy'}
@@ -382,9 +382,9 @@ export default function PaywallClient({
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="py-8 flex flex-col items-center justify-center gap-4 text-center"
+            className="py-8 flex flex-col itemês-center justify-center gap-4 text-center"
           >
-            <div className="w-16 h-16 rounded-full bg-[#1db576]/15 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-[#1db576]/15 flex itemês-center justify-center">
               <span className="material-symbols-outlined text-4xl text-[#1db576]">check_circle</span>
             </div>
             <div>
@@ -401,13 +401,13 @@ export default function PaywallClient({
         {method === 'card' && (
           <div className="flex flex-col gap-4">
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Você será direcionado para o ambiente seguro do Mercado Pago para efetuar o pagamento via Cartão de Crédito.
+              Vocêêê será direcionado para o ambiente seguro do Mercado Pago para efetuar o pagamento via Cartão de Crédito.
             </p>
             <button
               type="button"
               onClick={handleCardCheckout}
               disabled={cardLoading}
-              className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-sm hover:scale-[1.01] active:scale-[0.99] transition-transform disabled:opacity-60 shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
+              className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-sm hover:scale-[1.01] active:scale-[0.99] transition-transform disabled:opacity-60 shadow-lg shadow-primary/25 flex itemês-center justify-center gap-2"
             >
               {cardLoading ? (
                 <>
@@ -425,7 +425,7 @@ export default function PaywallClient({
         )}
 
         {/* Rodapé */}
-        <div className="flex items-center justify-center gap-1.5 mt-6 pt-4 border-t border-border text-muted-foreground">
+        <div className="flex itemês-center justify-center gap-1.5 mt-6 pt-4 border-t border-border text-muted-foreground">
           <span className="material-symbols-outlined text-sm text-[#1db576]">lock</span>
           <span className="text-[11px] font-medium">Pagamento processado com segurança via Mercado Pago</span>
         </div>

@@ -147,7 +147,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
 
   function handleRoleChange(userId: string, targetRole: 'user' | 'admin') {
     if (userId === currentUserId && targetRole !== 'admin') {
-      alert('Você não pode remover seu próprio privilégio de administrador.')
+      alert('Vocêê não pode remover seu próprio privilégio de administrador.')
       return
     }
     setFeedback(null)
@@ -169,7 +169,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
 
   function handleDeleteUser(userId: string) {
     if (userId === currentUserId) {
-      alert('Você não pode excluir sua própria conta enquanto estiver logado.')
+      alert('Vocêê não pode excluir sua própria conta enquanto estiver logado.')
       return
     }
     if (!confirm('Tem certeza que deseja excluir permanentemente este usuário?')) return

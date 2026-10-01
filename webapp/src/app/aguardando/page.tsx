@@ -221,7 +221,7 @@ function AguardandoPage() {
             <div className="flex items-start gap-2">
               <span className="material-symbols-outlined text-warning text-lg shrink-0 mt-0.5">info</span>
               <p className="text-xs text-foreground/80 leading-relaxed font-medium">
-                Boleto ou Pix pode levar até 3 dias úteis para ser confirmado. Você receberá um e-mail quando o acesso for liberado.
+                Boleto ou Pix pode levar até 3 dias úteis para ser confirmado. Vocêê receberá um e-mail quando o acesso for liberado.
               </p>
             </div>
           </motion.div>

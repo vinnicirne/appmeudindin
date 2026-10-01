@@ -8,7 +8,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { toast } from 'react-hot-toast';
 
 const EXPENSE_QUICK_TAGS = ['Supermercado', 'CombustÃ­vel', 'Restaurante', 'FarmÃ¡cia', 'Lazer', 'Uber'];
-const INCOME_QUICK_TAGS = ['Sal\u00e1rio', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
+const INCOME_QUICK_TAGS = ['Salário', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
 
 
@@ -17,7 +17,7 @@ function AddTransactionForm() {
     { id: 'alimentacao', label: 'Alimenta\u00e7\u00e3o', icon: 'restaurant', color: 'text-amber-500' },
     { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
     { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
-    { id: 'salario', label: 'Sal\u00e1rio', icon: 'attach_money', color: 'text-[#1db576]' },
+    { id: 'salario', label: 'Salário', icon: 'attach_money', color: 'text-[#1db576]' },
     { id: 'lazer', label: 'Lazer', icon: 'sports_esports', color: 'text-purple-500' },
     { id: 'saude', label: 'Sa\u00fade', icon: 'medical_services', color: 'text-rose-500' },
     { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' }
@@ -122,7 +122,7 @@ function AddTransactionForm() {
     if (res?.error) {
       toast.error('Erro: ' + res.error);
     } else {
-      toast.success('LanÃ§amento adicionado!');
+      toast.success('Lançamento adicionado!');
       router.push('/');
     }
   }
@@ -174,10 +174,10 @@ function AddTransactionForm() {
           </button>
         </div>
 
-        {/* FrequÃªncia / Tipo de LanÃ§amento */}
+        {/* Frequência / Tipo de Lançamento */}
         <div className="flex flex-col gap-2">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            FrequÃªncia / Tipo de LanÃ§amento
+            Frequência / Tipo de Lançamento
           </label>
           <div className="grid grid-cols-3 gap-2">
             <button
@@ -189,7 +189,7 @@ function AddTransactionForm() {
                   : 'bg-white dark:bg-card text-gray-700 dark:text-foreground border-gray-200 dark:border-border hover:bg-gray-50'
               }`}
             >
-              Ãšnica
+              Única
             </button>
 
             {type === 'EXPENSE' && (
@@ -268,17 +268,17 @@ function AddTransactionForm() {
           )}
         </div>
 
-        {/* DescriÃ§Ã£o / TÃ­tulo */}
+        {/* Descrição / Título */}
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            DescriÃ§Ã£o / TÃ­tulo
+            Descrição / Título
           </label>
           <div className="w-full flex items-center gap-3 px-4 py-3.5 bg-white dark:bg-card border border-blue-100 dark:border-border rounded-2xl shadow-sm focus-within:border-emerald-500 transition-all">
             <span className="font-serif font-black text-gray-400 text-lg">T</span>
             <input
               type="text"
               required
-              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: Sal\u00e1rio Mensal, PensÃ£o AlimentÃ­cia...'}
+              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: Salário Mensal, PensÃ£o AlimentÃ­cia...'}
               value={description}
               onChange={e => setDescription(e.target.value)}
               className="w-full bg-transparent outline-none text-xs md:text-sm font-medium text-gray-800 dark:text-foreground placeholder:text-gray-400"
@@ -385,7 +385,7 @@ function AddTransactionForm() {
             <span className="material-symbols-outlined text-gray-400 text-lg">note</span>
             <input
               type="text"
-              placeholder="Ex: CartÃ£o Nubank, CarnÃª Magazine, etc."
+              placeholder="Ex: Cartão Nubank, Carnê Magazine, etc."
               value={notes}
               onChange={e => setNotes(e.target.value)}
               className="w-full bg-transparent outline-none text-xs md:text-sm font-medium text-gray-800 dark:text-foreground placeholder:text-gray-400"
