@@ -282,7 +282,7 @@ export default function AffiliateClient({ name, code, totalSignups, totalSales, 
         </div>
 
         <a
-          href="https://api.whatsapp.com/send?phone=5511999999999&text=Ol%C3%A1!%20Sou%20parceiro%20do%20Meu%20DinDin%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
+          href="https://api.whatsapp.com/send?phone=5521974976130&text=Ol%C3%A1!%20Sou%20parceiro%20do%20Meu%20DinDin%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20bd5a] transition-colors shrink-0 w-full sm:w-auto shadow-sm"
