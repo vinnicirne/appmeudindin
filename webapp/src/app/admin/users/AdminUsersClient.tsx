@@ -44,7 +44,7 @@ interface Props {
 export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) {
   const [users, setUsers] = useState<AdminUserItem[]>(initialUsers)
   const [searchTerm, setSearchTerm] = useState('')
-  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'pending' | 'blocked'>('all')
+  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'pending' | 'blocked' | 'affiliates'>('all')
   const [selectedUser, setSelectedUser] = useState<AdminUserItem | null>(null)
   const [isCreatingUser, setIsCreatingUser] = useState(false)
   const [isPending, startTransition] = useTransition()
@@ -79,6 +79,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
     if (statusFilter === 'active') return u.plan_status === 'active'
     if (statusFilter === 'pending') return u.plan_status === 'pending' || !u.plan_status
     if (statusFilter === 'blocked') return u.plan_status === 'blocked'
+    if (statusFilter === 'affiliates') return Boolean(u.is_affiliate)
     return true
   })
 
@@ -385,6 +386,14 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
               >
                 Pendentes ({users.filter((u) => u.plan_status === 'pending' || !u.plan_status).length})
               </Button>
+              <Button
+                variant={statusFilter === 'affiliates' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setStatusFilter('affiliates')}
+                className="text-xs h-8 rounded-lg text-emerald-500"
+              >
+                Afiliados ({users.filter((u) => u.is_affiliate).length})
+              </Button>
             </div>
 
             <Button
@@ -470,15 +479,23 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
                               )}
                             </td>
                             <td className="py-3.5">
-                              {isAdmin ? (
-                                <Badge className="bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30 text-[10px] font-bold">
-                                  Admin
-                                </Badge>
-                              ) : (
-                                <Badge variant="outline" className="text-[10px] text-muted-foreground">
-                                  Usuário
-                                </Badge>
-                              )}
+                              <div className="flex flex-wrap items-center gap-1.5">
+                                {isAdmin ? (
+                                  <Badge className="bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30 text-[10px] font-bold">
+                                    Admin
+                                  </Badge>
+                                ) : (
+                                  <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                                    Usuário
+                                  </Badge>
+                                )}
+                                {u.is_affiliate && (
+                                  <Badge className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 text-[10px] font-bold flex items-center gap-1 whitespace-nowrap">
+                                    <span className="material-symbols-outlined text-[11px]">handshake</span>
+                                    Afiliado
+                                  </Badge>
+                                )}
+                              </div>
                             </td>
                             <td className="py-3.5">
                               {isActive && (
