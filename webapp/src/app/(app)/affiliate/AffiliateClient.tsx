@@ -21,6 +21,7 @@ interface Props {
 }
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://meudindinapp.vercel.app'
+const LANDING_PAGE_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_URL || 'https://app-meudindin-pages.vercel.app'
 
 export default function AffiliateClient({ name, code, totalSignups, totalSales, recentSignups }: Props) {
   const [copied, setCopied] = useState<string | null>(null)
@@ -31,7 +32,7 @@ export default function AffiliateClient({ name, code, totalSignups, totalSales, 
       label: 'Página Inicial / Landing Page',
       description: 'Ideal para posts, bio do Instagram e vídeos explicativos.',
       icon: 'public',
-      url: `${APP_URL}/?ref=${code}`,
+      url: `${LANDING_PAGE_URL}/?ref=${code}`,
       iconBg: 'bg-blue-500/15 text-blue-600 dark:text-blue-400',
       borderClass: 'hover:border-blue-500/40',
     },
