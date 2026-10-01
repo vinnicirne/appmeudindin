@@ -81,7 +81,7 @@ export function OnboardingTour() {
         buttonSkip: {
           color: isDark ? '#94a3b8' : '#64748b',
         }
-      }}
+      } as any}
       locale={{
         back: 'Voltar',
         close: 'Fechar',
