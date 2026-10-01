@@ -205,6 +205,6 @@ export async function toggleAffiliateAction(userId: string, makeAffiliate: boole
     revalidatePath('/admin/users')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao atualizar status de afiliado.' }
+    if (err?.message?.includes('affiliate_code') || err?.message?.includes('schema cache')) { return { error: 'As colunas de afiliado ainda não foram criadas no Supabase. Execute o SQL de migração no SQL Editor.' } } return { error: err.message || 'Erro ao atualizar status de afiliado.' }
   }
 }
