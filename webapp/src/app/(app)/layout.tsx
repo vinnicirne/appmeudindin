@@ -1,7 +1,8 @@
-import { redirect } from 'next/navigation'
+﻿import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { Sidebar } from "@/components/layout/Sidebar";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { Header } from "@/components/layout/Header";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
@@ -37,6 +38,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     <div className="flex flex-col sm:flex-row min-h-screen w-full bg-background">
       <Sidebar />
       <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
+        <Header />
         {children}
       </div>
       <BottomNav />
