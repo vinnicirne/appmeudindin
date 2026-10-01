@@ -1,7 +1,23 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { createClient } from '@supabase/supabase-js'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@/utils/supabase/server'
+
+async function checkAdmin() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Não autenticado.')
+
+  const { data: userData } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if (userData?.role !== 'admin') throw new Error('Acesso não autorizado.')
+  return user
+}
 
 function getAdminClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
@@ -9,15 +25,20 @@ function getAdminClient() {
   if (!url || !serviceKey) {
     throw new Error('Missing Supabase env vars')
   }
-  return createClient(url, serviceKey, {
+  return createSupabaseClient(url, serviceKey, {
     auth: { autoRefreshToken: false, persistSession: false }
   })
 }
 
 export async function getAffiliatesAction() {
-  const supabase = getAdminClient()
-  const { data, error } = await supabase.from('affiliates').select('*').order('created_at', { ascending: false })
-  return { data, error: error?.message }
+  try {
+    await checkAdmin()
+    const supabase = getAdminClient()
+    const { data, error } = await supabase.from('affiliates').select('*').order('created_at', { ascending: false })
+    return { data, error: error?.message }
+  } catch (err: any) {
+    return { error: err.message || 'Erro ao carregar parceiros.' }
+  }
 }
 
 export async function createAffiliateAction(data: {
@@ -29,22 +50,30 @@ export async function createAffiliateAction(data: {
   instagram?: string
   phone?: string
 }) {
-  const supabase = getAdminClient()
-  const { error } = await supabase.from('affiliates').insert({
-    name: data.name,
-    code: data.code,
-    commission_type: data.commissionType,
-    commission_value: data.commissionValue,
-    pix_key: data.pixKey,
-    instagram: data.instagram,
-    phone: data.phone
-  })
+  try {
+    await checkAdmin()
+    const supabase = getAdminClient()
+    const { error } = await supabase.from('affiliates').insert({
+      name: data.name,
+      code: data.code,
+      commission_type: data.commissionType,
+      commission_value: data.commissionValue,
+      pix_key: data.pixKey,
+      instagram: data.instagram,
+      phone: data.phone
+    })
 
-  revalidatePath('/admin/affiliates'); revalidatePath('/admin/users'); return { error: error?.message }
+    revalidatePath('/admin/affiliates')
+    revalidatePath('/admin/users')
+    return { error: error?.message }
+  } catch (err: any) {
+    return { error: err.message || 'Erro ao criar parceiro.' }
+  }
 }
 
 export async function deleteAffiliateAction(idOrCode: string) {
   try {
+    await checkAdmin()
     const supabase = getAdminClient()
     // 1. Busca dados do afiliado
     const { data: aff } = await supabase
@@ -86,6 +115,7 @@ export async function updateAffiliateAction(idOrCode: string, data: {
   phone?: string
 }) {
   try {
+    await checkAdmin()
     const adminSupabase = getAdminClient()
     const cleanCode = data.code.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '')
 
@@ -159,7 +189,6 @@ export async function updateAffiliateAction(idOrCode: string, data: {
 
 export async function getMyAffiliateDataAction() {
   try {
-    const { createClient } = await import('@/utils/supabase/server')
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return { error: 'Nao autenticado' }
