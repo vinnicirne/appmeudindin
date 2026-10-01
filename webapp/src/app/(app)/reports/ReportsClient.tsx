@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import autoTable from 'jspdf-autotable'
 
 interface Transaction {
   id: string
@@ -73,8 +73,7 @@ export default function ReportsClient({ transactions }: Props) {
       tableRows.push(row)
     })
 
-    // @ts-ignore
-    doc.autoTable({
+    autoTable(doc, {
       head: [tableColumn],
       body: tableRows,
       startY: 55,
