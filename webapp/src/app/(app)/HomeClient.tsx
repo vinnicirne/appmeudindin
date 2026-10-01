@@ -108,7 +108,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
     if (res?.error) {
       toast.error('Erro ao alterar status: ' + res.error)
     } else {
-      toast.success(newStatus ? 'Marcado como pago!' : 'Marcado como pendente!')
+      toast.success(newStatus ? (t.type === 'INCOME' ? 'Marcado como recebido!' : 'Marcado como pago!') : 'Marcado como pendente!')
       router.refresh()
     }
   }
@@ -263,7 +263,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
                     {/* Botão de Dar Baixa */}
                     <button
                       type="button"
-                      title={isPaid ? 'Liquidado (toque para marcar pendente)' : 'Pendente (toque para dar baixa)'}
+                      title={isPaid ? (t.type === 'INCOME' ? 'Recebido (toque para desfazer)' : 'Pago (toque para desfazer)') : (t.type === 'INCOME' ? 'A Receber (toque para dar baixa)' : 'A Pagar (toque para dar baixa)')}
                       onClick={(e) => handleTogglePaid(t, e)}
                       className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-transform active:scale-90 ${
                         isPaid
@@ -281,9 +281,13 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
                         <p className="text-sm font-semibold text-foreground truncate">{t.description}</p>
-                        {!isPaid && (
+                        {isPaid ? (
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-[#1db576]/10 text-[#1db576] shrink-0">
+                            {t.type === 'INCOME' ? 'Recebido' : 'Pago'}
+                          </span>
+                        ) : (
                           <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-amber-500/20 text-amber-700 dark:text-amber-300 shrink-0">
-                            Pendente
+                            {t.type === 'INCOME' ? 'A Receber' : 'A Pagar'}
                           </span>
                         )}
                       </div>

@@ -184,9 +184,9 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
       return `Seus gastos ultrapassaram os ganhos em ${formatCurrency(Math.abs(balance))} neste mês. Sua maior despesa foi em ${topCat ? topCat.label : 'categorias diversas'}.`
     }
     if (savingsRate >= 20) {
-      return `Excelente! Você está economizando ${savingsRate.toFixed(1)}% da sua renda neste mês. Mantenha o foco para construir sua reserva!`
+      return `Excelente! Vocêê está economizando ${savingsRate.toFixed(1)}% da sua renda neste mês. Mantenha o foco para construir sua reserva!`
     }
-    return `Você economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcançar suas metas mais rápido.`
+    return `Vocêê economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcançar suas metas mais rápido.`
   }, [totalIncome, totalExpense, balance, savingsRate, categoryExpenses])
 
   return (

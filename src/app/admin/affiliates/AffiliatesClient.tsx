@@ -190,7 +190,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                 </Button>
                 <Button variant="outline" size="sm" onClick={() => setReportAffiliate(aff)} className="h-8 flex-1 text-xs rounded-lg border-primary text-primary hover:bg-primary/5">
                   <Download className="w-3.5 h-3.5 mr-1.5" />
-                  RelatÃ³rio
+                  Relatório
                 </Button>
               </div>
             </div>
@@ -387,7 +387,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
               <div className="flex items-center justify-between p-4 border-b border-border print:hidden">
                 <h2 className="text-lg font-bold flex items-center gap-2">
                   <Copy className="w-5 h-5 text-primary" />
-                  RelatÃ³rio de Fechamento
+                  Relatório de Fechamento
                 </h2>
                 <button onClick={() => setReportAffiliate(null)} className="p-2 hover:bg-muted rounded-full">
                   <X className="w-5 h-5" />
@@ -402,7 +402,7 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                     $
                   </div>
                   <h1 className="text-2xl font-black tracking-tight text-foreground">Meu DinDin</h1>
-                  <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">RelatÃ³rio de Vendas</p>
+                  <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Relatório de Vendas</p>
                 </div>
 
                 {/* Affiliate Info */}
