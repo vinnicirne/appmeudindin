@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as motion from "framer-motion/client";
 import Link from 'next/link';
@@ -7,13 +7,33 @@ import { addTransactionAction } from '@/app/actions/transactionActions';
 import { useState, useEffect, Suspense } from 'react';
 import { toast } from 'react-hot-toast';
 
-const EXPENSE_QUICK_TAGS = ['Supermercado', 'Combustível', 'Restaurante', 'Farmácia', 'Lazer', 'Uber'];
-const INCOME_QUICK_TAGS = ['Salário', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
+const EXPENSE_QUICK_TAGS = ['Supermercado', 'CombustÃ­vel', 'Restaurante', 'FarmÃ¡cia', 'Lazer', 'Uber'];
+const INCOME_QUICK_TAGS = ['SalÃ¡rio', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
 
 
-function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
-  const CATEGORIES = categories;
+function AddTransactionForm() {
+    const defaultCategories = [
+    { id: 'alimentacao', label: 'AlimentaÃ§Ã£o', icon: 'restaurant', color: 'text-amber-500' },
+    { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
+    { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
+    { id: 'salario', label: 'SalÃ¡rio', icon: 'attach_money', color: 'text-[#1db576]' },
+    { id: 'lazer', label: 'Lazer', icon: 'sports_esports', color: 'text-purple-500' },
+    { id: 'saude', label: 'SaÃºde', icon: 'medical_services', color: 'text-rose-500' },
+    { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' }
+  ];
+  const [CATEGORIES, setCATEGORIES] = useState<any[]>(defaultCategories);
+
+  useEffect(() => {
+    import('@/app/actions/categoryActions').then((m) => {
+      m.getCategoriesAction().then((data) => {
+        if (data && data.length > 0) {
+          setCATEGORIES(data.map((c: any) => ({ id: c.id, label: c.label, icon: c.icon, color: `text-${c.color}` })));
+        }
+      });
+    });
+  }, []);
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -102,7 +122,7 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
     if (res?.error) {
       toast.error('Erro: ' + res.error);
     } else {
-      toast.success('Lançamento adicionado!');
+      toast.success('LanÃ§amento adicionado!');
       router.push('/');
     }
   }
@@ -116,7 +136,7 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
         <div className="w-12 h-1 bg-gray-300 dark:bg-muted-foreground/30 rounded-full mx-auto mb-4" />
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-black text-gray-900 dark:text-foreground tracking-tight">
-            Nova Transação
+            Nova TransaÃ§Ã£o
           </h1>
           <Link
             href="/"
@@ -154,10 +174,10 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
           </button>
         </div>
 
-        {/* Frequência / Tipo de Lançamento */}
+        {/* FrequÃªncia / Tipo de LanÃ§amento */}
         <div className="flex flex-col gap-2">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            Frequência / Tipo de Lançamento
+            FrequÃªncia / Tipo de LanÃ§amento
           </label>
           <div className="grid grid-cols-3 gap-2">
             <button
@@ -169,7 +189,7 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
                   : 'bg-white dark:bg-card text-gray-700 dark:text-foreground border-gray-200 dark:border-border hover:bg-gray-50'
               }`}
             >
-              Única
+              Ãšnica
             </button>
 
             {type === 'EXPENSE' && (
@@ -203,7 +223,7 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
 
           {frequency === 'PARCELADA' && type === 'EXPENSE' && (
             <div className="flex items-center gap-3 p-3 bg-muted/40 rounded-xl border border-border/60 mt-1">
-              <span className="text-xs font-bold text-foreground">Número de parcelas:</span>
+              <span className="text-xs font-bold text-foreground">NÃºmero de parcelas:</span>
               <input
                 type="number"
                 min="2"
@@ -242,23 +262,23 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
             <div className="mt-1 flex gap-2 items-start p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/30 rounded-xl">
               <span className="material-symbols-outlined text-blue-500 text-lg shrink-0">info</span>
               <p className="text-[11px] text-blue-700 dark:text-blue-300 leading-snug">
-                O sistema lançará automaticamente <strong className="font-black">{installments} parcelas de R$ {(parseFloat(amount.replace(',', '.')) / installments).toFixed(2).replace('.', ',')}</strong> para os próximos meses.
+                O sistema lanÃ§arÃ¡ automaticamente <strong className="font-black">{installments} parcelas de R$ {(parseFloat(amount.replace(',', '.')) / installments).toFixed(2).replace('.', ',')}</strong> para os prÃ³ximos meses.
               </p>
             </div>
           )}
         </div>
 
-        {/* Descrição / Título */}
+        {/* DescriÃ§Ã£o / TÃ­tulo */}
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            Descrição / Título
+            DescriÃ§Ã£o / TÃ­tulo
           </label>
           <div className="w-full flex items-center gap-3 px-4 py-3.5 bg-white dark:bg-card border border-blue-100 dark:border-border rounded-2xl shadow-sm focus-within:border-emerald-500 transition-all">
             <span className="font-serif font-black text-gray-400 text-lg">T</span>
             <input
               type="text"
               required
-              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: Salário Mensal, Pensão Alimentícia...'}
+              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: SalÃ¡rio Mensal, PensÃ£o AlimentÃ­cia...'}
               value={description}
               onChange={e => setDescription(e.target.value)}
               className="w-full bg-transparent outline-none text-xs md:text-sm font-medium text-gray-800 dark:text-foreground placeholder:text-gray-400"
@@ -307,10 +327,10 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
           </div>
         </div>
 
-        {/* Data de Início */}
+        {/* Data de InÃ­cio */}
         <div className="flex flex-col gap-2">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            Data de Início
+            Data de InÃ­cio
           </label>
           <div className="flex items-center gap-2 flex-wrap">
             <button
@@ -336,7 +356,7 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
               Ontem
             </button>
 
-            {/* Seletor de Data Direto e Confiável */}
+            {/* Seletor de Data Direto e ConfiÃ¡vel */}
             <div className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
               !isToday && !isYesterday
                 ? 'bg-[#c6f6e5] text-[#0d7355] border-[#9ae6b4] dark:bg-emerald-950/60 dark:text-emerald-300'
@@ -356,16 +376,16 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
           </div>
         </div>
 
-        {/* Observações (Opcional) */}
+        {/* ObservaÃ§Ãµes (Opcional) */}
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            Observações (Opcional)
+            ObservaÃ§Ãµes (Opcional)
           </label>
           <div className="w-full flex items-center gap-3 px-4 py-3.5 bg-white dark:bg-card border border-blue-100 dark:border-border rounded-2xl shadow-sm focus-within:border-emerald-500 transition-all">
             <span className="material-symbols-outlined text-gray-400 text-lg">note</span>
             <input
               type="text"
-              placeholder="Ex: Cartão Nubank, Carnê Magazine, etc."
+              placeholder="Ex: CartÃ£o Nubank, CarnÃª Magazine, etc."
               value={notes}
               onChange={e => setNotes(e.target.value)}
               className="w-full bg-transparent outline-none text-xs md:text-sm font-medium text-gray-800 dark:text-foreground placeholder:text-gray-400"
@@ -373,41 +393,25 @@ function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
           </div>
         </div>
 
-        {/* Botão Salvar Transação */}
+        {/* BotÃ£o Salvar TransaÃ§Ã£o */}
         <button
           type="submit"
           disabled={loading}
           className="mt-2 w-full py-4 rounded-2xl bg-[#00875a] hover:bg-[#00744d] active:scale-[0.99] text-white font-black text-sm md:text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-700/20 transition-all disabled:opacity-50"
         >
           <span className="material-symbols-outlined text-lg">check</span>
-          {loading ? 'Salvando...' : 'Salvar Transação'}
+          {loading ? 'Salvando...' : 'Salvar TransaÃ§Ã£o'}
         </button>
       </form>
     </main>
   );
 }
 
-import { createClient } from '@/utils/supabase/server';
-
-export default async function AddTransaction() {
-  const supabase = await createClient();
-  const { data: categoriesData } = await supabase.from('categories').select('*').eq('is_active', true);
-  const defaultCategories = [
-    { id: 'alimentacao', label: 'Alimentação', icon: 'restaurant', color: 'text-amber-500' },
-    { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
-    { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
-    { id: 'salario', label: 'Salário', icon: 'attach_money', color: 'text-[#1db576]' },
-    { id: 'lazer', label: 'Lazer', icon: 'sports_esports', color: 'text-purple-500' },
-    { id: 'saude', label: 'Saúde', icon: 'medical_services', color: 'text-rose-500' },
-    { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' }
-  ];
-  const dynamicCategories = categoriesData && categoriesData.length > 0 
-    ? categoriesData.map(c => ({ id: c.id, label: c.label, icon: c.icon, color: `text-${c.color}` }))
-    : defaultCategories;
-
+export default function AddTransaction() {
   return (
     <Suspense fallback={<div className="p-6">Carregando...</div>}>
-      <AddTransactionForm categories={dynamicCategories} />
+      <AddTransactionForm />
     </Suspense>
   );
 }
+
