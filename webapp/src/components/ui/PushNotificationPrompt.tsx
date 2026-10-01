@@ -25,11 +25,30 @@ export function PushNotificationPrompt() {
     try {
       const { token, error } = await requestForToken()
       if (token) {
-        const res = await saveFcmToken(token)
-        if (res?.success) {
+        let saved = false
+        // Tenta Server Action
+        try {
+          const res = await saveFcmToken(token)
+          if (res?.success) saved = true
+        } catch (e) {
+          console.warn('Fallback para API route de push...')
+        }
+
+        // Se falhou (cache PWA antigo dando 404 em server action), chama API REST direta
+        if (!saved) {
+          const apiRes = await fetch('/api/push/save-token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token })
+          })
+          const apiData = await apiRes.json()
+          if (apiData?.success) saved = true
+        }
+
+        if (saved) {
           toast.success('Pronto! Avisos ativados com sucesso.', { id: 'push-prompt' })
         } else {
-          toast.error(res?.error || 'Erro ao salvar no banco.', { id: 'push-prompt' })
+          toast.error('Erro ao salvar no banco. (SQL aplicado?)', { id: 'push-prompt' })
         }
       } else {
         toast.error(error || 'Permissão não concedida.', { id: 'push-prompt' })

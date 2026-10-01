@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from '@/utils/supabase/server'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 
 export async function saveFcmToken(token: string) {
   try {
@@ -9,14 +10,19 @@ export async function saveFcmToken(token: string) {
 
     if (!user) return { error: 'Não autenticado' }
 
-    const { error } = await supabase
+    const adminSupabase = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+      process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+      { auth: { autoRefreshToken: false, persistSession: false } }
+    )
+
+    const { error } = await adminSupabase
       .from('users')
       .update({ fcm_token: token, push_enabled: true })
       .eq('id', user.id)
 
     if (error) {
-      // If the column doesn't exist yet, we catch and ignore to not break the app
-      console.warn('Erro ao salvar FCM Token (provavelmente a coluna não existe):', error)
+      console.warn('Erro ao salvar FCM Token no Supabase:', error)
       return { error: error.message }
     }
 
