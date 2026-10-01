@@ -98,7 +98,51 @@ export async function updateTransactionAction(formData: FormData) {
 
     await transactionRepository.update(updated);
 
-    if (!existing.isRecurring && isRecurring) {
+    // Propagar alterações para lançamentos futuros do mesmo lote (Recorrentes ou Parcelados)
+    if (existing.isRecurring || existing.installments) {
+      const { data: futureTransactions } = await supabase
+        .from('transactions')
+        .select('id, created_at, is_recurring, installments')
+        .eq('user_id', user.id)
+        .gt('date', existing.date.toISOString());
+
+      if (futureTransactions && futureTransactions.length > 0) {
+        const siblings = futureTransactions.filter(t => {
+          if (!t.created_at || !existing.createdAt) return false;
+          const diff = Math.abs(new Date(t.created_at).getTime() - existing.createdAt.getTime());
+          if (diff > 60000) return false; // Deve ter sido criado no mesmo segundo/minuto
+
+          if (existing.isRecurring && t.is_recurring) return true;
+          if (existing.installments && t.installments?.total === existing.installments.total) return true;
+          
+          return false;
+        });
+
+        for (const t of siblings) {
+          let newDescription = description;
+
+          if (existing.installments && t.installments) {
+            // Preservar o sufixo (1/3) na nova descrição
+            const baseDescMatch = description.match(/^(.*?)\s*\(\d+\/\d+\)$/);
+            const baseDesc = baseDescMatch ? baseDescMatch[1] : description;
+            newDescription = `${baseDesc} (${t.installments.current}/${t.installments.total})`;
+          }
+
+          await supabase.from('transactions').update({
+            amount,
+            description: newDescription,
+            category_id: categoryId,
+            type,
+            notes,
+            is_recurring: isRecurring,
+            updated_at: new Date().toISOString()
+          }).eq('id', t.id);
+        }
+      }
+    }
+
+    // Se não era recorrente e agora o usuário ativou a recorrência manualmente no modal
+    if (!existing.isRecurring && !existing.installments && isRecurring) {
       for (let i = 1; i <= 11; i++) {
         const currentDate = new Date(updated.date);
         currentDate.setMonth(currentDate.getMonth() + i);
@@ -138,6 +182,33 @@ export async function deleteTransactionAction(id: string) {
     const existing = await transactionRepository.findById(id);
     if (!existing || existing.userId !== user.id) {
       return { error: 'Transação não encontrada ou sem permissão.' };
+    }
+
+    // Identificar e apagar futuros do mesmo grupo também, pois "não faz sentido não ser alterado"
+    if (existing.isRecurring || existing.installments) {
+      const { data: futureTransactions } = await supabase
+        .from('transactions')
+        .select('id, created_at, is_recurring, installments')
+        .eq('user_id', user.id)
+        .gte('date', existing.date.toISOString()); // inclui ele mesmo e futuros do mesmo dia
+
+      if (futureTransactions && futureTransactions.length > 0) {
+        const siblings = futureTransactions.filter(t => {
+          if (!t.created_at || !existing.createdAt) return false;
+          const diff = Math.abs(new Date(t.created_at).getTime() - existing.createdAt.getTime());
+          if (diff > 60000) return false;
+          if (t.id === id) return false; // excluímos ele mesmo da lista de irmãos
+
+          if (existing.isRecurring && t.is_recurring) return true;
+          if (existing.installments && t.installments?.total === existing.installments.total) return true;
+          
+          return false;
+        });
+
+        for (const t of siblings) {
+          await transactionRepository.delete(t.id);
+        }
+      }
     }
 
     await transactionRepository.delete(id);
