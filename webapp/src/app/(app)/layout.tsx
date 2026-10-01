@@ -1,9 +1,11 @@
-﻿import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { Sidebar } from "@/components/layout/Sidebar";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Header } from "@/components/layout/Header";
 import { PushNotificationPrompt } from "@/components/ui/PushNotificationPrompt";
+import { FloatingActionButton } from "@/components/ui/FloatingActionButton";
+import { SwipeNavigation } from "@/components/layout/SwipeNavigation";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
@@ -39,11 +41,14 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     <div className="flex flex-col sm:flex-row min-h-screen w-full bg-background">
       <PushNotificationPrompt />
       <Sidebar />
-      <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col min-h-0 overflow-y-auto pb-20 sm:pb-0">
         <Header />
-        {children}
+        <SwipeNavigation>
+          {children}
+        </SwipeNavigation>
       </div>
       <BottomNav />
+      <FloatingActionButton />
     </div>
   );
 }

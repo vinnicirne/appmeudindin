@@ -32,12 +32,12 @@ export async function createGoalAction(formData: {
       target_date: formData.targetDate || null,
       icon: formData.icon || 'savings',
       color: formData.color || 'bg-emerald-500'
-    })
+    }).select().single()
 
     if (error) throw error
 
     revalidatePath('/planning')
-    return { success: true }
+    return { success: true, data }
   } catch (err: any) {
     console.error('Erro ao criar meta:', err)
     return { error: err.message || 'Erro ao criar meta.' }

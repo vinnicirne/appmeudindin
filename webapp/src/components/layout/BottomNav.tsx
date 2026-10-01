@@ -12,7 +12,7 @@ export function BottomNav() {
       <div className="h-20 sm:hidden"></div>
       
       {/* Bottom Navigation for Mobile */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 h-20 bg-card flex items-center justify-around px-2 pb-safe z-40 border-t border-border/50">
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 h-20 bg-card flex items-center justify-around px-2 pb-safe z-40 border-t border-border/50 tour-bottom-nav">
         <NavItem href="/" icon="home" label="Início" active={pathname === '/'} />
         <NavItem href="/graphics" icon="pie_chart" label="Gráficos" active={pathname === '/graphics'} />
         <NavItem href="/transactions" icon="receipt_long" label="Extrato" active={pathname === '/transactions'} />

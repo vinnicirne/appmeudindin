@@ -8,6 +8,8 @@ import EditTransactionModal from '@/components/transactions/EditTransactionModal
 import { deleteTransactionAction, togglePaidTransactionAction } from '@/app/actions/transactionActions'
 import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
+import { EmptyState } from '@/components/ui/EmptyState'
+import { OnboardingTour } from '@/components/ui/OnboardingTour'
 
 interface Transaction {
   id: string
@@ -115,6 +117,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
 
   return (
     <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative min-h-screen pb-24">
+      <OnboardingTour />
 
       {/* Month Selector */}
       <motion.div
@@ -144,7 +147,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 }}
-        className="bg-[#1a5b48] text-white rounded-3xl p-5 shadow-sm mb-4"
+        className="bg-[#1a5b48] text-white rounded-3xl p-5 shadow-sm mb-4 tour-balance"
       >
         <div className="flex flex-col gap-1 mb-3">
           <span className="text-white/80 text-xs font-semibold">Saldo Total Geral</span>
@@ -158,7 +161,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 tour-quick-add">
           <Link href="/add?type=INCOME" className="flex-1 bg-[#1db576] hover:bg-[#1db576]/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors">
             <span className="material-symbols-outlined text-lg">add</span>
             <span className="text-sm">Receita</span>
@@ -238,15 +241,11 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
         </div>
 
         {filtered.length === 0 ? (
-          <div className="bg-card rounded-2xl p-8 border border-border shadow-sm flex flex-col items-center justify-center text-center gap-3 flex-1 min-h-[200px]">
-            <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-[#1a5b48] mb-2">
-              <span className="material-symbols-outlined">receipt_long</span>
-            </div>
-            <h3 className="font-bold text-sm text-foreground">Nenhuma movimentação neste mês</h3>
-            <p className="text-xs text-muted-foreground max-w-[250px] font-medium leading-relaxed">
-              Toque em + Receita ou + Despesa para registrar suas finanças.
-            </p>
-          </div>
+          <EmptyState 
+            icon="receipt_long" 
+            title="Nenhuma movimentação neste mês" 
+            description="Toque em + Receita ou + Despesa para registrar suas finanças." 
+          />
         ) : (
           <div className="flex flex-col gap-2">
             {filtered.map((t) => {
@@ -267,14 +266,12 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
                       onClick={(e) => handleTogglePaid(t, e)}
                       className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-transform active:scale-90 ${
                         isPaid
-                          ? t.type === 'INCOME'
-                            ? 'bg-[#1db576]/10 text-[#1db576]'
-                            : 'bg-[#e74c4c]/10 text-[#e74c4c]'
+                          ? 'bg-[#1db576]/10 text-[#1db576]'
                           : 'bg-amber-100 text-amber-700 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-700'
                       }`}
                     >
                       <span className="material-symbols-outlined text-base">
-                        {isPaid ? (t.type === 'INCOME' ? 'arrow_upward' : 'arrow_downward') : 'schedule'}
+                        {isPaid ? 'check_circle' : 'radio_button_unchecked'}
                       </span>
                     </button>
 

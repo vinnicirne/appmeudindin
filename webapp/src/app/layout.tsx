@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AppLock } from "@/components/ui/AppLock";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -82,6 +83,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AppLock />
           {children}
           <InstallPWA />
           <Toaster 
@@ -90,9 +92,9 @@ export default function RootLayout({
             toastOptions={{
               style: {
                 borderRadius: '12px',
-                background: 'var(--tw-colors-background)',
-                color: 'var(--tw-colors-foreground)',
-                border: '1px solid var(--tw-colors-border)',
+                background: 'var(--card)',
+                color: 'var(--card-foreground)',
+                border: '1px solid var(--border)',
                 fontWeight: 'bold',
                 fontSize: '14px',
               },

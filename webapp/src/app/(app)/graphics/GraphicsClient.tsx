@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState, useMemo } from 'react'
+import { PieChart, Pie, Cell, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts'
 
 interface Transaction {
   id: string
@@ -35,6 +36,33 @@ const CATEGORY_MAP: Record<string, { label: string; icon: string; color: string;
   servicos: { label: 'Serviços', icon: 'receipt_long', color: 'bg-teal-500', hex: '#14b8a6' },
   investimentos: { label: 'Investimentos', icon: 'trending_up', color: 'bg-emerald-500', hex: '#10b981' },
   outros: { label: 'Outros', icon: 'category', color: 'bg-gray-400', hex: '#9ca3af' },
+}
+
+const CustomPieTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload
+    return (
+      <div className="bg-card border border-border shadow-md rounded-xl p-3 text-sm z-50">
+        <p className="font-bold text-foreground mb-1">{data.label}</p>
+        <p className="font-bold" style={{ color: data.hex }}>{formatCurrency(data.amount)}</p>
+        <p className="text-muted-foreground text-xs mt-1">{data.percentage.toFixed(1)}% do total no mês</p>
+      </div>
+    )
+  }
+  return null
+}
+
+const CustomBarTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-card border border-border shadow-md rounded-xl p-3 text-sm z-50">
+        <p className="font-bold text-foreground mb-2">{label}</p>
+        <p className="text-[#1db576] font-medium">Receitas: {formatCurrency(payload[0]?.value || 0)}</p>
+        <p className="text-[#e74c4c] font-medium">Despesas: {formatCurrency(payload[1]?.value || 0)}</p>
+      </div>
+    )
+  }
+  return null
 }
 
 function formatCurrency(value: number) {
@@ -295,16 +323,28 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Barra de Progresso Multi-Categorias */}
-            <div className="h-3 w-full rounded-full bg-muted overflow-hidden flex shadow-inner">
-              {categoryExpenses.map(cat => (
-                <div 
-                  key={cat.key}
-                  style={{ width: `${cat.percentage}%`, backgroundColor: cat.hex }}
-                  className="h-full transition-all duration-500 first:rounded-l-full last:rounded-r-full"
-                  title={`${cat.label}: ${cat.percentage.toFixed(1)}%`}
-                />
-              ))}
+            {/* Gráfico de Rosca (Recharts) */}
+            <div className="h-48 w-full flex items-center justify-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={categoryExpenses}
+                    dataKey="amount"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={3}
+                    stroke="none"
+                  >
+                    {categoryExpenses.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.hex} />
+                    ))}
+                  </Pie>
+                  <RechartsTooltip content={<CustomPieTooltip />} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
 
             {/* Lista detalhada das categorias */}
@@ -352,38 +392,29 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
           </div>
         </div>
         
-        {/* Gráfico de Barras Responsivo */}
-        <div className="flex items-end justify-between gap-2 h-36 pt-4 pb-2 border-b border-border/40">
-          {sixMonthsHistory.map((m, idx) => {
-            const incHeight = maxHistoryValue > 0 ? (m.income / maxHistoryValue) * 100 : 0
-            const expHeight = maxHistoryValue > 0 ? (m.expense / maxHistoryValue) * 100 : 0
-
-            return (
-              <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end gap-1">
-                <div className="flex items-end gap-1 w-full justify-center h-full">
-                  {/* Barra Receita */}
-                  <div className="w-2.5 sm:w-3 bg-muted/40 rounded-t-sm h-full flex items-end">
-                    <div 
-                      style={{ height: `${Math.max(incHeight, m.income > 0 ? 6 : 0)}%` }}
-                      className="w-full bg-[#1db576] rounded-t-sm transition-all duration-500"
-                      title={`Receitas em ${m.label}: ${formatCurrency(m.income)}`}
-                    />
-                  </div>
-                  {/* Barra Despesa */}
-                  <div className="w-2.5 sm:w-3 bg-muted/40 rounded-t-sm h-full flex items-end">
-                    <div 
-                      style={{ height: `${Math.max(expHeight, m.expense > 0 ? 6 : 0)}%` }}
-                      className="w-full bg-[#e74c4c] rounded-t-sm transition-all duration-500"
-                      title={`Despesas em ${m.label}: ${formatCurrency(m.expense)}`}
-                    />
-                  </div>
-                </div>
-                <span className={`text-[10px] font-semibold mt-1 ${m.isCurrent ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
-                  {m.label}
-                </span>
-              </div>
-            )
-          })}
+        {/* Gráfico de Barras Responsivo (Recharts) */}
+        <div className="h-48 w-full pt-4">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={sixMonthsHistory} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.5} />
+              <XAxis 
+                dataKey="label" 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fontSize: 10, fill: 'var(--muted-foreground)' }} 
+                dy={10}
+              />
+              <YAxis 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fontSize: 10, fill: 'var(--muted-foreground)' }}
+                tickFormatter={(value) => `R$${(value / 1000).toFixed(0)}k`}
+              />
+              <RechartsTooltip content={<CustomBarTooltip />} cursor={{ fill: 'var(--muted)', opacity: 0.2 }} />
+              <Bar dataKey="income" fill="#1db576" radius={[4, 4, 0, 0]} maxBarSize={30} />
+              <Bar dataKey="expense" fill="#e74c4c" radius={[4, 4, 0, 0]} maxBarSize={30} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </motion.div>
 

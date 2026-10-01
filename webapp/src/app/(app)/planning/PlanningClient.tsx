@@ -5,6 +5,8 @@ import { useState, useMemo } from 'react'
 import { createGoalAction, updateGoalAction, updateGoalBalanceAction, deleteGoalAction } from '@/app/actions/goalActions'
 import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
+import { EmptyState } from '@/components/ui/EmptyState'
+import { GoalConfetti } from '@/components/ui/Confetti'
 
 export interface Goal {
   id: string
@@ -63,6 +65,7 @@ export default function PlanningClient({ initialGoals }: Props) {
 
   // Form state for Balance Deposit/Withdraw
   const [balanceAmountRaw, setBalanceAmountRaw] = useState('')
+  const [showConfetti, setShowConfetti] = useState(false)
 
   // Totals calculation
   const totalSaved = useMemo(() => goals.reduce((acc, g) => acc + Number(g.current_amount || 0), 0), [goals])
@@ -148,20 +151,10 @@ export default function PlanningClient({ initialGoals }: Props) {
           icon: selectedIcon,
           color: selectedColor
         })
-        if (res?.error) throw new Error(res.error)
+        if (res?.error || !res?.data) throw new Error(res?.error || 'Erro desconhecido')
 
-        // Add to local state (optimistic)
-        const newGoal: Goal = {
-          id: Math.random().toString(),
-          user_id: '',
-          title: title.trim(),
-          target_amount: targetAmount,
-          current_amount: initialAmount,
-          target_date: targetDate || null,
-          icon: selectedIcon,
-          color: selectedColor
-        }
-        setGoals(prev => [newGoal, ...prev])
+        // Add to local state (optimistic with real data)
+        setGoals(prev => [res.data, ...prev])
         toast.success('Nova meta criada com sucesso!')
       }
 
@@ -206,12 +199,22 @@ export default function PlanningClient({ initialGoals }: Props) {
       const res = await updateGoalBalanceAction(balanceModalGoal.goal.id, delta)
       if (res?.error) throw new Error(res.error)
 
+      const oldAmount = Number(balanceModalGoal.goal.current_amount || 0)
+      const targetAmount = Number(balanceModalGoal.goal.target_amount || 0)
+      const newAmount = Math.max(0, oldAmount + delta)
+
       setGoals(prev => prev.map(g => g.id === balanceModalGoal.goal.id ? {
         ...g,
-        current_amount: Math.max(0, Number(g.current_amount || 0) + delta)
+        current_amount: newAmount
       } : g))
 
-      toast.success(balanceModalGoal.type === 'DEPOSIT' ? 'Valor guardado na meta!' : 'Valor resgatado!')
+      if (oldAmount < targetAmount && newAmount >= targetAmount) {
+        setShowConfetti(true)
+        toast.success('Parabéns! Você alcançou a meta! 🎉', { duration: 5000, icon: '🏆' })
+      } else {
+        toast.success(balanceModalGoal.type === 'DEPOSIT' ? 'Valor guardado na meta!' : 'Valor resgatado!')
+      }
+      
       setBalanceModalGoal(null)
       setBalanceAmountRaw('')
     } catch (err: any) {
@@ -223,6 +226,7 @@ export default function PlanningClient({ initialGoals }: Props) {
 
   return (
     <main className="flex-1 w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 flex flex-col gap-6">
+      <GoalConfetti show={showConfetti} onComplete={() => setShowConfetti(false)} />
       {/* Header com Botão de Criar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -274,23 +278,20 @@ export default function PlanningClient({ initialGoals }: Props) {
 
       {/* Lista de Metas */}
       {goals.length === 0 ? (
-        <div className="bg-card rounded-3xl p-10 text-center border border-dashed border-border flex flex-col items-center gap-4 my-6">
-          <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-            <span className="material-symbols-outlined text-3xl">savings</span>
-          </div>
-          <div className="max-w-sm">
-            <h3 className="text-lg font-black text-foreground">Você ainda não tem metas</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Crie objetivos como comprar um carro novo, fazer uma viagem ou criar sua reserva de emergência!
-            </p>
-          </div>
-          <button
-            onClick={handleOpenCreate}
-            className="bg-primary text-primary-foreground font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:scale-105 transition-transform"
-          >
-            Criar Minha Primeira Meta
-          </button>
-        </div>
+        <EmptyState
+          icon="savings"
+          title="Você ainda não tem metas"
+          description="Crie objetivos como comprar um carro novo, fazer uma viagem ou criar sua reserva de emergência!"
+          action={
+            <button
+              onClick={handleOpenCreate}
+              className="bg-primary text-primary-foreground font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:scale-105 transition-transform"
+            >
+              Criar Minha Primeira Meta
+            </button>
+          }
+          className="my-6"
+        />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <AnimatePresence>

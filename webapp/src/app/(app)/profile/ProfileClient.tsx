@@ -3,7 +3,7 @@
 import * as motion from "framer-motion/client";
 import { logoutAction } from '@/app/actions/authActions';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { requestForToken } from '@/utils/firebase/firebase';
@@ -32,6 +32,71 @@ export default function ProfileClient({
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showDataModal, setShowDataModal] = useState(false);
+  
+  // App Lock State
+  const [appLockEnabled, setAppLockEnabled] = useState(false);
+
+  // Load app lock state on mount
+  useEffect(() => {
+    setAppLockEnabled(localStorage.getItem('meu-dindin-applock') === 'true');
+  }, []);
+
+  async function handleToggleAppLock() {
+    try {
+      if (appLockEnabled) {
+        localStorage.removeItem('meu-dindin-applock');
+        setAppLockEnabled(false);
+        toast.success('Bloqueio do app desativado.');
+        return;
+      }
+
+      // Check if WebAuthn is supported
+      if (!window.PublicKeyCredential) {
+        toast.error('Seu dispositivo ou navegador não suporta biometria.');
+        return;
+      }
+
+      // Create a dummy credential to register the device/biometrics
+      const challenge = new Uint8Array(32);
+      window.crypto.getRandomValues(challenge);
+      const userIdBuffer = new Uint8Array(16);
+      window.crypto.getRandomValues(userIdBuffer);
+
+      const credential = await navigator.credentials.create({
+        publicKey: {
+          challenge: challenge,
+          rp: { name: "Meu DinDin", id: window.location.hostname },
+          user: {
+            id: userIdBuffer,
+            name: email,
+            displayName: displayName
+          },
+          pubKeyCredParams: [
+            { type: "public-key", alg: -7 }, // ES256
+            { type: "public-key", alg: -257 } // RS256
+          ],
+          authenticatorSelection: {
+            authenticatorAttachment: "platform",
+            userVerification: "required"
+          },
+          timeout: 60000,
+        }
+      }) as PublicKeyCredential;
+
+      if (credential && credential.rawId) {
+        // Encode rawId to base64 safely
+        const rawIdArray = Array.from(new Uint8Array(credential.rawId));
+        const base64Id = btoa(String.fromCharCode.apply(null, rawIdArray));
+        localStorage.setItem('meu-dindin-applock-id', base64Id);
+        localStorage.setItem('meu-dindin-applock', 'true');
+        setAppLockEnabled(true);
+        toast.success('Biometria ativada com sucesso!');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Operação cancelada ou falhou.');
+    }
+  }
 
   const initials = displayName.slice(0, 2).toUpperCase();
   const isActive = planStatus === 'active';
@@ -151,6 +216,29 @@ export default function ProfileClient({
         </button>
 
         <ThemeToggle />
+
+        {/* Bloqueio do App (Biometria) */}
+        <button
+          onClick={handleToggleAppLock}
+          className="bg-card w-full p-4 rounded-2xl flex items-center justify-between border border-border/50 shadow-sm hover:bg-muted transition-colors text-left"
+        >
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${appLockEnabled ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-muted text-muted-foreground'}`}>
+              <span className="material-symbols-outlined text-[20px]">
+                {appLockEnabled ? 'fingerprint' : 'lock_open'}
+              </span>
+            </div>
+            <div>
+              <span className="font-semibold text-sm text-foreground block">Segurança do App</span>
+              <span className="text-[11px] text-muted-foreground">
+                {appLockEnabled ? 'Biometria Ativada' : 'Biometria Desativada'}
+              </span>
+            </div>
+          </div>
+          <div className={`w-12 h-6 rounded-full flex items-center transition-colors px-1 ${appLockEnabled ? 'bg-emerald-500 justify-end' : 'bg-muted-foreground/30 justify-start'}`}>
+            <motion.div layout className="w-4 h-4 rounded-full bg-white shadow-sm" />
+          </div>
+        </button>
 
         {/* Link para admin — só aparece para admins */}
         {role === 'admin' && (
