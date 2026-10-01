@@ -71,12 +71,12 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
   const pendingCount = filtered.length - paidCount
 
   const categoryLabel: Record<string, string> = {
-    alimentacao: 'Alimentação',
+    alimentacao: 'Alimenta\u00e7\u00e3o',
     transporte: 'Transporte',
     moradia: 'Moradia',
-    salario: 'Salário',
+    salario: 'Sal\u00e1rio',
     lazer: 'Lazer',
-    saude: 'Saúde & Farmácia',
+    saude: 'Sa\u00fade & Farmácia',
     outros: 'Outros',
   }
 

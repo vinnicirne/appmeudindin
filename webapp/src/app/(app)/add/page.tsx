@@ -8,18 +8,18 @@ import { useState, useEffect, Suspense } from 'react';
 import { toast } from 'react-hot-toast';
 
 const EXPENSE_QUICK_TAGS = ['Supermercado', 'CombustÃ­vel', 'Restaurante', 'FarmÃ¡cia', 'Lazer', 'Uber'];
-const INCOME_QUICK_TAGS = ['SalÃ¡rio', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
+const INCOME_QUICK_TAGS = ['Sal\u00e1rio', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
 
 
 function AddTransactionForm() {
     const defaultCategories = [
-    { id: 'alimentacao', label: 'AlimentaÃ§Ã£o', icon: 'restaurant', color: 'text-amber-500' },
+    { id: 'alimentacao', label: 'Alimenta\u00e7\u00e3o', icon: 'restaurant', color: 'text-amber-500' },
     { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
     { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
-    { id: 'salario', label: 'SalÃ¡rio', icon: 'attach_money', color: 'text-[#1db576]' },
+    { id: 'salario', label: 'Sal\u00e1rio', icon: 'attach_money', color: 'text-[#1db576]' },
     { id: 'lazer', label: 'Lazer', icon: 'sports_esports', color: 'text-purple-500' },
-    { id: 'saude', label: 'SaÃºde', icon: 'medical_services', color: 'text-rose-500' },
+    { id: 'saude', label: 'Sa\u00fade', icon: 'medical_services', color: 'text-rose-500' },
     { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' }
   ];
   const [CATEGORIES, setCATEGORIES] = useState<any[]>(defaultCategories);
@@ -278,7 +278,7 @@ function AddTransactionForm() {
             <input
               type="text"
               required
-              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: SalÃ¡rio Mensal, PensÃ£o AlimentÃ­cia...'}
+              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: Sal\u00e1rio Mensal, PensÃ£o AlimentÃ­cia...'}
               value={description}
               onChange={e => setDescription(e.target.value)}
               className="w-full bg-transparent outline-none text-xs md:text-sm font-medium text-gray-800 dark:text-foreground placeholder:text-gray-400"

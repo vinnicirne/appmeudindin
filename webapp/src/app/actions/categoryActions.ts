@@ -68,7 +68,7 @@ export async function deleteCategoryAction(id: string) {
 }
 
 export async function getCategoriesAction() {
-  const supabase = await createClient()
-  const { data } = await supabase.from('categories').select('*').eq('is_active', true)
+  const adminClient = getAdminClient()
+  const { data } = await adminClient.from('categories').select('*').eq('is_active', true)
   return data
 }
