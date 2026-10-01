@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { requestForToken } from '@/utils/firebase/firebase';
-import { saveFcmToken } from '@/app/actions/pushActions';
 import { toast } from 'react-hot-toast';
 
 export function Header() {
@@ -17,7 +16,12 @@ export function Header() {
     try {
       const { token, error } = await requestForToken();
       if (token) {
-        const res = await saveFcmToken(token);
+        const apiRes = await fetch('/api/push/save-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token })
+        });
+        const res = await apiRes.json();
         if (res?.success) {
           toast.success('Notificações ativadas com sucesso!', { id: 'push' });
         } else {

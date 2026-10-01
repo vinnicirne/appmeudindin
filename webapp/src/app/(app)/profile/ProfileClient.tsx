@@ -53,7 +53,7 @@ export default function ProfileClient({
     try {
       const { token, error } = await requestForToken();
       if (token) {
-        const res = await saveFcmToken(token);
+        const apiRes = await fetch('/api/push/save-token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token }) }); const res = await apiRes.json();
         if (res.success) {
           toast.success('Notificações ativadas com sucesso!', { id: 'push-profile' });
         } else {
