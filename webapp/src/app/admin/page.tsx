@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { AdminOverviewDashboard, OverviewMetrics, UserMetric, PlanMetric } from './AdminOverviewDashboard'
 
 export default async function AdminPage() {
