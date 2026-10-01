@@ -24,7 +24,7 @@ export default function AdminPushClient() {
       const data = await res.json()
 
       if (data.success) {
-        toast.success(Enviado para  dispositivos!)
+        toast.success(`Enviado para ${data.sentCount} dispositivos!`)
         setTitle('')
         setBody('')
       } else {

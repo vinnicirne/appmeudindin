@@ -63,10 +63,10 @@ export async function GET(req: Request) {
 
       if (expenses.length > 0) {
         title = 'Atenção ao seu Lançamento!';
-        body = Você tem  conta(s) a pagar vencendo HOJE.;
+        body = `Você tem ${expenses.length} conta(s) a pagar vencendo HOJE.`;
       } else if (incomes.length > 0) {
         title = 'Dinheiro na Conta!';
-        body = Você tem  recebimento(s) previstos para HOJE.;
+        body = `Você tem ${incomes.length} recebimento(s) previstos para HOJE.`;
       }
 
       if (title && adminMessaging) {
