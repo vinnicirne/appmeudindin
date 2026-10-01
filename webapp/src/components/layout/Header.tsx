@@ -44,13 +44,25 @@ export function Header() {
   return (
     <>
       <header className="sm:hidden flex items-center justify-between p-4 bg-background border-b border-border/50 sticky top-0 z-40">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-lg shadow-sm">
-            $
-          </div>
-          <h1 className="text-xl font-extrabold text-foreground tracking-tight">Meu DinDin</h1>
-        </Link>
+        {/* Menu Hambúrguer + Logo */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            title="Menu Principal"
+            className="w-9 h-9 -ml-1 flex items-center justify-center rounded-full hover:bg-muted transition-colors text-foreground"
+          >
+            <span className="material-symbols-outlined text-[26px]">menu</span>
+          </button>
+
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-lg shadow-sm">
+              $
+            </div>
+            <h1 className="text-xl font-extrabold text-foreground tracking-tight">Meu DinDin</h1>
+          </Link>
+        </div>
         
+        {/* Ações da Direita: Busca + Notificações */}
         <div className="flex items-center gap-1 text-foreground">
           <button 
             onClick={handleSearchClick}
@@ -68,18 +80,10 @@ export function Header() {
             <span className="material-symbols-outlined text-[24px]">notifications</span>
             <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-background"></span>
           </button>
-
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            title="Mais Opções"
-            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-muted transition-colors text-foreground ml-1"
-          >
-            <span className="material-symbols-outlined text-[26px]">menu</span>
-          </button>
         </div>
       </header>
 
-      {/* Menu Gaveta Mobile (Drawer) */}
+      {/* Menu Gaveta Mobile (Drawer Deslizando da Esquerda) */}
       <AnimatePresence>
         {isMenuOpen && (
           <div className="fixed inset-0 z-50 sm:hidden">
@@ -92,13 +96,13 @@ export function Header() {
               onClick={() => setIsMenuOpen(false)}
             />
 
-            {/* Gaveta lateral deslizante */}
+            {/* Gaveta lateral deslizando da esquerda */}
             <motion.div
-              initial={{ x: '100%' }}
+              initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="absolute right-0 top-0 bottom-0 w-4/5 max-w-xs bg-card border-l border-border p-6 shadow-2xl flex flex-col justify-between"
+              className="absolute left-0 top-0 bottom-0 w-4/5 max-w-xs bg-card border-r border-border p-6 shadow-2xl flex flex-col justify-between"
             >
               <div>
                 {/* Topo da Gaveta */}
@@ -107,7 +111,7 @@ export function Header() {
                     <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-lg">
                       $
                     </div>
-                    <span className="font-extrabold text-lg text-foreground">Menu</span>
+                    <span className="font-extrabold text-lg text-foreground">Meu DinDin</span>
                   </div>
                   <button
                     onClick={() => setIsMenuOpen(false)}
