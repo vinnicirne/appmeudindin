@@ -46,8 +46,8 @@ function formatCurrency(value: number) {
 
 export default function PlanningClient({ transactions, budgets: initialBudgets, dbCategories = [] }: { transactions: Transaction[], budgets: Budget[], dbCategories?: any[] }) {
   
-  const mergedCategories = useMemo(() => {
-    const map = { ...mergedCategories }
+  const mergedCategories: Record<string, any> = useMemo(() => {
+    const map = { ...CATEGORY_MAP }
     dbCategories.forEach(c => {
       map[c.id] = { label: c.label, icon: c.icon, color: `bg-${c.color}/10 text-${c.color}` }
     })

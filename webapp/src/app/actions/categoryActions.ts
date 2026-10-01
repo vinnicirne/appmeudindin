@@ -44,3 +44,9 @@ export async function deleteCategoryAction(id: string) {
   revalidatePath('/', 'layout')
   return { success: true }
 }
+
+export async function getCategoriesAction() {
+  const supabase = await createClient();
+  const { data } = await supabase.from('categories').select('*').eq('is_active', true);
+  return data;
+}

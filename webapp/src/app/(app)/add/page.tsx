@@ -26,7 +26,7 @@ function AddTransactionForm() {
 
   useEffect(() => {
     import('@/app/actions/categoryActions').then((m) => {
-      m.getCategoriesAction().then((data) => {
+      m.getCategoriesAction().then((data: any) => {
         if (data && data.length > 0) {
           setCATEGORIES(data.map((c: any) => ({ id: c.id, label: c.label, icon: c.icon, color: `text-${c.color}` })));
         }
