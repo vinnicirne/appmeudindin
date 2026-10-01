@@ -15,36 +15,49 @@ export default async function AffiliatePage() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
   const admin = createAdminClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
 
-  // Verifica se e afiliado
+  // 1. Busca dados do usuário logado
   const { data: userData } = await admin
     .from('users')
-    .select('id, name, email, is_affiliate, affiliate_code')
+    .select('id, name, full_name, email, phone, is_affiliate, affiliate_code')
     .eq('id', user.id)
     .single()
 
-  if (!userData?.is_affiliate || !userData?.affiliate_code) {
+  // 2. Busca também na tabela affiliates se houver registro vinculado
+  const { data: affData } = await admin
+    .from('affiliates')
+    .select('id, code, commission_type, commission_value, pix_key')
+    .or(`user_id.eq.${user.id},code.eq.${userData?.affiliate_code || 'NONE'}`)
+    .limit(1)
+    .maybeSingle()
+
+  const isAff = Boolean(userData?.is_affiliate || affData || userData?.affiliate_code)
+  const code = userData?.affiliate_code || affData?.code
+
+  if (!isAff || !code) {
     redirect('/')
   }
 
-  const code = userData.affiliate_code
-
-  // Busca indicados
-  const { data: signups } = await admin
+  // 3. Busca todos os usuários indicados (com matching insensível a maiúsculas/minúsculas)
+  const { data: allUsers } = await admin
     .from('users')
-    .select('id, name, email, plan_status, created_at')
-    .eq('referred_by', code)
+    .select('id, name, full_name, email, referred_by, plan_status, created_at')
+    .not('referred_by', 'is', null)
     .order('created_at', { ascending: false })
 
-  const allSignups = signups || []
-  const activeSales = allSignups.filter(u => u.plan_status === 'active')
+  const cleanCode = code.trim().toLowerCase()
+  const signups = (allUsers || []).filter(u => 
+    u.referred_by && u.referred_by.trim().toLowerCase() === cleanCode
+  )
+
+  const activeSales = signups.filter(u => u.plan_status === 'active')
 
   return (
     <AffiliateClient
-      name={userData.name || userData.email || 'Afiliado'}
+      name={userData?.name || userData?.full_name || userData?.email || 'Afiliado'}
       code={code}
-      totalSignups={allSignups.length}
+      totalSignups={signups.length}
       totalSales={activeSales.length}
-      recentSignups={allSignups.slice(0, 15)}
+      recentSignups={signups.slice(0, 15)}
     />
   )
 }
