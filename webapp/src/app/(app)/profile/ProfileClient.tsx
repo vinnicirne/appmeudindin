@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { requestForToken } from '@/utils/firebase/firebase';
+import { saveFcmToken } from '@/app/actions/pushActions';
+import { toast } from 'react-hot-toast';
 
 interface Props {
   userId: string;
@@ -42,6 +45,25 @@ export default function ProfileClient({
       alert("Erro ao sair: " + res.error);
     } else {
       router.push('/login');
+    }
+  }
+
+  async function handleTogglePush() {
+    toast.loading('Configurando notificações...', { id: 'push-profile' });
+    try {
+      const { token, error } = await requestForToken();
+      if (token) {
+        const res = await saveFcmToken(token);
+        if (res.success) {
+          toast.success('Notificações ativadas com sucesso!', { id: 'push-profile' });
+        } else {
+          toast.error('Erro ao salvar no banco. ' + res.error, { id: 'push-profile' });
+        }
+      } else {
+        toast.error(error || 'Permissão negada ou não suportado.', { id: 'push-profile' });
+      }
+    } catch (e) {
+      toast.error('Falha ao configurar notificações.', { id: 'push-profile' });
     }
   }
 

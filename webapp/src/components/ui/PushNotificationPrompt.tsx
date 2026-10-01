@@ -10,7 +10,6 @@ export function PushNotificationPrompt() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'Notification' in window) {
-      // Se ainda não foi perguntado
       if (Notification.permission === 'default') {
         const timer = setTimeout(() => {
           setShowPrompt(true)
@@ -24,19 +23,19 @@ export function PushNotificationPrompt() {
     setShowPrompt(false)
     toast.loading('Configurando avisos...', { id: 'push-prompt' })
     try {
-      const token = await requestForToken()
+      const { token, error } = await requestForToken()
       if (token) {
         const res = await saveFcmToken(token)
         if (res?.success) {
-          toast.success('Pronto! Avisos ativados.', { id: 'push-prompt' })
+          toast.success('Pronto! Avisos ativados com sucesso.', { id: 'push-prompt' })
         } else {
-          toast.error('Erro ao salvar configuração.', { id: 'push-prompt' })
+          toast.error(res?.error || 'Erro ao salvar no banco.', { id: 'push-prompt' })
         }
       } else {
-        toast.error('Permissão não concedida.', { id: 'push-prompt' })
+        toast.error(error || 'Permissão não concedida.', { id: 'push-prompt' })
       }
-    } catch (e) {
-      toast.error('Erro ao configurar.', { id: 'push-prompt' })
+    } catch (e: any) {
+      toast.error(e?.message || 'Erro ao configurar.', { id: 'push-prompt' })
     }
   }
 

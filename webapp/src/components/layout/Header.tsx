@@ -1,19 +1,34 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { requestForToken } from '@/utils/firebase/firebase';
+import { saveFcmToken } from '@/app/actions/pushActions';
+import { toast } from 'react-hot-toast';
 
 export function Header() {
   const router = useRouter();
 
   function handleSearchClick() {
-    // Redireciona para o extrato (onde ja existe a listagem de pesquisa)
     router.push('/transactions');
   }
 
-  function handleNotificationsClick() {
-    alert('As notificações Push estão sendo configuradas. Aguardando chaves do Firebase!');
+  async function handleNotificationsClick() {
+    toast.loading('Configurando notificações...', { id: 'push' });
+    try {
+      const { token, error } = await requestForToken();
+      if (token) {
+        const res = await saveFcmToken(token);
+        if (res?.success) {
+          toast.success('Notificações ativadas com sucesso!', { id: 'push' });
+        } else {
+          toast.error(res?.error || 'Erro ao salvar no banco.', { id: 'push' });
+        }
+      } else {
+        toast.error(error || 'Permissão negada ou não suportado.', { id: 'push' });
+      }
+    } catch (e: any) {
+      toast.error(e?.message || 'Falha ao configurar notificações.', { id: 'push' });
+    }
   }
 
   return (
