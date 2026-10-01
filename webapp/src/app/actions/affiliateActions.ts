@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 'use server'
 
 import { createClient } from '@supabase/supabase-js'
@@ -39,13 +40,13 @@ export async function createAffiliateAction(data: {
     phone: data.phone
   })
 
-  return { error: error?.message }
+  revalidatePath('/admin/affiliates'); revalidatePath('/admin/users'); return { error: error?.message }
 }
 
 export async function deleteAffiliateAction(id: string) {
   const supabase = getAdminClient()
   const { error } = await supabase.from('affiliates').delete().eq('id', id)
-  return { error: error?.message }
+  revalidatePath('/admin/affiliates'); revalidatePath('/admin/users'); return { error: error?.message }
 }
 
 export async function updateAffiliateAction(id: string, data: {
@@ -68,7 +69,7 @@ export async function updateAffiliateAction(id: string, data: {
     phone: data.phone
   }).eq('id', id)
 
-  return { error: error?.message }
+  revalidatePath('/admin/affiliates'); revalidatePath('/admin/users'); return { error: error?.message }
 }
 
 export async function getMyAffiliateDataAction() {

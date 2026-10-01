@@ -183,28 +183,72 @@ export async function toggleAffiliateAction(userId: string, makeAffiliate: boole
     await checkAdmin()
     const adminSupabase = getAdminClient()
 
-    if (makeAffiliate) {
-      // Gera codigo unico se nao fornecido
-      const code = affiliateCode || ('AFF' + Math.random().toString(36).slice(2, 8).toUpperCase())
+    // 1. Busca dados do usuário
+    const { data: targetUser, error: userErr } = await adminSupabase
+      .from('users')
+      .select('id, name, email, phone, affiliate_code')
+      .eq('id', userId)
+      .single()
 
-      const { error } = await adminSupabase
+    if (userErr || !targetUser) throw new Error('Usuário não encontrado')
+
+    if (makeAffiliate) {
+      // Gera código único limpo baseado no primeiro nome ou código aleatório
+      let cleanBase = targetUser.name 
+        ? targetUser.name.toLowerCase().trim().replace(/[^a-z0-9]/g, '').slice(0, 8)
+        : targetUser.email.split('@')[0].replace(/[^a-z0-9]/g, '').slice(0, 8)
+      
+      const code = affiliateCode || targetUser.affiliate_code || (cleanBase || ('aff' + Math.random().toString(36).slice(2, 6)))
+
+      // 2. Atualiza tabela users
+      const { error: updateErr } = await adminSupabase
         .from('users')
         .update({ is_affiliate: true, affiliate_code: code })
         .eq('id', userId)
 
-      if (error) throw error
+      if (updateErr) {
+        if (updateErr.message?.includes('affiliate_code') || updateErr.message?.includes('schema cache')) {
+          return { error: 'As colunas de afiliado ainda não foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
+        }
+        throw updateErr
+      }
+
+      // 3. Garante que o afiliado apareça imediatamente no painel /admin/affiliates
+      await adminSupabase.from('affiliates').upsert({
+        name: targetUser.name || targetUser.email,
+        code: code,
+        phone: targetUser.phone || null,
+        commission_type: 'percentage',
+        commission_value: 30, // Padrão 30%
+        user_id: userId
+      }, { onConflict: 'code' })
+
     } else {
-      const { error } = await adminSupabase
+      const oldCode = targetUser.affiliate_code
+
+      // 2. Remove da tabela users
+      const { error: updateErr } = await adminSupabase
         .from('users')
         .update({ is_affiliate: false, affiliate_code: null })
         .eq('id', userId)
 
-      if (error) throw error
+      if (updateErr) throw updateErr
+
+      // 3. Remove do painel de afiliados
+      if (oldCode) {
+        await adminSupabase.from('affiliates').delete().eq('code', oldCode)
+      }
+      await adminSupabase.from('affiliates').delete().eq('user_id', userId)
     }
 
     revalidatePath('/admin/users')
+    revalidatePath('/admin/affiliates')
+    revalidatePath('/affiliate')
     return { success: true }
   } catch (err: any) {
-    if (err?.message?.includes('affiliate_code') || err?.message?.includes('schema cache')) { return { error: 'As colunas de afiliado ainda não foram criadas no Supabase. Execute o SQL de migração no SQL Editor.' } } return { error: err.message || 'Erro ao atualizar status de afiliado.' }
+    if (err?.message?.includes('affiliate_code') || err?.message?.includes('schema cache')) {
+      return { error: 'As colunas de afiliado ainda não foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
+    }
+    return { error: err.message || 'Erro ao atualizar status de afiliado.' }
   }
 }
