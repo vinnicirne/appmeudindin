@@ -1,393 +1,392 @@
-ç'çuçsçeç çcçlçiçeçnçtç'ç
-ç
-çiçmçpçoçrçtç ç{ç çmçoçtçiçoçnç ç}ç çfçrçoçmç ç"çfçrçaçmçeçrç-çmçoçtçiçoçnç"ç
-çiçmçpçoçrçtç ç{ç çuçsçeçSçtçaçtçeç,ç çuçsçeçMçeçmçoç ç}ç çfçrçoçmç ç'çrçeçaçcçtç'ç
-ç
-çiçnçtçeçrçfçaçcçeç çTçrçaçnçsçaçcçtçiçoçnç ç{ç
-ç ç çiçdç:ç çsçtçrçiçnçgç
-ç ç çaçmçoçuçnçtç:ç çnçuçmçbçeçrç
-ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç çsçtçrçiçnçgç
-ç ç çdçaçtçeç:ç çsçtçrçiçnçgç
-ç ç çtçyçpçeç:ç ç'çIçNçCçOçMçEç'ç ç|ç ç'çEçXçPçEçNçSçEç'ç
-ç ç çcçaçtçeçgçoçrçyç_çiçdç:ç çsçtçrçiçnçgç
-ç ç çnçãçoçtçeçsç?ç:ç çsçtçrçiçnçgç
-ç ç çiçsç_çpçaçiçdç?ç:ç çbçoçoçlçeçaçnç
-ç}ç
-ç
-çcçoçnçsçtç çMçOçNçTçHç_çNçAçMçEçSç ç=ç ç[ç
-ç ç ç'çJçaçnçeçiçrçoç'ç,ç ç'çFçeçvçeçrçeçiçrçoç'ç,ç ç'çMçaçrçççoç'ç,ç ç'çAçbçrçiçlç'ç,ç ç'çMçaçiçoç'ç,ç ç'çJçuçnçhçoç'ç,ç
-ç ç ç'çJçuçlçhçoç'ç,ç ç'çAçgçoçsçtçoç'ç,ç ç'çSçeçtçeçmçbçrçoç'ç,ç ç'çOçuçtçuçbçrçoç'ç,ç ç'çNçãçoçvçeçmçbçrçoç'ç,ç ç'çDçeçzçeçmçbçrçoç'ç
-ç]ç
-ç
-çcçoçnçsçtç çMçOçNçTçHç_çSçHçOçRçTç ç=ç ç[ç
-ç ç ç'çJçaçnç'ç,ç ç'çFçeçvç'ç,ç ç'çMçaçrç'ç,ç ç'çAçbçrç'ç,ç ç'çMçaçiç'ç,ç ç'çJçuçnç'ç,ç
-ç ç ç'çJçuçlç'ç,ç ç'çAçgçoç'ç,ç ç'çSçeçtç'ç,ç ç'çOçuçtç'ç,ç ç'çNçãçoçvç'ç,ç ç'çDçeçzç'ç
-ç]ç
-ç
-çcçoçnçsçtç çCçAçTçEçGçOçRçYç_çMçAçPç:ç çRçeçcçoçrçdç<çsçtçrçiçnçgç,ç ç{ç çlçaçbçeçlç:ç çsçtçrçiçnçgç;ç çiçcçoçnç:ç çsçtçrçiçnçgç;ç çcçoçlçoçrç:ç çsçtçrçiçnçgç;ç çhçeçxç:ç çsçtçrçiçnçgç ç}ç>ç ç=ç ç{ç
-ç ç çaçlçiçmçeçnçtçaçcçaçoç:ç ç{ç çlçaçbçeçlç:ç ç'çAçlçiçmçeçnçtçaçççãçoç'ç,ç çiçcçoçnç:ç ç'çrçeçsçtçaçuçrçaçnçtç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çoçrçaçnçgçeç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#çfç9ç7ç3ç1ç6ç'ç ç}ç,ç
-ç ç çtçrçaçnçsçpçoçrçtçeç:ç ç{ç çlçaçbçeçlç:ç ç'çTçrçaçnçsçpçoçrçtçeç'ç,ç çiçcçoçnç:ç ç'çdçiçrçeçcçtçiçoçnçsç_çcçaçrç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çbçlçuçeç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#ç3çbç8ç2çfç6ç'ç ç}ç,ç
-ç ç çmçoçrçaçdçiçaç:ç ç{ç çlçaçbçeçlç:ç ç'çMçoçrçaçdçiçaç'ç,ç çiçcçoçnç:ç ç'çhçoçmçeç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çpçuçrçpçlçeç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#çaç8ç5ç5çfç7ç'ç ç}ç,ç
-ç ç çsçaçlçaçrçiçoç:ç ç{ç çlçaçbçeçlç:ç ç'çSçaçlçáçrçiçoç'ç,ç çiçcçoçnç:ç ç'çpçaçyçmçeçnçtçsç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çgçrçeçeçnç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#ç2ç2çcç5ç5çeç'ç ç}ç,ç
-ç ç çlçaçzçeçrç:ç ç{ç çlçaçbçeçlç:ç ç'çLçaçzçeçrç'ç,ç çiçcçoçnç:ç ç'çsçpçoçrçtçsç_çeçsçpçoçrçtçsç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çpçiçnçkç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#çeçcç4ç8ç9ç9ç'ç ç}ç,ç
-ç ç çsçaçuçdçeç:ç ç{ç çlçaçbçeçlç:ç ç'çSçaçúçdçeç ç&ç çFçaçrçmçáçcçiçaç'ç,ç çiçcçoçnç:ç ç'çmçeçdçiçcçaçlç_çsçeçrçvçiçcçeçsç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çrçoçsçeç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#çfç4ç3çfç5çeç'ç ç}ç,ç
-ç ç çeçdçuçcçaçcçaçoç:ç ç{ç çlçaçbçeçlç:ç ç'çEçdçuçcçaçççãçoç'ç,ç çiçcçoçnç:ç ç'çsçcçhçoçoçlç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çiçnçdçiçgçoç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#ç6ç3ç6ç6çfç1ç'ç ç}ç,ç
-ç ç çsçeçrçvçiçcçoçsç:ç ç{ç çlçaçbçeçlç:ç ç'çSçeçrçvçiçççoçsç'ç,ç çiçcçoçnç:ç ç'çrçeçcçeçiçpçtç_çlçoçnçgç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çtçeçaçlç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#ç1ç4çbç8çaç6ç'ç ç}ç,ç
-ç ç çiçnçvçeçsçtçiçmçeçnçtçoçsç:ç ç{ç çlçaçbçeçlç:ç ç'çIçnçvçeçsçtçiçmçeçnçtçoçsç'ç,ç çiçcçoçnç:ç ç'çtçrçeçnçdçiçnçgç_çuçpç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çeçmçeçrçaçlçdç-ç5ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#ç1ç0çbç9ç8ç1ç'ç ç}ç,ç
-ç ç çoçuçtçrçoçsç:ç ç{ç çlçaçbçeçlç:ç ç'çOçuçtçrçoçsç'ç,ç çiçcçoçnç:ç ç'çcçaçtçeçgçoçrçyç'ç,ç çcçoçlçoçrç:ç ç'çbçgç-çgçrçaçyç-ç4ç0ç0ç'ç,ç çhçeçxç:ç ç'ç#ç9çcçaç3çaçfç'ç ç}ç,ç
-ç}ç
-ç
-çfçuçnçcçtçiçoçnç çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çvçaçlçuçeç:ç çnçuçmçbçeçrç)ç ç{ç
-ç ç çrçeçtçuçrçnç çvçaçlçuçeç.çtçoçLçoçcçaçlçeçSçtçrçiçnçgç(ç'çpçtç-çBçRç'ç,ç ç{ç çsçtçyçlçeç:ç ç'çcçuçrçrçeçnçcçyç'ç,ç çcçuçrçrçeçnçcçyç:ç ç'çBçRçLç'ç ç}ç)ç
-ç}ç
-ç
-çeçxçpçoçrçtç çdçeçfçaçuçlçtç çfçuçnçcçtçiçoçnç çGçrçaçpçhçiçcçsçCçlçiçeçnçtç(ç{ç çtçrçaçnçsçaçcçtçiçoçnçsç ç}ç:ç ç{ç çtçrçaçnçsçaçcçtçiçoçnçsç:ç çTçrçaçnçsçaçcçtçiçoçnç[ç]ç ç}ç)ç ç{ç
-ç ç çcçoçnçsçtç çtçoçdçaçyç ç=ç çnçeçwç çDçaçtçeç(ç)ç
-ç ç çcçoçnçsçtç ç[çyçeçaçrç,ç çsçeçtçYçeçaçrç]ç ç=ç çuçsçeçSçtçaçtçeç(çtçoçdçaçyç.çgçeçtçFçuçlçlçYçeçaçrç(ç)ç)ç
-ç ç çcçoçnçsçtç ç[çmçoçnçtçhç,ç çsçeçtçMçoçnçtçhç]ç ç=ç çuçsçeçSçtçaçtçeç(çtçoçdçaçyç.çgçeçtçMçoçnçtçhç(ç)ç)ç
-ç
-ç ç çfçuçnçcçtçiçoçnç çpçrçeçvçMçoçnçtçhç(ç)ç ç{ç
-ç ç ç ç çiçfç ç(çmçoçnçtçhç ç=ç=ç=ç ç0ç)ç ç{ç
-ç ç ç ç ç ç çsçeçtçMçoçnçtçhç(ç1ç1ç)ç
-ç ç ç ç ç ç çsçeçtçYçeçaçrç(çyç ç=ç>ç çyç ç-ç ç1ç)ç
-ç ç ç ç ç}ç çeçlçsçeç ç{ç
-ç ç ç ç ç ç çsçeçtçMçoçnçtçhç(çmç ç=ç>ç çmç ç-ç ç1ç)ç
-ç ç ç ç ç}ç
-ç ç ç}ç
-ç
-ç ç çfçuçnçcçtçiçoçnç çnçeçxçtçMçoçnçtçhç(ç)ç ç{ç
-ç ç ç ç çiçfç ç(çmçoçnçtçhç ç=ç=ç=ç ç1ç1ç)ç ç{ç
-ç ç ç ç ç ç çsçeçtçMçoçnçtçhç(ç0ç)ç
-ç ç ç ç ç ç çsçeçtçYçeçaçrç(çyç ç=ç>ç çyç ç+ç ç1ç)ç
-ç ç ç ç ç}ç çeçlçsçeç ç{ç
-ç ç ç ç ç ç çsçeçtçMçoçnçtçhç(çmç ç=ç>ç çmç ç+ç ç1ç)ç
-ç ç ç ç ç}ç
-ç ç ç}ç
-ç
-ç ç ç/ç/ç çTçrçaçnçsçaçççõçeçsç çdçoç çmçêçsç çsçeçlçeçcçiçoçnçaçdçoç
-ç ç çcçoçnçsçtç çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çrçeçtçuçrçnç çtçrçaçnçsçaçcçtçiçoçnçsç.çfçiçlçtçeçrç(çtç ç=ç>ç ç{ç
-ç ç ç ç ç ç çcçoçnçsçtç çpçaçrçtçsç ç=ç çtç.çdçaçtçeç.çsçpçlçiçtç(ç'çTç'ç)ç[ç0ç]ç.çsçpçlçiçtç(ç'ç-ç'ç)ç
-ç ç ç ç ç ç çiçfç ç(çpçaçrçtçsç.çlçeçnçgçtçhç ç>ç=ç ç2ç)ç ç{ç
-ç ç ç ç ç ç ç ç çcçoçnçsçtç çtçYçeçaçrç ç=ç çpçaçrçsçeçIçnçtç(çpçaçrçtçsç[ç0ç]ç,ç ç1ç0ç)ç
-ç ç ç ç ç ç ç ç çcçoçnçsçtç çtçMçoçnçtçhç ç=ç çpçaçrçsçeçIçnçtç(çpçaçrçtçsç[ç1ç]ç,ç ç1ç0ç)ç ç-ç ç1ç
-ç ç ç ç ç ç ç ç çrçeçtçuçrçnç çtçYçeçaçrç ç=ç=ç=ç çyçeçaçrç ç&ç&ç çtçMçoçnçtçhç ç=ç=ç=ç çmçoçnçtçhç
-ç ç ç ç ç ç ç}ç
-ç ç ç ç ç ç çcçoçnçsçtç çdç ç=ç çnçeçwç çDçaçtçeç(çtç.çdçaçtçeç)ç
-ç ç ç ç ç ç çrçeçtçuçrçnç çdç.çgçeçtçFçuçlçlçYçeçaçrç(ç)ç ç=ç=ç=ç çyçeçaçrç ç&ç&ç çdç.çgçeçtçMçoçnçtçhç(ç)ç ç=ç=ç=ç çmçoçnçtçhç
-ç ç ç ç ç}ç)ç
-ç ç ç}ç,ç ç[çtçrçaçnçsçaçcçtçiçoçnçsç,ç çyçeçaçrç,ç çmçoçnçtçhç]ç)ç
-ç
-ç ç çcçoçnçsçtç çtçoçtçaçlçIçnçcçoçmçeç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çrçeçtçuçrçnç çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç
-ç ç ç ç ç ç ç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç)ç
-ç ç ç ç ç ç ç.çrçeçdçuçcçeç(ç(çaçcçcç,ç çtç)ç ç=ç>ç çaçcçcç ç+ç çNçuçmçbçeçrç(çtç.çaçmçoçuçnçtç ç|ç|ç ç0ç)ç,ç ç0ç)ç
-ç ç ç}ç,ç ç[çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç]ç)ç
-ç
-ç ç çcçoçnçsçtç çtçoçtçaçlçEçxçpçeçnçsçeç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çrçeçtçuçrçnç çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç
-ç ç ç ç ç ç ç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çEçXçPçEçNçSçEç'ç)ç
-ç ç ç ç ç ç ç.çrçeçdçuçcçeç(ç(çaçcçcç,ç çtç)ç ç=ç>ç çaçcçcç ç+ç çNçuçmçbçeçrç(çtç.çaçmçoçuçnçtç ç|ç|ç ç0ç)ç,ç ç0ç)ç
-ç ç ç}ç,ç ç[çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç]ç)ç
-ç
-ç ç çcçoçnçsçtç çbçaçlçaçnçcçeç ç=ç çtçoçtçaçlçIçnçcçoçmçeç ç-ç çtçoçtçaçlçEçxçpçeçnçsçeç
-ç
-ç ç ç/ç/ç çMçéçdçiçaç çdçiçáçrçiçaç ç(çdçiçaçsç çnçãçoç çmçêçsç çsçeçlçeçcçiçoçnçaçdçoç)ç
-ç ç çcçoçnçsçtç çdçaçyçsçIçnçMçoçnçtçhç ç=ç çnçeçwç çDçaçtçeç(çyçeçaçrç,ç çmçoçnçtçhç ç+ç ç1ç,ç ç0ç)ç.çgçeçtçDçaçtçeç(ç)ç
-ç ç çcçoçnçsçtç çdçaçiçlçyçAçvçeçrçaçgçeç ç=ç çtçoçtçaçlçEçxçpçeçnçsçeç ç>ç ç0ç ç?ç çtçoçtçaçlçEçxçpçeçnçsçeç ç/ç çdçaçyçsçIçnçMçoçnçtçhç ç:ç ç0ç
-ç
-ç ç ç/ç/ç çTçaçxçaç çdçeç çeçcçoçnçãçoçmçiçaç
-ç ç çcçoçnçsçtç çsçaçvçiçnçgçsçRçaçtçeç ç=ç çtçoçtçaçlçIçnçcçoçmçeç ç>ç ç0ç ç?ç ç(ç(çbçaçlçaçnçcçeç ç/ç çtçoçtçaçlçIçnçcçoçmçeç)ç ç*ç ç1ç0ç0ç)ç ç:ç ç0ç
-ç
-ç ç ç/ç/ç çAçgçrçuçpçaçmçeçnçtçoç çpçoçrç çCçaçtçeçgçoçrçiçaç çpçaçrçaç çDçeçsçpçeçsçaçsç
-ç ç çcçoçnçsçtç çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çcçoçnçsçtç çeçxçpçeçnçsçeçsç ç=ç çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çEçXçPçEçNçSçEç'ç)ç
-ç ç ç ç çcçoçnçsçtç çgçrçoçuçpçeçdç:ç çRçeçcçoçrçdç<çsçtçrçiçnçgç,ç çnçuçmçbçeçrç>ç ç=ç ç{ç}ç
-ç
-ç ç ç ç çeçxçpçeçnçsçeçsç.çfçoçrçEçaçcçhç(çtç ç=ç>ç ç{ç
-ç ç ç ç ç ç çcçoçnçsçtç çcçaçtç ç=ç ç(çtç.çcçaçtçeçgçoçrçyç_çiçdç ç|ç|ç ç'çoçuçtçrçoçsç'ç)ç.çtçoçLçoçwçeçrçCçaçsçeç(ç)ç
-ç ç ç ç ç ç çgçrçoçuçpçeçdç[çcçaçtç]ç ç=ç ç(çgçrçoçuçpçeçdç[çcçaçtç]ç ç|ç|ç ç0ç)ç ç+ç çNçuçmçbçeçrç(çtç.çaçmçoçuçnçtç ç|ç|ç ç0ç)ç
-ç ç ç ç ç}ç)ç
-ç
-ç ç ç ç çrçeçtçuçrçnç çOçbçjçeçcçtç.çeçnçtçrçiçeçsç(çgçrçoçuçpçeçdç)ç
-ç ç ç ç ç ç ç.çmçaçpç(ç(ç[çcçaçtçKçeçyç,ç çaçmçoçuçnçtç]ç)ç ç=ç>ç ç{ç
-ç ç ç ç ç ç ç ç çcçoçnçsçtç çiçnçfçoç ç=ç çCçAçTçEçGçOçRçYç_çMçAçPç[çcçaçtçKçeçyç]ç ç|ç|ç ç{ç
-ç ç ç ç ç ç ç ç ç ç çlçaçbçeçlç:ç çcçaçtçKçeçyç.çcçhçaçrçAçtç(ç0ç)ç.çtçoçUçpçpçeçrçCçaçsçeç(ç)ç ç+ç çcçaçtçKçeçyç.çsçlçiçcçeç(ç1ç)ç,ç
-ç ç ç ç ç ç ç ç ç ç çiçcçoçnç:ç ç'çcçaçtçeçgçoçrçyç'ç,ç
-ç ç ç ç ç ç ç ç ç ç çcçoçlçoçrç:ç ç'çbçgç-çgçrçaçyç-ç4ç0ç0ç'ç,ç
-ç ç ç ç ç ç ç ç ç ç çhçeçxç:ç ç'ç#ç9çcçaç3çaçfç'ç
-ç ç ç ç ç ç ç ç ç}ç
-ç ç ç ç ç ç ç ç çcçoçnçsçtç çpçeçrçcçeçnçtçaçgçeç ç=ç çtçoçtçaçlçEçxçpçeçnçsçeç ç>ç ç0ç ç?ç ç(çaçmçoçuçnçtç ç/ç çtçoçtçaçlçEçxçpçeçnçsçeç)ç ç*ç ç1ç0ç0ç ç:ç ç0ç
-ç ç ç ç ç ç ç ç çrçeçtçuçrçnç ç{ç
-ç ç ç ç ç ç ç ç ç ç çkçeçyç:ç çcçaçtçKçeçyç,ç
-ç ç ç ç ç ç ç ç ç ç çlçaçbçeçlç:ç çiçnçfçoç.çlçaçbçeçlç,ç
-ç ç ç ç ç ç ç ç ç ç çiçcçoçnç:ç çiçnçfçoç.çiçcçoçnç,ç
-ç ç ç ç ç ç ç ç ç ç çcçoçlçoçrç:ç çiçnçfçoç.çcçoçlçoçrç,ç
-ç ç ç ç ç ç ç ç ç ç çhçeçxç:ç çiçnçfçoç.çhçeçxç,ç
-ç ç ç ç ç ç ç ç ç ç çaçmçoçuçnçtç,ç
-ç ç ç ç ç ç ç ç ç ç çpçeçrçcçeçnçtçaçgçeç
-ç ç ç ç ç ç ç ç ç}ç
-ç ç ç ç ç ç ç}ç)ç
-ç ç ç ç ç ç ç.çsçoçrçtç(ç(çaç,ç çbç)ç ç=ç>ç çbç.çaçmçoçuçnçtç ç-ç çaç.çaçmçoçuçnçtç)ç
-ç ç ç}ç,ç ç[çcçuçrçrçeçnçtçMçoçnçtçhçTçrçaçnçsçaçcçtçiçoçnçsç,ç çtçoçtçaçlçEçxçpçeçnçsçeç]ç)ç
-ç
-ç ç ç/ç/ç çEçvçoçlçuçççãçoç çMçeçnçsçaçlç çdçoçsç çúçlçtçiçmçoçsç ç6ç çmçeçsçeçsç
-ç ç çcçoçnçsçtç çsçiçxçMçoçnçtçhçsçHçiçsçtçoçrçyç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çcçoçnçsçtç çmçoçnçtçhçsç ç=ç ç[ç]ç
-ç ç ç ç çfçoçrç ç(çlçeçtç çiç ç=ç ç5ç;ç çiç ç>ç=ç ç0ç;ç çiç-ç-ç)ç ç{ç
-ç ç ç ç ç ç çlçeçtç çtçaçrçgçeçtçMçoçnçtçhç ç=ç çmçoçnçtçhç ç-ç çiç
-ç ç ç ç ç ç çlçeçtç çtçaçrçgçeçtçYçeçaçrç ç=ç çyçeçaçrç
-ç ç ç ç ç ç çwçhçiçlçeç ç(çtçaçrçgçeçtçMçoçnçtçhç ç<ç ç0ç)ç ç{ç
-ç ç ç ç ç ç ç ç çtçaçrçgçeçtçMçoçnçtçhç ç+ç=ç ç1ç2ç
-ç ç ç ç ç ç ç ç çtçaçrçgçeçtçYçeçaçrç ç-ç=ç ç1ç
-ç ç ç ç ç ç ç}ç
-ç
-ç ç ç ç ç ç çcçoçnçsçtç çmçTçrçaçnçsçaçcçtçiçoçnçsç ç=ç çtçrçaçnçsçaçcçtçiçoçnçsç.çfçiçlçtçeçrç(çtç ç=ç>ç ç{ç
-ç ç ç ç ç ç ç ç çcçoçnçsçtç çpçaçrçtçsç ç=ç çtç.çdçaçtçeç.çsçpçlçiçtç(ç'çTç'ç)ç[ç0ç]ç.çsçpçlçiçtç(ç'ç-ç'ç)ç
-ç ç ç ç ç ç ç ç çiçfç ç(çpçaçrçtçsç.çlçeçnçgçtçhç ç>ç=ç ç2ç)ç ç{ç
-ç ç ç ç ç ç ç ç ç ç çcçoçnçsçtç çtçYçeçaçrç ç=ç çpçaçrçsçeçIçnçtç(çpçaçrçtçsç[ç0ç]ç,ç ç1ç0ç)ç
-ç ç ç ç ç ç ç ç ç ç çcçoçnçsçtç çtçMçoçnçtçhç ç=ç çpçaçrçsçeçIçnçtç(çpçaçrçtçsç[ç1ç]ç,ç ç1ç0ç)ç ç-ç ç1ç
-ç ç ç ç ç ç ç ç ç ç çrçeçtçuçrçnç çtçYçeçaçrç ç=ç=ç=ç çtçaçrçgçeçtçYçeçaçrç ç&ç&ç çtçMçoçnçtçhç ç=ç=ç=ç çtçaçrçgçeçtçMçoçnçtçhç
-ç ç ç ç ç ç ç ç ç}ç
-ç ç ç ç ç ç ç ç çcçoçnçsçtç çdç ç=ç çnçeçwç çDçaçtçeç(çtç.çdçaçtçeç)ç
-ç ç ç ç ç ç ç ç çrçeçtçuçrçnç çdç.çgçeçtçFçuçlçlçYçeçaçrç(ç)ç ç=ç=ç=ç çtçaçrçgçeçtçYçeçaçrç ç&ç&ç çdç.çgçeçtçMçoçnçtçhç(ç)ç ç=ç=ç=ç çtçaçrçgçeçtçMçoçnçtçhç
-ç ç ç ç ç ç ç}ç)ç
-ç
-ç ç ç ç ç ç çcçoçnçsçtç çiçnçcç ç=ç çmçTçrçaçnçsçaçcçtçiçoçnçsç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çIçNçCçOçMçEç'ç)ç.çrçeçdçuçcçeç(ç(çaç,ç çtç)ç ç=ç>ç çaç ç+ç çNçuçmçbçeçrç(çtç.çaçmçoçuçnçtç ç|ç|ç ç0ç)ç,ç ç0ç)ç
-ç ç ç ç ç ç çcçoçnçsçtç çeçxçpç ç=ç çmçTçrçaçnçsçaçcçtçiçoçnçsç.çfçiçlçtçeçrç(çtç ç=ç>ç çtç.çtçyçpçeç ç=ç=ç=ç ç'çEçXçPçEçNçSçEç'ç)ç.çrçeçdçuçcçeç(ç(çaç,ç çtç)ç ç=ç>ç çaç ç+ç çNçuçmçbçeçrç(çtç.çaçmçoçuçnçtç ç|ç|ç ç0ç)ç,ç ç0ç)ç
-ç
-ç ç ç ç ç ç çmçoçnçtçhçsç.çpçuçsçhç(ç{ç
-ç ç ç ç ç ç ç ç çlçaçbçeçlç:ç çMçOçNçTçHç_çSçHçOçRçTç[çtçaçrçgçeçtçMçoçnçtçhç]ç,ç
-ç ç ç ç ç ç ç ç çiçnçcçoçmçeç:ç çiçnçcç,ç
-ç ç ç ç ç ç ç ç çeçxçpçeçnçsçeç:ç çeçxçpç,ç
-ç ç ç ç ç ç ç ç çiçsçCçuçrçrçeçnçtç:ç çiç ç=ç=ç=ç ç0ç
-ç ç ç ç ç ç ç}ç)ç
-ç ç ç ç ç}ç
-ç ç ç ç çrçeçtçuçrçnç çmçoçnçtçhçsç
-ç ç ç}ç,ç ç[çtçrçaçnçsçaçcçtçiçoçnçsç,ç çyçeçaçrç,ç çmçoçnçtçhç]ç)ç
-ç
-ç ç çcçoçnçsçtç çmçaçxçHçiçsçtçoçrçyçVçaçlçuçeç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çcçoçnçsçtç çmçaçxçVçaçlç ç=ç çMçaçtçhç.çmçaçxç(ç
-ç ç ç ç ç ç ç.ç.ç.çsçiçxçMçoçnçtçhçsçHçiçsçtçoçrçyç.çmçaçpç(çmç ç=ç>ç çMçaçtçhç.çmçaçxç(çmç.çiçnçcçoçmçeç,ç çmç.çeçxçpçeçnçsçeç)ç)ç,ç
-ç ç ç ç ç ç ç1ç
-ç ç ç ç ç)ç
-ç ç ç ç çrçeçtçuçrçnç çmçaçxçVçaçlç
-ç ç ç}ç,ç ç[çsçiçxçMçoçnçtçhçsçHçiçsçtçoçrçyç]ç)ç
-ç
-ç ç ç/ç/ç çDçiçcçaç çIçnçtçeçlçiçgçeçnçtçeç çDçiçnçâçmçiçcçaç
-ç ç çcçoçnçsçtç çtçiçpçTçeçxçtç ç=ç çuçsçeçMçeçmçoç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çiçfç ç(çtçoçtçaçlçIçnçcçoçmçeç ç=ç=ç=ç ç0ç ç&ç&ç çtçoçtçaçlçEçxçpçeçnçsçeç ç=ç=ç=ç ç0ç)ç ç{ç
-ç ç ç ç ç ç çrçeçtçuçrçnç ç'çAçdçiçcçiçoçnçeç çsçuçaçsç çrçeçcçeçiçtçaçsç çeç çdçeçsçpçeçsçaçsç çpçaçrçaç çaçcçoçmçpçaçnçhçaçrç çgçrçáçfçiçcçoçsç çdçeçtçaçlçhçaçdçoçsç çeç çoçbçtçeçrç çiçnçsçiçgçhçtçsç çsçoçbçrçeç çsçuçaçsç çfçiçnçaçnçççaçsç.ç'ç
-ç ç ç ç ç}ç
-ç ç ç ç çiçfç ç(çbçaçlçaçnçcçeç ç<ç ç0ç)ç ç{ç
-ç ç ç ç ç ç çcçoçnçsçtç çtçoçpçCçaçtç ç=ç çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç[ç0ç]ç
-ç ç ç ç ç ç çrçeçtçuçrçnç ç`çSçeçuçsç çgçaçsçtçoçsç çuçlçtçrçaçpçaçsçsçaçrçaçmç çoçsç çgçaçnçhçoçsç çeçmç ç$ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çMçaçtçhç.çaçbçsç(çbçaçlçaçnçcçeç)ç)ç}ç çnçeçsçtçeç çmçêçsç.ç çSçuçaç çmçaçiçoçrç çdçeçsçpçeçsçaç çfçoçiç çeçmç ç$ç{çtçoçpçCçaçtç ç?ç çtçoçpçCçaçtç.çlçaçbçeçlç ç:ç ç'çcçaçtçeçgçoçrçiçaçsç çdçiçvçeçrçsçaçsç'ç}ç.ç`ç
-ç ç ç ç ç}ç
-ç ç ç ç çiçfç ç(çsçaçvçiçnçgçsçRçaçtçeç ç>ç=ç ç2ç0ç)ç ç{ç
-ç ç ç ç ç ç çrçeçtçuçrçnç ç`çEçxçcçeçlçeçnçtçeç!ç çVçoçcçêçêç çeçsçtçáç çeçcçoçnçãçoçmçiçzçaçnçdçoç ç$ç{çsçaçvçiçnçgçsçRçaçtçeç.çtçoçFçiçxçeçdç(ç1ç)ç}ç%ç çdçaç çsçuçaç çrçeçnçdçaç çnçeçsçtçeç çmçêçsç.ç çMçaçnçtçeçnçhçaç çoç çfçoçcçoç çpçaçrçaç çcçoçnçsçtçrçuçiçrç çsçuçaç çrçeçsçeçrçvçaç!ç`ç
-ç ç ç ç ç}ç
-ç ç ç ç çrçeçtçuçrçnç ç`çVçoçcçêçêç çeçcçoçnçãçoçmçiçzçoçuç ç$ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çbçaçlçaçnçcçeç)ç}ç ç(ç$ç{çsçaçvçiçnçgçsçRçaçtçeç.çtçoçFçiçxçeçdç(ç1ç)ç}ç%ç çdçaç çrçeçnçdçaç)ç.ç çTçeçnçtçeç çpçoçuçpçaçrç çpçeçlçoç çmçeçnçãçoçsç ç2ç0ç%ç çpçaçrçaç çaçlçcçaçnçççaçrç çsçuçaçsç çmçeçtçaçsç çmçaçiçsç çrçáçpçiçdçoç.ç`ç
-ç ç ç}ç,ç ç[çtçoçtçaçlçIçnçcçoçmçeç,ç çtçoçtçaçlçEçxçpçeçnçsçeç,ç çbçaçlçaçnçcçeç,ç çsçaçvçiçnçgçsçRçaçtçeç,ç çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç]ç)ç
-ç
-ç ç çrçeçtçuçrçnç ç(ç
-ç ç ç ç ç<çmçaçiçnç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç-ç1ç çfçlçeçxç çfçlçeçxç-çcçoçlç çpç-ç4ç çmçaçxç-çwç-çmçdç çmçxç-çaçuçtçoç çwç-çfçuçlçlç çrçeçlçaçtçiçvçeç çbçgç-çbçaçcçkçgçrçoçuçnçdç çmçiçnç-çhç-çsçcçrçeçeçnç çpçbç-ç2ç4ç"ç>ç
-ç ç ç ç ç ç ç
-ç ç ç ç ç ç ç{ç/ç*ç çMçoçnçtçhç çSçeçlçeçcçtçoçrç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç2ç çmçbç-ç4ç çsçhçaçdçoçwç-çsçmç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çpçxç-ç2ç çpçyç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç ç
-ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{çpçrçeçvçMçoçnçtçhç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç8ç çhç-ç8ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çrçoçuçnçdçeçdç-çfçuçlçlç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç çaçcçtçiçvçeç:çsçcçaçlçeç-ç9ç5ç"ç
-ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çaçrçrçoçwç_çbçaçcçkç_çiçoçsç_çnçeçwç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çhç1ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç{çMçOçNçTçHç_çNçAçMçEçSç[çmçoçnçtçhç]ç}ç ç{çyçeçaçrç}ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çhç1ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç ç
-ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{çnçeçxçtçMçoçnçtçhç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç8ç çhç-ç8ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çrçoçuçnçdçeçdç-çfçuçlçlç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç çaçcçtçiçvçeç:çsçcçaçlçeç-ç9ç5ç"ç
-ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çaçrçrçoçwç_çfçoçrçwçaçrçdç_çiçoçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çRçeçsçuçmçoç çMçeçnçsçaçlç çdçoç çCçoçtçiçdçiçaçnçãçoç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç ç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç4ç çmçbç-ç4ç çsçhçaçdçoçwç-çsçmç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çhç2ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çmçbç-ç4ç"ç>çRçeçsçuçmçoç çMçeçnçsçaçlç çdçoç çCçoçtçiçdçiçaçnçãçoç<ç/çhç2ç>ç
-ç ç ç ç ç ç ç ç ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çgçrçiçdç çgçrçiçdç-çcçoçlçsç-ç3ç çgçaçpç-ç2ç çtçeçxçtç-çcçeçnçtçeçrç çsçmç:çtçeçxçtç-çlçeçfçtç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çsçmç:çjçuçsçtçiçfçyç-çsçtçaçrçtç çgçaçpç-ç1ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç1ç4çpçxç]ç"ç>çcçaçlçeçnçdçaçrç_çtçoçdçaçyç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çmçeçdçiçuçmç"ç>çMçéçdçiçaç çdçiçáçrçiçaç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-çxçsç çsçmç:çtçeçxçtç-çsçmç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çdçaçiçlçyçAçvçeçrçaçgçeç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çsçmç:çjçuçsçtçiçfçyç-çsçtçaçrçtç çgçaçpç-ç1ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç1ç4çpçxç]ç"ç>çtçrçeçnçdçiçnçgç_çuçpç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çmçeçdçiçuçmç"ç>çTçaçxçaç çeçcçoçnçãçoçmçiçaç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç{ç`çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çxçsç çsçmç:çtçeçxçtç-çsçmç ç$ç{çsçaçvçiçnçgçsçRçaçtçeç ç>ç=ç ç0ç ç?ç ç'çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç ç:ç ç'çtçeçxçtç-çrçeçdç-ç5ç0ç0ç'ç}ç`ç}ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çsçaçvçiçnçgçsçRçaçtçeç.çtçoçFçiçxçeçdç(ç1ç)ç}ç%ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çsçmç:çjçuçsçtçiçfçyç-çsçtçaçrçtç çgçaçpç-ç1ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç1ç4çpçxç]ç"ç>çsçwçaçpç_çhçoçrçiçzç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çmçeçdçiçuçmç"ç>çSçaçlçdçoç çdçoç çmçêçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç{ç`çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çxçsç çsçmç:çtçeçxçtç-çsçmç ç$ç{çbçaçlçaçnçcçeç ç>ç=ç ç0ç ç?ç ç'çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç ç:ç ç'çtçeçxçtç-çrçeçdç-ç5ç0ç0ç'ç}ç`ç}ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çbçaçlçaçnçcçeç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çBçaçnçnçeçrç çdçeç çDçiçcçaç çIçnçtçeçlçiçgçeçnçtçeç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç ç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçeçlçaçyç:ç ç0ç.ç1ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-ç[ç#çeç4çfçcçfç1ç]ç çdçaçrçkç:çbçgç-ç[ç#ç1çaç5çbç4ç8ç]ç/ç2ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç4ç çmçbç-ç4ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç3ç çbçoçrçdçeçrç çbçoçrçdçeçrç-ç[ç#ç1çaç5çbç4ç8ç]ç/ç1ç0ç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç1ç0ç çhç-ç1ç0ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-ç[ç#ç1çaç5çbç4ç8ç]ç çfçlçeçxç çfçlçeçxç-çsçhçrçiçnçkç-ç0ç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çwçhçiçtçeç çsçhçaçdçoçwç-çsçmç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çxçlç"ç>çlçiçgçhçtçbçuçlçbç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çhç3ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç1çpçxç]ç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-ç[ç#ç1çaç5çbç4ç8ç]ç çdçaçrçkç:çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç çmçbç-ç0ç.ç5ç"ç>çDçiçcçaç çdçeç çGçeçsçtçãçoç çFçiçnçaçnçcçeçiçrçaç<ç/çhç3ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çtçeçxçtç-ç[ç#ç1çaç5çbç4ç8ç]ç/ç9ç0ç çdçaçrçkç:çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç çlçeçaçdçiçnçgç-çsçnçuçgç çfçoçnçtç-çmçeçdçiçuçmç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç{çtçiçpçTçeçxçtç}ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çDçeçsçpçeçsçaçsç çpçoçrç çCçaçtçeçgçoçrçiçaç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç ç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçeçlçaçyç:ç ç0ç.ç2ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç4ç çmçbç-ç4ç çsçhçaçdçoçwç-çsçmç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çiçtçeçmçsç-çcçeçnçtçeçrç çmçbç-ç4ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çhç2ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çDçeçsçpçeçsçaçsç çpçoçrç çCçaçtçeçgçoçrçiçaç<ç/çhç2ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çmçeçdçiçuçmç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç.çlçeçnçgçtçhç}ç ç{çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç.çlçeçnçgçtçhç ç=ç=ç=ç ç1ç ç?ç ç'çcçaçtçeçgçoçrçiçaç'ç ç:ç ç'çcçaçtçeçgçoçrçiçaçsç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç
-ç ç ç ç ç ç ç ç ç{çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç.çlçeçnçgçtçhç ç=ç=ç=ç ç0ç ç?ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çiçtçeçmçsç-çcçeçnçtçeçrç çpçyç-ç6ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç3ç6ç çhç-ç3ç6ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçoçrçdçeçrç-ç[ç1ç6çpçxç]ç çbçoçrçdçeçrç-çmçuçtçeçdç/ç4ç0ç çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çcçeçnçtçeçrç çpç-ç2ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-ç[ç1ç1çpçxç]ç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çSçeçmç çgçaçsçtçoçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çmçeçdçiçuçmç"ç>çnçãçoç çpçeçrçíçoçdçoç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç)ç ç:ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çsçpçaçcçeç-çyç-ç4ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç{ç/ç*ç çBçaçrçrçaç çdçeç çPçrçoçgçrçeçsçsçoç çMçuçlçtçiç-çCçaçtçeçgçoçrçiçaçsç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çhç-ç3ç çwç-çfçuçlçlç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-çmçuçtçeçdç çoçvçeçrçfçlçoçwç-çhçiçdçdçeçnç çfçlçeçxç çsçhçaçdçoçwç-çiçnçnçeçrç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç.çmçaçpç(çcçaçtç ç=ç>ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çkçeçyç=ç{çcçaçtç.çkçeçyç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çsçtçyçlçeç=ç{ç{ç çwçiçdçtçhç:ç ç`ç$ç{çcçaçtç.çpçeçrçcçeçnçtçaçgçeç}ç%ç`ç,ç çbçaçcçkçgçrçoçuçnçdçCçoçlçoçrç:ç çcçaçtç.çhçeçxç ç}ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çhç-çfçuçlçlç çtçrçaçnçsçiçtçiçoçnç-çaçlçlç çdçuçrçaçtçiçoçnç-ç5ç0ç0ç çfçiçrçsçtç:çrçoçuçnçdçeçdç-çlç-çfçuçlçlç çlçaçsçtç:çrçoçuçnçdçeçdç-çrç-çfçuçlçlç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç{ç`ç$ç{çcçaçtç.çlçaçbçeçlç}ç:ç ç$ç{çcçaçtç.çpçeçrçcçeçnçtçaçgçeç.çtçoçFçiçxçeçdç(ç1ç)ç}ç%ç`ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç)ç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç{ç/ç*ç çLçiçsçtçaç çdçeçtçaçlçhçaçdçaç çdçaçsç çcçaçtçeçgçoçrçiçaçsç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çsçpçaçcçeç-çyç-ç2ç.ç5ç çpçtç-ç2ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtçeçgçoçrçyçEçxçpçeçnçsçeçsç.çmçaçpç(çcçaçtç ç=ç>ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çkçeçyç=ç{çcçaçtç.çkçeçyç}ç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çtçeçxçtç-çxçsç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç2ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çsçtçyçlçeç=ç{ç{ç çbçaçcçkçgçrçoçuçnçdçCçoçlçoçrç:ç çcçaçtç.çhçeçxç ç}ç}ç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç3ç çhç-ç3ç çrçoçuçnçdçeçdç-çfçuçlçlç çfçlçeçxç-çsçhçrçiçnçkç-ç0ç"ç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çcçaçtç.çlçaçbçeçlç}ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç2ç çtçeçxçtç-çrçiçgçhçtç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çcçaçtç.çaçmçoçuçnçtç)ç}ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çsçeçmçiçbçoçlçdç çwç-ç1ç0ç çtçeçxçtç-çrçiçgçhçtç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçaçtç.çpçeçrçcçeçnçtçaçgçeç.çtçoçFçiçxçeçdç(ç0ç)ç}ç%ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç)ç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç)ç}ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çEçvçoçlçuçççãçoç çMçeçnçsçaçlç ç(çÚçlçtçiçmçoçsç ç6ç çMçeçsçeçsç)ç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç ç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçeçlçaçyç:ç ç0ç.ç3ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç2çxçlç çpç-ç4ç çsçhçaçdçoçwç-çsçmç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç çfçlçeçxç çfçlçeçxç-çcçoçlç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çiçtçeçmçsç-çcçeçnçtçeçrç çmçbç-ç6ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çhç2ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çEçvçoçlçuçççãçoç çMçeçnçsçaçlç ç(ç6ç çMçeçsçeçsç)ç<ç/çhç2ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çgçaçpç-ç3ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç2ç çhç-ç2ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-ç[ç#ç1çdçbç5ç7ç6ç]ç"ç>ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çRçeçcçeçiçtçaçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç2ç çhç-ç2ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-ç[ç#çeç7ç4çcç4çcç]ç"ç>ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çDçeçsçpçeçsçaçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç
-ç ç ç ç ç ç ç ç ç{ç/ç*ç çGçrçáçfçiçcçoç çdçeç çBçaçrçrçaçsç çRçeçsçpçoçnçsçiçvçoç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çeçnçdç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çgçaçpç-ç2ç çhç-ç3ç6ç çpçtç-ç4ç çpçbç-ç2ç çbçoçrçdçeçrç-çbç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç4ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç{çsçiçxçMçoçnçtçhçsçHçiçsçtçoçrçyç.çmçaçpç(ç(çmç,ç çiçdçxç)ç ç=ç>ç ç{ç
-ç ç ç ç ç ç ç ç ç ç ç ç çcçoçnçsçtç çiçnçcçHçeçiçgçhçtç ç=ç çmçaçxçHçiçsçtçoçrçyçVçaçlçuçeç ç>ç ç0ç ç?ç ç(çmç.çiçnçcçoçmçeç ç/ç çmçaçxçHçiçsçtçoçrçyçVçaçlçuçeç)ç ç*ç ç1ç0ç0ç ç:ç ç0ç
-ç ç ç ç ç ç ç ç ç ç ç ç çcçoçnçsçtç çeçxçpçHçeçiçgçhçtç ç=ç çmçaçxçHçiçsçtçoçrçyçVçaçlçuçeç ç>ç ç0ç ç?ç ç(çmç.çeçxçpçeçnçsçeç ç/ç çmçaçxçHçiçsçtçoçrçyçVçaçlçuçeç)ç ç*ç ç1ç0ç0ç ç:ç ç0ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç çrçeçtçuçrçnç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çkçeçyç=ç{çiçdçxç}ç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç-ç1ç çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çhç-çfçuçlçlç çjçuçsçtçiçfçyç-çeçnçdç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çeçnçdç çgçaçpç-ç1ç çwç-çfçuçlçlç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çhç-çfçuçlçlç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{ç/ç*ç çBçaçrçrçaç çRçeçcçeçiçtçaç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç2ç.ç5ç çsçmç:çwç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-çtç-çsçmç çhç-çfçuçlçlç çfçlçeçxç çiçtçeçmçsç-çeçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çsçtçyçlçeç=ç{ç{ç çhçeçiçgçhçtç:ç ç`ç$ç{çMçaçtçhç.çmçaçxç(çiçnçcçHçeçiçgçhçtç,ç çmç.çiçnçcçoçmçeç ç>ç ç0ç ç?ç ç6ç ç:ç ç0ç)ç}ç%ç`ç ç}ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-ç[ç#ç1çdçbç5ç7ç6ç]ç çrçoçuçnçdçeçdç-çtç-çsçmç çtçrçaçnçsçiçtçiçoçnç-çaçlçlç çdçuçrçaçtçiçoçnç-ç5ç0ç0ç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç{ç`çRçeçcçeçiçtçaçsç çeçmç ç$ç{çmç.çlçaçbçeçlç}ç:ç ç$ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çmç.çiçnçcçoçmçeç)ç}ç`ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{ç/ç*ç çBçaçrçrçaç çDçeçsçpçeçsçaç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç2ç.ç5ç çsçmç:çwç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-çtç-çsçmç çhç-çfçuçlçlç çfçlçeçxç çiçtçeçmçsç-çeçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çsçtçyçlçeç=ç{ç{ç çhçeçiçgçhçtç:ç ç`ç$ç{çMçaçtçhç.çmçaçxç(çeçxçpçHçeçiçgçhçtç,ç çmç.çeçxçpçeçnçsçeç ç>ç ç0ç ç?ç ç6ç ç:ç ç0ç)ç}ç%ç`ç ç}ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-ç[ç#çeç7ç4çcç4çcç]ç çrçoçuçnçdçeçdç-çtç-çsçmç çtçrçaçnçsçiçtçiçoçnç-çaçlçlç çdçuçrçaçtçiçoçnç-ç5ç0ç0ç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç{ç`çDçeçsçpçeçsçaçsç çeçmç ç$ç{çmç.çlçaçbçeçlç}ç:ç ç$ç{çfçoçrçmçaçtçCçuçrçrçeçnçcçyç(çmç.çeçxçpçeçnçsçeç)ç}ç`ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç{ç`çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çsçeçmçiçbçoçlçdç çmçtç-ç1ç ç$ç{çmç.çiçsçCçuçrçrçeçnçtç ç?ç ç'çtçeçxçtç-çpçrçiçmçaçrçyç çfçoçnçtç-çbçoçlçdç'ç ç:ç ç'çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç'ç}ç`ç}ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çmç.çlçaçbçeçlç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç)ç
-ç ç ç ç ç ç ç ç ç ç ç}ç)ç}ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç<ç/çmçaçiçnç>ç
-ç ç ç)ç;ç
-ç}ç
-ç
+'use client'
+
+import { motion } from "framer-motion"
+import { useState, useMemo } from 'react'
+
+interface Transaction {
+  id: string
+  amount: number
+  description: string
+  date: string
+  type: 'INCOME' | 'EXPENSE'
+  category_id: string
+  notes?: string
+  is_paid?: boolean
+}
+
+const MONTH_NAMES = [
+  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+]
+
+const MONTH_SHORT = [
+  'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+  'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+]
+
+const CATEGORY_MAP: Record<string, { label: string; icon: string; color: string; hex: string }> = {
+  alimentacao: { label: 'Alimentação', icon: 'restaurant', color: 'bg-orange-500', hex: '#f97316' },
+  transporte: { label: 'Transporte', icon: 'directions_car', color: 'bg-blue-500', hex: '#3b82f6' },
+  moradia: { label: 'Moradia', icon: 'home', color: 'bg-purple-500', hex: '#a855f7' },
+  salario: { label: 'Salário', icon: 'payments', color: 'bg-green-500', hex: '#22c55e' },
+  lazer: { label: 'Lazer', icon: 'sports_esports', color: 'bg-pink-500', hex: '#ec4899' },
+  saude: { label: 'Saúde & Farmácia', icon: 'medical_services', color: 'bg-rose-500', hex: '#f43f5e' },
+  educacao: { label: 'Educação', icon: 'school', color: 'bg-indigo-500', hex: '#6366f1' },
+  servicos: { label: 'Serviços', icon: 'receipt_long', color: 'bg-teal-500', hex: '#14b8a6' },
+  investimentos: { label: 'Investimentos', icon: 'trending_up', color: 'bg-emerald-500', hex: '#10b981' },
+  outros: { label: 'Outros', icon: 'category', color: 'bg-gray-400', hex: '#9ca3af' },
+}
+
+function formatCurrency(value: number) {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
+
+export default function GraphicsClient({ transactions }: { transactions: Transaction[] }) {
+  const today = new Date()
+  const [year, setYear] = useState(today.getFullYear())
+  const [month, setMonth] = useState(today.getMonth())
+
+  function prevMonth() {
+    if (month === 0) {
+      setMonth(11)
+      setYear(y => y - 1)
+    } else {
+      setMonth(m => m - 1)
+    }
+  }
+
+  function nextMonth() {
+    if (month === 11) {
+      setMonth(0)
+      setYear(y => y + 1)
+    } else {
+      setMonth(m => m + 1)
+    }
+  }
+
+  // Transações do mês selecionado
+  const currentMonthTransactions = useMemo(() => {
+    return transactions.filter(t => {
+      const parts = t.date.split('T')[0].split('-')
+      if (parts.length >= 2) {
+        const tYear = parseInt(parts[0], 10)
+        const tMonth = parseInt(parts[1], 10) - 1
+        return tYear === year && tMonth === month
+      }
+      const d = new Date(t.date)
+      return d.getFullYear() === year && d.getMonth() === month
+    })
+  }, [transactions, year, month])
+
+  const totalIncome = useMemo(() => {
+    return currentMonthTransactions
+      .filter(t => t.type === 'INCOME')
+      .reduce((acc, t) => acc + Number(t.amount || 0), 0)
+  }, [currentMonthTransactions])
+
+  const totalExpense = useMemo(() => {
+    return currentMonthTransactions
+      .filter(t => t.type === 'EXPENSE')
+      .reduce((acc, t) => acc + Number(t.amount || 0), 0)
+  }, [currentMonthTransactions])
+
+  const balance = totalIncome - totalExpense
+
+  // Média diária (dias no mês selecionado)
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const dailyAverage = totalExpense > 0 ? totalExpense / daysInMonth : 0
+
+  // Taxa de economia
+  const savingsRate = totalIncome > 0 ? ((balance / totalIncome) * 100) : 0
+
+  // Agrupamento por Categoria para Despesas
+  const categoryExpenses = useMemo(() => {
+    const expenses = currentMonthTransactions.filter(t => t.type === 'EXPENSE')
+    const grouped: Record<string, number> = {}
+
+    expenses.forEach(t => {
+      const cat = (t.category_id || 'outros').toLowerCase()
+      grouped[cat] = (grouped[cat] || 0) + Number(t.amount || 0)
+    })
+
+    return Object.entries(grouped)
+      .map(([catKey, amount]) => {
+        const info = CATEGORY_MAP[catKey] || {
+          label: catKey.charAt(0).toUpperCase() + catKey.slice(1),
+          icon: 'category',
+          color: 'bg-gray-400',
+          hex: '#9ca3af'
+        }
+        const percentage = totalExpense > 0 ? (amount / totalExpense) * 100 : 0
+        return {
+          key: catKey,
+          label: info.label,
+          icon: info.icon,
+          color: info.color,
+          hex: info.hex,
+          amount,
+          percentage
+        }
+      })
+      .sort((a, b) => b.amount - a.amount)
+  }, [currentMonthTransactions, totalExpense])
+
+  // Evolução Mensal dos últimos 6 meses
+  const sixMonthsHistory = useMemo(() => {
+    const months = []
+    for (let i = 5; i >= 0; i--) {
+      let targetMonth = month - i
+      let targetYear = year
+      while (targetMonth < 0) {
+        targetMonth += 12
+        targetYear -= 1
+      }
+
+      const mTransactions = transactions.filter(t => {
+        const parts = t.date.split('T')[0].split('-')
+        if (parts.length >= 2) {
+          const tYear = parseInt(parts[0], 10)
+          const tMonth = parseInt(parts[1], 10) - 1
+          return tYear === targetYear && tMonth === targetMonth
+        }
+        const d = new Date(t.date)
+        return d.getFullYear() === targetYear && d.getMonth() === targetMonth
+      })
+
+      const inc = mTransactions.filter(t => t.type === 'INCOME').reduce((a, t) => a + Number(t.amount || 0), 0)
+      const exp = mTransactions.filter(t => t.type === 'EXPENSE').reduce((a, t) => a + Number(t.amount || 0), 0)
+
+      months.push({
+        label: MONTH_SHORT[targetMonth],
+        income: inc,
+        expense: exp,
+        isCurrent: i === 0
+      })
+    }
+    return months
+  }, [transactions, year, month])
+
+  const maxHistoryValue = useMemo(() => {
+    const maxVal = Math.max(
+      ...sixMonthsHistory.map(m => Math.max(m.income, m.expense)),
+      1
+    )
+    return maxVal
+  }, [sixMonthsHistory])
+
+  // Dica Inteligente Dinâmica
+  const tipText = useMemo(() => {
+    if (totalIncome === 0 && totalExpense === 0) {
+      return 'Adicione suas receitas e despesas para acompanhar gráficos detalhados e obter insights sobre suas finanças.'
+    }
+    if (balance < 0) {
+      const topCat = categoryExpenses[0]
+      return `Seus gastos ultrapassaram os ganhos em ${formatCurrency(Math.abs(balance))} neste mês. Sua maior despesa foi em ${topCat ? topCat.label : 'categorias diversas'}.`
+    }
+    if (savingsRate >= 20) {
+      return `Excelente! Você está economizando ${savingsRate.toFixed(1)}% da sua renda neste mês. Mantenha o foco para construir sua reserva!`
+    }
+    return `Você economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcançar suas metas mais rápido.`
+  }, [totalIncome, totalExpense, balance, savingsRate, categoryExpenses])
+
+  return (
+    <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative bg-background min-h-screen pb-24">
+      
+      {/* Month Selector */}
+      <div className="bg-card rounded-2xl p-2 mb-4 shadow-sm border border-border/50">
+        <div className="flex items-center justify-between px-2 py-1">
+          <button 
+            onClick={prevMonth}
+            className="w-8 h-8 flex items-center justify-center text-foreground hover:bg-muted rounded-full transition-colors active:scale-95"
+          >
+            <span className="material-symbols-outlined text-sm">arrow_back_ios_new</span>
+          </button>
+          <h1 className="text-sm font-bold text-foreground">
+            {MONTH_NAMES[month]} {year}
+          </h1>
+          <button 
+            onClick={nextMonth}
+            className="w-8 h-8 flex items-center justify-center text-foreground hover:bg-muted rounded-full transition-colors active:scale-95"
+          >
+            <span className="material-symbols-outlined text-sm">arrow_forward_ios</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Resumo Mensal do Cotidiano */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-card rounded-2xl p-4 mb-4 shadow-sm border border-border/50"
+      >
+        <h2 className="font-bold text-sm text-foreground mb-4">Resumo Mensal do Cotidiano</h2>
+        
+        <div className="grid grid-cols-3 gap-2 text-center sm:text-left">
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center justify-center sm:justify-start gap-1 text-muted-foreground">
+              <span className="material-symbols-outlined text-[14px]">calendar_today</span>
+              <span className="text-[10px] font-medium">Média diária</span>
+            </div>
+            <p className="font-bold text-foreground text-xs sm:text-sm">
+              {formatCurrency(dailyAverage)}
+            </p>
+          </div>
+          
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center justify-center sm:justify-start gap-1 text-muted-foreground">
+              <span className="material-symbols-outlined text-[14px]">trending_up</span>
+              <span className="text-[10px] font-medium">Taxa economia</span>
+            </div>
+            <p className={`font-bold text-xs sm:text-sm ${savingsRate >= 0 ? 'text-[#1db576]' : 'text-red-500'}`}>
+              {savingsRate.toFixed(1)}%
+            </p>
+          </div>
+          
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center justify-center sm:justify-start gap-1 text-muted-foreground">
+              <span className="material-symbols-outlined text-[14px]">swap_horiz</span>
+              <span className="text-[10px] font-medium">Saldo do mês</span>
+            </div>
+            <p className={`font-bold text-xs sm:text-sm ${balance >= 0 ? 'text-[#1db576]' : 'text-red-500'}`}>
+              {formatCurrency(balance)}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Banner de Dica Inteligente */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="bg-[#e4fcf1] dark:bg-[#1a5b48]/20 rounded-2xl p-4 mb-4 flex items-center gap-3 border border-[#1a5b48]/10"
+      >
+        <div className="w-10 h-10 rounded-full bg-[#1a5b48] flex flex-shrink-0 items-center justify-center text-white shadow-sm">
+          <span className="material-symbols-outlined text-xl">lightbulb</span>
+        </div>
+        <div>
+          <h3 className="text-[11px] font-bold text-[#1a5b48] dark:text-[#1db576] mb-0.5">Dica de Gestão Financeira</h3>
+          <p className="text-[10px] text-[#1a5b48]/90 dark:text-foreground/80 leading-snug font-medium">
+            {tipText}
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Despesas por Categoria */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-card rounded-2xl p-4 mb-4 shadow-sm border border-border/50"
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="font-bold text-sm text-foreground">Despesas por Categoria</h2>
+          <span className="text-[10px] text-muted-foreground font-medium">
+            {categoryExpenses.length} {categoryExpenses.length === 1 ? 'categoria' : 'categorias'}
+          </span>
+        </div>
+        
+        {categoryExpenses.length === 0 ? (
+          <div className="flex justify-center items-center py-6">
+            <div className="w-36 h-36 rounded-full border-[16px] border-muted/40 flex flex-col items-center justify-center text-center p-2">
+              <span className="font-bold text-[11px] text-foreground">Sem gastos</span>
+              <span className="text-[10px] text-muted-foreground font-medium">no período</span>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {/* Barra de Progresso Multi-Categorias */}
+            <div className="h-3 w-full rounded-full bg-muted overflow-hidden flex shadow-inner">
+              {categoryExpenses.map(cat => (
+                <div 
+                  key={cat.key}
+                  style={{ width: `${cat.percentage}%`, backgroundColor: cat.hex }}
+                  className="h-full transition-all duration-500 first:rounded-l-full last:rounded-r-full"
+                  title={`${cat.label}: ${cat.percentage.toFixed(1)}%`}
+                />
+              ))}
+            </div>
+
+            {/* Lista detalhada das categorias */}
+            <div className="space-y-2.5 pt-2">
+              {categoryExpenses.map(cat => (
+                <div key={cat.key} className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <div 
+                      style={{ backgroundColor: cat.hex }} 
+                      className="w-3 h-3 rounded-full flex-shrink-0" 
+                    />
+                    <span className="font-medium text-foreground">{cat.label}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-right">
+                    <span className="font-bold text-foreground">{formatCurrency(cat.amount)}</span>
+                    <span className="text-[10px] text-muted-foreground font-semibold w-10 text-right">
+                      {cat.percentage.toFixed(0)}%
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </motion.div>
+
+      {/* Evolução Mensal (Últimos 6 Meses) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-card rounded-2xl p-4 shadow-sm border border-border/50 flex flex-col"
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="font-bold text-sm text-foreground">Evolução Mensal (6 Meses)</h2>
+          <div className="flex gap-3">
+            <div className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#1db576]"></span>
+              <span className="text-[10px] font-medium text-foreground">Receitas</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#e74c4c]"></span>
+              <span className="text-[10px] font-medium text-foreground">Despesas</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Gráfico de Barras Responsivo */}
+        <div className="flex items-end justify-between gap-2 h-36 pt-4 pb-2 border-b border-border/40">
+          {sixMonthsHistory.map((m, idx) => {
+            const incHeight = maxHistoryValue > 0 ? (m.income / maxHistoryValue) * 100 : 0
+            const expHeight = maxHistoryValue > 0 ? (m.expense / maxHistoryValue) * 100 : 0
+
+            return (
+              <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end gap-1">
+                <div className="flex items-end gap-1 w-full justify-center h-full">
+                  {/* Barra Receita */}
+                  <div className="w-2.5 sm:w-3 bg-muted/40 rounded-t-sm h-full flex items-end">
+                    <div 
+                      style={{ height: `${Math.max(incHeight, m.income > 0 ? 6 : 0)}%` }}
+                      className="w-full bg-[#1db576] rounded-t-sm transition-all duration-500"
+                      title={`Receitas em ${m.label}: ${formatCurrency(m.income)}`}
+                    />
+                  </div>
+                  {/* Barra Despesa */}
+                  <div className="w-2.5 sm:w-3 bg-muted/40 rounded-t-sm h-full flex items-end">
+                    <div 
+                      style={{ height: `${Math.max(expHeight, m.expense > 0 ? 6 : 0)}%` }}
+                      className="w-full bg-[#e74c4c] rounded-t-sm transition-all duration-500"
+                      title={`Despesas em ${m.label}: ${formatCurrency(m.expense)}`}
+                    />
+                  </div>
+                </div>
+                <span className={`text-[10px] font-semibold mt-1 ${m.isCurrent ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                  {m.label}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      </motion.div>
+
+    </main>
+  );
+}

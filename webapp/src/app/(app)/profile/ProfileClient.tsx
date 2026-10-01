@@ -1,231 +1,230 @@
-ç'çuçsçeç çcçlçiçeçnçtç'ç;ç
-ç
-çiçmçpçoçrçtç ç*ç çaçsç çmçoçtçiçoçnç çfçrçoçmç ç"çfçrçaçmçeçrç-çmçoçtçiçoçnç/çcçlçiçeçnçtç"ç;ç
-çiçmçpçoçrçtç ç{ç çlçoçgçoçuçtçAçcçtçiçoçnç ç}ç çfçrçoçmç ç'ç@ç/çaçpçpç/çaçcçtçiçoçnçsç/çaçuçtçhçAçcçtçiçoçnçsç'ç;ç
-çiçmçpçoçrçtç ç{ç çuçsçeçRçoçuçtçeçrç ç}ç çfçrçoçmç ç'çnçeçxçtç/çnçaçvçiçgçaçtçiçoçnç'ç;ç
-çiçmçpçoçrçtç ç{ç çuçsçeçSçtçaçtçeç ç}ç çfçrçoçmç ç'çrçeçaçcçtç'ç;ç
-çiçmçpçoçrçtç çLçiçnçkç çfçrçoçmç ç'çnçeçxçtç/çlçiçnçkç'ç;ç
-çiçmçpçoçrçtç ç{ç çTçhçeçmçeçTçoçgçgçlçeç ç}ç çfçrçoçmç ç'ç@ç/çcçoçmçpçoçnçeçnçtçsç/çTçhçeçmçeçTçoçgçgçlçeç'ç;ç
-ç
-çiçnçtçeçrçfçaçcçeç çPçrçoçpçsç ç{ç
-ç ç çuçsçeçrçIçdç:ç çsçtçrçiçnçgç;ç
-ç ç çdçiçsçpçlçaçyçNçaçmçeç:ç çsçtçrçiçnçgç;ç
-ç ç çeçmçaçiçlç:ç çsçtçrçiçnçgç;ç
-ç ç çpçhçoçnçeç:ç çsçtçrçiçnçgç;ç
-ç ç çrçoçlçeç:ç çsçtçrçiçnçgç;ç
-ç ç çpçlçaçnçSçtçaçtçuçsç:ç çsçtçrçiçnçgç;ç
-ç ç çcçrçeçaçtçeçdçAçtç:ç çsçtçrçiçnçgç;ç
-ç}ç
-ç
-çeçxçpçoçrçtç çdçeçfçaçuçlçtç çfçuçnçcçtçiçoçnç çPçrçoçfçiçlçeçCçlçiçeçnçtç(ç{ç
-ç ç çuçsçeçrçIçdç,ç
-ç ç çdçiçsçpçlçaçyçNçaçmçeç,ç
-ç ç çeçmçaçiçlç,ç
-ç ç çpçhçoçnçeç,ç
-ç ç çrçoçlçeç,ç
-ç ç çpçlçaçnçSçtçaçtçuçsç,ç
-ç ç çcçrçeçaçtçeçdçAçtç,ç
-ç}ç:ç çPçrçoçpçsç)ç ç{ç
-ç ç çcçoçnçsçtç çrçoçuçtçeçrç ç=ç çuçsçeçRçoçuçtçeçrç(ç)ç;ç
-ç ç çcçoçnçsçtç ç[çlçoçaçdçiçnçgç,ç çsçeçtçLçoçaçdçiçnçgç]ç ç=ç çuçsçeçSçtçaçtçeç(çfçaçlçsçeç)ç;ç
-ç ç çcçoçnçsçtç ç[çsçhçoçwçDçaçtçaçMçoçdçaçlç,ç çsçeçtçSçhçoçwçDçaçtçaçMçoçdçaçlç]ç ç=ç çuçsçeçSçtçaçtçeç(çfçaçlçsçeç)ç;ç
-ç
-ç ç çcçoçnçsçtç çiçnçiçtçiçaçlçsç ç=ç çdçiçsçpçlçaçyçNçaçmçeç.çsçlçiçcçeç(ç0ç,ç ç2ç)ç.çtçoçUçpçpçeçrçCçaçsçeç(ç)ç;ç
-ç ç çcçoçnçsçtç çiçsçAçcçtçiçvçeç ç=ç çpçlçaçnçSçtçaçtçuçsç ç=ç=ç=ç ç'çaçcçtçiçvçeç'ç;ç
-ç
-ç ç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çhçaçnçdçlçeçLçoçgçoçuçtç(ç)ç ç{ç
-ç ç ç ç çsçeçtçLçoçaçdçiçnçgç(çtçrçuçeç)ç;ç
-ç ç ç ç çcçoçnçsçtç çrçeçsç ç=ç çaçwçaçiçtç çlçoçgçoçuçtçAçcçtçiçoçnç(ç)ç;ç
-ç ç ç ç çsçeçtçLçoçaçdçiçnçgç(çfçaçlçsçeç)ç;ç
-ç
-ç ç ç ç çiçfç ç(çrçeçsç?ç.çeçrçrçoçrç)ç ç{ç
-ç ç ç ç ç ç çaçlçeçrçtç(ç"çEçrçrçoç çaçoç çsçaçiçrç:ç ç"ç ç+ç çrçeçsç.çeçrçrçoçrç)ç;ç
-ç ç ç ç ç}ç çeçlçsçeç ç{ç
-ç ç ç ç ç ç çrçoçuçtçeçrç.çpçuçsçhç(ç'ç/çlçoçgçiçnç'ç)ç;ç
-ç ç ç ç ç}ç
-ç ç ç}ç
-ç
-ç ç çrçeçtçuçrçnç ç(ç
-ç ç ç ç ç<çmçaçiçnç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç-ç1ç çfçlçeçxç çfçlçeçxç-çcçoçlç çpç-ç4ç çmçaçxç-çwç-çmçdç çmçxç-çaçuçtçoç çwç-çfçuçlçlç çrçeçlçaçtçiçvçeç çmçiçnç-çhç-çsçcçrçeçeçnç çpçbç-ç2ç4ç"ç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çHçeçaçdçeçrç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çmçbç-ç6ç çmçtç-ç2ç çpçxç-ç2ç"ç>ç
-ç ç ç ç ç ç ç ç ç<çhç1ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçlç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çMçeçuç çPçeçrçfçiçlç<ç/çhç1ç>ç
-ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çPçrçoçfçiçlçeç çCçaçrçdç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç3çxçlç çpç-ç6ç çsçhçaçdçoçwç-çsçmç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç çmçbç-ç4ç çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç3ç çtçeçxçtç-çcçeçnçtçeçrç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç2ç0ç çhç-ç2ç0ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-çpçrçiçmçaçrçyç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çpçrçiçmçaçrçyç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç3çxçlç çfçoçnçtç-çbçlçaçcçkç çsçhçaçdçoçwç-çmçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç{çiçnçiçtçiçaçlçsç}ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çhç2ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çlçgç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çdçiçsçpçlçaçyçNçaçmçeç}ç<ç/çhç2ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çsçmç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çeçmçaçiçlç}ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç{çpçhçoçnçeç ç&ç&ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çmçtç-ç0ç.ç5ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çxçsç çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç"ç>çcçaçlçlç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çpçhçoçnçeç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç{çrçoçlçeç ç=ç=ç=ç ç'çaçdçmçiçnç'ç ç&ç&ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçtç-ç2ç çiçnçlçiçnçeç-çbçlçoçcçkç çpçxç-ç2ç.ç5ç çpçyç-ç0ç.ç5ç çrçoçuçnçdçeçdç-çfçuçlçlç çtçeçxçtç-çxçsç çfçoçnçtç-çbçoçlçdç çbçgç-çpçrçiçmçaçrçyç/ç1ç0ç çtçeçxçtç-çpçrçiçmçaçrçyç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çAçdçmçiçnçiçsçtçrçaçdçoçrç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç)ç}ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çSçuçbçsçcçrçiçpçtçiçoçnç çSçtçaçtçuçsç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçeçlçaçyç:ç ç0ç.ç0ç5ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çrçoçuçnçdçeçdç-ç3çxçlç çpç-ç5ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çpçrçiçmçaçrçyç/ç2ç0ç çsçhçaçdçoçwç-çsçmç çmçbç-ç4ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç1ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç2ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç{ç`çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çlçgç ç$ç{çiçsçAçcçtçiçvçeç ç?ç ç'çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç ç:ç ç'çtçeçxçtç-çaçmçbçeçrç-ç5ç0ç0ç'ç}ç`ç}ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çiçsçAçcçtçiçvçeç ç?ç ç'çvçeçrçiçfçiçeçdç'ç ç:ç ç'çpçeçnçdçiçnçgç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çiçsçAçcçtçiçvçeç ç?ç ç'çPçlçaçnçãçoç çAçtçiçvçoç'ç ç:ç ç'çAçsçsçiçnçaçtçuçrçaç çPçeçnçdçeçnçtçeç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çmçeçdçiçuçmç"ç>çAçsçsçiçnçaçtçuçrçaç çAçnçuçaçlç ç(çRç$ç ç2ç9ç,ç0ç0ç)ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç{ç`çpçxç-ç3ç çpçyç-ç1ç.ç5ç çrçoçuçnçdçeçdç-çxçlç çtçeçxçtç-ç[ç1ç0çpçxç]ç çfçoçnçtç-çbçoçlçdç ç$ç{ç
-ç ç ç ç ç ç ç ç ç ç çiçsçAçcçtçiçvçeç ç?ç ç'çbçgç-ç[ç#ç1çdçbç5ç7ç6ç]ç/ç1ç0ç çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç'ç ç:ç ç'çbçgç-çaçmçbçeçrç-ç5ç0ç0ç/ç1ç0ç çtçeçxçtç-çaçmçbçeçrç-ç6ç0ç0ç'ç
-ç ç ç ç ç ç ç ç ç}ç`ç}ç>ç
-ç ç ç ç ç ç ç ç ç ç ç{çiçsçAçcçtçiçvçeç ç?ç ç'çAçtçiçvçoç'ç ç:ç ç'çPçeçnçdçeçnçtçeç'ç}ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çMçeçnçuç çOçpçtçiçoçnçsç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçeçlçaçyç:ç ç0ç.ç1ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç3ç çmçbç-ç6ç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç{ç/ç*ç çMçeçuçsç çDçaçdçoçsç çdçeç çCçaçdçaçsçtçrçoç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
-ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçSçhçoçwçDçaçtçaçMçoçdçaçlç(çtçrçuçeç)ç}ç
-ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çwç-çfçuçlçlç çpç-ç4ç çrçoçuçnçdçeçdç-ç2çxçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç5ç0ç çsçhçaçdçoçwç-çsçmç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç çtçeçxçtç-çlçeçfçtç"ç
-ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç3ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç1ç0ç çhç-ç1ç0ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-çbçlçuçeç-ç1ç0ç0ç çtçeçxçtç-çbçlçuçeç-ç6ç0ç0ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç2ç0çpçxç]ç"ç>çpçeçrçsçoçnç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çbçlçoçcçkç"ç>çMçeçuçsç çDçaçdçoçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç[ç1ç1çpçxç]ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>çNçãçoçmçeç,ç çeç-çmçaçiçlç,ç çtçeçlçeçfçoçnçeç çeç çcçaçdçaçsçtçrçoç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç2ç0çpçxç]ç"ç>çcçhçeçvçrçoçnç_çrçiçgçhçtç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç
-ç ç ç ç ç ç ç ç ç<çTçhçeçmçeçTçoçgçgçlçeç ç/ç>ç
-ç
-ç ç ç ç ç ç ç ç ç{ç/ç*ç çLçiçnçkç çpçaçrçaç çaçdçmçiçnç ç—ç çsçóç çaçpçaçrçeçcçeç çpçaçrçaç çaçdçmçiçnçsç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç{çrçoçlçeç ç=ç=ç=ç ç'çaçdçmçiçnç'ç ç&ç&ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç<çLçiçnçkç
-ç ç ç ç ç ç ç ç ç ç ç ç çhçrçeçfç=ç"ç/çaçdçmçiçnç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çwç-çfçuçlçlç çpç-ç4ç çrçoçuçnçdçeçdç-ç2çxçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çbçoçrçdçeçrç çbçoçrçdçeçrç-çpçrçiçmçaçrçyç/ç3ç0ç çsçhçaçdçoçwç-çsçmç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç"ç
-ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç3ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç1ç0ç çhç-ç1ç0ç çrçoçuçnçdçeçdç-çfçuçlçlç çbçgç-çpçrçiçmçaçrçyç/ç1ç0ç çtçeçxçtç-çpçrçiçmçaçrçyç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç2ç0çpçxç]ç"ç>çaçdçmçiçnç_çpçaçnçeçlç_çsçeçtçtçiçnçgçsç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çPçaçiçnçeçlç çAçdçmçiçnç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç2ç0çpçxç]ç"ç>çcçhçeçvçrçoçnç_çrçiçgçhçtç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çLçiçnçkç>ç
-ç ç ç ç ç ç ç ç ç)ç}ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çLçoçgçoçuçtç çBçuçtçtçoçnç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç1ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçeçlçaçyç:ç ç0ç.ç1ç5ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çmçtç-çaçuçtçoç çpçxç-ç1ç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
-ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{çhçaçnçdçlçeçLçoçgçoçuçtç}ç
-ç ç ç ç ç ç ç ç ç ç çdçiçsçaçbçlçeçdç=ç{çlçoçaçdçiçnçgç}ç
-ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çgçaçpç-ç2ç çbçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç1ç0ç çtçeçxçtç-çdçeçsçtçrçuçcçtçiçvçeç çhçoçvçeçrç:çbçgç-çdçeçsçtçrçuçcçtçiçvçeç/ç2ç0ç çfçoçnçtç-çbçoçlçdç çpçyç-ç4ç çrçoçuçnçdçeçdç-ç2çxçlç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç çdçiçsçaçbçlçeçdç:çoçpçaçcçiçtçyç-ç5ç0ç çtçeçxçtç-çsçmç"ç
-ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-ç[ç2ç0çpçxç]ç"ç>çlçoçgçoçuçtç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç{çlçoçaçdçiçnçgç ç?ç ç'çSçaçiçnçdçoç.ç.ç.ç'ç ç:ç ç'çSçaçiçrç çdçaç çcçoçnçtçaç'ç}ç
-ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç{ç/ç*ç çMçoçdçaçlç:ç çMçeçuçsç çDçaçdçoçsç çdçeç çCçaçdçaçsçtçrçoç ç*ç/ç}ç
-ç ç ç ç ç ç ç{çsçhçoçwçDçaçtçaçMçoçdçaçlç ç&ç&ç ç(ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçiçxçeçdç çiçnçsçeçtç-ç0ç çzç-ç5ç0ç çbçgç-çbçlçaçcçkç/ç6ç0ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çpç-ç4ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çbçgç-çcçaçrçdç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç8ç0ç çrçoçuçnçdçeçdç-ç3çxçlç çpç-ç6ç çmçaçxç-çwç-çsçmç çwç-çfçuçlçlç çsçhçaçdçoçwç-ç2çxçlç çsçpçaçcçeç-çyç-ç4ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çpçbç-ç2ç çbçoçrçdçeçrç-çbç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç6ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç2ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çpçrçiçmçaçrçyç"ç>çbçaçdçgçeç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çhç3ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çbçaçsçeç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çDçaçdçoçsç çdçeç çCçaçdçaçsçtçrçoç<ç/çhç3ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçSçhçoçwçDçaçtçaçMçoçdçaçlç(çfçaçlçsçeç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç8ç çhç-ç8ç çrçoçuçnçdçeçdç-çfçuçlçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çbçgç-çmçuçtçeçdç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç"ç>çcçlçoçsçeç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çsçpçaçcçeç-çyç-ç3ç.ç5ç çtçeçxçtç-çxçsç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çpç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç4ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç1ç0çpçxç]ç çuçpçpçeçrçcçaçsçeç çfçoçnçtç-çbçoçlçdç çbçlçoçcçkç çmçbç-ç0ç.ç5ç"ç>çNçãçoçmçeç çCçoçmçpçlçeçtçoç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çdçiçsçpçlçaçyçNçaçmçeç ç|ç|ç ç'çNçãçoç çiçnçfçoçrçmçaçdçoç'ç}ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çpç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç4ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç1ç0çpçxç]ç çuçpçpçeçrçcçaçsçeç çfçoçnçtç-çbçoçlçdç çbçlçoçcçkç çmçbç-ç0ç.ç5ç"ç>çEç-çmçaçiçlç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç{çeçmçaçiçlç}ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çpç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç4ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç1ç0çpçxç]ç çuçpçpçeçrçcçaçsçeç çfçoçnçtç-çbçoçlçdç çbçlçoçcçkç çmçbç-ç0ç.ç5ç"ç>çWçhçaçtçsçAçpçpç ç/ç çTçeçlçeçfçoçnçeç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çgçaçpç-ç1ç.ç5ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çsçmç çtçeçxçtç-ç[ç#ç1çdçbç5ç7ç6ç]ç"ç>çcçhçaçtç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çpçhçoçnçeç ç|ç|ç ç'çNçãçoç çcçaçdçaçsçtçrçaçdçoç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çpç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç4ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç1ç0çpçxç]ç çuçpçpçeçrçcçaçsçeç çfçoçnçtç-çbçoçlçdç çbçlçoçcçkç çmçbç-ç0ç.ç5ç"ç>çSçtçaçtçuçsç çdçaç çCçoçnçtçaç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çxçsç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çiçsçAçcçtçiçvçeç ç?ç ç'ç✅ç çAçsçsçiçnçaçtçuçrçaç çAçtçiçvçaç'ç ç:ç ç'ç⏳ç çAçgçuçaçrçdçaçnçdçoç çPçaçgçaçmçeçnçtçoç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çpç-ç3ç çbçgç-çmçuçtçeçdç/ç4ç0ç çrçoçuçnçdçeçdç-ç2çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç/ç4ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çtçeçxçtç-ç[ç1ç0çpçxç]ç çuçpçpçeçrçcçaçsçeç çfçoçnçtç-çbçoçlçdç çbçlçoçcçkç çmçbç-ç0ç.ç5ç"ç>çDçaçtçaç çdçeç çCçrçiçaçççãçoç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çxçsç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çcçrçeçaçtçeçdçAçtç ç?ç çnçeçwç çDçaçtçeç(çcçrçeçaçtçeçdçAçtç)ç.çtçoçLçoçcçaçlçeçSçtçrçiçnçgç(ç'çpçtç-çBçRç'ç)ç ç:ç ç'ç—ç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçSçhçoçwçDçaçtçaçMçoçdçaçlç(çfçaçlçsçeç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çpçyç-ç3ç çbçgç-çpçrçiçmçaçrçyç çtçeçxçtç-çpçrçiçmçaçrçyç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çbçoçlçdç çrçoçuçnçdçeçdç-ç2çxçlç çtçeçxçtç-çxçsç çhçoçvçeçrç:çbçgç-çpçrçiçmçaçrçyç/ç9ç0ç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çFçeçcçhçaçrç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç)ç}ç
-ç
-ç ç ç ç ç<ç/çmçaçiçnç>ç
-ç ç ç)ç;ç
-ç}ç
-ç
+'use client';
+
+import * as motion from "framer-motion/client";
+import { logoutAction } from '@/app/actions/authActions';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import Link from 'next/link';
+import { ThemeToggle } from '@/components/ThemeToggle';
+
+interface Props {
+  userId: string;
+  displayName: string;
+  email: string;
+  phone: string;
+  role: string;
+  planStatus: string;
+  createdAt: string;
+}
+
+export default function ProfileClient({
+  userId,
+  displayName,
+  email,
+  phone,
+  role,
+  planStatus,
+  createdAt,
+}: Props) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [showDataModal, setShowDataModal] = useState(false);
+
+  const initials = displayName.slice(0, 2).toUpperCase();
+  const isActive = planStatus === 'active';
+
+  async function handleLogout() {
+    setLoading(true);
+    const res = await logoutAction();
+    setLoading(false);
+
+    if (res?.error) {
+      alert("Erro ao sair: " + res.error);
+    } else {
+      router.push('/login');
+    }
+  }
+
+  return (
+    <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative min-h-screen pb-24">
+
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6 mt-2 px-2">
+        <h1 className="text-xl font-bold text-foreground">Meu Perfil</h1>
+      </div>
+
+      {/* Profile Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 mb-4 flex flex-col items-center gap-3 text-center"
+      >
+        <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-3xl font-black shadow-md">
+          {initials}
+        </div>
+        <div>
+          <h2 className="font-bold text-lg text-foreground">{displayName}</h2>
+          <p className="text-sm text-muted-foreground">{email}</p>
+          {phone && (
+            <p className="text-xs text-muted-foreground mt-0.5 flex items-center justify-center gap-1">
+              <span className="material-symbols-outlined text-xs text-[#1db576]">call</span>
+              {phone}
+            </p>
+          )}
+          {role === 'admin' && (
+            <span className="mt-2 inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary">
+              Administrador
+            </span>
+          )}
+        </div>
+      </motion.div>
+
+      {/* Subscription Status */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="bg-card rounded-3xl p-5 border border-primary/20 shadow-sm mb-4 flex items-center justify-between"
+      >
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <span className={`material-symbols-outlined text-lg ${isActive ? 'text-[#1db576]' : 'text-amber-500'}`}>
+              {isActive ? 'verified' : 'pending'}
+            </span>
+            <span className="font-bold text-sm text-foreground">
+              {isActive ? 'Plano Ativo' : 'Assinatura Pendente'}
+            </span>
+          </div>
+          <span className="text-xs text-muted-foreground font-medium">Assinatura Anual (R$ 29,00)</span>
+        </div>
+        <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold ${
+          isActive ? 'bg-[#1db576]/10 text-[#1db576]' : 'bg-amber-500/10 text-amber-600'
+        }`}>
+          {isActive ? 'Ativo' : 'Pendente'}
+        </div>
+      </motion.div>
+
+      {/* Menu Options */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="flex flex-col gap-3 mb-6"
+      >
+        {/* Meus Dados de Cadastro */}
+        <button
+          onClick={() => setShowDataModal(true)}
+          className="bg-card w-full p-4 rounded-2xl flex items-center justify-between border border-border/50 shadow-sm hover:bg-muted transition-colors text-left"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+              <span className="material-symbols-outlined text-[20px]">person</span>
+            </div>
+            <div>
+              <span className="font-semibold text-sm text-foreground block">Meus Dados</span>
+              <span className="text-[11px] text-muted-foreground">Nome, e-mail, telefone e cadastro</span>
+            </div>
+          </div>
+          <span className="material-symbols-outlined text-muted-foreground text-[20px]">chevron_right</span>
+        </button>
+
+        <ThemeToggle />
+
+        {/* Link para admin — só aparece para admins */}
+        {role === 'admin' && (
+          <Link
+            href="/admin"
+            className="bg-card w-full p-4 rounded-2xl flex items-center justify-between border border-primary/30 shadow-sm hover:bg-muted transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                <span className="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+              </div>
+              <span className="font-semibold text-sm text-foreground">Painel Admin</span>
+            </div>
+            <span className="material-symbols-outlined text-muted-foreground text-[20px]">chevron_right</span>
+          </Link>
+        )}
+      </motion.div>
+
+      {/* Logout Button */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="mt-auto px-1"
+      >
+        <button
+          onClick={handleLogout}
+          disabled={loading}
+          className="w-full flex items-center justify-center gap-2 bg-destructive/10 text-destructive hover:bg-destructive/20 font-bold py-4 rounded-2xl transition-colors disabled:opacity-50 text-sm"
+        >
+          <span className="material-symbols-outlined text-[20px]">logout</span>
+          {loading ? 'Saindo...' : 'Sair da conta'}
+        </button>
+      </motion.div>
+
+      {/* Modal: Meus Dados de Cadastro */}
+      {showDataModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+          <div className="bg-card border border-border/80 rounded-3xl p-6 max-w-sm w-full shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-2 border-b border-border/60">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">badge</span>
+                <h3 className="font-bold text-base text-foreground">Dados de Cadastro</h3>
+              </div>
+              <button
+                onClick={() => setShowDataModal(false)}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:bg-muted"
+              >
+                <span className="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+
+            <div className="space-y-3.5 text-xs">
+              <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                <span className="text-muted-foreground text-[10px] uppercase font-bold block mb-0.5">Nome Completo</span>
+                <p className="font-bold text-sm text-foreground">{displayName || 'Não informado'}</p>
+              </div>
+
+              <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                <span className="text-muted-foreground text-[10px] uppercase font-bold block mb-0.5">E-mail</span>
+                <p className="font-bold text-sm text-foreground">{email}</p>
+              </div>
+
+              <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                <span className="text-muted-foreground text-[10px] uppercase font-bold block mb-0.5">WhatsApp / Telefone</span>
+                <p className="font-bold text-sm text-foreground flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-sm text-[#1db576]">chat</span>
+                  {phone || 'Não cadastrado'}
+                </p>
+              </div>
+
+              <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                <span className="text-muted-foreground text-[10px] uppercase font-bold block mb-0.5">Status da Conta</span>
+                <p className="font-bold text-xs text-foreground">
+                  {isActive ? '✅ Assinatura Ativa' : '⏳ Aguardando Pagamento'}
+                </p>
+              </div>
+
+              <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                <span className="text-muted-foreground text-[10px] uppercase font-bold block mb-0.5">Data de Criação</span>
+                <p className="font-medium text-xs text-muted-foreground">
+                  {createdAt ? new Date(createdAt).toLocaleString('pt-BR') : '—'}
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setShowDataModal(false)}
+              className="w-full py-3 bg-primary text-primary-foreground font-bold rounded-2xl text-xs hover:bg-primary/90 transition-colors"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
+
+    </main>
+  );
+}

@@ -1,57 +1,56 @@
-çiçmçpçoçrçtç ç{ç çdçeçsçcçrçiçbçeç,ç çiçtç,ç çeçxçpçeçcçtç ç}ç çfçrçoçmç ç'çvçiçtçeçsçtç'ç;ç
-çiçmçpçoçrçtç ç{ç çTçrçaçnçsçaçcçtçiçoçnç ç}ç çfçrçoçmç ç'ç.ç/çTçrçaçnçsçaçcçtçiçoçnç'ç;ç
-ç
-çdçeçsçcçrçiçbçeç(ç'çTçrçaçnçsçaçcçtçiçoçnç çEçnçtçiçtçyç'ç,ç ç(ç)ç ç=ç>ç ç{ç
-ç ç çiçtç(ç'çdçeçvçeç çcçrçiçaçrç çuçmçaç çtçrçaçnçsçaçççãçoç çvçáçlçiçdçaç'ç,ç ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çcçoçnçsçtç çtçrçaçnçsçaçcçtçiçoçnç ç=ç çnçeçwç çTçrçaçnçsçaçcçtçiçoçnç(ç{ç
-ç ç ç ç ç ç çuçsçeçrçIçdç:ç ç'çuçsçeçrç-ç1ç2ç3ç'ç,ç
-ç ç ç ç ç ç çaçmçoçuçnçtç:ç ç1ç5ç0ç,ç
-ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç ç'çCçoçmçpçrçaç çnçãçoç çMçeçrçcçaçdçoç'ç,ç
-ç ç ç ç ç ç çdçaçtçeç:ç çnçeçwç çDçaçtçeç(ç'ç2ç0ç2ç6ç-ç0ç9ç-ç2ç8ç'ç)ç,ç
-ç ç ç ç ç ç çcçaçtçeçgçoçrçyçIçdç:ç ç'çcçaçtç-ç1ç'ç,ç
-ç ç ç ç ç ç çtçyçpçeç:ç ç'çEçXçPçEçNçSçEç'ç
-ç ç ç ç ç}ç)ç;ç
-ç
-ç ç ç ç çeçxçpçeçcçtç(çtçrçaçnçsçaçcçtçiçoçnç.çiçdç)ç.çtçoçBçeçDçeçfçiçnçeçdç(ç)ç;ç
-ç ç ç ç çeçxçpçeçcçtç(çtçrçaçnçsçaçcçtçiçoçnç.çaçmçoçuçnçtç)ç.çtçoçBçeç(ç1ç5ç0ç)ç;ç
-ç ç ç ç çeçxçpçeçcçtç(çtçrçaçnçsçaçcçtçiçoçnç.çtçyçpçeç)ç.çtçoçBçeç(ç'çEçXçPçEçNçSçEç'ç)ç;ç
-ç ç ç}ç)ç;ç
-ç
-ç ç çiçtç(ç'çdçeçvçeç çrçeçjçeçiçtçaçrç çuçmçaç çtçrçaçnçsçaçççãçoç çcçoçmç çvçaçlçoçrç çzçeçrçoç çoçuç çnçeçgçaçtçiçvçoç'ç,ç ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çeçxçpçeçcçtç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç ç ç çnçeçwç çTçrçaçnçsçaçcçtçiçoçnç(ç{ç
-ç ç ç ç ç ç ç ç çuçsçeçrçIçdç:ç ç'çuçsçeçrç-ç1ç2ç3ç'ç,ç
-ç ç ç ç ç ç ç ç çaçmçoçuçnçtç:ç ç0ç,ç
-ç ç ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç ç'çCçoçmçpçrçaç çnçãçoç çMçeçrçcçaçdçoç'ç,ç
-ç ç ç ç ç ç ç ç çdçaçtçeç:ç çnçeçwç çDçaçtçeç(ç'ç2ç0ç2ç6ç-ç0ç9ç-ç2ç8ç'ç)ç,ç
-ç ç ç ç ç ç ç ç çcçaçtçeçgçoçrçyçIçdç:ç ç'çcçaçtç-ç1ç'ç,ç
-ç ç ç ç ç ç ç ç çtçyçpçeç:ç ç'çEçXçPçEçNçSçEç'ç
-ç ç ç ç ç ç ç}ç)ç;ç
-ç ç ç ç ç}ç)ç.çtçoçTçhçrçoçwç(ç'çOç çvçaçlçoçrç çdçaç çtçrçaçnçsçaçççãçoç çdçeçvçeç çsçeçrç çmçaçiçoçrç çqçuçeç çzçeçrçoç.ç'ç)ç;ç
-ç
-ç ç ç ç çeçxçpçeçcçtç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç ç ç çnçeçwç çTçrçaçnçsçaçcçtçiçoçnç(ç{ç
-ç ç ç ç ç ç ç ç çuçsçeçrçIçdç:ç ç'çuçsçeçrç-ç1ç2ç3ç'ç,ç
-ç ç ç ç ç ç ç ç çaçmçoçuçnçtç:ç ç-ç5ç0ç,ç
-ç ç ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç ç'çCçoçmçpçrçaç çnçãçoç çMçeçrçcçaçdçoç'ç,ç
-ç ç ç ç ç ç ç ç çdçaçtçeç:ç çnçeçwç çDçaçtçeç(ç'ç2ç0ç2ç6ç-ç0ç9ç-ç2ç8ç'ç)ç,ç
-ç ç ç ç ç ç ç ç çcçaçtçeçgçoçrçyçIçdç:ç ç'çcçaçtç-ç1ç'ç,ç
-ç ç ç ç ç ç ç ç çtçyçpçeç:ç ç'çEçXçPçEçNçSçEç'ç
-ç ç ç ç ç ç ç}ç)ç;ç
-ç ç ç ç ç}ç)ç.çtçoçTçhçrçoçwç(ç'çOç çvçaçlçoçrç çdçaç çtçrçaçnçsçaçççãçoç çdçeçvçeç çsçeçrç çmçaçiçoçrç çqçuçeç çzçeçrçoç.ç'ç)ç;ç
-ç ç ç}ç)ç;ç
-ç
-ç ç çiçtç(ç'çdçeçvçeç çrçeçjçeçiçtçaçrç çuçmçaç çtçrçaçnçsçaçççãçoç çsçeçmç çdçeçsçcçrçiçççãçoç'ç,ç ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç çeçxçpçeçcçtç(ç(ç)ç ç=ç>ç ç{ç
-ç ç ç ç ç ç çnçeçwç çTçrçaçnçsçaçcçtçiçoçnç(ç{ç
-ç ç ç ç ç ç ç ç çuçsçeçrçIçdç:ç ç'çuçsçeçrç-ç1ç2ç3ç'ç,ç
-ç ç ç ç ç ç ç ç çaçmçoçuçnçtç:ç ç1ç0ç0ç,ç
-ç ç ç ç ç ç ç ç çdçeçsçcçrçiçpçtçiçoçnç:ç ç'ç ç ç ç'ç,ç
-ç ç ç ç ç ç ç ç çdçaçtçeç:ç çnçeçwç çDçaçtçeç(ç'ç2ç0ç2ç6ç-ç0ç9ç-ç2ç8ç'ç)ç,ç
-ç ç ç ç ç ç ç ç çcçaçtçeçgçoçrçyçIçdç:ç ç'çcçaçtç-ç1ç'ç,ç
-ç ç ç ç ç ç ç ç çtçyçpçeç:ç ç'çEçXçPçEçNçSçEç'ç
-ç ç ç ç ç ç ç}ç)ç;ç
-ç ç ç ç ç}ç)ç.çtçoçTçhçrçoçwç(ç'çAç çdçeçsçcçrçiçççãçoç çéç çoçbçrçiçgçaçtçóçrçiçaç.ç'ç)ç;ç
-ç ç ç}ç)ç;ç
-ç}ç)ç;ç
-ç
+import { describe, it, expect } from 'vitest';
+import { Transaction } from './Transaction';
+
+describe('Transaction Entity', () => {
+  it('deve criar uma transação válida', () => {
+    const transaction = new Transaction({
+      userId: 'user-123',
+      amount: 150,
+      description: 'Compra no Mercado',
+      date: new Date('2026-09-28'),
+      categoryId: 'cat-1',
+      type: 'EXPENSE'
+    });
+
+    expect(transaction.id).toBeDefined();
+    expect(transaction.amount).toBe(150);
+    expect(transaction.type).toBe('EXPENSE');
+  });
+
+  it('deve rejeitar uma transação com valor zero ou negativo', () => {
+    expect(() => {
+      new Transaction({
+        userId: 'user-123',
+        amount: 0,
+        description: 'Compra no Mercado',
+        date: new Date('2026-09-28'),
+        categoryId: 'cat-1',
+        type: 'EXPENSE'
+      });
+    }).toThrow('O valor da transação deve ser maior que zero.');
+
+    expect(() => {
+      new Transaction({
+        userId: 'user-123',
+        amount: -50,
+        description: 'Compra no Mercado',
+        date: new Date('2026-09-28'),
+        categoryId: 'cat-1',
+        type: 'EXPENSE'
+      });
+    }).toThrow('O valor da transação deve ser maior que zero.');
+  });
+
+  it('deve rejeitar uma transação sem descrição', () => {
+    expect(() => {
+      new Transaction({
+        userId: 'user-123',
+        amount: 100,
+        description: '   ',
+        date: new Date('2026-09-28'),
+        categoryId: 'cat-1',
+        type: 'EXPENSE'
+      });
+    }).toThrow('A descrição é obrigatória.');
+  });
+});

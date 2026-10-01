@@ -1,119 +1,118 @@
-ç'çuçsçeç çcçlçiçeçnçtç'ç;ç
-ç
-çiçmçpçoçrçtç ç{ç çmçoçtçiçoçnç ç}ç çfçrçoçmç ç"çfçrçaçmçeçrç-çmçoçtçiçoçnç"ç;ç
-çiçmçpçoçrçtç ç{ç çlçoçgçiçnçAçcçtçiçoçnç ç}ç çfçrçoçmç ç'ç.ç.ç/çaçcçtçiçoçnçsç/çaçuçtçhçAçcçtçiçoçnçsç'ç;ç
-çiçmçpçoçrçtç ç{ç çuçsçeçSçtçaçtçeç ç}ç çfçrçoçmç ç'çrçeçaçcçtç'ç;ç
-çiçmçpçoçrçtç ç{ç çuçsçeçRçoçuçtçeçrç ç}ç çfçrçoçmç ç'çnçeçxçtç/çnçaçvçiçgçaçtçiçoçnç'ç;ç
-çiçmçpçoçrçtç çLçiçnçkç çfçrçoçmç ç'çnçeçxçtç/çlçiçnçkç'ç;ç
-çiçmçpçoçrçtç ç{ç çtçoçaçsçtç ç}ç çfçrçoçmç ç'çrçeçaçcçtç-çhçoçtç-çtçoçaçsçtç'ç;ç
-ç
-çeçxçpçoçrçtç çdçeçfçaçuçlçtç çfçuçnçcçtçiçoçnç çLçoçgçiçnçPçaçgçeç(ç)ç ç{ç
-ç ç çcçoçnçsçtç çrçoçuçtçeçrç ç=ç çuçsçeçRçoçuçtçeçrç(ç)ç;ç
-ç ç çcçoçnçsçtç ç[çlçoçaçdçiçnçgç,ç çsçeçtçLçoçaçdçiçnçgç]ç ç=ç çuçsçeçSçtçaçtçeç(çfçaçlçsçeç)ç;ç
-ç ç çcçoçnçsçtç ç[çsçhçoçwçPçaçsçsçwçoçrçdç,ç çsçeçtçSçhçoçwçPçaçsçsçwçoçrçdç]ç ç=ç çuçsçeçSçtçaçtçeç(çfçaçlçsçeç)ç;ç
-ç
-ç ç çaçsçyçnçcç çfçuçnçcçtçiçoçnç çhçaçnçdçlçeçSçuçbçmçiçtç(çfçoçrçmçDçaçtçaç:ç çFçoçrçmçDçaçtçaç)ç ç{ç
-ç ç ç ç çsçeçtçLçoçaçdçiçnçgç(çtçrçuçeç)ç;ç
-ç ç ç ç çcçoçnçsçtç çrçeçsç ç=ç çaçwçaçiçtç çlçoçgçiçnçAçcçtçiçoçnç(çfçoçrçmçDçaçtçaç)ç;ç
-ç ç ç ç çsçeçtçLçoçaçdçiçnçgç(çfçaçlçsçeç)ç;ç
-ç
-ç ç ç ç çiçfç ç(çrçeçsç?ç.çeçrçrçoçrç)ç ç{ç
-ç ç ç ç ç ç çtçoçaçsçtç.çeçrçrçoçrç(çrçeçsç.çeçrçrçoçrç)ç;ç
-ç ç ç ç ç}ç çeçlçsçeç ç{ç
-ç ç ç ç ç ç çtçoçaçsçtç.çsçuçcçcçeçsçsç(ç"çLçoçgçiçnç çrçeçaçlçiçzçaçdçoç çcçoçmç çsçuçcçeçsçsçoç!ç"ç)ç;ç
-ç ç ç ç ç ç çrçoçuçtçeçrç.çpçuçsçhç(ç'ç/ç'ç)ç;ç
-ç ç ç ç ç}ç
-ç ç ç}ç
-ç
-ç ç çrçeçtçuçrçnç ç(ç
-ç ç ç ç ç<çmçaçiçnç çcçlçaçsçsçNçaçmçeç=ç"çmçiçnç-çhç-çsçcçrçeçeçnç çwç-çfçuçlçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çpç-ç4ç çsçmç:çpç-ç6ç çbçgç-çbçaçcçkçgçrçoçuçnçdç çrçeçlçaçtçiçvçeç çoçvçeçrçfçlçoçwç-çhçiçdçdçeçnç"ç>ç
-ç ç ç ç ç ç ç{ç/ç*ç çBçaçcçkçgçrçoçuçnçdç çDçeçcçoçrçaçtçoçrç ç*ç/ç}ç
-ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çaçbçsçoçlçuçtçeç çtçoçpç-ç0ç çlçeçfçtç-ç0ç çwç-çfçuçlçlç çhç-ç1ç/ç3ç çbçgç-çpçrçiçmçaçrçyç/ç1ç0ç ç-çsçkçeçwç-çyç-ç6ç çtçrçaçnçsçfçoçrçmç çoçrçiçgçiçnç-çtçoçpç-çlçeçfçtç ç-çzç-ç1ç0ç"ç ç/ç>ç
-ç
-ç ç ç ç ç ç ç<çmçoçtçiçoçnç.çdçiçvç ç
-ç ç ç ç ç ç ç ç çiçnçiçtçiçaçlç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç0ç,ç çyç:ç ç2ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çaçnçiçmçaçtçeç=ç{ç{ç çoçpçaçcçiçtçyç:ç ç1ç,ç çyç:ç ç0ç ç}ç}ç
-ç ç ç ç ç ç ç ç çtçrçaçnçsçiçtçiçoçnç=ç{ç{ç çdçuçrçaçtçiçoçnç:ç ç0ç.ç3ç ç}ç}ç
-ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çmçaçxç-çwç-çsçmç çmçyç-çaçuçtçoç çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç"ç
-ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çiçtçeçmçsç-çcçeçnçtçeçrç çmçbç-ç6ç çgçaçpç-ç2ç çtçeçxçtç-çcçeçnçtçeçrç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç1ç4ç çhç-ç1ç4ç çbçgç-çpçrçiçmçaçrçyç çrçoçuçnçdçeçdç-ç2çxçlç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çtçeçxçtç-çpçrçiçmçaçrçyç-çfçoçrçeçgçrçoçuçnçdç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-ç3çxçlç çsçhçaçdçoçwç-çlçgç çsçhçaçdçoçwç-çpçrçiçmçaçrçyç/ç3ç0ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç$ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çhç1ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-ç2çxçlç çfçoçnçtç-çeçxçtçrçaçbçoçlçdç çtçrçaçcçkçiçnçgç-çtçiçgçhçtç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç"ç>çMçeçuç çDçiçnçDçiçnç<ç/çhç1ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çsçmç:çtçeçxçtç-çsçmç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç"ç>çAçcçeçsçsçeç çsçuçaç çcçoçnçtçaç çpçaçrçaç çoçrçgçaçnçiçzçaçrç çsçuçaçsç çfçiçnçaçnçççaçsç<ç/çpç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-çcçaçrçdç çpç-ç6ç çsçmç:çpç-ç8ç çrçoçuçnçdçeçdç-ç[ç2çrçeçmç]ç çsçhçaçdçoçwç-çxçlç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç<çfçoçrçmç çaçcçtçiçoçnç=ç{çhçaçnçdçlçeçSçuçbçmçiçtç}ç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç4ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç1ç.ç5ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çlçaçbçeçlç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç"ç>çEç-çmçaçiçlç<ç/çlçaçbçeçlç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çiçnçpçuçtç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çeçmçaçiçlç"ç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çnçaçmçeç=ç"çeçmçaçiçlç"ç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çrçeçqçuçiçrçeçdç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çpçlçaçcçeçhçoçlçdçeçrç=ç"çsçeçuç@çeçmçaçiçlç.çcçoçmç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-çmçuçtçeçdç/ç5ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç çrçoçuçnçdçeçdç-çxçlç çpçxç-ç4ç çpçyç-ç3ç çtçeçxçtç-çsçmç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çfçoçcçuçsç:çoçuçtçlçiçnçeç-çnçãçoçnçeç çfçoçcçuçsç:çrçiçnçgç-ç2ç çfçoçcçuçsç:çrçiçnçgç-çpçrçiçmçaçrçyç/ç5ç0ç çtçrçaçnçsçiçtçiçoçnç-çsçhçaçdçoçwç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çfçlçeçxç-çcçoçlç çgçaçpç-ç1ç.ç5ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çfçlçeçxç çjçuçsçtçiçfçyç-çbçeçtçwçeçeçnç çiçtçeçmçsç-çcçeçnçtçeçrç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çlçaçbçeçlç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çfçoçnçtç-çsçeçmçiçbçoçlçdç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç/ç8ç0ç"ç>çSçeçnçhçaç<ç/çlçaçbçeçlç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çLçiçnçkç çhçrçeçfç=ç"ç/çfçoçrçgçoçtç-çpçaçsçsçwçoçrçdç"ç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çxçsç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çpçrçiçmçaçrçyç çhçoçvçeçrç:çuçnçdçeçrçlçiçnçeç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çEçsçqçuçeçcçeçuç çaç çsçeçnçhçaç?ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çLçiçnçkç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çdçiçvç çcçlçaçsçsçNçaçmçeç=ç"çrçeçlçaçtçiçvçeç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çiçnçpçuçtç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç{çsçhçoçwçPçaçsçsçwçoçrçdç ç?ç ç"çtçeçxçtç"ç ç:ç ç"çpçaçsçsçwçoçrçdç"ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çnçaçmçeç=ç"çpçaçsçsçwçoçrçdç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çrçeçqçuçiçrçeçdç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çpçlçaçcçeçhçoçlçdçeçrç=ç"ç•ç•ç•ç•ç•ç•ç•ç•ç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çwç-çfçuçlçlç çbçgç-çmçuçtçeçdç/ç5ç0ç çbçoçrçdçeçrç çbçoçrçdçeçrç-çbçoçrçdçeçrç çrçoçuçnçdçeçdç-çxçlç çpçxç-ç4ç çpçyç-ç3ç çpçrç-ç1ç2ç çtçeçxçtç-çsçmç çfçoçnçtç-çmçeçdçiçuçmç çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çfçoçcçuçsç:çoçuçtçlçiçnçeç-çnçãçoçnçeç çfçoçcçuçsç:çrçiçnçgç-ç2ç çfçoçcçuçsç:çrçiçnçgç-çpçrçiçmçaçrçyç/ç5ç0ç çtçrçaçnçsçiçtçiçoçnç-çsçhçaçdçoçwç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çbçuçtçtçoçnç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çoçnçCçlçiçcçkç=ç{ç(ç)ç ç=ç>ç çsçeçtçSçhçoçwçPçaçsçsçwçoçrçdç(ç!çsçhçoçwçPçaçsçsçwçoçrçdç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çaçbçsçoçlçuçtçeç çrçiçgçhçtç-ç3ç çtçoçpç-ç1ç/ç2ç ç-çtçrçaçnçsçlçaçtçeç-çyç-ç1ç/ç2ç çpç-ç1ç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çhçoçvçeçrç:çtçeçxçtç-çfçoçrçeçgçrçoçuçnçdç çtçrçaçnçsçiçtçiçoçnç-çcçoçlçoçrçsç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçiçtçlçeç=ç{çsçhçoçwçPçaçsçsçwçoçrçdç ç?ç ç"çOçcçuçlçtçaçrç çsçeçnçhçaç"ç ç:ç ç"çMçoçsçtçrçaçrç çsçeçnçhçaç"ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çxçlç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çsçhçoçwçPçaçsçsçwçoçrçdç ç?ç ç"çvçiçsçiçbçiçlçiçtçyç_çoçfçfç"ç ç:ç ç"çvçiçsçiçbçiçlçiçtçyç"ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<çbçuçtçtçoçnç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çtçyçpçeç=ç"çsçuçbçmçiçtç"ç ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çdçiçsçaçbçlçeçdç=ç{çlçoçaçdçiçnçgç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç çcçlçaçsçsçNçaçmçeç=ç"çmçtç-ç2ç çwç-çfçuçlçlç çbçgç-çpçrçiçmçaçrçyç çtçeçxçtç-çpçrçiçmçaçrçyç-çfçoçrçeçgçrçoçuçnçdç çpçyç-ç3ç.ç5ç çrçoçuçnçdçeçdç-çxçlç çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çsçmç çhçoçvçeçrç:çsçcçaçlçeç-ç[ç1ç.ç0ç1ç]ç çaçcçtçiçvçeç:çsçcçaçlçeç-ç[ç0ç.ç9ç9ç]ç çtçrçaçnçsçiçtçiçoçnç-çtçrçaçnçsçfçoçrçmç çdçiçsçaçbçlçeçdç:çoçpçaçcçiçtçyç-ç5ç0ç çdçiçsçaçbçlçeçdç:çpçoçiçnçtçeçrç-çeçvçeçnçtçsç-çnçãçoçnçeç çsçhçaçdçoçwç-çlçgç çsçhçaçdçoçwç-çpçrçiçmçaçrçyç/ç2ç5ç çfçlçeçxç çiçtçeçmçsç-çcçeçnçtçeçrç çjçuçsçtçiçfçyç-çcçeçnçtçeçrç çgçaçpç-ç2ç"ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç{çlçoçaçdçiçnçgç ç?ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çwç-ç4ç çhç-ç4ç çbçoçrçdçeçrç-ç2ç çbçoçrçdçeçrç-çwçhçiçtçeç/ç3ç0ç çbçoçrçdçeçrç-çtç-çwçhçiçtçeç çrçoçuçnçdçeçdç-çfçuçlçlç çaçnçiçmçaçtçeç-çsçpçiçnç"ç ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç>çEçnçtçrçaçnçdçoç.ç.ç.ç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç)ç ç:ç ç(ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç>çEçnçtçrçaçrç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<çsçpçaçnç çcçlçaçsçsçNçaçmçeç=ç"çmçaçtçeçrçiçaçlç-çsçyçmçbçoçlçsç-çoçuçtçlçiçnçeçdç çtçeçxçtç-çbçaçsçeç"ç>çlçoçgçiçnç<ç/çsçpçaçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç ç ç)ç}ç
-ç ç ç ç ç ç ç ç ç ç ç ç ç<ç/çbçuçtçtçoçnç>ç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çfçoçrçmç>ç
-ç ç ç ç ç ç ç ç ç<ç/çdçiçvç>ç
-ç
-ç ç ç ç ç ç ç ç ç{ç/ç*ç çLçiçnçkç çpçaçrçaç çcçrçiçaçrç çcçoçnçtçaç ç*ç/ç}ç
-ç ç ç ç ç ç ç ç ç<çpç çcçlçaçsçsçNçaçmçeç=ç"çtçeçxçtç-çcçeçnçtçeçrç çtçeçxçtç-çxçsç çsçmç:çtçeçxçtç-çsçmç çtçeçxçtç-çmçuçtçeçdç-çfçoçrçeçgçrçoçuçnçdç çmçtç-ç4ç"ç>ç
-ç ç ç ç ç ç ç ç ç ç çAçiçnçdçaç çnçãçoç çtçeçmç çcçoçnçtçaç?ç{ç'ç ç'ç}ç
-ç ç ç ç ç ç ç ç ç ç ç<çLçiçnçkç çhçrçeçfç=ç"ç/çcçaçdçaçsçtçrçoç"ç çcçlçaçsçsçNçaçmçeç=ç"çfçoçnçtç-çbçoçlçdç çtçeçxçtç-çpçrçiçmçaçrçyç çhçoçvçeçrç:çuçnçdçeçrçlçiçnçeç"ç>ç
-ç ç ç ç ç ç ç ç ç ç ç ç çCçrçiçeç çsçuçaç çcçoçnçtçaç
-ç ç ç ç ç ç ç ç ç ç ç<ç/çLçiçnçkç>ç
-ç ç ç ç ç ç ç ç ç<ç/çpç>ç
-ç ç ç ç ç ç ç<ç/çmçoçtçiçoçnç.çdçiçvç>ç
-ç ç ç ç ç<ç/çmçaçiçnç>ç
-ç ç ç)ç;ç
-ç}ç
-ç
+'use client';
+
+import { motion } from "framer-motion";
+import { loginAction } from '../actions/authActions';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { toast } from 'react-hot-toast';
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  async function handleSubmit(formData: FormData) {
+    setLoading(true);
+    const res = await loginAction(formData);
+    setLoading(false);
+
+    if (res?.error) {
+      toast.error(res.error);
+    } else {
+      toast.success("Login realizado com sucesso!");
+      router.push('/');
+    }
+  }
+
+  return (
+    <main className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-background relative overflow-hidden">
+      {/* Background Decorator */}
+      <div className="absolute top-0 left-0 w-full h-1/3 bg-primary/10 -skew-y-6 transform origin-top-left -z-10" />
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="w-full max-w-sm my-auto flex flex-col items-center"
+      >
+        <div className="flex flex-col items-center mb-6 gap-2 text-center">
+          <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-3xl shadow-lg shadow-primary/30">
+            $
+          </div>
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground">Meu DinDin</h1>
+          <p className="text-xs sm:text-sm font-medium text-muted-foreground">Acesse sua conta para organizar suas finanças</p>
+        </div>
+
+        <div className="w-full bg-card p-6 sm:p-8 rounded-[2rem] shadow-xl border border-border">
+          <form action={handleSubmit} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold text-foreground/80">E-mail</label>
+              <input 
+                type="email" 
+                name="email" 
+                required 
+                placeholder="seu@email.com"
+                className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <div className="flex justify-between items-center">
+                <label className="text-xs font-semibold text-foreground/80">Senha</label>
+                <Link href="/forgot-password" className="text-xs font-bold text-primary hover:underline">
+                  Esqueceu a senha?
+                </Link>
+              </div>
+              <div className="relative">
+                <input 
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  placeholder="••••••••"
+                  className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 pr-12 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
+                  title={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                >
+                  <span className="material-symbols-outlined text-xl">
+                    {showPassword ? "visibility_off" : "visibility"}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="mt-2 w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-sm hover:scale-[1.01] active:scale-[0.99] transition-transform disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Entrando...</span>
+                </>
+              ) : (
+                <>
+                  <span>Entrar</span>
+                  <span className="material-symbols-outlined text-base">login</span>
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+
+        {/* Link para criar conta */}
+        <p className="text-center text-xs sm:text-sm text-muted-foreground mt-4">
+          Ainda não tem conta?{' '}
+          <Link href="/cadastro" className="font-bold text-primary hover:underline">
+            Crie sua conta
+          </Link>
+        </p>
+      </motion.div>
+    </main>
+  );
+}
