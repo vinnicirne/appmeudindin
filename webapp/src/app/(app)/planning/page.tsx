@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+﻿import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import PlanningClient from './PlanningClient'
 
@@ -15,6 +15,7 @@ export default async function PlanningPage() {
     .order('date', { ascending: true })
 
   // Busca as metas do usuario
+  const { data: categories } = await supabase.from('categories').select('*').eq('is_active', true)
   const { data: budgets } = await supabase
     .from('budgets')
     .select('*')
@@ -22,3 +23,4 @@ export default async function PlanningPage() {
 
   return <PlanningClient dbCategories={categories || []} transactions={transactions || []} budgets={budgets || []} />
 }
+
