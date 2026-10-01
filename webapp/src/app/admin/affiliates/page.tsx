@@ -3,6 +3,9 @@ import { createClient } from '@/utils/supabase/server'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import AffiliatesClient from './AffiliatesClient'
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AffiliatesPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -24,11 +27,19 @@ export default async function AffiliatesPage() {
     ? createSupabaseClient(supabaseUrl, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
     : supabase
 
+  // 1. Busca da tabela de afiliados cadastrados
   const { data: affiliatesData } = await adminClient
     .from('affiliates')
     .select('*')
     .order('created_at', { ascending: false })
 
+  // 2. Busca usuários marcados como afiliados
+  const { data: affiliateUsers } = await adminClient
+    .from('users')
+    .select('id, name, full_name, email, phone, is_affiliate, affiliate_code, created_at')
+    .eq('is_affiliate', true)
+
+  // 3. Busca todos os usuários para calcular indicados
   const { data: usersData } = await adminClient
     .from('users')
     .select('id, name, full_name, email, referred_by, plan_status, created_at')
@@ -43,8 +54,43 @@ export default async function AffiliatesPage() {
     ? plansData.reduce((acc, p) => acc + Number(p.price), 0) / plansData.length
     : 29.0;
 
-  const affiliates = (affiliatesData || []).map(aff => {
-    const signups = (usersData || []).filter(u => u.referred_by === aff.code)
+  // Unifica a lista de afiliados sem duplicar
+  const allAffiliatesMap = new Map<string, any>()
+
+  // Insere parceiros da tabela affiliates
+  for (const aff of (affiliatesData || [])) {
+    if (aff.code) {
+      allAffiliatesMap.set(aff.code.toLowerCase(), {
+        ...aff,
+        commission_type: aff.commission_type || 'percentage',
+        commission_value: Number(aff.commission_value || 30)
+      })
+    }
+  }
+
+  // Mescla usuários marcados como is_affiliate = true que ainda não estavam na tabela affiliates
+  for (const u of (affiliateUsers || [])) {
+    const code = (u.affiliate_code || '').toLowerCase()
+    if (code && !allAffiliatesMap.has(code)) {
+      allAffiliatesMap.set(code, {
+        id: u.id,
+        user_id: u.id,
+        name: u.name || u.full_name || u.email,
+        code: u.affiliate_code,
+        commission_type: 'percentage',
+        commission_value: 30,
+        phone: u.phone || null,
+        created_at: u.created_at
+      })
+    }
+  }
+
+  const combinedAffiliates = Array.from(allAffiliatesMap.values())
+
+  const affiliates = combinedAffiliates.map(aff => {
+    const signups = (usersData || []).filter(u => 
+      u.referred_by && u.referred_by.toLowerCase() === aff.code.toLowerCase()
+    )
     const sales = signups.filter(u => u.plan_status === 'active')
     
     const totalGenerated = sales.length * avgPlanPrice;
