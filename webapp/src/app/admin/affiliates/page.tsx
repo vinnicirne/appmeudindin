@@ -27,23 +27,25 @@ export default async function AffiliatesPage() {
     ? createSupabaseClient(supabaseUrl, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
     : supabase
 
-  // 1. Busca da tabela de afiliados cadastrados
-  const { data: affiliatesData } = await adminClient
+  // 1. Busca todos os usuários do sistema
+  const { data: allUsersData, error: usersErr } = await adminClient
+    .from('users')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (usersErr) {
+    console.error('[AffiliatesPage] Erro ao buscar users:', usersErr)
+  }
+
+  // 2. Busca todos os registros da tabela affiliates
+  const { data: affiliatesData, error: affErr } = await adminClient
     .from('affiliates')
     .select('*')
     .order('created_at', { ascending: false })
 
-  // 2. Busca usuários marcados como afiliados
-  const { data: affiliateUsers } = await adminClient
-    .from('users')
-    .select('id, name, full_name, email, phone, is_affiliate, affiliate_code, created_at')
-    .eq('is_affiliate', true)
-
-  // 3. Busca todos os usuários para calcular indicados
-  const { data: usersData } = await adminClient
-    .from('users')
-    .select('id, name, full_name, email, referred_by, plan_status, created_at')
-    .not('referred_by', 'is', null)
+  if (affErr) {
+    console.error('[AffiliatesPage] Erro ao buscar affiliates:', affErr)
+  }
 
   const { data: plansData } = await adminClient
     .from('plans')
@@ -54,13 +56,13 @@ export default async function AffiliatesPage() {
     ? plansData.reduce((acc, p) => acc + Number(p.price), 0) / plansData.length
     : 29.0;
 
-  // Unifica a lista de afiliados sem duplicar
+  // 3. Unifica a lista de afiliados sem duplicar e sem perder ninguém
   const allAffiliatesMap = new Map<string, any>()
 
-  // Insere parceiros da tabela affiliates
+  // A) Insere registros da tabela affiliates
   for (const aff of (affiliatesData || [])) {
     if (aff.code) {
-      allAffiliatesMap.set(aff.code.toLowerCase(), {
+      allAffiliatesMap.set(aff.code.trim().toLowerCase(), {
         ...aff,
         commission_type: aff.commission_type || 'percentage',
         commission_value: Number(aff.commission_value || 30)
@@ -68,28 +70,36 @@ export default async function AffiliatesPage() {
     }
   }
 
-  // Mescla usuários marcados como is_affiliate = true que ainda não estavam na tabela affiliates
-  for (const u of (affiliateUsers || [])) {
-    const code = (u.affiliate_code || '').toLowerCase()
-    if (code && !allAffiliatesMap.has(code)) {
-      allAffiliatesMap.set(code, {
-        id: u.id,
-        user_id: u.id,
-        name: u.name || u.full_name || u.email,
-        code: u.affiliate_code,
-        commission_type: 'percentage',
-        commission_value: 30,
-        phone: u.phone || null,
-        created_at: u.created_at
-      })
+  // B) Mescla qualquer usuário que tenha is_affiliate = true OU affiliate_code preenchido
+  for (const u of (allUsersData || [])) {
+    const code = (u.affiliate_code || '').trim().toLowerCase()
+    const isAff = u.is_affiliate === true || Boolean(u.affiliate_code)
+    
+    if (isAff && code) {
+      const existing = allAffiliatesMap.get(code)
+      if (!existing) {
+        allAffiliatesMap.set(code, {
+          id: u.id,
+          user_id: u.id,
+          name: u.name || u.full_name || u.email,
+          code: u.affiliate_code,
+          commission_type: 'percentage',
+          commission_value: 30,
+          phone: u.phone || null,
+          created_at: u.created_at
+        })
+      } else if (!existing.user_id) {
+        existing.user_id = u.id
+      }
     }
   }
 
   const combinedAffiliates = Array.from(allAffiliatesMap.values())
 
   const affiliates = combinedAffiliates.map(aff => {
-    const signups = (usersData || []).filter(u => 
-      u.referred_by && u.referred_by.toLowerCase() === aff.code.toLowerCase()
+    const cleanCode = (aff.code || '').trim().toLowerCase()
+    const signups = (allUsersData || []).filter(u => 
+      u.referred_by && u.referred_by.trim().toLowerCase() === cleanCode
     )
     const sales = signups.filter(u => u.plan_status === 'active')
     

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X, Search, Link2, Download, Copy, Trash2, Phone, Printer } from 'lucide-react'
 import { createAffiliateAction, deleteAffiliateAction, updateAffiliateAction } from '@/app/actions/affiliateActions'
@@ -9,6 +9,10 @@ import { Button } from '@/components/ui/button'
 
 export default function AffiliatesClient({ initialAffiliates }: { initialAffiliates: any[] }) {
   const [affiliates, setAffiliates] = useState(initialAffiliates)
+
+  useEffect(() => {
+    setAffiliates(initialAffiliates)
+  }, [initialAffiliates])
   const [search, setSearch] = useState('')
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [editAffiliate, setEditAffiliate] = useState<any | null>(null)
