@@ -175,7 +175,11 @@ export default function AffiliatesClient({ initialAffiliates }: { initialAffilia
                   )}
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-[10px] uppercase font-bold text-muted-foreground">A Pagar</p>
+                  <p className="text-[10px] uppercase font-bold text-muted-foreground">Faturado</p>
+                  <p className="font-bold text-[#1db576]">{formatMoney(aff.metrics.totalGenerated)}</p>
+                </div>
+                <div className="text-right shrink-0 border-l border-border/60 pl-3">
+                  <p className="text-[10px] uppercase font-bold text-muted-foreground">Comissão (A Pagar)</p>
                   <p className="font-bold text-primary">{formatMoney(aff.metrics.totalToPay)}</p>
                 </div>
               </div>

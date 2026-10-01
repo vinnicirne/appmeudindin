@@ -29,25 +29,35 @@ export default async function AffiliatesPage() {
     .select('*')
     .order('created_at', { ascending: false })
 
-  // Pegar usuários para calcular vendas
   const { data: usersData } = await adminClient
     .from('users')
     .select('id, name, full_name, email, referred_by, plan_status, created_at')
     .not('referred_by', 'is', null)
 
+  const { data: plansData } = await adminClient
+    .from('plans')
+    .select('price')
+    .eq('is_active', true)
+  
+  const avgPlanPrice = (plansData && plansData.length > 0)
+    ? plansData.reduce((acc, p) => acc + Number(p.price), 0) / plansData.length
+    : 29.0;
+
   const affiliates = (affiliatesData || []).map(aff => {
-    // Relatório
     const signups = (usersData || []).filter(u => u.referred_by === aff.code)
     const sales = signups.filter(u => u.plan_status === 'active')
+    
+    const totalGenerated = sales.length * avgPlanPrice;
     const totalToPay = aff.commission_type === 'fixed' 
       ? sales.length * aff.commission_value
-      : sales.length * (29 * (aff.commission_value / 100)) // Supondo R o plano
+      : sales.length * (avgPlanPrice * (aff.commission_value / 100))
 
     return {
       ...aff,
       metrics: {
         signups: signups.length,
         sales: sales.length,
+        totalGenerated,
         totalToPay
       },
       salesDetails: sales.map(s => ({
@@ -55,7 +65,7 @@ export default async function AffiliatesPage() {
         name: s.name || s.full_name || s.email,
         email: s.email,
         date: s.created_at,
-        commission: aff.commission_type === 'fixed' ? aff.commission_value : (29 * (aff.commission_value / 100))
+        commission: aff.commission_type === 'fixed' ? aff.commission_value : (avgPlanPrice * (aff.commission_value / 100))
       }))
     }
   })
@@ -80,4 +90,3 @@ export default async function AffiliatesPage() {
     </div>
   )
 }
-
