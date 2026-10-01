@@ -14,5 +14,11 @@ export default async function PlanningPage() {
     .eq('user_id', user.id)
     .order('date', { ascending: true })
 
-  return <PlanningClient transactions={transactions || []} />
+  // Busca as metas do usuario
+  const { data: budgets } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('user_id', user.id)
+
+  return <PlanningClient transactions={transactions || []} budgets={budgets || []} />
 }
