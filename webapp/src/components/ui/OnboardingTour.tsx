@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Joyride, CallBackProps, STATUS, Step } from 'react-joyride'
+import { Joyride, STATUS } from 'react-joyride'
 import { useTheme } from 'next-themes'
 
 export function OnboardingTour() {
@@ -17,7 +17,7 @@ export function OnboardingTour() {
     }
   }, [])
 
-  const steps: Step[] = [
+  const steps: any[] = [
     {
       target: '.tour-balance',
       content: 'Bem-vindo ao Meu DinDin! 🚀 Aqui você acompanha o resumo do seu dinheiro no mês atual.',
@@ -37,7 +37,7 @@ export function OnboardingTour() {
     }
   ]
 
-  const handleJoyrideCallback = (data: CallBackProps) => {
+  const handleJoyrideCallback = (data: any) => {
     const { status } = data
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED]
 
@@ -50,6 +50,7 @@ export function OnboardingTour() {
   const isDark = theme === 'dark'
 
   return (
+    // @ts-ignore - TS types for react-joyride v3 are slightly out of sync
     <Joyride
       callback={handleJoyrideCallback}
       continuous

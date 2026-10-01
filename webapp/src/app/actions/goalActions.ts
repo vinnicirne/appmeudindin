@@ -24,7 +24,7 @@ export async function createGoalAction(formData: {
     if (!user) throw new Error('Não autenticado')
 
     const admin = getAdminClient()
-    const { error } = await admin.from('goals').insert({
+    const { data, error } = await admin.from('goals').insert({
       user_id: user.id,
       title: formData.title,
       target_amount: formData.targetAmount,
