@@ -50,45 +50,46 @@ export function OnboardingTour() {
   const isDark = theme === 'dark'
 
   return (
-    // @ts-ignore - TS types for react-joyride v3 are slightly out of sync
     <Joyride
-      callback={handleJoyrideCallback}
-      continuous
-      hideCloseButton
-      run={run}
-      scrollToFirstStep
-      showProgress
-      showSkipButton
-      steps={steps}
-      styles={{
-        options: {
-          zIndex: 10000,
-          primaryColor: '#1db576',
-          textColor: isDark ? '#f8fafc' : '#0f172a',
-          backgroundColor: isDark ? '#1e293b' : '#ffffff',
-          arrowColor: isDark ? '#1e293b' : '#ffffff',
-          overlayColor: 'rgba(0, 0, 0, 0.6)'
+      {...({
+        onEvent: handleJoyrideCallback,
+        continuous: true,
+        hideCloseButton: true,
+        run: run,
+        scrollToFirstStep: true,
+        showProgress: true,
+        showSkipButton: true,
+        steps: steps,
+        styles: {
+          options: {
+            zIndex: 10000,
+            primaryColor: '#1db576',
+            textColor: isDark ? '#f8fafc' : '#0f172a',
+            backgroundColor: isDark ? '#1e293b' : '#ffffff',
+            arrowColor: isDark ? '#1e293b' : '#ffffff',
+            overlayColor: 'rgba(0, 0, 0, 0.6)'
+          },
+          buttonNext: {
+            backgroundColor: '#1db576',
+            borderRadius: '8px',
+            padding: '8px 16px',
+            fontWeight: 'bold',
+          },
+          buttonBack: {
+            color: isDark ? '#94a3b8' : '#64748b',
+          },
+          buttonSkip: {
+            color: isDark ? '#94a3b8' : '#64748b',
+          }
         },
-        buttonNext: {
-          backgroundColor: '#1db576',
-          borderRadius: '8px',
-          padding: '8px 16px',
-          fontWeight: 'bold',
-        },
-        buttonBack: {
-          color: isDark ? '#94a3b8' : '#64748b',
-        },
-        buttonSkip: {
-          color: isDark ? '#94a3b8' : '#64748b',
+        locale: {
+          back: 'Voltar',
+          close: 'Fechar',
+          last: 'Finalizar',
+          next: 'Próximo',
+          skip: 'Pular Tour'
         }
-      } as any}
-      locale={{
-        back: 'Voltar',
-        close: 'Fechar',
-        last: 'Finalizar',
-        next: 'Próximo',
-        skip: 'Pular Tour'
-      }}
+      } as any)}
     />
   )
 }
