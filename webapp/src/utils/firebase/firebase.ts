@@ -56,4 +56,15 @@ export const requestForToken = async (): Promise<{ token: string | null; error?:
   }
 };
 
+export const onMessageListener = (callback: (payload: any) => void) => {
+  if (typeof window !== 'undefined') {
+    const messaging = getMessaging(app);
+    import("firebase/messaging").then(({ onMessage }) => {
+      onMessage(messaging, (payload) => {
+        callback(payload);
+      });
+    });
+  }
+};
+
 export { app };

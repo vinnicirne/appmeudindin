@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { adminMessaging } from '@/utils/firebase/firebaseAdmin';
 import { createClient } from '@/utils/supabase/server';
 import { createClient as createSupabaseAdminClient } from '@supabase/supabase-js';
@@ -33,7 +33,11 @@ export async function POST(req: Request) {
 
     let sentCount = 0;
 
-    if (adminMessaging && users) {
+    if (!adminMessaging) {
+      return NextResponse.json({ error: 'Serviço Firebase Admin (Push) não está configurado. Verifique as variáveis de ambiente.' }, { status: 500 });
+    }
+
+    if (users) {
       const tokens = users.map(u => u.fcm_token).filter(Boolean);
       if (tokens.length > 0) {
         // Send to all tokens

@@ -19,6 +19,17 @@ export function PushNotificationPrompt() {
     }
   }, [])
 
+  useEffect(() => {
+    import('@/utils/firebase/firebase').then(({ onMessageListener }) => {
+      onMessageListener((payload: any) => {
+        toast.success(`Notificação: ${payload?.notification?.title}`, {
+          icon: '🔔',
+          duration: 5000
+        });
+      });
+    });
+  }, [])
+
   async function handleAccept() {
     setShowPrompt(false)
     toast.loading('Configurando avisos...', { id: 'push-prompt' })
