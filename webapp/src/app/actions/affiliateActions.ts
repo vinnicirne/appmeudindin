@@ -70,3 +70,48 @@ export async function updateAffiliateAction(id: string, data: {
 
   return { error: error?.message }
 }
+
+export async function getMyAffiliateDataAction() {
+  try {
+    const { createClient } = await import('@/utils/supabase/server')
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return { error: 'Nao autenticado' }
+
+    const admin = getAdminClient()
+
+    // Busca dados do usuario afiliado
+    const { data: userData, error: userErr } = await admin
+      .from('users')
+      .select('id, name, email, is_affiliate, affiliate_code')
+      .eq('id', user.id)
+      .single()
+
+    if (userErr || !userData?.is_affiliate || !userData?.affiliate_code) {
+      return { error: 'Voce nao e um afiliado ativo.' }
+    }
+
+    const code = userData.affiliate_code
+
+    // Cadastros via este codigo
+    const { data: signups } = await admin
+      .from('users')
+      .select('id, name, email, plan_status, created_at')
+      .eq('referred_by', code)
+      .order('created_at', { ascending: false })
+
+    const allSignups = signups || []
+    const activeSales = allSignups.filter(u => u.plan_status === 'active')
+
+    return {
+      code,
+      name: userData.name,
+      email: userData.email,
+      totalSignups: allSignups.length,
+      totalSales: activeSales.length,
+      recentSignups: allSignups.slice(0, 10)
+    }
+  } catch (err: any) {
+    return { error: err.message || 'Erro ao buscar dados de afiliado.' }
+  }
+}

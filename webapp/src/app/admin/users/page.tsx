@@ -46,6 +46,8 @@ export default async function AdminUsersPage() {
     plan_status: u.plan_status || 'pending',
     trial_ends_at: u.trial_ends_at || null,
     created_at: u.created_at || new Date().toISOString(),
+    is_affiliate: u.is_affiliate || false,
+    affiliate_code: u.affiliate_code || null,
   }))
 
   return (

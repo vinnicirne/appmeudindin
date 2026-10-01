@@ -6,9 +6,10 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 
 interface Props {
   isAdmin?: boolean
+  isAffiliate?: boolean
 }
 
-export default function SidebarClient({ isAdmin }: Props) {
+export default function SidebarClient({ isAdmin, isAffiliate }: Props) {
   const pathname = usePathname();
 
   return (
@@ -26,6 +27,9 @@ export default function SidebarClient({ isAdmin }: Props) {
         <NavItem href="/transactions" icon="receipt_long" label="Extrato" active={pathname === '/transactions'} />
         <NavItem href="/planning" icon="savings" label="Metas" active={pathname === '/planning'} />
         <NavItem href="/budgets" icon="donut_large" label="Teto de Gastos" active={pathname === '/budgets'} />
+        {isAffiliate && (
+          <NavItem href="/affiliate" icon="handshake" label="Área de Parceiro" active={pathname === '/affiliate'} />
+        )}
         {isAdmin && (
           <NavItem href="/admin" icon="admin_panel_settings" label="Painel Admin" active={pathname.startsWith('/admin')} />
         )}

@@ -145,6 +145,13 @@ export function Header() {
                     onClick={() => setIsMenuOpen(false)} 
                   />
                   <DrawerItem 
+                    href="/affiliate" 
+                    icon="handshake" 
+                    label="Área de Parceiro" 
+                    active={pathname === '/affiliate'} 
+                    onClick={() => setIsMenuOpen(false)} 
+                  />
+                  <DrawerItem 
                     href="/graphics" 
                     icon="pie_chart" 
                     label="Gráficos & Relatórios" 

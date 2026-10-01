@@ -178,5 +178,33 @@ export async function updateUserTrialAction(userId: string, daysToAdd: number | 
   }
 }
 
+export async function toggleAffiliateAction(userId: string, makeAffiliate: boolean, affiliateCode?: string) {
+  try {
+    await checkAdmin()
+    const adminSupabase = getAdminClient()
 
+    if (makeAffiliate) {
+      // Gera codigo unico se nao fornecido
+      const code = affiliateCode || ('AFF' + Math.random().toString(36).slice(2, 8).toUpperCase())
 
+      const { error } = await adminSupabase
+        .from('users')
+        .update({ is_affiliate: true, affiliate_code: code })
+        .eq('id', userId)
+
+      if (error) throw error
+    } else {
+      const { error } = await adminSupabase
+        .from('users')
+        .update({ is_affiliate: false, affiliate_code: null })
+        .eq('id', userId)
+
+      if (error) throw error
+    }
+
+    revalidatePath('/admin/users')
+    return { success: true }
+  } catch (err: any) {
+    return { error: err.message || 'Erro ao atualizar status de afiliado.' }
+  }
+}

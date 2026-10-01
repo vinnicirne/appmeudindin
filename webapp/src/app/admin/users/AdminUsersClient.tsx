@@ -9,7 +9,8 @@ import {
   updateUserRoleAction, 
   createUserAction, 
   deleteUserAction,
-  updateUserTrialAction
+  updateUserTrialAction,
+  toggleAffiliateAction
 } from '@/app/actions/adminUserActions'
 
 export interface AdminUserItem {
@@ -21,6 +22,8 @@ export interface AdminUserItem {
   plan_status: string | null
   trial_ends_at?: string | null
   created_at: string
+  is_affiliate?: boolean
+  affiliate_code?: string | null
 }
 
 interface Props {
@@ -162,6 +165,26 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
         setFeedback({ type: 'success', message: 'Permissão do usuário atualizada com sucesso!' })
         if (selectedUser && selectedUser.id === userId) {
           setSelectedUser({ ...selectedUser, role: targetRole })
+        }
+      }
+    })
+  }
+
+  function handleToggleAffiliate(userId: string, currentIsAffiliate: boolean) {
+    const action = currentIsAffiliate ? 'remover o status de afiliado de' : 'tornar afiliado'
+    if (!confirm(`Tem certeza que deseja ${action} este usuário?`)) return
+    setFeedback(null)
+    startTransition(async () => {
+      const res = await toggleAffiliateAction(userId, !currentIsAffiliate)
+      if (res.error) {
+        setFeedback({ type: 'error', message: res.error })
+      } else {
+        setUsers(prev =>
+          prev.map(u => (u.id === userId ? { ...u, is_affiliate: !currentIsAffiliate } : u))
+        )
+        setFeedback({ type: 'success', message: !currentIsAffiliate ? 'Usuário agora é um afiliado!' : 'Status de afiliado removido.' })
+        if (selectedUser && selectedUser.id === userId) {
+          setSelectedUser({ ...selectedUser, is_affiliate: !currentIsAffiliate })
         }
       }
     })
@@ -557,6 +580,35 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
                       Administrador
                     </Button>
                   </div>
+                </div>
+
+                {/* Afiliado / Parceiro */}
+                <div className="space-y-2 pt-2 border-t border-border/60">
+                  <label className="text-xs font-bold text-foreground block">
+                    Programa de Parceiros
+                  </label>
+                  {selectedUser.is_affiliate && selectedUser.affiliate_code && (
+                    <div className="bg-amber-500/10 border border-amber-200 dark:border-amber-800 rounded-xl px-3 py-2 mb-2">
+                      <p className="text-[10px] font-bold text-amber-700 dark:text-amber-400 uppercase">Código do Afiliado</p>
+                      <p className="font-mono font-bold text-sm text-foreground">{selectedUser.affiliate_code}</p>
+                    </div>
+                  )}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={isPending}
+                    onClick={() => handleToggleAffiliate(selectedUser.id, selectedUser.is_affiliate || false)}
+                    className={`w-full text-xs h-8 rounded-xl flex items-center justify-center gap-1.5 ${
+                      selectedUser.is_affiliate
+                        ? 'text-amber-600 border-amber-300 hover:bg-amber-50 dark:border-amber-700 dark:hover:bg-amber-900/20'
+                        : 'text-emerald-600 border-emerald-300 hover:bg-emerald-50 dark:border-emerald-700 dark:hover:bg-emerald-900/20'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-sm">
+                      {selectedUser.is_affiliate ? 'person_off' : 'handshake'}
+                    </span>
+                    {selectedUser.is_affiliate ? 'Remover status de Afiliado' : 'Tornar Afiliado / Parceiro'}
+                  </Button>
                 </div>
 
                 {/* Excluir Conta de Usuário */}

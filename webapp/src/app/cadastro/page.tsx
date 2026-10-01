@@ -1,20 +1,36 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
-export default function CadastroPage() {
+function CadastroForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [formState, setFormState] = useState<FormState>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [phone, setPhone] = useState('')
+  const [refCode, setRefCode] = useState<string | null>(null)
 
-  // Formata o telefone / WhatsApp (00) 00000-0000
+  useEffect(() => {
+    const urlRef = searchParams.get('ref')
+    if (urlRef) {
+      setRefCode(urlRef)
+      try {
+        localStorage.setItem('mdd_ref', urlRef)
+      } catch (e) {}
+    } else {
+      try {
+        const stored = localStorage.getItem('mdd_ref')
+        if (stored) setRefCode(stored)
+      } catch (e) {}
+    }
+  }, [searchParams])
+
   function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
     const raw = e.target.value.replace(/\D/g, '').slice(0, 11)
     let formatted = raw
@@ -47,6 +63,7 @@ export default function CadastroPage() {
           email, 
           password,
           phone: phone.replace(/\D/g, ''),
+          referred_by: refCode || undefined
         }),
       })
 
@@ -59,12 +76,10 @@ export default function CadastroPage() {
       }
 
       setFormState('success')
-
-      // Redireciona para o paywall no app
       router.push('/paywall')
-
-    } catch {
-      setErrorMsg('Falha de conexÃ£o. Verifique sua internet e tente novamente.')
+    } catch (err: any) {
+      console.error('Erro na requisição:', err)
+      setErrorMsg('Falha de conexão. Verifique sua internet e tente novamente.')
       setFormState('error')
     }
   }
@@ -73,7 +88,6 @@ export default function CadastroPage() {
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-background relative overflow-hidden">
-      {/* Background decorator */}
       <div className="absolute top-0 left-0 w-full h-1/3 bg-primary/10 -skew-y-6 transform origin-top-left -z-10" />
 
       <motion.div
@@ -82,20 +96,23 @@ export default function CadastroPage() {
         transition={{ duration: 0.3 }}
         className="w-full max-w-sm my-auto flex flex-col items-center"
       >
-        {/* Header */}
         <div className="flex flex-col items-center mb-6 gap-2 text-center">
           <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-3xl shadow-lg shadow-primary/30">
             $
           </div>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">Crie sua conta</h1>
           <p className="text-xs sm:text-sm font-medium text-muted-foreground text-center">
-            Preencha os dados abaixo e em seguida vocÃª serÃ¡ levado ao pagamento.
+            Preencha os dados abaixo e em seguida você será levado ao pagamento.
           </p>
+          {refCode && (
+            <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold mt-1">
+              <span className="material-symbols-outlined text-sm">handshake</span>
+              <span>Indicado por: {refCode}</span>
+            </div>
+          )}
         </div>
 
-        {/* Card */}
         <div className="w-full bg-card p-6 sm:p-8 rounded-[2rem] shadow-xl border border-border">
-          {/* Progresso do funil */}
           <div className="flex items-center gap-2 mb-6">
             <div className="flex items-center gap-1.5">
               <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xs font-bold">1</div>
@@ -114,7 +131,6 @@ export default function CadastroPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            {/* Nome */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="name" className="text-xs font-semibold text-foreground/80">
                 Nome completo
@@ -125,13 +141,12 @@ export default function CadastroPage() {
                 type="text"
                 required
                 autoComplete="name"
-                placeholder="JoÃ£o Silva"
+                placeholder="João Silva"
                 disabled={isLoading}
                 className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow disabled:opacity-60"
               />
             </div>
 
-            {/* Email */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="email" className="text-xs font-semibold text-foreground/80">
                 E-mail
@@ -148,7 +163,6 @@ export default function CadastroPage() {
               />
             </div>
 
-            {/* WhatsApp / Telefone */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="phone" className="text-xs font-semibold text-foreground/80">
                 WhatsApp / Telefone
@@ -166,7 +180,6 @@ export default function CadastroPage() {
               />
             </div>
 
-            {/* Senha */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="password" className="text-xs font-semibold text-foreground/80">
                 Senha
@@ -179,7 +192,7 @@ export default function CadastroPage() {
                   required
                   minLength={6}
                   autoComplete="new-password"
-                  placeholder="MÃ­nimo 6 caracteres"
+                  placeholder="Mínimo 6 caracteres"
                   disabled={isLoading}
                   className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3 pr-12 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow disabled:opacity-60"
                 />
@@ -196,7 +209,6 @@ export default function CadastroPage() {
               </div>
             </div>
 
-            {/* Erro */}
             {formState === 'error' && errorMsg && (
               <motion.div
                 initial={{ opacity: 0, y: -8 }}
@@ -208,7 +220,6 @@ export default function CadastroPage() {
               </motion.div>
             )}
 
-            {/* BotÃ£o principal */}
             <button
               type="submit"
               disabled={isLoading}
@@ -229,15 +240,13 @@ export default function CadastroPage() {
           </form>
         </div>
 
-        {/* SeguranÃ§a */}
         <div className="flex items-center justify-center gap-2 mt-4 text-muted-foreground text-xs">
           <span className="material-symbols-outlined text-sm text-[#1db576]">lock</span>
           <p className="font-medium">Pagamento 100% seguro via Mercado Pago</p>
         </div>
 
-        {/* Link para login */}
         <p className="text-center text-xs sm:text-sm text-muted-foreground mt-3">
-          JÃ¡ tem conta?{' '}
+          Já tem conta?{' '}
           <Link href="/login" className="font-bold text-primary hover:underline">
             Fazer login
           </Link>
@@ -247,3 +256,10 @@ export default function CadastroPage() {
   )
 }
 
+export default function CadastroPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">Carregando...</div>}>
+      <CadastroForm />
+    </Suspense>
+  )
+}

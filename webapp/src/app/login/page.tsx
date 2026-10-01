@@ -2,15 +2,25 @@
 
 import { motion } from "framer-motion";
 import { loginAction } from '../actions/authActions';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const urlRef = searchParams.get('ref');
+    if (urlRef) {
+      try {
+        localStorage.setItem('mdd_ref', urlRef);
+      } catch (e) {}
+    }
+  }, [searchParams]);
 
   async function handleSubmit(formData: FormData) {
     setLoading(true);
@@ -27,7 +37,6 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-background relative overflow-hidden">
-      {/* Background Decorator */}
       <div className="absolute top-0 left-0 w-full h-1/3 bg-primary/10 -skew-y-6 transform origin-top-left -z-10" />
 
       <motion.div 
@@ -105,7 +114,6 @@ export default function LoginPage() {
           </form>
         </div>
 
-        {/* Link para criar conta */}
         <p className="text-center text-xs sm:text-sm text-muted-foreground mt-4">
           Ainda não tem conta?{' '}
           <Link href="/cadastro" className="font-bold text-primary hover:underline">
@@ -114,5 +122,13 @@ export default function LoginPage() {
         </p>
       </motion.div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">Carregando...</div>}>
+      <LoginForm />
+    </Suspense>
   );
 }
