@@ -10,11 +10,7 @@ import { toast } from 'react-hot-toast';
 const EXPENSE_QUICK_TAGS = ['Supermercado', 'Combustível', 'Restaurante', 'Farmácia', 'Lazer', 'Uber'];
 const INCOME_QUICK_TAGS = ['Salário', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
-' },
-  { id: 'lazer', label: 'Lazer & Entretenimento', icon: 'sports_esports', color: 'text-purple-500' },
-  { id: 'saude', label: 'Saúde & Farmácia', icon: 'medical_services', color: 'text-rose-500' },
-  { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' },
-];
+
 
 function AddTransactionForm({ categories = [] }: { categories?: any[] }) {
   const CATEGORIES = categories;
