@@ -1023,3 +1023,5 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
       )}
 
     </div>
+  )
+}
