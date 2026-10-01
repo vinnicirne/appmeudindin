@@ -24,7 +24,8 @@ export default function SidebarClient({ isAdmin }: Props) {
         <NavItem href="/" icon="home" label="Início" active={pathname === '/'} />
         <NavItem href="/graphics" icon="pie_chart" label="Gráficos" active={pathname === '/graphics'} />
         <NavItem href="/transactions" icon="receipt_long" label="Extrato" active={pathname === '/transactions'} />
-        <NavItem href="/planning" icon="account_balance_wallet" label="Metas" active={pathname === '/planning'} />
+        <NavItem href="/planning" icon="savings" label="Metas" active={pathname === '/planning'} />
+        <NavItem href="/budgets" icon="donut_large" label="Teto de Gastos" active={pathname === '/budgets'} />
         {isAdmin && (
           <NavItem href="/admin" icon="admin_panel_settings" label="Painel Admin" active={pathname.startsWith('/admin')} />
         )}
@@ -44,7 +45,7 @@ function NavItem({ href, icon, label, active = false }: { href: string; icon: st
       href={href}
       className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors font-medium ${
         active
-          ? 'bg-primary text-primary-foreground'
+          ? 'bg-primary text-primary-foreground font-bold shadow-sm'
           : 'text-muted-foreground hover:bg-muted hover:text-foreground'
       }`}
     >

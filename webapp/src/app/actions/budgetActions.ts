@@ -1,7 +1,14 @@
-﻿'use server'
+'use server'
 
 import { createClient } from '@/utils/supabase/server'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { revalidatePath } from 'next/cache'
+
+function getAdminClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  return createAdminClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
+}
 
 export async function saveBudgetAction(categoryId: string, amount: number) {
   try {
@@ -10,9 +17,10 @@ export async function saveBudgetAction(categoryId: string, amount: number) {
     
     if (!user) throw new Error('Usuário não autenticado')
 
+    const admin = getAdminClient()
+
     if (amount <= 0) {
-      // Se for 0, remove a meta
-      const { error } = await supabase
+      const { error } = await admin
         .from('budgets')
         .delete()
         .eq('user_id', user.id)
@@ -20,8 +28,7 @@ export async function saveBudgetAction(categoryId: string, amount: number) {
 
       if (error) throw error
     } else {
-      // Usa upsert baseado na constraint UNIQUE(user_id, category_id)
-      const { error } = await supabase
+      const { error } = await admin
         .from('budgets')
         .upsert({
           user_id: user.id,
@@ -33,10 +40,11 @@ export async function saveBudgetAction(categoryId: string, amount: number) {
       if (error) throw error
     }
 
+    revalidatePath('/budgets')
     revalidatePath('/planning')
     return { success: true }
   } catch (err: any) {
-    console.error('Erro ao salvar meta:', err)
-    return { error: err.message || 'Erro ao salvar meta.' }
+    console.error('Erro ao salvar teto de gastos:', err)
+    return { error: err.message || 'Erro ao salvar teto de gastos.' }
   }
 }
