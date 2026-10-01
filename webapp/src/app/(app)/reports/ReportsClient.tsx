@@ -59,7 +59,7 @@ export default function ReportsClient({ transactions }: Props) {
     doc.text(`Saldo do Período: R$ ${balance.toFixed(2)}`, 14, 50)
 
     const tableColumn = ["Data", "Descrição", "Categoria", "Tipo", "Status", "Valor (R$)"]
-    const tableRows = []
+    const tableRows: string[][] = []
 
     filteredTransactions.forEach(t => {
       const row = [
