@@ -35,8 +35,10 @@ export default function ReportsClient({ transactions }: Props) {
 
   const filteredTransactions = transactions.filter(t => {
     let keep = true
-    if (startDate && t.date < startDate) keep = false
-    if (endDate && t.date > endDate) keep = false
+    const tDate = t.date.split('T')[0] // Garante comparação apenas por YYYY-MM-DD
+    
+    if (startDate && tDate < startDate) keep = false
+    if (endDate && tDate > endDate) keep = false
     if (typeFilter !== 'ALL' && t.type !== typeFilter) keep = false
     return keep
   })

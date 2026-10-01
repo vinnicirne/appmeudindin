@@ -154,8 +154,15 @@ export function Header() {
                   <DrawerItem 
                     href="/graphics" 
                     icon="pie_chart" 
-                    label="Gráficos & Relatórios" 
+                    label="Gráficos" 
                     active={pathname === '/graphics'} 
+                    onClick={() => setIsMenuOpen(false)} 
+                  />
+                  <DrawerItem 
+                    href="/reports" 
+                    icon="summarize" 
+                    label="Relatórios PDF" 
+                    active={pathname === '/reports'} 
                     onClick={() => setIsMenuOpen(false)} 
                   />
                   <DrawerItem 

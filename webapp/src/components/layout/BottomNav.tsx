@@ -16,7 +16,6 @@ export function BottomNav() {
         <NavItem href="/" icon="home" label="Início" active={pathname === '/'} />
         <NavItem href="/graphics" icon="pie_chart" label="Gráficos" active={pathname === '/graphics'} />
         <NavItem href="/transactions" icon="receipt_long" label="Extrato" active={pathname === '/transactions'} />
-        <NavItem href="/reports" icon="summarize" label="Relatórios" active={pathname === '/reports'} />
         <NavItem href="/planning" icon="account_balance_wallet" label="Metas" active={pathname === '/planning'} />
         <NavItem href="/profile" icon="person" label="Perfil" active={pathname === '/profile'} />
       </nav>
