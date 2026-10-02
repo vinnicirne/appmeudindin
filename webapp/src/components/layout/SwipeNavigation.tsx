@@ -41,7 +41,7 @@ export function SwipeNavigation({ children }: { children: ReactNode }) {
   })
 
   return (
-    <div {...handlers} className="flex-1 flex flex-col min-h-0 overflow-x-hidden">
+    <div {...handlers} className="flex-1 flex flex-col min-h-0 overflow-x-hidden" style={{ touchAction: 'pan-y' }}>
       {children}
     </div>
   )

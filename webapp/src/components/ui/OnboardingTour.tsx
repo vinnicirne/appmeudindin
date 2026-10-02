@@ -8,10 +8,13 @@ export function OnboardingTour() {
   const [run, setRun] = useState(false)
   const { theme } = useTheme()
 
+  const [isFinished, setIsFinished] = useState(true)
+
   useEffect(() => {
     // Verifica se já fez o tour antes
     const hasCompletedTour = localStorage.getItem('meu-dindin-tour-completed')
     if (!hasCompletedTour) {
+      setIsFinished(false)
       // Delay pequeno para garantir que a UI rendeu
       setTimeout(() => setRun(true), 1000)
     }
@@ -43,11 +46,14 @@ export function OnboardingTour() {
 
     if (finishedStatuses.includes(status)) {
       setRun(false)
+      setIsFinished(true)
       localStorage.setItem('meu-dindin-tour-completed', 'true')
     }
   }
 
   const isDark = theme === 'dark'
+
+  if (isFinished) return null;
 
   return (
     <Joyride

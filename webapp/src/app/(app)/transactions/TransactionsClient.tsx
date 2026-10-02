@@ -328,6 +328,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
                   drag={isSelecting ? false : "x"}
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.5}
+                  style={{ touchAction: 'pan-y' }}
                   onDragEnd={(e, info) => {
                     if (isSelecting) return;
                     if (info.offset.x > 80) handleTogglePaid(t, e as any)
