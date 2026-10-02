@@ -232,7 +232,6 @@ export async function saveAffiliateForUserAction(data: {
         pix_key: data.pixKey || null,
         instagram: data.instagram || null,
         phone: data.phone || targetUser.phone || null,
-        updated_at: new Date().toISOString()
       }, { onConflict: 'user_id' })
 
     if (affErr) {
@@ -248,7 +247,6 @@ export async function saveAffiliateForUserAction(data: {
           pix_key: data.pixKey || null,
           instagram: data.instagram || null,
           phone: data.phone || targetUser.phone || null,
-          updated_at: new Date().toISOString()
         }, { onConflict: 'code' })
 
       if (affErr2) return { error: `Erro ao salvar afiliado: ${affErr2.message}` }
