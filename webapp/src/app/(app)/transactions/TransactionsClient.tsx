@@ -323,18 +323,8 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
                   </div>
                 </div>
 
-                {/* Card Frontal Arrastável */}
-                <motion.div
-                  drag={isSelecting ? false : "x"}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.5}
-                  style={{ touchAction: 'pan-y' }}
-                  onDragEnd={(e, info) => {
-                    if (isSelecting) return;
-                    if (info.offset.x > 80) handleTogglePaid(t, e as any)
-                    if (info.offset.x < -80) handleDelete(t.id, e as any)
-                  }}
-                  whileTap={!isSelecting ? { cursor: 'grabbing' } : undefined}
+                {/* Card Frontal */}
+                <div
                   onClick={() => {
                     if (isSelecting) {
                       handleToggleSelection(t.id);
@@ -397,7 +387,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
                       <span className="material-symbols-outlined text-sm">edit</span>
                     </button>
                   </div>
-                </motion.div>
+                </div>
               </div>
             )
           })}
