@@ -1,4 +1,4 @@
-'use server'
+﻿'use server'
 
 import { createClient } from '@/utils/supabase/server'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache'
 async function checkAdmin() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error('NÃ£o autenticado.')
+  if (!user) throw new Error('NÃƒÂ£o autenticado.')
 
   const { data: userData } = await supabase
     .from('users')
@@ -15,7 +15,7 @@ async function checkAdmin() {
     .eq('id', user.id)
     .single()
 
-  if (userData?.role !== 'admin') throw new Error('Acesso nÃ£o autorizado.')
+  if (userData?.role !== 'admin') throw new Error('Acesso nÃƒÂ£o autorizado.')
   return supabase
 }
 
@@ -23,7 +23,7 @@ function getAdminClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
   if (!url || !serviceKey) {
-    throw new Error('Chave de serviÃ§o do Supabase nÃ£o configurada.')
+    throw new Error('Chave de serviÃƒÂ§o do Supabase nÃƒÂ£o configurada.')
   }
   return createSupabaseClient(url, serviceKey, {
     auth: { autoRefreshToken: false, persistSession: false }
@@ -44,7 +44,7 @@ export async function createUserAction(formData: {
 
     const tempPassword = formData.password || ('Mdd#' + Math.random().toString(36).slice(-6) + '!')
 
-    // 1. Cria usuÃ¡rio no Auth
+    // 1. Cria usuÃƒÂ¡rio no Auth
     const { data: authData, error: authError } = await adminSupabase.auth.admin.createUser({
       email: formData.email,
       password: tempPassword,
@@ -82,7 +82,7 @@ export async function createUserAction(formData: {
       temporaryPassword: formData.password ? undefined : tempPassword 
     }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao criar novo usuÃ¡rio.' }
+    return { error: err.message || 'Erro ao criar novo usuÃƒÂ¡rio.' }
   }
 }
 
@@ -95,7 +95,7 @@ export async function deleteUserAction(userId: string) {
     const { error: authError } = await adminSupabase.auth.admin.deleteUser(userId)
     if (authError) throw authError
 
-    // 2. Remove de public.users por seguranÃ§a caso nÃ£o tenha cascade
+    // 2. Remove de public.users por seguranÃƒÂ§a caso nÃƒÂ£o tenha cascade
     await adminSupabase.from('users').delete().eq('id', userId)
 
     revalidatePath('/admin/users')
@@ -104,7 +104,7 @@ export async function deleteUserAction(userId: string) {
 
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao excluir usuÃ¡rio.' }
+    return { error: err.message || 'Erro ao excluir usuÃƒÂ¡rio.' }
   }
 }
 
@@ -125,7 +125,7 @@ export async function updateUserPlanStatusAction(userId: string, newStatus: 'act
     revalidatePath('/admin')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao atualizar status do usuÃ¡rio.' }
+    return { error: err.message || 'Erro ao atualizar status do usuÃƒÂ¡rio.' }
   }
 }
 
@@ -145,7 +145,7 @@ export async function updateUserRoleAction(userId: string, newRole: 'user' | 'ad
     revalidatePath('/admin')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao alterar permissÃ£o do usuÃ¡rio.' }
+    return { error: err.message || 'Erro ao alterar permissÃƒÂ£o do usuÃƒÂ¡rio.' }
   }
 }
 
@@ -174,7 +174,7 @@ export async function updateUserTrialAction(userId: string, daysToAdd: number | 
     revalidatePath('/admin')
     return { success: true }
   } catch (err: any) {
-    return { error: err.message || 'Erro ao atualizar perÃ­odo de teste.' }
+    return { error: err.message || 'Erro ao atualizar perÃƒÂ­odo de teste.' }
   }
 }
 
@@ -191,17 +191,17 @@ export async function saveAffiliateForUserAction(data: {
     await checkAdmin()
     const adminSupabase = getAdminClient()
 
-    // 1. Busca dados do usuário
+    // 1. Busca dados do usuÃ¡rio
     const { data: targetUser, error: userErr } = await adminSupabase
       .from('users')
       .select('id, name, email, phone')
       .eq('id', data.userId)
       .single()
 
-    if (userErr || !targetUser) throw new Error('Usuário não encontrado.')
+    if (userErr || !targetUser) return { error: 'Usuário não encontrado.' }
 
     const cleanCode = data.code.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '')
-    if (!cleanCode) throw new Error('Código de afiliado inválido.')
+    if (!cleanCode) return { error: 'Código de afiliado inválido.' }
 
     // 2. Atualiza tabela users
     const { error: userUpdateErr } = await adminSupabase
@@ -214,12 +214,12 @@ export async function saveAffiliateForUserAction(data: {
 
     if (userUpdateErr) {
       if (userUpdateErr.message?.includes('affiliate_code') || userUpdateErr.message?.includes('schema cache')) {
-        return { error: 'As colunas de afiliado ainda não foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
+        return { error: 'As colunas de afiliado ainda nÃ£o foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
       }
-      throw userUpdateErr
+      return { error: userUpdateErr.message }
     }
 
-    // 3. Upsert na tabela affiliates para sincronização total
+    // 3. Upsert na tabela affiliates para sincronizaÃ§Ã£o total
     const { error: affErr } = await adminSupabase
       .from('affiliates')
       .upsert({
@@ -234,7 +234,7 @@ export async function saveAffiliateForUserAction(data: {
         updated_at: new Date().toISOString()
       }, { onConflict: 'code' })
 
-    if (affErr) throw affErr
+    if (affErr) return { error: affErr.message }
 
     revalidatePath('/admin/users')
     revalidatePath('/admin/affiliates')
