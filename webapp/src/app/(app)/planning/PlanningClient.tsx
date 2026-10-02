@@ -6,7 +6,10 @@ import { createGoalAction, updateGoalAction, updateGoalBalanceAction, deleteGoal
 import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
 import { EmptyState } from '@/components/ui/EmptyState'
-import { GoalConfetti } from '@/components/ui/Confetti'
+import dynamic from 'next/dynamic'
+
+// Evita erro de Canvas/Window no SSR que trava a navegação para a página de Metas
+const GoalConfetti = dynamic(() => import('@/components/ui/Confetti').then(mod => mod.GoalConfetti), { ssr: false })
 
 export interface Goal {
   id: string
