@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { requestForToken } from '@/utils/firebase/firebase';
 import { toast } from 'react-hot-toast';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { ThemeToggleIcon } from '@/components/ThemeToggleIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function Header() {
@@ -64,6 +64,7 @@ export function Header() {
         
         {/* Ações da Direita: Busca + Notificações */}
         <div className="flex items-center gap-1 text-foreground">
+          <ThemeToggleIcon />
           <button 
             onClick={handleSearchClick}
             title="Buscar Lançamentos"
@@ -182,14 +183,6 @@ export function Header() {
                 </nav>
               </div>
 
-              {/* Rodapé da Gaveta */}
-              <div className="pt-6 border-t border-border flex flex-col gap-3">
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Aparência</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-foreground">Modo Escuro / Claro</span>
-                  <ThemeToggle />
-                </div>
-              </div>
             </motion.div>
           </div>
         )}

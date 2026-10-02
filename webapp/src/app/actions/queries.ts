@@ -15,8 +15,8 @@ export async function getDashboardData() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
   const adminClient = createSupabaseClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } })
 
-  const sixMonthsAgo = new Date()
-  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5)
+  const oneYearAgo = new Date()
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 2)
 
   // Dispara todas as consultas em paralelo para máxima velocidade
   const [txRes, catRes, goalRes, balRes] = await Promise.all([
@@ -24,8 +24,8 @@ export async function getDashboardData() {
       .from('transactions')
       .select('*')
       .eq('user_id', user.id)
-      .gte('date', sixMonthsAgo.toISOString())
-      .limit(300)
+      .gte('date', oneYearAgo.toISOString())
+      .limit(2000)
       .order('date', { ascending: false }),
       
     adminClient
@@ -43,6 +43,7 @@ export async function getDashboardData() {
       .from('transactions')
       .select('amount, type')
       .eq('user_id', user.id)
+      .eq('is_paid', true)
   ])
 
   const transactions = txRes.data || []
