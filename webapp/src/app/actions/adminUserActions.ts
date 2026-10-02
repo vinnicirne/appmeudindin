@@ -151,7 +151,7 @@ export async function updateUserRoleAction(userId: string, newRole: 'user' | 'ad
 
 export async function updateUserTrialAction(userId: string, daysToAdd: number | null) {
   try {
-    const supabase = await checkAdmin()
+    await checkAdmin(); const supabase = getAdminClient()
     
     let trialEndsAt = null;
     let newStatus = 'expired';
@@ -198,10 +198,10 @@ export async function saveAffiliateForUserAction(data: {
       .eq('id', data.userId)
       .single()
 
-    if (userErr || !targetUser) throw new Error('Usu√°rio n√£o encontrado.')
+    if (userErr || !targetUser) return { error: 'Usu·rio n„o encontrado.' }
 
     const cleanCode = data.code.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '')
-    if (!cleanCode) throw new Error('C√≥digo de afiliado inv√°lido.')
+    if (!cleanCode) return { error: 'CÛdigo de afiliado inv·lido.' }
 
     // 2. Atualiza tabela users
     const { error: userUpdateErr } = await adminSupabase
@@ -216,7 +216,7 @@ export async function saveAffiliateForUserAction(data: {
       if (userUpdateErr.message?.includes('affiliate_code') || userUpdateErr.message?.includes('schema cache')) {
         return { error: 'As colunas de afiliado ainda n√£o foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
       }
-      throw userUpdateErr
+      return { error: userUpdateErr.message }
     }
 
     // 3. Upsert na tabela affiliates para sincroniza√ß√£o total
@@ -234,7 +234,7 @@ export async function saveAffiliateForUserAction(data: {
         updated_at: new Date().toISOString()
       }, { onConflict: 'code' })
 
-    if (affErr) throw affErr
+    if (affErr) return { error: affErr.message }
 
     revalidatePath('/admin/users')
     revalidatePath('/admin/affiliates')

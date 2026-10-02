@@ -14,7 +14,7 @@ export async function GET(req: Request) {
     // 1. Buscar TODOS os usu√°rios com token FCM ativo
     const { data: users, error: userError } = await adminSupabase
       .from('users')
-      .select('id, fcm_token, push_enabled')
+      .select('id, fcm_token, push_enabled, plan_status, trial_ends_at')
       .not('fcm_token', 'is', null)
       .eq('push_enabled', true);
 
@@ -59,6 +59,32 @@ export async function GET(req: Request) {
       let body = '';
       let link = '/';
 
+            let isTrialEnding = false;
+      let isTrialExpired = false;
+
+      if (user.plan_status === 'trial' && user.trial_ends_at) {
+        const trialEnd = new Date(user.trial_ends_at);
+        const now = new Date();
+        const diffMs = trialEnd.getTime() - now.getTime();
+        const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 1) {
+          isTrialEnding = true;
+        } else if (diffDays <= 0) {
+          isTrialExpired = true;
+        }
+      }
+
+      // Regra 0: Teste Gr·tis
+      if (isTrialExpired) {
+        title = 'Seu teste acabou! ??';
+        body = 'Seu perÌodo de teste gratuito do Meu DinDin expirou. Assine agora para continuar tendo o controle financeiro na palma da m„o!';
+        link = '/paywall';
+      } else if (isTrialEnding) {
+        title = '⁄ltimo dia de teste! ?';
+        body = 'Amanh„ o seu teste gr·tis encerra. Garanta seu plano agora para n„o perder o acesso aos seus dados!';
+        link = '/paywall';
+      }
       // Regra 1: Contas a pagar vencendo hoje (Urgente)
       if (userExpenses.length > 0) {
         title = 'Aten√ß√£o ao seu Lan√ßamento! üö®';
