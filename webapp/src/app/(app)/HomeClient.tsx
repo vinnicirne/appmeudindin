@@ -9,7 +9,8 @@ import { deleteTransactionAction, togglePaidTransactionAction } from '@/app/acti
 import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
 import { EmptyState } from '@/components/ui/EmptyState'
-import { OnboardingTour } from '@/components/ui/OnboardingTour'
+import dynamic from 'next/dynamic'
+const OnboardingTour = dynamic(() => import('@/components/ui/OnboardingTour').then(mod => mod.OnboardingTour), { ssr: false })
 
 interface Transaction {
   id: string

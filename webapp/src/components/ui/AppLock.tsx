@@ -12,10 +12,6 @@ export function AppLock() {
     const lockEnabled = localStorage.getItem('meu-dindin-applock') === 'true'
     if (lockEnabled) {
       setIsLocked(true)
-      // Automatically prompt biometrics on mount if locked
-      setTimeout(() => {
-        handleUnlock()
-      }, 500)
     } else {
       setIsLocked(false)
     }
