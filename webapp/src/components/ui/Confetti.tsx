@@ -22,15 +22,16 @@ export function GoalConfetti({ show, onComplete }: GoalConfettiProps) {
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [show, onComplete])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show])
 
   if (!isRunning) return null
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999]">
       <Confetti
-        width={width}
-        height={height}
+        width={width === Infinity ? 0 : width}
+        height={height === Infinity ? 0 : height}
         recycle={false}
         numberOfPieces={400}
         gravity={0.15}
