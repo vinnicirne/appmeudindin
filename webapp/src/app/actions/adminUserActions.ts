@@ -1,4 +1,4 @@
-﻿'use server'
+'use server'
 
 import { createClient } from '@/utils/supabase/server'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
@@ -219,7 +219,8 @@ export async function saveAffiliateForUserAction(data: {
       return { error: userUpdateErr.message }
     }
 
-    // 3. Upsert na tabela affiliates para sincronizaÃ§Ã£o total
+    // 3. Upsert na tabela affiliates para sincronização total
+    // Tenta por user_id primeiro (parceiro existente), depois por code
     const { error: affErr } = await adminSupabase
       .from('affiliates')
       .upsert({
@@ -232,9 +233,26 @@ export async function saveAffiliateForUserAction(data: {
         instagram: data.instagram || null,
         phone: data.phone || targetUser.phone || null,
         updated_at: new Date().toISOString()
-      }, { onConflict: 'code' })
+      }, { onConflict: 'user_id' })
 
-    if (affErr) return { error: affErr.message }
+    if (affErr) {
+      // Fallback: tenta onConflict por code
+      const { error: affErr2 } = await adminSupabase
+        .from('affiliates')
+        .upsert({
+          user_id: data.userId,
+          name: targetUser.name || targetUser.email,
+          code: cleanCode,
+          commission_type: data.commissionType,
+          commission_value: data.commissionValue,
+          pix_key: data.pixKey || null,
+          instagram: data.instagram || null,
+          phone: data.phone || targetUser.phone || null,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'code' })
+
+      if (affErr2) return { error: `Erro ao salvar afiliado: ${affErr2.message}` }
+    }
 
     revalidatePath('/admin/users')
     revalidatePath('/admin/affiliates')

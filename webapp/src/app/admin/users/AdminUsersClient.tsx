@@ -924,6 +924,13 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: Props) 
             </div>
 
             <form onSubmit={handleSaveAffiliateModal} className="space-y-4">
+              {/* Feedback inline dentro do modal */}
+              {feedback && (
+                <div className={`text-xs px-3 py-2 rounded-xl font-semibold flex items-center gap-2 ${feedback.type === 'error' ? 'bg-red-50 text-red-600 border border-red-200 dark:bg-red-900/20 dark:text-red-400' : 'bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400'}`}>
+                  <span className="material-symbols-outlined text-base">{feedback.type === 'error' ? 'error' : 'check_circle'}</span>
+                  {feedback.message}
+                </div>
+              )}
               {/* Código do Link */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
