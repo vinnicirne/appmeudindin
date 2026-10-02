@@ -5,6 +5,15 @@ import { useTheme } from 'next-themes';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Antes do mount, renderiza sem conteúdo dependente de tema (server e client concordam)
+  const icon = mounted ? (theme === 'light' ? 'dark_mode' : 'light_mode') : 'contrast';
+  const label = mounted ? (theme === 'light' ? 'Tema Claro' : 'Tema Escuro') : 'Aparência';
 
   return (
     <button
@@ -14,7 +23,7 @@ export function ThemeToggle() {
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
           <span className="material-symbols-outlined text-[20px]">
-            {theme === 'light' ? 'dark_mode' : 'light_mode'}
+            {icon}
           </span>
         </div>
         <div>
@@ -22,7 +31,7 @@ export function ThemeToggle() {
             Aparência
           </span>
           <span className="text-[11px] text-muted-foreground">
-            {theme === 'light' ? 'Tema Claro' : 'Tema Escuro'}
+            {label}
           </span>
         </div>
       </div>

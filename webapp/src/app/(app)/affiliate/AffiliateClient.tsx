@@ -18,13 +18,43 @@ interface Props {
   totalSignups: number
   totalSales: number
   recentSignups: Signup[]
+  isAffiliate?: boolean
 }
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://meudindinapp.vercel.app'
 const LANDING_PAGE_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_URL || 'https://app-meudindin-pages.vercel.app'
 
-export default function AffiliateClient({ name, code, totalSignups, totalSales, recentSignups }: Props) {
+export default function AffiliateClient({ name, code, totalSignups, totalSales, recentSignups, isAffiliate = true }: Props) {
   const [copied, setCopied] = useState<string | null>(null)
+
+  if (!isAffiliate) {
+    return (
+      <main className="flex-1 w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center min-h-[80vh]">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-card rounded-3xl p-8 border border-border shadow-xl text-center max-w-md w-full"
+        >
+          <div className="w-20 h-20 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto mb-6">
+            <span className="material-symbols-outlined text-4xl">lock</span>
+          </div>
+          <h1 className="text-2xl font-black text-foreground tracking-tight mb-2">Área Restrita</h1>
+          <p className="text-sm text-muted-foreground mb-8">
+            Você ainda não faz parte do nosso Programa de Parceiros. Solicite sua filiação ao nosso suporte para começar a indicar e ganhar comissões.
+          </p>
+          <a
+            href="https://api.whatsapp.com/send?phone=5521974976130&text=Ol%C3%A1!%20Sou%20usu%C3%A1rio%20do%20Meu%20DinDin%20e%20gostaria%20de%20me%20tornar%20um%20Parceiro%20Afiliado."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#25D366] text-white font-bold hover:bg-[#20bd5a] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+          >
+            <span className="material-symbols-outlined text-xl">chat</span>
+            Solicitar Afiliação via WhatsApp
+          </a>
+        </motion.div>
+      </main>
+    )
+  }
 
   const links = [
     {

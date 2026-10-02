@@ -1,6 +1,6 @@
 'use client'
 
-import * as motion from "framer-motion/client"
+import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { useState, useMemo } from "react"
 import EditTransactionModal from '@/components/transactions/EditTransactionModal'
@@ -29,28 +29,17 @@ function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-const categoryLabel: Record<string, string> = {
-  alimentacao: 'Alimentação',
-  transporte: 'Transporte',
-  moradia: 'Moradia',
-  salario: 'Salário',
-  lazer: 'Lazer',
-  saude: 'Saúde & Farmácia',
-  outros: 'Outros',
-}
+import { useDashboardData } from '@/hooks/useDashboardData'
+import { useQueryClient } from '@tanstack/react-query'
 
-const CATEGORY_COLORS: Record<string, string> = {
-  alimentacao: 'bg-orange-500',
-  transporte: 'bg-blue-500',
-  moradia: 'bg-purple-500',
-  salario: 'bg-green-500',
-  lazer: 'bg-pink-500',
-  saude: 'bg-rose-500',
-  outros: 'bg-gray-400',
-}
+export default function TransactionsClient() {
+  const { data, isLoading } = useDashboardData()
+  const transactions = data?.transactions || []
+  const dbCategories = data?.categories || []
 
-export default function TransactionsClient({ transactions }: { transactions: Transaction[] }) {
+
   const router = useRouter()
+  const queryClient = useQueryClient()
   const today = new Date()
   const [year, setYear] = useState(today.getFullYear())
   const [month, setMonth] = useState(today.getMonth())
@@ -121,7 +110,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
       toast.error('Erro ao excluir: ' + res.error)
     } else {
       toast.success('Lançamento excluído!')
-      router.refresh()
+      queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
     }
   }
 
@@ -133,13 +122,26 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
       toast.error('Erro ao alterar status: ' + res.error)
     } else {
       toast.success(newStatus ? (t.type === 'INCOME' ? 'Marcado como recebido!' : 'Marcado como pago!') : 'Marcado como pendente!')
-      router.refresh()
+      queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
     }
   }
 
   function handleToggleSelection(id: string) {
     setSelectedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
   }
+
+  // Mapas reais do banco de dados (Dashboard)
+  const categoryMap = useMemo(() => {
+    const map: Record<string, string> = {}
+    dbCategories.forEach(cat => map[cat.slug || cat.id] = cat.label || cat.name || cat.title || cat.slug)
+    return map
+  }, [dbCategories])
+
+  const categoryColorsMap = useMemo(() => {
+    const map: Record<string, string> = {}
+    dbCategories.forEach(cat => map[cat.slug || cat.id] = cat.color || 'bg-gray-400')
+    return map
+  }, [dbCategories])
 
   function handleExportCSV() {
     if (filtered.length === 0) {
@@ -151,7 +153,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
     const rows = filtered.map(t => {
       const data = new Date(t.date).toLocaleDateString('pt-BR')
       const desc = `"${t.description.replace(/"/g, '""')}"`
-      const cat = categoryLabel[t.category_id] || t.category_id
+      const cat = categoryMap[t.category_id] || t.category_id
       const type = t.type === 'INCOME' ? 'Receita' : 'Despesa'
       const val = t.amount.toString().replace('.', ',')
       const status = t.is_paid ? 'Pago/Recebido' : 'Pendente'
@@ -193,7 +195,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
     await Promise.all(promises)
     
     toast.success(markAsPaid ? 'Transações marcadas como baixadas!' : 'Transações marcadas como pendentes!')
-    router.refresh()
+    queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
   }
 
   async function handleBulkDelete() {
@@ -205,8 +207,10 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
     setSelectedIds([])
     setIsSelecting(false)
     toast.success('Transações excluídas!')
-    router.refresh()
+    queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
   }
+
+  if (isLoading) return <div className="flex-1 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>
 
   return (
     <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative min-h-screen pb-24">
@@ -283,8 +287,8 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
                 : 'bg-transparent text-foreground/80 border border-transparent hover:bg-muted'
             }`}
           >
-            {cat !== 'todas' && <span className={`w-2 h-2 rounded-full ${CATEGORY_COLORS[cat] || 'bg-gray-400'}`} />}
-            {cat === 'todas' ? 'Todas Categorias' : (categoryLabel[cat] || cat)}
+            {cat !== 'todas' && <span className={`w-2 h-2 rounded-full ${categoryColorsMap[cat] || 'bg-gray-400'}`} />}
+            {cat === 'todas' ? 'Todas Categorias' : String(categoryMap[cat] || cat).charAt(0).toUpperCase() + String(categoryMap[cat] || cat).slice(1)}
           </button>
         ))}
       </div>
@@ -370,7 +374,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
                         )}
                       </div>
                       <p className="text-[10px] text-muted-foreground truncate">
-                        {categoryLabel[t.category_id] || t.category_id} · {new Date(t.date).toLocaleDateString('pt-BR')}
+                        {String(categoryMap[t.category_id] || t.category_id).charAt(0).toUpperCase() + String(categoryMap[t.category_id] || t.category_id).slice(1)} · {new Date(t.date).toLocaleDateString('pt-BR')}
                       </p>
                     </div>
                   </div>
@@ -401,7 +405,7 @@ export default function TransactionsClient({ transactions }: { transactions: Tra
         onClose={() => setEditingTransaction(null)}
         onSuccess={() => {
           setEditingTransaction(null)
-          router.refresh()
+          queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
         }}
       />
 

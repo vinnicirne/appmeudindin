@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { adminMessaging } from '@/utils/firebase/firebaseAdmin';
 import { createClient } from '@supabase/supabase-js';

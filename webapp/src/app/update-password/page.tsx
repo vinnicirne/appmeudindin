@@ -1,6 +1,6 @@
 'use client';
 
-import * as motion from "framer-motion/client";
+import { motion } from "framer-motion";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { updatePasswordAction } from '../actions/authActions';

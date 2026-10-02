@@ -1,10 +1,11 @@
-﻿'use client';
+'use client';
 
-import * as motion from "framer-motion/client";
+import { AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { addTransactionAction } from '@/app/actions/transactionActions';
 import { useState, useEffect, Suspense } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 
 const EXPENSE_QUICK_TAGS = ['Supermercado', 'CombustÃ­vel', 'Restaurante', 'FarmÃ¡cia', 'Lazer', 'Uber'];
@@ -13,28 +14,25 @@ const INCOME_QUICK_TAGS = ['Salário', 'Freelance', 'Rendimentos', 'Venda', 'Ree
 
 
 function AddTransactionForm() {
-    const defaultCategories = [
-    { id: 'alimentacao', label: 'Alimenta\u00e7\u00e3o', icon: 'restaurant', color: 'text-amber-500' },
-    { id: 'transporte', label: 'Transporte', icon: 'directions_car', color: 'text-blue-500' },
-    { id: 'moradia', label: 'Moradia', icon: 'home', color: 'text-indigo-500' },
-    { id: 'salario', label: 'Salário', icon: 'attach_money', color: 'text-[#1db576]' },
-    { id: 'lazer', label: 'Lazer', icon: 'sports_esports', color: 'text-purple-500' },
-    { id: 'saude', label: 'Sa\u00fade', icon: 'medical_services', color: 'text-rose-500' },
-    { id: 'outros', label: 'Outros', icon: 'more_horiz', color: 'text-gray-500' }
-  ];
-  const [CATEGORIES, setCATEGORIES] = useState<any[]>(defaultCategories);
+  const [CATEGORIES, setCATEGORIES] = useState<any[]>([]);
 
   useEffect(() => {
     import('@/app/actions/categoryActions').then((m) => {
       m.getCategoriesAction().then((data: any) => {
         if (data && data.length > 0) {
           setCATEGORIES(data.map((c: any) => ({ id: c.id, label: c.label, icon: c.icon, color: `text-${c.color}` })));
+          // Previne id fantasma ('alimentacao' ou 'salario') caso tenham sido excluídos
+          setCategory(prev => {
+            const exists = data.some((c: any) => c.id === prev)
+            return exists ? prev : data[0].id
+          })
         }
       });
     });
   }, []);
 
   const router = useRouter();
+  const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState<'EXPENSE' | 'INCOME'>('EXPENSE');
@@ -123,7 +121,8 @@ function AddTransactionForm() {
       toast.error('Erro: ' + res.error);
     } else {
       toast.success('Lançamento adicionado!');
-      router.push('/');
+      queryClient.invalidateQueries({ queryKey: ['dashboardData'] });
+        router.push('/');
     }
   }
 
@@ -313,13 +312,18 @@ function AddTransactionForm() {
             <select
               value={category}
               onChange={e => setCategory(e.target.value)}
-              className="w-full px-4 py-3.5 bg-white dark:bg-card border border-blue-100 dark:border-border rounded-2xl shadow-sm appearance-none font-bold text-xs md:text-sm text-gray-800 dark:text-foreground outline-none focus:border-emerald-500 pr-10"
+              disabled={CATEGORIES.length === 0}
+              className="w-full px-4 py-3.5 bg-white dark:bg-card border border-blue-100 dark:border-border rounded-2xl shadow-sm appearance-none font-bold text-xs md:text-sm text-gray-800 dark:text-foreground outline-none focus:border-emerald-500 pr-10 disabled:opacity-50"
             >
-              {CATEGORIES.map(cat => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.label}
-                </option>
-              ))}
+              {CATEGORIES.length === 0 ? (
+                <option value="">Carregando categorias...</option>
+              ) : (
+                CATEGORIES.map(cat => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.label}
+                  </option>
+                ))
+              )}
             </select>
             <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base">
               arrow_drop_down

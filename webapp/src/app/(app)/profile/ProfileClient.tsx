@@ -236,8 +236,25 @@ export default function ProfileClient({
             </div>
           </div>
           <div className={`w-12 h-6 rounded-full flex items-center transition-colors px-1 ${appLockEnabled ? 'bg-emerald-500 justify-end' : 'bg-muted-foreground/30 justify-start'}`}>
-            <motion.div layout className="w-4 h-4 rounded-full bg-white shadow-sm" />
+            <motion.div className="w-4 h-4 rounded-full bg-white shadow-sm" />
           </div>
+        </button>
+
+        {/* Notificações Push (Serviço Reativado) */}
+        <button
+          onClick={handleTogglePush}
+          className="bg-card w-full p-4 rounded-2xl flex items-center justify-between border border-border/50 shadow-sm hover:bg-muted transition-colors text-left"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 flex items-center justify-center">
+              <span className="material-symbols-outlined text-[20px]">notifications_active</span>
+            </div>
+            <div>
+              <span className="font-semibold text-sm text-foreground block">Notificações</span>
+              <span className="text-[11px] text-muted-foreground">Ativar alertas e lembretes</span>
+            </div>
+          </div>
+          <span className="material-symbols-outlined text-muted-foreground text-[20px]">chevron_right</span>
         </button>
 
         {/* Link para admin — só aparece para admins */}

@@ -1,6 +1,6 @@
 'use client'
 
-import * as motion from 'framer-motion/client'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'

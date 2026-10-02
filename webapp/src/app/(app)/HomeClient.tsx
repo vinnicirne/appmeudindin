@@ -3,12 +3,13 @@
 import { motion } from "framer-motion"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import EditTransactionModal from '@/components/transactions/EditTransactionModal'
 import { deleteTransactionAction, togglePaidTransactionAction } from '@/app/actions/transactionActions'
 import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
 import { EmptyState } from '@/components/ui/EmptyState'
+import { buildCategoryLabelMap } from '@/lib/utils'
 import dynamic from 'next/dynamic'
 const OnboardingTour = dynamic(() => import('@/components/ui/OnboardingTour').then(mod => mod.OnboardingTour), { ssr: false })
 
@@ -32,8 +33,17 @@ function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-export default function HomeClient({ transactions, dbCategories = [] }: { transactions: Transaction[], dbCategories?: any[] }) {
+import { useDashboardData } from '@/hooks/useDashboardData'
+import { useQueryClient } from '@tanstack/react-query'
+
+export default function HomeClient() {
+  const { data, isLoading } = useDashboardData()
+  const transactions = data?.transactions || []
+  const dbCategories = data?.categories || []
+  const overallBalance = data?.overallBalance || 0
+
   const router = useRouter()
+  const queryClient = useQueryClient()
   const today = new Date()
   const [year, setYear] = useState(today.getFullYear())
   const [month, setMonth] = useState(today.getMonth())
@@ -53,6 +63,13 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
 
   const filtered = useMemo(() =>
     transactions.filter(t => {
+      // Usando split() para evitar que o Javascript troque o dia por causa do fuso horário
+      const parts = t.date.split('T')[0].split('-')
+      if (parts.length >= 2) {
+        const tYear = parseInt(parts[0], 10)
+        const tMonth = parseInt(parts[1], 10) - 1
+        return tYear === year && tMonth === month
+      }
       const d = new Date(t.date)
       return d.getFullYear() === year && d.getMonth() === month
     }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()),
@@ -67,21 +84,19 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
     filtered.filter(t => t.type === 'EXPENSE').reduce((s, t) => s + t.amount, 0),
     [filtered]
   )
-  const balance = totalIncome - totalExpense
 
   // Baixa / liquidadas do mês
   const paidCount = useMemo(() => filtered.filter(t => t.is_paid !== false).length, [filtered])
   const pendingCount = filtered.length - paidCount
 
-  const categoryLabel: Record<string, string> = {
-    alimentacao: 'Alimenta\u00e7\u00e3o',
-    transporte: 'Transporte',
-    moradia: 'Moradia',
-    salario: 'Sal\u00e1rio',
-    lazer: 'Lazer',
-    saude: 'Sa\u00fade & Farmácia',
-    outros: 'Outros',
-  }
+  // Mapa real de categorias vindo do Supabase (ignora mock anterior)
+  const categoryMap = useMemo(() => {
+    const map: Record<string, string> = {}
+    dbCategories.forEach(cat => {
+      map[cat.slug || cat.id] = cat.label || cat.name || cat.title || cat.slug
+    })
+    return map
+  }, [dbCategories])
 
   async function handleDelete(id: string, e?: React.MouseEvent) {
     e?.stopPropagation()
@@ -100,7 +115,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
       toast.error('Erro ao excluir: ' + res.error)
     } else {
       toast.success('Lançamento excluído!')
-      router.refresh()
+      queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
     }
   }
 
@@ -112,16 +127,19 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
       toast.error('Erro ao alterar status: ' + res.error)
     } else {
       toast.success(newStatus ? (t.type === 'INCOME' ? 'Marcado como recebido!' : 'Marcado como pago!') : 'Marcado como pendente!')
-      router.refresh()
+      queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
     }
   }
 
+  if (isLoading) return <div className="flex-1 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>
+
   return (
     <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative min-h-screen pb-24">
-      <OnboardingTour />
+      {/* <OnboardingTour /> */}
 
       {/* Month Selector */}
       <motion.div
+        suppressHydrationWarning
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between mb-4 mt-2 px-4"
@@ -152,7 +170,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
       >
         <div className="flex flex-col gap-1 mb-3">
           <span className="text-white/80 text-xs font-semibold">Saldo Total Geral</span>
-          <span className="text-3xl font-extrabold tracking-tight">{formatCurrency(balance)}</span>
+          <span className="text-3xl font-extrabold tracking-tight">{formatCurrency(overallBalance)}</span>
         </div>
         <div className="mb-4">
           <div className="inline-flex bg-[#23735b] px-3 py-1 rounded-full items-center gap-1.5">
@@ -208,24 +226,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
         </div>
       </motion.div>
 
-      {/* Orçamento & Metas */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-card rounded-2xl p-4 border border-border shadow-sm mb-6 flex flex-col justify-center"
-      >
-        <div className="flex justify-between items-center mb-2">
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-[#1a5b48] text-xl">receipt_long</span>
-            <h3 className="font-bold text-sm text-foreground">Orçamento & Metas</h3>
-          </div>
-          <Link href="/planning" className="text-xs font-bold text-[#1a5b48] hover:underline">Definir limites</Link>
-        </div>
-        <p className="text-xs text-muted-foreground leading-relaxed pr-4 font-medium">
-          Defina limites mensais de gastos para suas categorias e acompanhe o progresso em tempo real.
-        </p>
-      </motion.div>
+
 
       {/* Transações */}
       <motion.div
@@ -290,7 +291,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
                         )}
                       </div>
                       <p className="text-[10px] text-muted-foreground truncate">
-                        {categoryLabel[t.category_id] || t.category_id} · {new Date(t.date).toLocaleDateString('pt-BR')}
+                        {String(categoryMap[t.category_id] || t.category_id).charAt(0).toUpperCase() + String(categoryMap[t.category_id] || t.category_id).slice(1)} · {t.date.split('T')[0].split('-').reverse().join('/')}
                         {t.notes ? ` · ${t.notes}` : ''}
                       </p>
                     </div>
@@ -339,7 +340,7 @@ export default function HomeClient({ transactions, dbCategories = [] }: { transa
         onClose={() => setEditingTransaction(null)}
         onSuccess={() => {
           setEditingTransaction(null)
-          router.refresh()
+          queryClient.invalidateQueries({ queryKey: ['dashboardData'] }); router.refresh()
         }}
       />
 

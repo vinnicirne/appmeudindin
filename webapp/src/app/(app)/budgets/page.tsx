@@ -3,8 +3,8 @@ import { createClient } from '@/utils/supabase/server'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import BudgetsClient from './BudgetsClient'
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+
+
 
 export default async function BudgetsPage() {
   const supabase = await createClient()
@@ -15,10 +15,16 @@ export default async function BudgetsPage() {
 
   if (!user) redirect('/login')
 
+  const sixMonthsAgo = new Date()
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5)
+  sixMonthsAgo.setDate(1)
+
   const { data: transactions } = await supabase
     .from('transactions')
     .select('*')
     .eq('user_id', user.id)
+    .gte('date', sixMonthsAgo.toISOString())
+    .limit(300)
     .order('date', { ascending: true })
 
   const { data: categories } = await adminClient.from('categories').select('*').eq('is_active', true)

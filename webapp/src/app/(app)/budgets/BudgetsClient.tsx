@@ -27,29 +27,24 @@ const MONTH_NAMES = [
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ]
 
-const CATEGORY_MAP: Record<string, { label: string; icon: string; color: string }> = {
-  alimentacao: { label: 'Alimenta\u00e7\u00e3o', icon: 'restaurant', color: 'bg-orange-100 text-orange-500' },
-  transporte: { label: 'Transporte', icon: 'directions_car', color: 'bg-blue-100 text-blue-500' },
-  moradia: { label: 'Moradia', icon: 'home', color: 'bg-purple-100 text-purple-500' },
-  salario: { label: 'Sal\u00e1rio', icon: 'payments', color: 'bg-green-100 text-green-500' },
-  lazer: { label: 'Lazer', icon: 'sports_esports', color: 'bg-pink-100 text-pink-500' },
-  saude: { label: 'Sa\u00fade & Farmácia', icon: 'medical_services', color: 'bg-rose-100 text-rose-500' },
-  educacao: { label: 'Educação', icon: 'school', color: 'bg-indigo-100 text-indigo-500' },
-  servicos: { label: 'Serviços', icon: 'receipt_long', color: 'bg-teal-100 text-teal-500' },
-  investimentos: { label: 'Investimentos', icon: 'trending_up', color: 'bg-emerald-100 text-emerald-500' },
-  outros: { label: 'Outros', icon: 'category', color: 'bg-gray-100 text-gray-500' },
-}
-
 function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
 export default function BudgetsClient({ transactions, budgets: initialBudgets, dbCategories = [] }: { transactions: Transaction[], budgets: Budget[], dbCategories?: any[] }) {
   
+  // Mapa real do banco de dados (Dashboard) - Sem mocks ou merges híbridos
   const mergedCategories: Record<string, any> = useMemo(() => {
-    const map = { ...CATEGORY_MAP }
+    const map: Record<string, any> = {}
     dbCategories.forEach(c => {
-      map[c.id] = { label: c.label, icon: c.icon, color: `bg-${c.color}/10 text-${c.color}` }
+      const colorClass = c.color || 'bg-gray-500'
+      // O Dashboard já fornece a cor base em background (ex: bg-blue-500). 
+      // Repassamos a classe bruta e adicionamos text-white para contraste do ícone.
+      map[c.slug || c.id] = { 
+        label: c.name || c.title || c.slug, 
+        icon: c.icon || 'category', 
+        color: `${colorClass} text-white shadow-sm` 
+      }
     })
     return map
   }, [dbCategories])
@@ -93,14 +88,12 @@ export default function BudgetsClient({ transactions, budgets: initialBudgets, d
     const grouped: Record<string, number> = {}
 
     Object.keys(mergedCategories).forEach(k => {
-      if (k !== 'salario') grouped[k] = 0
+      grouped[k] = 0
     })
 
     expenses.forEach(t => {
-      const cat = (t.category_id || 'outros').toLowerCase()
-      if (cat !== 'salario') {
-        grouped[cat] = (grouped[cat] || 0) + Number(t.amount || 0)
-      }
+      const cat = t.category_id || 'outros'
+      grouped[cat] = (grouped[cat] || 0) + Number(t.amount || 0)
     })
 
     return Object.entries(grouped).map(([catKey, amount]) => {
@@ -268,7 +261,6 @@ export default function BudgetsClient({ transactions, budgets: initialBudgets, d
         <AnimatePresence>
           {filteredCategories.map((cat, i) => (
             <motion.div 
-              layout
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9 }}

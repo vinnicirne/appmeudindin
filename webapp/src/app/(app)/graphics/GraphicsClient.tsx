@@ -2,7 +2,17 @@
 
 import { motion } from "framer-motion"
 import { useState, useMemo } from 'react'
-import { PieChart, Pie, Cell, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts'
+import dynamic from 'next/dynamic'
+
+// Isola o Recharts para não travar a navegação (ssr: false)
+const ChartsSection = dynamic(() => import('./GraphicsCharts'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-48 w-full flex items-center justify-center text-sm text-muted-foreground">
+      Carregando gráficos...
+    </div>
+  )
+})
 
 interface Transaction {
   id: string
@@ -25,51 +35,34 @@ const MONTH_SHORT = [
   'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
 ]
 
-const CATEGORY_MAP: Record<string, { label: string; icon: string; color: string; hex: string }> = {
-  alimentacao: { label: 'Alimentação', icon: 'restaurant', color: 'bg-orange-500', hex: '#f97316' },
-  transporte: { label: 'Transporte', icon: 'directions_car', color: 'bg-blue-500', hex: '#3b82f6' },
-  moradia: { label: 'Moradia', icon: 'home', color: 'bg-purple-500', hex: '#a855f7' },
-  salario: { label: 'Salário', icon: 'payments', color: 'bg-green-500', hex: '#22c55e' },
-  lazer: { label: 'Lazer', icon: 'sports_esports', color: 'bg-pink-500', hex: '#ec4899' },
-  saude: { label: 'Saúde & Farmácia', icon: 'medical_services', color: 'bg-rose-500', hex: '#f43f5e' },
-  educacao: { label: 'Educação', icon: 'school', color: 'bg-indigo-500', hex: '#6366f1' },
-  servicos: { label: 'Serviços', icon: 'receipt_long', color: 'bg-teal-500', hex: '#14b8a6' },
-  investimentos: { label: 'Investimentos', icon: 'trending_up', color: 'bg-emerald-500', hex: '#10b981' },
-  outros: { label: 'Outros', icon: 'category', color: 'bg-gray-400', hex: '#9ca3af' },
-}
-
-const CustomPieTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    const data = payload[0].payload
-    return (
-      <div className="bg-card border border-border shadow-md rounded-xl p-3 text-sm z-50">
-        <p className="font-bold text-foreground mb-1">{data.label}</p>
-        <p className="font-bold" style={{ color: data.hex }}>{formatCurrency(data.amount)}</p>
-        <p className="text-muted-foreground text-xs mt-1">{data.percentage.toFixed(1)}% do total no mês</p>
-      </div>
-    )
-  }
-  return null
-}
-
-const CustomBarTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-card border border-border shadow-md rounded-xl p-3 text-sm z-50">
-        <p className="font-bold text-foreground mb-2">{label}</p>
-        <p className="text-[#1db576] font-medium">Receitas: {formatCurrency(payload[0]?.value || 0)}</p>
-        <p className="text-[#e74c4c] font-medium">Despesas: {formatCurrency(payload[1]?.value || 0)}</p>
-      </div>
-    )
-  }
-  return null
-}
-
 function formatCurrency(value: number) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-export default function GraphicsClient({ transactions }: { transactions: Transaction[] }) {
+function parseDateParts(dateStr: string) {
+  const clean = (dateStr || '').split('T')[0]
+  const parts = clean.split('-')
+  if (parts.length >= 2) {
+    return {
+      year: parseInt(parts[0], 10),
+      month: parseInt(parts[1], 10) - 1 // 0-11
+    }
+  }
+  const d = new Date(dateStr)
+  return {
+    year: d.getFullYear(),
+    month: d.getMonth()
+  }
+}
+
+import { useDashboardData } from '@/hooks/useDashboardData'
+
+export default function GraphicsClient() {
+  const { data, isLoading } = useDashboardData()
+  const transactions = data?.transactions || []
+  const dbCategories = data?.categories || []
+
+
   const today = new Date()
   const [year, setYear] = useState(today.getFullYear())
   const [month, setMonth] = useState(today.getMonth())
@@ -95,14 +88,8 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
   // Transações do mês selecionado
   const currentMonthTransactions = useMemo(() => {
     return transactions.filter(t => {
-      const parts = t.date.split('T')[0].split('-')
-      if (parts.length >= 2) {
-        const tYear = parseInt(parts[0], 10)
-        const tMonth = parseInt(parts[1], 10) - 1
-        return tYear === year && tMonth === month
-      }
-      const d = new Date(t.date)
-      return d.getFullYear() === year && d.getMonth() === month
+      const { year: tYear, month: tMonth } = parseDateParts(t.date)
+      return tYear === year && tMonth === month
     })
   }, [transactions, year, month])
 
@@ -120,46 +107,52 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
 
   const balance = totalIncome - totalExpense
 
-  // Média diária (dias no mês selecionado)
   const daysInMonth = new Date(year, month + 1, 0).getDate()
   const dailyAverage = totalExpense > 0 ? totalExpense / daysInMonth : 0
-
-  // Taxa de economia
   const savingsRate = totalIncome > 0 ? ((balance / totalIncome) * 100) : 0
 
-  // Agrupamento por Categoria para Despesas
+  // Cores hex para o Recharts
+  const tailwindToHex: Record<string, string> = {
+    'emerald': '#10b981', 'blue': '#3b82f6', 'purple': '#8b5cf6', 'green': '#22c55e',
+    'pink': '#ec4899', 'rose': '#f43f5e', 'indigo': '#6366f1', 'teal': '#14b8a6',
+    'orange': '#f97316', 'amber': '#f59e0b', 'red': '#ef4444', 'cyan': '#06b6d4', 'gray': '#6b7280'
+  }
+
+  function getHexColor(twClass: string) {
+    if (!twClass) return '#9ca3af'
+    const found = Object.keys(tailwindToHex).find(key => twClass.includes(key))
+    return found ? tailwindToHex[found] : '#9ca3af'
+  }
+
+  // Despesas por categoria
   const categoryExpenses = useMemo(() => {
     const expenses = currentMonthTransactions.filter(t => t.type === 'EXPENSE')
     const grouped: Record<string, number> = {}
 
     expenses.forEach(t => {
-      const cat = (t.category_id || 'outros').toLowerCase()
+      const cat = t.category_id || 'outros'
       grouped[cat] = (grouped[cat] || 0) + Number(t.amount || 0)
     })
 
     return Object.entries(grouped)
       .map(([catKey, amount]) => {
-        const info = CATEGORY_MAP[catKey] || {
-          label: catKey.charAt(0).toUpperCase() + catKey.slice(1),
-          icon: 'category',
-          color: 'bg-gray-400',
-          hex: '#9ca3af'
-        }
+        const dbCat = dbCategories.find(c => c.slug === catKey || c.id === catKey)
         const percentage = totalExpense > 0 ? (amount / totalExpense) * 100 : 0
+        const colorClass = dbCat?.color || 'bg-gray-400'
         return {
           key: catKey,
-          label: info.label,
-          icon: info.icon,
-          color: info.color,
-          hex: info.hex,
+          label: dbCat?.label || dbCat?.name || dbCat?.title || catKey.charAt(0).toUpperCase() + catKey.slice(1),
+          icon: dbCat?.icon || 'category',
+          color: colorClass,
+          hex: getHexColor(colorClass),
           amount,
           percentage
         }
       })
       .sort((a, b) => b.amount - a.amount)
-  }, [currentMonthTransactions, totalExpense])
+  }, [currentMonthTransactions, totalExpense, dbCategories])
 
-  // Evolução Mensal dos últimos 6 meses
+  // Evolução dos últimos 6 meses
   const sixMonthsHistory = useMemo(() => {
     const months = []
     for (let i = 5; i >= 0; i--) {
@@ -171,18 +164,16 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
       }
 
       const mTransactions = transactions.filter(t => {
-        const parts = t.date.split('T')[0].split('-')
-        if (parts.length >= 2) {
-          const tYear = parseInt(parts[0], 10)
-          const tMonth = parseInt(parts[1], 10) - 1
-          return tYear === targetYear && tMonth === targetMonth
-        }
-        const d = new Date(t.date)
-        return d.getFullYear() === targetYear && d.getMonth() === targetMonth
+        const { year: tYear, month: tMonth } = parseDateParts(t.date)
+        return tYear === targetYear && tMonth === targetMonth
       })
 
-      const inc = mTransactions.filter(t => t.type === 'INCOME').reduce((a, t) => a + Number(t.amount || 0), 0)
-      const exp = mTransactions.filter(t => t.type === 'EXPENSE').reduce((a, t) => a + Number(t.amount || 0), 0)
+      const inc = mTransactions
+        .filter(t => t.type === 'INCOME')
+        .reduce((a, t) => a + Number(t.amount || 0), 0)
+      const exp = mTransactions
+        .filter(t => t.type === 'EXPENSE')
+        .reduce((a, t) => a + Number(t.amount || 0), 0)
 
       months.push({
         label: MONTH_SHORT[targetMonth],
@@ -194,15 +185,7 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
     return months
   }, [transactions, year, month])
 
-  const maxHistoryValue = useMemo(() => {
-    const maxVal = Math.max(
-      ...sixMonthsHistory.map(m => Math.max(m.income, m.expense)),
-      1
-    )
-    return maxVal
-  }, [sixMonthsHistory])
-
-  // Dica Inteligente Dinâmica
+  // Dica inteligente
   const tipText = useMemo(() => {
     if (totalIncome === 0 && totalExpense === 0) {
       return 'Adicione suas receitas e despesas para acompanhar gráficos detalhados e obter insights sobre suas finanças.'
@@ -212,15 +195,17 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
       return `Seus gastos ultrapassaram os ganhos em ${formatCurrency(Math.abs(balance))} neste mês. Sua maior despesa foi em ${topCat ? topCat.label : 'categorias diversas'}.`
     }
     if (savingsRate >= 20) {
-      return `Excelente! Vocêê está economizando ${savingsRate.toFixed(1)}% da sua renda neste mês. Mantenha o foco para construir sua reserva!`
+      return `Excelente! Você está economizando ${savingsRate.toFixed(1)}% da sua renda neste mês. Mantenha o foco para construir sua reserva!`
     }
-    return `Vocêê economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcançar suas metas mais rápido.`
+    return `Você economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcançar suas metas mais rápido.`
   }, [totalIncome, totalExpense, balance, savingsRate, categoryExpenses])
+
+  if (isLoading) return <div className="flex-1 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>
 
   return (
     <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative bg-background min-h-screen pb-24">
       
-      {/* Month Selector */}
+      {/* Seletor de Mês */}
       <div className="bg-card rounded-2xl p-2 mb-4 shadow-sm border border-border/50">
         <div className="flex items-center justify-between px-2 py-1">
           <button 
@@ -241,7 +226,7 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
         </div>
       </div>
 
-      {/* Resumo Mensal do Cotidiano */}
+      {/* Resumo Mensal */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -282,7 +267,7 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
         </div>
       </motion.div>
 
-      {/* Banner de Dica Inteligente */}
+      {/* Dica Inteligente */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -300,7 +285,7 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
         </div>
       </motion.div>
 
-      {/* Despesas por Categoria */}
+      {/* Despesas por Categoria + Gráficos (isolados) */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -322,102 +307,45 @@ export default function GraphicsClient({ transactions }: { transactions: Transac
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
-            {/* Gráfico de Rosca (Recharts) */}
-            <div className="h-48 w-full flex items-center justify-center">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={categoryExpenses}
-                    dataKey="amount"
-                    nameKey="label"
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    paddingAngle={3}
-                    stroke="none"
-                  >
-                    {categoryExpenses.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.hex} />
-                    ))}
-                  </Pie>
-                  <RechartsTooltip content={<CustomPieTooltip />} />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Lista detalhada das categorias */}
-            <div className="space-y-2.5 pt-2">
-              {categoryExpenses.map(cat => (
-                <div key={cat.key} className="flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2">
-                    <div 
-                      style={{ backgroundColor: cat.hex }} 
-                      className="w-3 h-3 rounded-full flex-shrink-0" 
-                    />
-                    <span className="font-medium text-foreground">{cat.label}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-right">
-                    <span className="font-bold text-foreground">{formatCurrency(cat.amount)}</span>
-                    <span className="text-[10px] text-muted-foreground font-semibold w-10 text-right">
-                      {cat.percentage.toFixed(0)}%
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ChartsSection 
+            categoryExpenses={categoryExpenses}
+            sixMonthsHistory={sixMonthsHistory}
+          />
         )}
       </motion.div>
 
-      {/* Evolução Mensal (Últimos 6 Meses) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-card rounded-2xl p-4 shadow-sm border border-border/50 flex flex-col"
-      >
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="font-bold text-sm text-foreground">Evolução Mensal (6 Meses)</h2>
-          <div className="flex gap-3">
-            <div className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-[#1db576]"></span>
-              <span className="text-[10px] font-medium text-foreground">Receitas</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-[#e74c4c]"></span>
-              <span className="text-[10px] font-medium text-foreground">Despesas</span>
+      {/* Evolução Mensal (também dentro do ChartsSection) */}
+      {categoryExpenses.length > 0 && (
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="bg-card rounded-2xl p-4 shadow-sm border border-border/50 flex flex-col"
+        >
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="font-bold text-sm text-foreground">Evolução Mensal (6 Meses)</h2>
+            <div className="flex gap-3">
+              <div className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#1db576]"></span>
+                <span className="text-[10px] font-medium text-foreground">Receitas</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#e74c4c]"></span>
+                <span className="text-[10px] font-medium text-foreground">Despesas</span>
+              </div>
             </div>
           </div>
-        </div>
-        
-        {/* Gráfico de Barras Responsivo (Recharts) */}
-        <div className="h-48 w-full pt-4">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={sixMonthsHistory} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.5} />
-              <XAxis 
-                dataKey="label" 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fontSize: 10, fill: 'var(--muted-foreground)' }} 
-                dy={10}
-              />
-              <YAxis 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fontSize: 10, fill: 'var(--muted-foreground)' }}
-                tickFormatter={(value) => `R$${(value / 1000).toFixed(0)}k`}
-              />
-              <RechartsTooltip content={<CustomBarTooltip />} cursor={{ fill: 'var(--muted)', opacity: 0.2 }} />
-              <Bar dataKey="income" fill="#1db576" radius={[4, 4, 0, 0]} maxBarSize={30} />
-              <Bar dataKey="expense" fill="#e74c4c" radius={[4, 4, 0, 0]} maxBarSize={30} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </motion.div>
-
+          
+          {/* O gráfico de barras também está no ChartsSection */}
+          <div className="h-48 w-full">
+            <ChartsSection 
+              categoryExpenses={categoryExpenses}
+              sixMonthsHistory={sixMonthsHistory}
+              showOnlyBar
+            />
+          </div>
+        </motion.div>
+      )}
     </main>
-  );
+  )
 }

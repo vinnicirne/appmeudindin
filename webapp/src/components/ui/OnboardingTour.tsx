@@ -7,10 +7,11 @@ import { useTheme } from 'next-themes'
 export function OnboardingTour() {
   const [run, setRun] = useState(false)
   const { theme } = useTheme()
-
+  const [mounted, setMounted] = useState(false)
   const [isFinished, setIsFinished] = useState(true)
 
   useEffect(() => {
+    setMounted(true)
     // Verifica se já fez o tour antes
     const hasCompletedTour = localStorage.getItem('meu-dindin-tour-completed')
     if (!hasCompletedTour) {
@@ -29,14 +30,17 @@ export function OnboardingTour() {
     {
       target: '.tour-quick-add',
       content: 'Use estes botões rápidos para registrar uma nova Receita ou Despesa em segundos.',
+      disableBeacon: true,
     },
     {
       target: '.tour-bottom-nav',
       content: 'Navegue pelas áreas do app: analise gráficos, veja seu extrato completo ou defina metas para o futuro!',
+      disableBeacon: true,
     },
     {
       target: '.tour-fab',
       content: 'Dica de Ouro: Este botão flutuante te acompanha em todas as telas para adicionar registros a qualquer momento. Experimente!',
+      disableBeacon: true,
     }
   ]
 
@@ -51,7 +55,7 @@ export function OnboardingTour() {
     }
   }
 
-  const isDark = theme === 'dark'
+  const isDark = mounted && theme === 'dark'
 
   if (isFinished) return null;
 

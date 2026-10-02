@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import jsPDF from 'jspdf'
 import toast from 'react-hot-toast'
 
@@ -14,24 +14,29 @@ interface Transaction {
   is_paid?: boolean
 }
 
-const categoryLabel: Record<string, string> = {
-  alimentacao: 'Alimentação',
-  transporte: 'Transporte',
-  moradia: 'Moradia',
-  salario: 'Salário',
-  lazer: 'Lazer',
-  saude: 'Saúde & Farmácia',
-  outros: 'Outros',
-}
-
 interface Props {
   transactions: Transaction[]
+  dbCategories?: any[]
 }
 
-export default function ReportsClient({ transactions }: Props) {
+import { useDashboardData } from '@/hooks/useDashboardData'
+
+export default function ReportsClient() {
+  const { data, isLoading } = useDashboardData()
+  const transactions = data?.transactions || []
+  const dbCategories = data?.categories || []
+
+
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [typeFilter, setTypeFilter] = useState<'ALL' | 'INCOME' | 'EXPENSE'>('ALL')
+  
+  // Mapa real do banco de dados (Dashboard)
+  const categoryMap = useMemo(() => {
+    const map: Record<string, string> = {}
+    dbCategories.forEach(cat => map[cat.slug || cat.id] = cat.label || cat.name || cat.title || cat.slug)
+    return map
+  }, [dbCategories])
 
   const filteredTransactions = transactions.filter(t => {
     let keep = true
@@ -91,7 +96,7 @@ export default function ReportsClient({ transactions }: Props) {
         
         const dateStr = new Date(t.date).toLocaleDateString('pt-BR')
         const descStr = t.description.length > 25 ? t.description.substring(0, 25) + '...' : t.description
-        const catStr = categoryLabel[t.category_id] || t.category_id
+        const catStr = categoryMap[t.category_id] || t.category_id
         const typeStr = t.type === 'INCOME' ? 'Entrada' : 'Saída'
         const statusStr = t.is_paid ? 'Pago' : 'Pendente'
         const valStr = `R$ ${t.amount.toFixed(2)}`
@@ -124,7 +129,7 @@ export default function ReportsClient({ transactions }: Props) {
     const rows = filteredTransactions.map(t => {
       const data = new Date(t.date).toLocaleDateString('pt-BR')
       const desc = `"${t.description.replace(/"/g, '""')}"`
-      const cat = categoryLabel[t.category_id] || t.category_id
+      const cat = categoryMap[t.category_id] || t.category_id
       const type = t.type === 'INCOME' ? 'Receita' : 'Despesa'
       const val = t.amount.toString().replace('.', ',')
       const status = t.is_paid ? 'Pago/Recebido' : 'Pendente'
@@ -144,6 +149,8 @@ export default function ReportsClient({ transactions }: Props) {
     
     toast.success('Arquivo Excel/CSV baixado!')
   }
+
+  if (isLoading) return <div className="flex-1 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>
 
   return (
     <div className="p-4 sm:p-6 pb-32 max-w-5xl mx-auto w-full animate-in fade-in duration-300">
@@ -249,7 +256,7 @@ export default function ReportsClient({ transactions }: Props) {
                     <td className="px-4 py-3 whitespace-nowrap">{new Date(t.date).toLocaleDateString('pt-BR')}</td>
                     <td className="px-4 py-3 font-medium text-foreground">{t.description}</td>
                     <td className="px-4 py-3 text-muted-foreground">
-                      {categoryLabel[t.category_id] || t.category_id}
+                      {String(categoryMap[t.category_id] || t.category_id).charAt(0).toUpperCase() + String(categoryMap[t.category_id] || t.category_id).slice(1)}
                     </td>
                     <td className="px-4 py-3">
                       {t.is_paid ? (

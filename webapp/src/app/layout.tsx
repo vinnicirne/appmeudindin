@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 import { AppLock } from "@/components/ui/AppLock";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
@@ -54,6 +55,7 @@ export const viewport: Viewport = {
 };
 
 import { Toaster } from 'react-hot-toast';
+import { GlobalClickLogger } from '@/components/GlobalClickLogger';
 import { InstallPWA } from '@/components/InstallPWA';
 
 export default function RootLayout({
@@ -83,23 +85,26 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AppLock />
-          {children}
-          <InstallPWA />
-          <Toaster 
-            position="top-center"
-            containerStyle={{ top: 80 }}
-            toastOptions={{
-              style: {
-                borderRadius: '12px',
-                background: 'var(--card)',
-                color: 'var(--card-foreground)',
-                border: '1px solid var(--border)',
-                fontWeight: 'bold',
-                fontSize: '14px',
-              },
-            }}
-          />
+          <QueryProvider>
+            <AppLock />
+            {children}
+            <GlobalClickLogger />
+            <InstallPWA />
+            <Toaster 
+              position="top-center"
+              containerStyle={{ top: 80 }}
+              toastOptions={{
+                style: {
+                  borderRadius: '12px',
+                  background: 'var(--card)',
+                  color: 'var(--card-foreground)',
+                  border: '1px solid var(--border)',
+                  fontWeight: 'bold',
+                  fontSize: '14px',
+                },
+              }}
+            />
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { createGoalAction, updateGoalAction, updateGoalBalanceAction, deleteGoalAction } from '@/app/actions/goalActions'
 import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
@@ -9,7 +9,7 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import dynamic from 'next/dynamic'
 
 // Evita erro de Canvas/Window no SSR que trava a navegação para a página de Metas
-const GoalConfetti = dynamic(() => import('@/components/ui/Confetti').then(mod => mod.GoalConfetti), { ssr: false })
+
 
 export interface Goal {
   id: string
@@ -50,10 +50,26 @@ const AVAILABLE_COLORS = [
   { name: 'bg-indigo-500 text-white', label: 'Índigo', badge: 'bg-indigo-500' },
 ]
 
-export default function PlanningClient({ initialGoals }: Props) {
+import { useDashboardData } from '@/hooks/useDashboardData'
+import { useQueryClient } from '@tanstack/react-query'
+
+export default function PlanningClient() {
+  const { data, isLoading } = useDashboardData()
+  const initialGoals = data?.goals || []
+  
   const [goals, setGoals] = useState<Goal[]>(initialGoals)
+
+  // Sincronizar o cache com o state local
+  useEffect(() => {
+    if (data?.goals) {
+      setGoals(data.goals)
+    }
+  }, [data?.goals])
+
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [editingGoal, setEditingGoal] = useState<Goal | null>(null)
+
+
   const [balanceModalGoal, setBalanceModalGoal] = useState<{ goal: Goal; type: 'DEPOSIT' | 'WITHDRAW' } | null>(null)
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -227,9 +243,11 @@ export default function PlanningClient({ initialGoals }: Props) {
     }
   }
 
+  if (isLoading) return <div className="flex-1 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>
+
   return (
     <main className="flex-1 w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 flex flex-col gap-6">
-      <GoalConfetti show={showConfetti} onComplete={() => setShowConfetti(false)} />
+      
       {/* Header com Botão de Criar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>

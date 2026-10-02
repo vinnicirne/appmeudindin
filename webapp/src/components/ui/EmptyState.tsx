@@ -1,4 +1,4 @@
-import * as motion from "framer-motion/client"
+import { motion } from "framer-motion"
 import { ReactNode } from "react"
 import { cn } from "cn"
 

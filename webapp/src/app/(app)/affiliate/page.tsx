@@ -33,21 +33,29 @@ export default async function AffiliatePage() {
   const isAff = Boolean(userData?.is_affiliate || affData || userData?.affiliate_code)
   const code = userData?.affiliate_code || affData?.code
 
+  // Se não for afiliado, não vamos redirecionar e sim passar o aviso para o Client exibir o alerta
   if (!isAff || !code) {
-    redirect('/')
+    return (
+      <AffiliateClient
+        name={userData?.name || userData?.full_name || userData?.email || 'Usuário'}
+        code=""
+        totalSignups={0}
+        totalSales={0}
+        recentSignups={[]}
+        isAffiliate={false}
+      />
+    )
   }
 
-  // 3. Busca todos os usuários indicados (com matching insensível a maiúsculas/minúsculas)
+  // 3. Busca APENAS os usuários indicados por este parceiro (Case-Insensitive nativo no Supabase)
+  const cleanCode = code.trim()
   const { data: allUsers } = await admin
     .from('users')
     .select('id, name, full_name, email, referred_by, plan_status, created_at')
-    .not('referred_by', 'is', null)
+    .ilike('referred_by', cleanCode)
     .order('created_at', { ascending: false })
 
-  const cleanCode = code.trim().toLowerCase()
-  const signups = (allUsers || []).filter(u => 
-    u.referred_by && u.referred_by.trim().toLowerCase() === cleanCode
-  )
+  const signups = allUsers || []
 
   const activeSales = signups.filter(u => u.plan_status === 'active')
 
@@ -58,6 +66,7 @@ export default async function AffiliatePage() {
       totalSignups={signups.length}
       totalSales={activeSales.length}
       recentSignups={signups.slice(0, 15)}
+      isAffiliate={true}
     />
   )
 }

@@ -9,7 +9,10 @@ export function FloatingActionButton() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
 
-  const toggleOpen = () => setIsOpen(!isOpen)
+  const toggleOpen = () => {
+    const next = !isOpen
+    setIsOpen(next)
+  }
 
   const handleAction = (type: 'INCOME' | 'EXPENSE') => {
     setIsOpen(false)

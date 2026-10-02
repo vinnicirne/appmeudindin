@@ -45,10 +45,13 @@ export default function SidebarClient({ isAdmin, isAffiliate }: Props) {
 
 function NavItem({ href, icon, label, active = false }: { href: string; icon: string; label: string; active?: boolean }) {
   return (
-    <Link
-      href={href}
-      prefetch={false}
-      className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors font-medium ${
+    <button
+      type="button"
+      onClick={() => {
+        console.log('FORCING NAVIGATION TO:', href);
+        window.location.assign(href);
+      }}
+      className={`flex items-center gap-3 px-3 py-3 w-full rounded-xl transition-colors font-medium relative z-50 ${
         active
           ? 'bg-primary text-primary-foreground font-bold shadow-sm'
           : 'text-muted-foreground hover:bg-muted hover:text-foreground'
@@ -56,6 +59,6 @@ function NavItem({ href, icon, label, active = false }: { href: string; icon: st
     >
       <span className="material-symbols-outlined text-xl">{icon}</span>
       <span>{label}</span>
-    </Link>
+    </button>
   );
 }
