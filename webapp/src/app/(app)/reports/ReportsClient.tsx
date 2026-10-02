@@ -114,21 +114,62 @@ export default function ReportsClient({ transactions }: Props) {
     }
   }
 
+  function handleExportCSV() {
+    if (filteredTransactions.length === 0) {
+      toast.error('Nenhum dado para exportar.')
+      return
+    }
+
+    const headers = ['Data', 'Descricao', 'Categoria', 'Tipo', 'Valor', 'Status']
+    const rows = filteredTransactions.map(t => {
+      const data = new Date(t.date).toLocaleDateString('pt-BR')
+      const desc = `"${t.description.replace(/"/g, '""')}"`
+      const cat = categoryLabel[t.category_id] || t.category_id
+      const type = t.type === 'INCOME' ? 'Receita' : 'Despesa'
+      const val = t.amount.toString().replace('.', ',')
+      const status = t.is_paid ? 'Pago/Recebido' : 'Pendente'
+      return [data, desc, cat, type, val, status].join(';')
+    })
+
+    const csvContent = [headers.join(';'), ...rows].join('\n')
+    const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `relatorio_${new Date().getTime()}.csv`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    
+    toast.success('Arquivo Excel/CSV baixado!')
+  }
+
   return (
     <div className="p-4 sm:p-6 pb-32 max-w-5xl mx-auto w-full animate-in fade-in duration-300">
       <header className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-foreground tracking-tight">Relatórios</h1>
-          <p className="text-sm text-muted-foreground mt-1">Gere relatórios por período e exporte em PDF</p>
+          <p className="text-sm text-muted-foreground mt-1">Gere relatórios por período e exporte em PDF ou Excel (CSV)</p>
         </div>
-        <button 
-          onClick={generatePDF}
-          disabled={filteredTransactions.length === 0}
-          className="bg-primary text-primary-foreground font-bold py-2.5 px-5 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-2 disabled:opacity-50 disabled:hover:scale-100 shadow-sm"
-        >
-          <span className="material-symbols-outlined text-lg">picture_as_pdf</span>
-          Baixar PDF
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button 
+            onClick={handleExportCSV}
+            disabled={filteredTransactions.length === 0}
+            className="bg-card text-foreground border border-border font-bold py-2.5 px-5 rounded-xl hover:bg-muted transition-colors flex items-center justify-center gap-2 disabled:opacity-50 shadow-sm"
+          >
+            <span className="material-symbols-outlined text-lg">table_view</span>
+            Baixar Excel (CSV)
+          </button>
+          <button 
+            onClick={generatePDF}
+            disabled={filteredTransactions.length === 0}
+            className="bg-primary text-primary-foreground font-bold py-2.5 px-5 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-2 disabled:opacity-50 disabled:hover:scale-100 shadow-sm"
+          >
+            <span className="material-symbols-outlined text-lg">picture_as_pdf</span>
+            Baixar PDF
+          </button>
+        </div>
       </header>
 
       <div className="bg-card border border-border p-5 rounded-2xl shadow-sm mb-6 flex flex-col sm:flex-row gap-4">
