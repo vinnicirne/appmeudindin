@@ -25,7 +25,7 @@ export function BottomNav() {
 
 function NavItem({ href, icon, label, active = false }: { href: string; icon: string; label: string; active?: boolean }) {
   return (
-    <Link href={href} className="flex flex-col items-center justify-center gap-1 w-[4.5rem] h-full text-center group">
+    <Link href={href} prefetch={false} className="flex flex-col items-center justify-center gap-1 w-[4.5rem] h-full text-center group">
       <div className={`flex items-center justify-center px-3 py-1 rounded-full transition-colors ${active ? 'bg-primary/15 text-primary' : 'text-muted-foreground group-hover:bg-primary/10'}`}>
         <span className={`material-symbols-outlined text-2xl ${active ? 'font-variation-settings-[\\"FILL\\"_1]' : ''}`}>
           {icon}
