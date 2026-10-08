@@ -10,7 +10,6 @@ import { toast } from 'react-hot-toast'
 import { ConfirmModal } from '@/components/ui/ConfirmModal'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { parseDateParts, formatDateBR, dateKey } from '@/lib/dateUtils'
-import { buildCategoryMap, buildCategoryColorsMap } from '@/lib/categoryUtils'
 import dynamic from 'next/dynamic'
 const OnboardingTour = dynamic(() => import('@/components/ui/OnboardingTour').then(mod => mod.OnboardingTour), { ssr: false })
 
@@ -96,7 +95,7 @@ export default function HomeClient() {
   const categoryMap = useMemo(() => {
     const map: Record<string, string> = {}
     dbCategories.forEach(cat => {
-      map[cat.slug || cat.id] = cat.label || cat.name || cat.title || cat.slug
+      map[cat.slug || cat.id] = cat.label || cat.name || cat.title || 'Outros'
     })
     return map
   }, [dbCategories])
@@ -298,7 +297,7 @@ export default function HomeClient() {
                         )}
                       </div>
                       <p className="text-[10px] text-muted-foreground truncate">
-                        {String(categoryMap[t.category_id] || t.category_id).charAt(0).toUpperCase() + String(categoryMap[t.category_id] || t.category_id).slice(1)} · {t.date.split('T')[0].split('-').reverse().join('/')}
+                        {String(categoryMap[t.category_id] || 'Outros').charAt(0).toUpperCase() + String(categoryMap[t.category_id] || 'Outros').slice(1)} · {t.date.split('T')[0].split('-').reverse().join('/')}
                         {t.notes ? ` · ${t.notes}` : ''}
                       </p>
                     </div>

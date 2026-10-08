@@ -1,4 +1,4 @@
-﻿import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 import AffiliateClient from './AffiliateClient'
@@ -77,7 +77,7 @@ export default async function AffiliatePage() {
     name: u.name || u.full_name || null,
     // mascara email para LGPD
     email: u.email
-      ? u.email.replace(/^(.)(.*)(@.*)$/, (_, a, mid, domain) =>
+      ? u.email.replace(/^(.)(.*)(@.*)$/, (_: string, a: string, mid: string, domain: string) =>
           a + '*'.repeat(Math.min(mid.length, 5)) + domain
         )
       : null,
