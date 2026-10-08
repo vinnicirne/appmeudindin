@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { motion } from 'framer-motion';
 import { logoutAction } from '@/app/actions/authActions';
@@ -32,73 +32,6 @@ export default function ProfileClient({
   const [loading, setLoading] = useState(false);
   const [showDataModal, setShowDataModal] = useState(false);
   
-  // App Lock State
-  const [appLockEnabled, setAppLockEnabled] = useState(false);
-
-  useEffect(() => {
-    setAppLockEnabled(localStorage.getItem('meu-dindin-applock') === 'true');
-  }, []);
-
-  async function handleToggleAppLock() {
-    try {
-      if (appLockEnabled) {
-        localStorage.removeItem('meu-dindin-applock');
-        localStorage.removeItem('meu-dindin-applock-id');
-        setAppLockEnabled(false);
-        toast.success('Bloqueio do app desativado.');
-        return;
-      }
-
-      if (!window.PublicKeyCredential) {
-        toast.error('Seu dispositivo ou navegador não suporta biometria.');
-        return;
-      }
-
-      const challenge = new Uint8Array(32);
-      window.crypto.getRandomValues(challenge);
-      const userIdBuffer = new Uint8Array(16);
-      window.crypto.getRandomValues(userIdBuffer);
-
-      const credential = await navigator.credentials.create({
-        publicKey: {
-          challenge: challenge,
-          rp: { name: "Meu DinDin", id: window.location.hostname },
-          user: {
-            id: userIdBuffer,
-            name: email,
-            displayName: displayName
-          },
-          pubKeyCredParams: [
-            { type: "public-key", alg: -7 },
-            { type: "public-key", alg: -257 }
-          ],
-          authenticatorSelection: {
-            authenticatorAttachment: "platform",
-            userVerification: "required"
-          },
-          timeout: 60000,
-        }
-      }) as PublicKeyCredential;
-
-      if (credential && credential.rawId) {
-        // Safe base64 encoding for ArrayBuffer
-        const rawIdArray = new Uint8Array(credential.rawId);
-        let binString = '';
-        for (let i = 0; i < rawIdArray.length; i++) {
-          binString += String.fromCharCode(rawIdArray[i]);
-        }
-        const base64Id = btoa(binString);
-
-        localStorage.setItem('meu-dindin-applock-id', base64Id);
-        localStorage.setItem('meu-dindin-applock', 'true');
-        setAppLockEnabled(true);
-        toast.success('Biometria ativada com sucesso! O app será bloqueado no próximo acesso.');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('Operação cancelada ou falhou.');
-    }
-  }
 
   const initials = (displayName.trim().slice(0, 2) || email.slice(0, 2) || '?').toUpperCase();
   const isActive = planStatus === 'active';
@@ -221,23 +154,6 @@ export default function ProfileClient({
             <ThemeToggle />
           </div>
 
-          <button 
-            onClick={handleToggleAppLock}
-            className="w-full flex items-center justify-between p-4 border-b border-border/50 hover:bg-muted/50 transition-colors text-left"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-foreground">
-                <span className="material-symbols-outlined text-sm">fingerprint</span>
-              </div>
-              <div>
-                <p className="text-sm font-bold text-foreground">App Lock</p>
-                <p className="text-[10px] text-muted-foreground">Bloqueio biométrico</p>
-              </div>
-            </div>
-            <div className={`w-10 h-6 rounded-full p-1 transition-colors ${appLockEnabled ? 'bg-[#1db576]' : 'bg-muted-foreground/30'}`}>
-              <div className={`w-4 h-4 bg-white rounded-full shadow-sm transition-transform ${appLockEnabled ? 'translate-x-4' : 'translate-x-0'}`} />
-            </div>
-          </button>
 
           <button 
             onClick={handleTogglePush}
