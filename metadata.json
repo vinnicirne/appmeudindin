@@ -1,6 +1,0 @@
-{
-  "name": "Finanzt",
-  "description": "Aplicativo moderno para organizar finanças pessoais com receitas, despesas, categorias, resumos mensais e gráficos interativos.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

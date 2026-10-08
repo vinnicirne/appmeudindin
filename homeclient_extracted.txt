@@ -1,0 +1,26 @@
+python -c "
+import os
+import json
+import glob
+
+brain_dir = r'C:\Users\admin\.gemini\antigravity\brain'
+files = glob.glob(os.path.join(brain_dir, '**', 'transcript_full.jsonl'), recursive=True)
+
+best_content = ''
+for fpath in files:
+    with open(fpath, 'r', encoding='utf-8') as f:
+        for line in f:
+            if 'HomeClient' in line and 'export default function HomeClient' in line:
+                try:
+                    obj = json.loads(line)
+                    if 'tool_calls' in obj:
+                        for t in obj['tool_calls']:
+                            if t['name'] == 'run_command':
+                                cmd = t['args'].get('CommandLine', '')
+                                if 'HomeClient.tsx' in cmd and len(cmd) > len(best_content):
+                                    best_content = cmd
+                except:
+                    pass
+with open('homeclient_restore_full.txt', 'w', encoding='utf-8') as f:
+    f.write(best_content)
+"
