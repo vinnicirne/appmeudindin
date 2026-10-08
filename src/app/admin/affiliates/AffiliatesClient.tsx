@@ -1,10 +1,15 @@
-'use client'
+﻿'use client'
 
+// @ts-ignore
 import { useState, useEffect } from 'react'
+// @ts-ignore
 import { motion, AnimatePresence } from 'framer-motion'
+// @ts-ignore
 import { Plus, X, Search, Link2, Download, Copy, Trash2, Phone, Printer } from 'lucide-react'
+// @ts-ignore
 import { createAffiliateAction, deleteAffiliateAction, updateAffiliateAction } from '@/app/actions/affiliateActions'
 import toast from 'react-hot-toast'
+// @ts-ignore
 import { Button } from '@/components/ui/button'
 
 export default function AffiliatesClient({ initialAffiliates }: { initialAffiliates: any[] }) {

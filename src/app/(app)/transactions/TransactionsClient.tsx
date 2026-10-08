@@ -404,7 +404,7 @@ export default function TransactionsClient() {
 
       <div className="flex flex-col gap-2">
         {filtered.length === 0 ? (
-          <EmptyState />
+          <EmptyState title="Nenhuma transação" description="Altere os filtros." />
         ) : (
           filtered.map((t) => {
             const isPaid = t.is_paid === true
