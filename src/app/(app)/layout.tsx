@@ -17,9 +17,12 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   const { data: userData } = await supabase
     .from('users')
-    .select('plan_status, trial_ends_at, role')
+    .select('plan_status, trial_ends_at, role, is_affiliate')
     .eq('id', user.id)
     .maybeSingle()
+
+  const isAdmin = userData?.role === 'admin';
+  const isAffiliate = userData?.is_affiliate === true;
 
   if (userData && userData.role !== 'admin') {
     const status = userData.plan_status;
@@ -42,7 +45,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       <PushNotificationPrompt />
       <Sidebar />
       <div className="flex-1 flex flex-col min-h-0 overflow-y-auto pb-20 sm:pb-0">
-        <Header />
+        <Header isAdmin={isAdmin} isAffiliate={isAffiliate} />
         <SwipeNavigation>
           {children}
         </SwipeNavigation>

@@ -8,7 +8,12 @@ import { toast } from 'react-hot-toast';
 import { ThemeToggleIcon } from '@/components/ThemeToggleIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export function Header() {
+interface HeaderProps {
+  isAdmin?: boolean;
+  isAffiliate?: boolean;
+}
+
+export function Header({ isAdmin, isAffiliate }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -103,7 +108,7 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="absolute left-0 top-0 bottom-0 w-4/5 max-w-xs bg-card border-r border-border p-6 shadow-2xl flex flex-col justify-between"
+              className="absolute left-0 top-0 bottom-0 w-4/5 max-w-xs bg-card border-r border-border p-6 shadow-2xl flex flex-col justify-between overflow-y-auto"
             >
               <div>
                 {/* Topo da Gaveta */}
@@ -132,9 +137,30 @@ export function Header() {
                     onClick={() => setIsMenuOpen(false)} 
                   />
                   <DrawerItem 
+                    href="/graphics" 
+                    icon="pie_chart" 
+                    label="Gráficos" 
+                    active={pathname === '/graphics'} 
+                    onClick={() => setIsMenuOpen(false)} 
+                  />
+                  <DrawerItem 
+                    href="/transactions" 
+                    icon="receipt_long" 
+                    label="Extrato" 
+                    active={pathname === '/transactions'} 
+                    onClick={() => setIsMenuOpen(false)} 
+                  />
+                  <DrawerItem 
+                    href="/vaults" 
+                    icon="account_balance" 
+                    label="Caixinhas" 
+                    active={pathname === '/vaults'} 
+                    onClick={() => setIsMenuOpen(false)} 
+                  />
+                  <DrawerItem 
                     href="/planning" 
                     icon="savings" 
-                    label="Metas & Sonhos" 
+                    label="Metas" 
                     active={pathname === '/planning'} 
                     onClick={() => setIsMenuOpen(false)} 
                   />
@@ -145,20 +171,17 @@ export function Header() {
                     active={pathname === '/budgets'} 
                     onClick={() => setIsMenuOpen(false)} 
                   />
-                  <DrawerItem 
-                    href="/affiliate" 
-                    icon="handshake" 
-                    label="Área de Parceiro" 
-                    active={pathname === '/affiliate'} 
-                    onClick={() => setIsMenuOpen(false)} 
-                  />
-                  <DrawerItem 
-                    href="/graphics" 
-                    icon="pie_chart" 
-                    label="Gráficos" 
-                    active={pathname === '/graphics'} 
-                    onClick={() => setIsMenuOpen(false)} 
-                  />
+                  
+                  {isAffiliate && (
+                    <DrawerItem 
+                      href="/affiliate" 
+                      icon="handshake" 
+                      label="Área de Parceiro" 
+                      active={pathname === '/affiliate'} 
+                      onClick={() => setIsMenuOpen(false)} 
+                    />
+                  )}
+
                   <DrawerItem 
                     href="/reports" 
                     icon="summarize" 
@@ -166,13 +189,17 @@ export function Header() {
                     active={pathname === '/reports'} 
                     onClick={() => setIsMenuOpen(false)} 
                   />
-                  <DrawerItem 
-                    href="/transactions" 
-                    icon="receipt_long" 
-                    label="Extrato Completo" 
-                    active={pathname === '/transactions'} 
-                    onClick={() => setIsMenuOpen(false)} 
-                  />
+                  
+                  {isAdmin && (
+                    <DrawerItem 
+                      href="/admin" 
+                      icon="admin_panel_settings" 
+                      label="Painel Admin" 
+                      active={pathname.startsWith('/admin')} 
+                      onClick={() => setIsMenuOpen(false)} 
+                    />
+                  )}
+                  
                   <DrawerItem 
                     href="/profile" 
                     icon="person" 
