@@ -191,7 +191,7 @@ export async function saveAffiliateForUserAction(data: {
     await checkAdmin()
     const adminSupabase = getAdminClient()
 
-    // 1. Busca dados do usuÃ¡rio
+    // 1. Busca dados do usuário
     const { data: targetUser, error: userErr } = await adminSupabase
       .from('users')
       .select('id, name, email, phone')
@@ -214,7 +214,7 @@ export async function saveAffiliateForUserAction(data: {
 
     if (userUpdateErr) {
       if (userUpdateErr.message?.includes('affiliate_code') || userUpdateErr.message?.includes('schema cache')) {
-        return { error: 'As colunas de afiliado ainda nÃ£o foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
+        return { error: 'As colunas de afiliado ainda não foram criadas no Supabase. Execute o comando SQL no SQL Editor.' }
       }
       return { error: userUpdateErr.message }
     }

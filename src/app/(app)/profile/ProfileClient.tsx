@@ -125,7 +125,7 @@ export default function ProfileClient({
               {isActive ? 'Plano Ativo' : 'Assinatura Pendente'}
             </span>
           </div>
-          <span className="text-xs text-muted-foreground font-medium">Assinatura Anual (R$ 29,00)</span>
+          <span className="text-xs text-muted-foreground font-medium">Assinatura Anual (R$ 37,00)</span>
         </div>
         <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold ${
           isActive ? 'bg-[#1db576]/10 text-[#1db576]' : 'bg-amber-500/10 text-amber-600'

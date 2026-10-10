@@ -22,7 +22,7 @@ export function AdminPlansClient({ initialPlans }: Props) {
   const [formId, setFormId] = useState('')
   const [formName, setFormName] = useState('')
   const [formDescription, setFormDescription] = useState('')
-  const [formPrice, setFormPrice] = useState('29.00')
+  const [formPrice, setFormPrice] = useState('37.00')
   const [formInterval, setFormInterval] = useState<'month' | 'year'>('year')
   const [formBadge, setFormBadge] = useState('')
   const [formFeatures, setFormFeatures] = useState('')

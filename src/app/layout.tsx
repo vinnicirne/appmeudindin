@@ -16,7 +16,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Meu DinDin | Controle Financeiro Descomplicado",
-  description: "Seu dinheiro, sob seu controle, sem complicaÃ§Ã£o.",
+  description: "Seu dinheiro, sob seu controle, sem complicação.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

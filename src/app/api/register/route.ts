@@ -6,25 +6,25 @@ import { createClient } from '@/utils/supabase/server';
 
 /**
  * POST /api/register
- * Cria a conta do usuÃ¡rio no Supabase Auth + tabela users (incluindo phone/whatsapp),
- * faz login automÃ¡tico na sessÃ£o e retorna sucesso para o frontend navegar para o paywall/checkout.
+ * Cria a conta do usuário no Supabase Auth + tabela users (incluindo phone/whatsapp),
+ * faz login automático na sessão e retorna sucesso para o frontend navegar para o paywall/checkout.
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => ({}));
     const { name, email, password, phone, referred_by } = body;
 
-    // ValidaÃ§Ã£o
+    // Validação
     if (!name || !email || !password) {
       return NextResponse.json(
-        { error: 'Nome, e-mail e senha sÃ£o obrigatÃ³rios.' },
+        { error: 'Nome, e-mail e senha são obrigatórios.' },
         { status: 400 }
       );
     }
 
     const adminSupabase = createAdminClient();
 
-    // 1. Cria usuÃ¡rio no Auth
+    // 1. Cria usuário no Auth
     const { data: authData, error: authError } = await adminSupabase.auth.admin.createUser({
       email,
       password,
@@ -39,11 +39,11 @@ export async function POST(request: NextRequest) {
     if (authError || !authData.user) {
       if (authError?.message?.includes('already registered') || authError?.message?.includes('already been registered')) {
         return NextResponse.json(
-          { error: 'Este e-mail jÃ¡ estÃ¡ cadastrado. FaÃ§a login para continuar.' },
+          { error: 'Este e-mail já está cadastrado. Faça login para continuar.' },
           { status: 409 }
         );
       }
-      throw new Error(authError?.message || 'Falha ao cadastrar usuÃ¡rio.');
+      throw new Error(authError?.message || 'Falha ao cadastrar usuário.');
     }
 
     const userId = authData.user.id;
@@ -60,12 +60,12 @@ export async function POST(request: NextRequest) {
         plan_status: 'pending',
       });
 
-    // 3. Fazer login automÃ¡tico para criar a sessÃ£o (cookies)
+    // 3. Fazer login automático para criar a sessão (cookies)
     try {
       const supabaseClient = await createClient();
       await supabaseClient.auth.signInWithPassword({ email, password });
     } catch (authError) {
-      console.warn('[/api/register] Aviso: Erro ao fazer login automÃ¡tico:', authError);
+      console.warn('[/api/register] Aviso: Erro ao fazer login automático:', authError);
     }
 
     return NextResponse.json({

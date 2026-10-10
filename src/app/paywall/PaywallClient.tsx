@@ -35,12 +35,12 @@ export default function PaywallClient({
     plans && plans.length > 0 ? plans[0] : {
       id: 'default',
       name: 'Plano Anual Oficial',
-      price: 29.00,
+      price: 37.00,
       interval: 'year'
     }
   )
 
-  const planPrice = Number(selectedPlan?.price || 29.00)
+  const planPrice = Number(selectedPlan?.price || 37.00)
   const planInterval = selectedPlan?.interval || 'year'
 
   const [cpf, setCpf] = useState('')

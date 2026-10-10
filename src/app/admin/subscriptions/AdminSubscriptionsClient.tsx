@@ -35,7 +35,7 @@ export function AdminSubscriptionsClient({ initialSubscriptions }: Props) {
   const activeCount = subscriptions.filter(s => s.status === 'active').length
   const pendingCount = subscriptions.filter(s => s.status === 'pending').length
   const canceledCount = subscriptions.filter(s => s.status === 'canceled').length
-  const totalRevenue = activeCount * 29.00
+  const totalRevenue = activeCount * 37.00
 
   function handleStatusChange(userId: string, newStatus: 'active' | 'pending' | 'canceled') {
     setFeedback(null)

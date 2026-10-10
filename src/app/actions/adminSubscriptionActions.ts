@@ -45,7 +45,7 @@ export async function getSubscriptionsAction(): Promise<SubscriptionItem[]> {
       .limit(1)
       .single()
 
-    const currentPrice = plansData ? Number(plansData.price) : 29.00
+    const currentPrice = plansData ? Number(plansData.price) : 37.00
     const currentPlanName = plansData?.name || 'Plano Anual Oficial'
 
     // 2. Busca todos os usuários via Service Role (ignora RLS)

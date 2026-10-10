@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       activePlan = data;
     }
 
-    const planPrice = activePlan ? Number(activePlan.price) : 29.00;
+    const planPrice = activePlan ? Number(activePlan.price) : 37.00;
     const planName = activePlan?.name || 'Meu DinDin — Assinatura Anual';
 
     const client = new MercadoPagoConfig({

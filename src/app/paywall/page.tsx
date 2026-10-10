@@ -32,7 +32,7 @@ export default async function PaywallPage() {
     {
       id: 'default',
       name: 'Plano Anual Oficial',
-      price: 29.00,
+      price: 37.00,
       interval: 'year',
       description: 'Acesso ilimitado a todas as ferramentas por 1 ano.',
       badge: 'MAIS POPULAR'

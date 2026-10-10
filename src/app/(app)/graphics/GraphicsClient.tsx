@@ -4,12 +4,12 @@ import { motion } from "framer-motion"
 import { useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 
-// Isola o Recharts para nÃ£o travar a navegaÃ§Ã£o (ssr: false)
+// Isola o Recharts para não travar a navegação (ssr: false)
 const ChartsSection = dynamic(() => import('./GraphicsCharts'), {
   ssr: false,
   loading: () => (
     <div className="h-48 w-full flex items-center justify-center text-sm text-muted-foreground">
-      Carregando grÃ¡ficos...
+      Carregando gráficos...
     </div>
   )
 })
@@ -26,7 +26,7 @@ interface Transaction {
 }
 
 const MONTH_NAMES = [
-  'Janeiro', 'Fevereiro', 'MarÃ§o', 'Abril', 'Maio', 'Junho',
+  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ]
 
@@ -72,7 +72,7 @@ export default function GraphicsClient() {
     }
   }
 
-  // TransaÃ§Ãµes do mÃªs selecionado
+  // Transações do mês selecionado
   const currentMonthTransactions = useMemo(() => {
     return transactions.filter(t => {
       const parts = parseDateParts(t.date)
@@ -140,7 +140,7 @@ export default function GraphicsClient() {
       .sort((a, b) => b.amount - a.amount)
   }, [currentMonthTransactions, totalExpense, dbCategories])
 
-  // EvoluÃ§Ã£o dos Ãºltimos 6 meses
+  // Evolução dos últimos 6 meses
   const sixMonthsHistory = useMemo(() => {
     const months = []
     for (let i = 5; i >= 0; i--) {
@@ -177,16 +177,16 @@ export default function GraphicsClient() {
   // Dica inteligente
   const tipText = useMemo(() => {
     if (totalIncome === 0 && totalExpense === 0) {
-      return 'Adicione suas receitas e despesas para acompanhar grÃ¡ficos detalhados e obter insights sobre suas finanÃ§as.'
+      return 'Adicione suas receitas e despesas para acompanhar gráficos detalhados e obter insights sobre suas finanças.'
     }
     if (balance < 0) {
       const topCat = categoryExpenses[0]
-      return `Seus gastos ultrapassaram os ganhos em ${formatCurrency(Math.abs(balance))} neste mÃªs. Sua maior despesa foi em ${topCat ? topCat.label : 'categorias diversas'}.`
+      return `Seus gastos ultrapassaram os ganhos em ${formatCurrency(Math.abs(balance))} neste mês. Sua maior despesa foi em ${topCat ? topCat.label : 'categorias diversas'}.`
     }
     if (savingsRate >= 20) {
-      return `Excelente! VocÃª estÃ¡ economizando ${savingsRate.toFixed(1)}% da sua renda neste mÃªs. Mantenha o foco para construir sua reserva!`
+      return `Excelente! Você está economizando ${savingsRate.toFixed(1)}% da sua renda neste mês. Mantenha o foco para construir sua reserva!`
     }
-    return `VocÃª economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcanÃ§ar suas metas mais rÃ¡pido.`
+    return `Você economizou ${formatCurrency(balance)} (${savingsRate.toFixed(1)}% da renda). Tente poupar pelo menos 20% para alcançar suas metas mais rápido.`
   }, [totalIncome, totalExpense, balance, savingsRate, categoryExpenses])
 
   if (isLoading) return <div className="flex-1 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>
@@ -194,7 +194,7 @@ export default function GraphicsClient() {
   return (
     <main className="flex-1 flex flex-col p-4 max-w-md mx-auto w-full relative bg-background min-h-screen pb-24">
       
-      {/* Seletor de MÃªs */}
+      {/* Seletor de Mês */}
       <div className="bg-card rounded-2xl p-2 mb-4 shadow-sm border border-border/50">
         <div className="flex items-center justify-between px-2 py-1">
           <button 
@@ -227,7 +227,7 @@ export default function GraphicsClient() {
           <div className="flex flex-col gap-1">
             <div className="flex items-center justify-center sm:justify-start gap-1 text-muted-foreground">
               <span className="material-symbols-outlined text-[14px]">calendar_today</span>
-              <span className="text-[10px] font-medium">MÃ©dia diÃ¡ria</span>
+              <span className="text-[10px] font-medium">Média diária</span>
             </div>
             <p className="font-bold text-foreground text-xs sm:text-sm">
               {formatCurrency(dailyAverage)}
@@ -247,7 +247,7 @@ export default function GraphicsClient() {
           <div className="flex flex-col gap-1">
             <div className="flex items-center justify-center sm:justify-start gap-1 text-muted-foreground">
               <span className="material-symbols-outlined text-[14px]">swap_horiz</span>
-              <span className="text-[10px] font-medium">Saldo do mÃªs</span>
+              <span className="text-[10px] font-medium">Saldo do mês</span>
             </div>
             <p className={`font-bold text-xs sm:text-sm ${balance >= 0 ? 'text-[#1db576]' : 'text-red-500'}`}>
               {formatCurrency(balance)}
@@ -267,14 +267,14 @@ export default function GraphicsClient() {
           <span className="material-symbols-outlined text-xl">lightbulb</span>
         </div>
         <div>
-          <h3 className="text-[11px] font-bold text-[#1a5b48] dark:text-[#1db576] mb-0.5">Dica de GestÃ£o Financeira</h3>
+          <h3 className="text-[11px] font-bold text-[#1a5b48] dark:text-[#1db576] mb-0.5">Dica de Gestão Financeira</h3>
           <p className="text-[10px] text-[#1a5b48]/90 dark:text-foreground/80 leading-snug font-medium">
             {tipText}
           </p>
         </div>
       </motion.div>
 
-      {/* Despesas por Categoria + GrÃ¡ficos (isolados) */}
+      {/* Despesas por Categoria + Gráficos (isolados) */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -292,7 +292,7 @@ export default function GraphicsClient() {
           <div className="flex justify-center items-center py-6">
             <div className="w-36 h-36 rounded-full border-[16px] border-muted/40 flex flex-col items-center justify-center text-center p-2">
               <span className="font-bold text-[11px] text-foreground">Sem gastos</span>
-              <span className="text-[10px] text-muted-foreground font-medium">no perÃ­odo</span>
+              <span className="text-[10px] text-muted-foreground font-medium">no período</span>
             </div>
           </div>
         ) : (
@@ -305,7 +305,7 @@ export default function GraphicsClient() {
         )}
       </motion.div>
 
-      {/* EvoluÃ§Ã£o Mensal (tambÃ©m dentro do ChartsSection) */}
+      {/* Evolução Mensal (também dentro do ChartsSection) */}
       {categoryExpenses.length > 0 && (
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
@@ -314,7 +314,7 @@ export default function GraphicsClient() {
           className="bg-card rounded-2xl p-4 shadow-sm border border-border/50 flex flex-col"
         >
           <div className="flex justify-between items-center mb-6">
-            <h2 className="font-bold text-sm text-foreground">EvoluÃ§Ã£o Mensal (6 Meses)</h2>
+            <h2 className="font-bold text-sm text-foreground">Evolução Mensal (6 Meses)</h2>
             <div className="flex gap-3">
               <div className="flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-[#1db576]"></span>
@@ -327,7 +327,7 @@ export default function GraphicsClient() {
             </div>
           </div>
           
-          {/* O grÃ¡fico de barras tambÃ©m estÃ¡ no ChartsSection */}
+          {/* O gráfico de barras também está no ChartsSection */}
           <div className="h-48 w-full">
             <ChartsSection 
               categoryExpenses={categoryExpenses}

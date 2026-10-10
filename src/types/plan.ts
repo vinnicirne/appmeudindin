@@ -16,7 +16,7 @@ export const DEFAULT_PLANS: PlanItem[] = [
     id: 'meu_dindin_anual',
     name: 'Plano Anual Oficial',
     description: 'Acesso completo ao Meu DinDin por 12 meses com economia máxima.',
-    price: 29.00,
+    price: 37.00,
     interval: 'year',
     features: [
       'Controle financeiro completo',

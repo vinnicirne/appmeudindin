@@ -54,7 +54,7 @@ export default async function AffiliatesPage() {
   
   const avgPlanPrice = (plansData && plansData.length > 0)
     ? plansData.reduce((acc, p) => acc + Number(p.price), 0) / plansData.length
-    : 29.0;
+    : 37.0;
 
   // 3. Unifica a lista de afiliados sem duplicar e sem perder ninguém
   const allAffiliatesMap = new Map<string, any>()

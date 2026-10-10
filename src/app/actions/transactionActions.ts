@@ -26,6 +26,7 @@ export async function addTransactionAction(formData: FormData) {
     const categoryId = formData.get('categoryId') as string;
     const isRecurring = formData.get('isRecurring') === 'true';
     const notes = (formData.get('notes') as string) || '';
+    const isPaid = formData.get('isPaid') === 'true';
     const installmentsTotal = Number(formData.get('installmentsTotal'));
 
     if (!amount || !description || !dateStr || !type || !categoryId) {
@@ -41,7 +42,7 @@ export async function addTransactionAction(formData: FormData) {
       type,
       isRecurring,
       notes,
-      isPaid: true,
+      isPaid,
       installments: installmentsTotal > 1 ? { current: 1, total: installmentsTotal } : undefined
     });
 
@@ -184,16 +185,20 @@ export async function deleteTransactionAction(id: string) {
       return { error: 'Transação não encontrada ou sem permissão.' };
     }
 
-    // Identificar e apagar futuros do mesmo grupo também, pois "não faz sentido não ser alterado"
+    // Identificar e apagar TODOS do mesmo lote (passados, presentes e futuros)
     if (existing.isRecurring || existing.installments) {
-      const { data: futureTransactions } = await supabase
+      const minCreatedAt = new Date(existing.createdAt.getTime() - 60000).toISOString();
+      const maxCreatedAt = new Date(existing.createdAt.getTime() + 60000).toISOString();
+      
+      const { data: allTransactions } = await supabase
         .from('transactions')
         .select('id, created_at, is_recurring, installments')
         .eq('user_id', user.id)
-        .gte('date', existing.date.toISOString()); // inclui ele mesmo e futuros do mesmo dia
+        .gte('created_at', minCreatedAt)
+        .lte('created_at', maxCreatedAt);
 
-      if (futureTransactions && futureTransactions.length > 0) {
-        const siblings = futureTransactions.filter(t => {
+      if (allTransactions && allTransactions.length > 0) {
+        const siblings = allTransactions.filter(t => {
           if (!t.created_at || !existing.createdAt) return false;
           const diff = Math.abs(new Date(t.created_at).getTime() - existing.createdAt.getTime());
           if (diff > 60000) return false;

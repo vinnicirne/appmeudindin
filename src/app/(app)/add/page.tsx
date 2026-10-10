@@ -8,7 +8,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 
-const EXPENSE_QUICK_TAGS = ['Supermercado', 'CombustÃ­vel', 'Restaurante', 'FarmÃ¡cia', 'Lazer', 'Uber'];
+const EXPENSE_QUICK_TAGS = ['Supermercado', 'Combustível', 'Restaurante', 'Farmácia', 'Lazer', 'Uber'];
 const INCOME_QUICK_TAGS = ['Salário', 'Freelance', 'Rendimentos', 'Venda', 'Reembolso'];
 
 
@@ -49,6 +49,7 @@ function AddTransactionForm() {
     return `${year}-${month}-${day}`;
   });
   const [notes, setNotes] = useState('');
+  const [isPaid, setIsPaid] = useState(true);
 
   useEffect(() => {
     const typeParam = searchParams.get('type');
@@ -112,6 +113,7 @@ function AddTransactionForm() {
     formData.append('categoryId', category);
     formData.append('isRecurring', frequency === 'FIXA' ? 'true' : 'false');
     formData.append('installmentsTotal', frequency === 'PARCELADA' ? String(installments) : '1');
+    formData.append('isPaid', isPaid ? 'true' : 'false');
     if (notes) formData.append('notes', notes);
 
     const res = await addTransactionAction(formData);
@@ -135,7 +137,7 @@ function AddTransactionForm() {
         <div className="w-12 h-1 bg-gray-300 dark:bg-muted-foreground/30 rounded-full mx-auto mb-4" />
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-black text-gray-900 dark:text-foreground tracking-tight">
-            Nova TransaÃ§Ã£o
+            Nova Transação
           </h1>
           <Link
             href="/"
@@ -222,7 +224,7 @@ function AddTransactionForm() {
 
           {frequency === 'PARCELADA' && type === 'EXPENSE' && (
             <div className="flex items-center gap-3 p-3 bg-muted/40 rounded-xl border border-border/60 mt-1">
-              <span className="text-xs font-bold text-foreground">NÃºmero de parcelas:</span>
+              <span className="text-xs font-bold text-foreground">Número de parcelas:</span>
               <input
                 type="number"
                 min="2"
@@ -261,7 +263,7 @@ function AddTransactionForm() {
             <div className="mt-1 flex gap-2 items-start p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/30 rounded-xl">
               <span className="material-symbols-outlined text-blue-500 text-lg shrink-0">info</span>
               <p className="text-[11px] text-blue-700 dark:text-blue-300 leading-snug">
-                O sistema lanÃ§arÃ¡ automaticamente <strong className="font-black">{installments} parcelas de R$ {(parseFloat(amount.replace(',', '.')) / installments).toFixed(2).replace('.', ',')}</strong> para os prÃ³ximos meses.
+                O sistema lançará automaticamente <strong className="font-black">{installments} parcelas de R$ {(parseFloat(amount.replace(',', '.')) / installments).toFixed(2).replace('.', ',')}</strong> para os próximos meses.
               </p>
             </div>
           )}
@@ -277,7 +279,7 @@ function AddTransactionForm() {
             <input
               type="text"
               required
-              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: Salário Mensal, PensÃ£o AlimentÃ­cia...'}
+              placeholder={type === 'EXPENSE' ? 'Ex: Supermercado, Aluguel...' : 'Ex: Salário Mensal, Pensão Alimentícia...'}
               value={description}
               onChange={e => setDescription(e.target.value)}
               className="w-full bg-transparent outline-none text-xs md:text-sm font-medium text-gray-800 dark:text-foreground placeholder:text-gray-400"
@@ -331,10 +333,10 @@ function AddTransactionForm() {
           </div>
         </div>
 
-        {/* Data de InÃ­cio */}
+        {/* Data de Início */}
         <div className="flex flex-col gap-2">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            Data de InÃ­cio
+            Data de Início
           </label>
           <div className="flex items-center gap-2 flex-wrap">
             <button
@@ -360,7 +362,7 @@ function AddTransactionForm() {
               Ontem
             </button>
 
-            {/* Seletor de Data Direto e ConfiÃ¡vel */}
+            {/* Seletor de Data Direto e Confiável */}
             <div className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
               !isToday && !isYesterday
                 ? 'bg-[#c6f6e5] text-[#0d7355] border-[#9ae6b4] dark:bg-emerald-950/60 dark:text-emerald-300'
@@ -380,10 +382,10 @@ function AddTransactionForm() {
           </div>
         </div>
 
-        {/* ObservaÃ§Ãµes (Opcional) */}
+        {/* Observações (Opcional) */}
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-bold text-gray-600 dark:text-muted-foreground">
-            ObservaÃ§Ãµes (Opcional)
+            Observações (Opcional)
           </label>
           <div className="w-full flex items-center gap-3 px-4 py-3.5 bg-white dark:bg-card border border-blue-100 dark:border-border rounded-2xl shadow-sm focus-within:border-emerald-500 transition-all">
             <span className="material-symbols-outlined text-gray-400 text-lg">note</span>
@@ -397,14 +399,30 @@ function AddTransactionForm() {
           </div>
         </div>
 
-        {/* BotÃ£o Salvar TransaÃ§Ã£o */}
+        {/* Status de Pagamento */}
+        <div className="flex items-center gap-3 px-2 py-1">
+          <label className="relative flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              checked={isPaid}
+              onChange={(e) => setIsPaid(e.target.checked)}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-muted peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-500"></div>
+          </label>
+          <span className="text-sm font-bold text-gray-700 dark:text-foreground">
+            {type === 'EXPENSE' ? 'Já está pago' : 'Já foi recebido'}
+          </span>
+        </div>
+
+        {/* Botão Salvar Transação */}
         <button
           type="submit"
           disabled={loading}
           className="mt-2 w-full py-4 rounded-2xl bg-[#00875a] hover:bg-[#00744d] active:scale-[0.99] text-white font-black text-sm md:text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-700/20 transition-all disabled:opacity-50"
         >
           <span className="material-symbols-outlined text-lg">check</span>
-          {loading ? 'Salvando...' : 'Salvar TransaÃ§Ã£o'}
+          {loading ? 'Salvando...' : 'Salvar Transação'}
         </button>
       </form>
     </main>
