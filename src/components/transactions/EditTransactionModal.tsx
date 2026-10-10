@@ -133,7 +133,7 @@ function EditTransactionForm({
         </div>
 
         {/* Modal Body */}
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-4 pb-32 sm:pb-6">
           {/* Tipo Toggle */}
           <div className="grid grid-cols-2 gap-2 p-1 bg-muted/60 rounded-2xl border border-border/50">
             <button

@@ -460,7 +460,7 @@ export default function PlanningClient() {
                 </button>
               </div>
 
-              <form onSubmit={handleSaveGoal} className="space-y-4">
+              <form onSubmit={handleSaveGoal} className="space-y-4 pb-32 sm:pb-4">
                 {/* Nome da Meta */}
                 <div>
                   <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1.5">
@@ -631,7 +631,7 @@ export default function PlanningClient() {
                 Meta: <strong className="text-foreground">{balanceModalGoal.goal.title}</strong>
               </p>
 
-              <form onSubmit={handleSaveBalance} className="space-y-4 text-left">
+              <form onSubmit={handleSaveBalance} className="space-y-4 text-left pb-32 sm:pb-4">
                 <div>
                   <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1.5">
                     Valor a {balanceModalGoal.type === 'DEPOSIT' ? 'Adicionar' : 'Retirar'}

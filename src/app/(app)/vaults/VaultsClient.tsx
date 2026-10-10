@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -296,7 +296,7 @@ export default function VaultsClient() {
                 </button>
               </div>
 
-              <form onSubmit={handleSaveVault} className="flex flex-col gap-5 overflow-y-auto pb-4 scrollbar-hide">
+              <form onSubmit={handleSaveVault} className="flex flex-col gap-5 overflow-y-auto pb-32 sm:pb-4 scrollbar-hide">
                 <div>
                   <label className="text-xs font-bold text-foreground mb-1 block">Nome do Objetivo</label>
                   <input 
